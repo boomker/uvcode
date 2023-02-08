@@ -1,7 +1,20 @@
 return function()
 	local icons = { ui = require("modules.utils.icons").get("ui", true) }
 	local lga_actions = require("telescope-live-grep-args.actions")
+	require("modules.configs.tool.telescope_ui")
 
+	local actions_layout = require("telescope.actions.layout")
+	local action_state = require("telescope.actions.state")
+	local actions = require("telescope.actions")
+	local copy_to_clipboard_action = function(prompt_bufnr)
+		local entry = action_state.get_selected_entry()
+		local entry_val = entry.value
+		vim.fn.setreg("+", entry_val)
+		vim.fn.setreg('"', entry_val)
+
+		vim.notify("Copied " .. entry_val .. " to clipboard", vim.log.levels.INFO)
+		actions.close(prompt_bufnr)
+	end
 	require("telescope").setup({
 		defaults = {
 			initial_mode = "insert",
@@ -9,13 +22,64 @@ return function()
 			selection_caret = icons.ui.ChevronRight,
 			scroll_strategy = "limit",
 			results_title = false,
-			layout_strategy = "horizontal",
-			path_display = { "absolute" },
-			file_ignore_patterns = { ".git/", ".cache", "%.class", "%.pdf", "%.mkv", "%.mp4", "%.zip" },
-			layout_config = {
-				horizontal = {
-					preview_width = 0.5,
+			path_display = { "smart" },
+			color_devicons = true,
+			set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+			file_ignore_patterns = {
+				".git/",
+				"node_modules/",
+				"target/",
+				"vendor/",
+				".cache",
+				"%.class",
+				"%.pdf",
+				"%.mkv",
+				"%.mp4",
+				"%.zip",
+			},
+			mappings = {
+				i = {
+					-- ["<C-j>"] = actions.move_selection_next,
+					-- ["<C-k>"] = actions.move_selection_previous,
+					["<C-u>"] = false,
+					["<esc>"] = actions.close,
+					["<C-space>"] = actions_layout.toggle_preview,
+					["<C-h>"] = actions.which_key,
+					["<C-b>"] = actions.preview_scrolling_up,
+					["<C-n>"] = actions.cycle_history_next,
+					["<C-p>"] = actions.cycle_history_prev,
+					["<C-a>"] = actions.toggle_all,
+					["<C-j>"] = actions.toggle_selection + actions.move_selection_next,
+					["<C-k>"] = actions.toggle_selection + actions.move_selection_previous,
+					-- ["<C-m>"] = custom_actions.multi_selection_open,
+					-- ["<C-v>"] = custom_actions.multi_selection_open_vsplit,
+					-- ["<C-s>"] = custom_actions.multi_selection_open_split,
+					-- ["<C-t>"] = custom_actions.multi_selection_open_tab,
+					["<C-y>"] = copy_to_clipboard_action,
 				},
+			},
+			layout_strategy = "flex",
+			layout_config = {
+				width = 0.88,
+				height = 0.88,
+
+				horizontal = {
+					-- width = { padding = 0.15 },
+					preview_width = 0.4,
+				},
+				vertical = {
+					preview_height = 0.75,
+				},
+			},
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--trim", -- To trim the indentation at the beginning of presented line in the result window
 			},
 			file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 			grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -27,16 +91,66 @@ return function()
 			keymaps = {
 				theme = "dropdown",
 			},
+			find_files = {
+				-- copy_to_clipboard,
+				mappings = {
+					i = {
+						["<C-y>"] = copy_to_clipboard_action,
+					},
+				},
+				-- "--no-ignore-vcs",
+				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
+			},
+			git_files = {
+				mappings = {
+					i = {
+						["<C-y>"] = copy_to_clipboard_action,
+					},
+				},
+				git_command = {
+					"git",
+					"ls-files",
+					"--exclude-standard",
+					"--cached",
+					":!:*.git*",
+					":!:*.png*",
+					":!:*.gif*",
+					":!:LICENSE",
+				},
+				-- "--others",
+				-- show_untracked = true,
+			},
+
+			grep_string = {
+				additional_args = { "--hidden", "--glob=!.git*", "--no-ignore" },
+				mappings = {
+					i = {
+						["<C-f>"] = actions.to_fuzzy_refine,
+						["<C-space>"] = actions_layout.toggle_preview,
+						["<C-y>"] = copy_to_clipboard_action,
+					},
+				},
+			},
+			live_grep = {
+				additional_args = { "--hidden", "--glob=!.git*", "--no-ignore" },
+				mappings = {
+					i = {
+						["<C-f>"] = actions.to_fuzzy_refine,
+						["<C-space>"] = actions_layout.toggle_preview,
+						["<C-y>"] = copy_to_clipboard_action,
+					},
+				},
+			},
 		},
 		extensions = {
 			fzf = {
-				fuzzy = false,
+				fuzzy = true,
 				override_generic_sorter = true,
 				override_file_sorter = true,
 				case_mode = "smart_case",
 			},
 			frecency = {
-				show_scores = true,
+				-- show_scores = true,
 				show_unindexed = true,
 				ignore_patterns = { "*.git/*", "*/tmp/*" },
 			},
@@ -63,6 +177,15 @@ return function()
 						["<C-cr>"] = require("telescope-undo.actions").restore,
 					},
 				},
+			},
+			project = {
+				base_dirs = {
+					{ path = "~/gitrepos/", max_depth = 2 },
+				},
+				hidden_files = true, -- default: false
+				theme = "dropdown",
+				order_by = "asc",
+				sync_with_nvim_tree = true, -- default false
 			},
 		},
 	})

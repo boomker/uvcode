@@ -56,8 +56,8 @@ local function load_options()
 		jumpoptions = "stack",
 		showmode = false,
 		shortmess = "aoOTIcF",
-		scrolloff = 2,
-		sidescrolloff = 5,
+		scrolloff = 10,
+		sidescrolloff = 8,
 		mousescroll = "ver:3,hor:6",
 		foldlevelstart = 99,
 		ruler = true,
@@ -71,7 +71,7 @@ local function load_options()
 		helpheight = 12,
 		previewheight = 12,
 		showcmd = false,
-		cmdheight = 2, -- 0, 1, 2
+		cmdheight = 1, -- 0, 1, 2
 		cmdwinheight = 5,
 		equalalways = false,
 		laststatus = 2,

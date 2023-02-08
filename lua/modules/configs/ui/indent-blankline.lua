@@ -1,5 +1,6 @@
 return function()
 	require("indent_blankline").setup({
+
 		char = "│",
 		show_first_indent_level = true,
 		filetype_exclude = {
@@ -26,6 +27,7 @@ return function()
 		buftype_exclude = { "terminal", "nofile" },
 		show_trailing_blankline_indent = false,
 		show_current_context = true,
+		show_current_context_start = true,
 		context_patterns = {
 			"class",
 			"function",

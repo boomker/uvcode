@@ -1,8 +1,19 @@
 local tool = {}
 
-tool["tpope/vim-fugitive"] = {
+--[[ tool["tpope/vim-fugitive"] = {
 	lazy = true,
 	cmd = { "Git", "G" },
+} ]]
+-- tool["nvim-lua/plenary.nvim"] = { opt = false }
+tool["nvim-pack/nvim-spectre"] = {
+	opt = true,
+	module = "spectre",
+	-- config = conf.spectre,
+	config = require("tool.spectre"),
+	dependencies = {
+		{ "nvim-lua/plenary.nvim", opt = false },
+		{ "nvim-lua/popup.nvim", opt = true },
+	},
 }
 -- Please don't remove which-key.nvim otherwise you need to set timeoutlen=300 at `lua/core/options.lua`
 tool["folke/which-key.nvim"] = {

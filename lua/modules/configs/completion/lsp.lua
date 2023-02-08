@@ -128,7 +128,7 @@ return function()
 
 	local vint = require("efmls-configs.linters.vint")
 	local eslint = require("efmls-configs.linters.eslint")
-	local flake8 = require("efmls-configs.linters.flake8")
+	-- local flake8 = require("efmls-configs.linters.flake8")
 
 	local black = require("efmls-configs.formatters.black")
 	local stylua = require("efmls-configs.formatters.stylua")
@@ -142,22 +142,30 @@ return function()
 
 	-- Override default config here
 
-	flake8 = vim.tbl_extend("force", flake8, {
-		prefix = "flake8: max-line-length=160, ignore F403 and F405",
+	-- flake8 = vim.tbl_extend("force", flake8, {
+	-- 	prefix = "flake8: max-line-length=160, ignore F403 and F405",
+	-- 	lintStdin = true,
+	-- 	lintIgnoreExitCode = true,
+	-- 	lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
+	-- 	lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
+	-- })
+
+	-- Setup formatter and linter for efmls here
+	local python_ruff = {
+		prefix = "ruff linter for python better",
 		lintStdin = true,
 		lintIgnoreExitCode = true,
 		lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
-		lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
-	})
-
-	-- Setup formatter and linter for efmls here
+		lintCommand = "ruff --extend-ignore F403,F405 --quiet ${INPUT}",
+		formatCommand = "ruff --stdin-filename ${INPUT} --fix --exit-zero --quiet -",
+	}
 
 	efmls.setup({
 		vim = { formatter = vint },
 		lua = { formatter = stylua },
 		c = { formatter = clangfmt },
 		cpp = { formatter = clangfmt },
-		python = { formatter = black },
+		python = { formatter = black, linter = python_ruff },
 		vue = { formatter = prettier },
 		typescript = { formatter = prettier, linter = eslint },
 		javascript = { formatter = prettier, linter = eslint },

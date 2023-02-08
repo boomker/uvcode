@@ -70,6 +70,12 @@ return function()
 				end)
 					:with_buffer(bufnr)
 					:with_desc("git: Stage hunk"),
+
+				["n|<leader>hS"] = bind.map_callback(function()
+					require("gitsigns").stage_buffer()
+				end)
+					:with_buffer(bufnr)
+					:with_desc("git: Undo stage buffer"),
 				["n|<Leader>hu"] = bind.map_callback(function()
 					require("gitsigns.actions").undo_stage_hunk()
 				end)
@@ -90,7 +96,7 @@ return function()
 				end)
 					:with_buffer(bufnr)
 					:with_desc("git: Reset buffer"),
-				["n|<Leader>hp"] = bind.map_callback(function()
+				["n|<Leader>hv"] = bind.map_callback(function()
 					require("gitsigns.actions").preview_hunk()
 				end)
 					:with_buffer(bufnr)

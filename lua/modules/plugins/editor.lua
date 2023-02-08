@@ -24,11 +24,13 @@ editor["ojroques/nvim-bufdel"] = {
 	lazy = true,
 	event = "BufReadPost",
 }
-editor["rhysd/clever-f.vim"] = {
+
+--[[ editor["rhysd/clever-f.vim"] = {
 	lazy = true,
 	event = "BufReadPost",
 	config = require("editor.cleverf"),
-}
+} ]]
+
 editor["numToStr/Comment.nvim"] = {
 	lazy = true,
 	event = { "BufNewFile", "BufReadPre" },
