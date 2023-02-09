@@ -47,7 +47,7 @@ return function()
 		end
 	end
 
-	local function get_cwd()
+	--[[ local function get_cwd()
 		local cwd = vim.fn.getcwd()
 		local is_windows = require("core.global").is_windows
 		if not is_windows then
@@ -57,7 +57,7 @@ return function()
 			end
 		end
 		return icons.ui.RootFolderOpened .. cwd
-	end
+	end ]]
 
 	local mini_sections = {
 		lualine_a = { "filetype" },
@@ -101,6 +101,32 @@ return function()
 		return ""
 	end
 
+	-- format filepath for short
+	local function shorten_filename()
+		return function(fp)
+			local cwd_path = vim.fn.expand("%:~:h")
+			local filepath = cwd_path
+			local words = vim.split(filepath, "/", { trimempty = true })
+			if #words == 0 then
+				return fp
+			end
+
+			local arr = {}
+			for i = 1, #words - 2, 1 do
+				table.insert(arr, words[i]:sub(1, 2))
+			end
+			table.insert(arr, words[#words - 1])
+			table.insert(arr, words[#words])
+
+			local result = table.concat(arr, "/")
+			if filepath:sub(1, 1) == "/" then
+				result = "/" .. result
+			end
+			fp = result
+			return fp
+		end
+	end
+
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
@@ -112,7 +138,19 @@ return function()
 		sections = {
 			lualine_a = { { "mode" } },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
-			lualine_c = { lspsaga_symbols },
+			-- lualine_c = { lspsaga_symbols },
+			lualine_c = {
+				{
+					"filename",
+					file_status = true,
+					path = 1,
+					-- 0: Just the filename
+					-- 1: Relative path
+					-- 2: Absolute path
+					-- 3: Absolute path, with tilde as the home directory
+					fmt = shorten_filename(),
+				},
+			},
 			lualine_x = {
 				{ escape_status },
 				{
@@ -124,7 +162,6 @@ return function()
 						info = icons.diagnostics.Information,
 					},
 				},
-				{ get_cwd },
 			},
 			lualine_y = {
 				{ "filetype", colored = true, icon_only = true },
@@ -163,9 +200,9 @@ return function()
 	})
 
 	-- Properly set background color for lspsaga
-	local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle)
+	--[[ local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle)
 	for _, hlGroup in pairs(require("lspsaga.lspkind").get_kind()) do
 		require("modules.utils").extend_hl("LspSagaWinbar" .. hlGroup[1], { bg = winbar_bg })
 	end
-	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
+	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg }) ]]
 end

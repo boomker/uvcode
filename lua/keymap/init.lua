@@ -59,6 +59,37 @@ local function git_proj_root()
 	return false, cwd_parent
 end
 
+local function Telescope_project_files()
+	local is_git_repo, proj_path = git_proj_root()
+	local git_files_opts = {
+		git_command = {
+			"git",
+			"ls-files",
+			-- "--exclude-standard",
+			"--cached",
+			"--others",
+			":!:*.git*",
+			":!:*.png*",
+			":!:*.gif*",
+			":!:LICENSE",
+		},
+		use_git_root = true,
+		show_untracked = true,
+		cwd = proj_path,
+	} -- define here if you want to define something
+
+	local fd_files_opts = {
+		find_command = { "fd", "-IH", "--type", "f", "--strip-cwd-prefix", "--follow" },
+		cwd = proj_path,
+	}
+
+	if is_git_repo then
+		require("telescope.builtin").git_files(git_files_opts)
+	else
+		require("telescope.builtin").find_files(fd_files_opts)
+	end
+end
+
 local function Telescope_rg_kw(matchWord)
 	local _, proj_path = git_proj_root()
 
@@ -288,7 +319,10 @@ local plug_map = {
 		:with_desc("find: File by frecency"),
 	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
 	["n|<leader>fd"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in CWD"),
-	["n|<leader>fj"] = map_cu("Telescope git_files")
+	-- ["n|<leader>fj"] = map_cu("Telescope git_files")
+	["n|<leader>fj"] = map_callback(function()
+			Telescope_project_files()
+		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: file in git project"),
@@ -311,7 +345,6 @@ local plug_map = {
 	["n|<leader>fk"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
 	["n|<Leader>fw"] = map_cu("Telescope current_buffer_fuzzy_find"):with_noremap():with_silent(),
 	["n|<Leader>fJ"] = map_cu("Telescope jumplist"):with_noremap():with_silent(),
-	-- ["n|<Leader>fm"] = map_cu("Telescope keymaps"):with_noremap():with_silent(),
 	["n|<Leader>fW"] = map_callback(function()
 			Telescope_rg_kw({ word_match = true })
 		end)
