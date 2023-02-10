@@ -6,13 +6,13 @@ local tool = {}
 } ]]
 -- tool["nvim-lua/plenary.nvim"] = { opt = false }
 tool["nvim-pack/nvim-spectre"] = {
-	opt = true,
+	lazy = true,
 	module = "spectre",
 	-- config = conf.spectre,
 	config = require("tool.spectre"),
 	dependencies = {
-		{ "nvim-lua/plenary.nvim", opt = false },
-		{ "nvim-lua/popup.nvim", opt = true },
+		{ "nvim-lua/plenary.nvim", lazy = false },
+		{ "nvim-lua/popup.nvim", lazy = true },
 	},
 }
 -- Please don't remove which-key.nvim otherwise you need to set timeoutlen=300 at `lua/core/options.lua`

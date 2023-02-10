@@ -1,16 +1,16 @@
 return function()
-	-- 	vim.cmd([[
-	--         highlight HopNextKey  guifg=#ff007c gui=bold ctermfg=198 cterm=bold
-	--         highlight HopNextKey1 guifg=#00dfff gui=bold ctermfg=45 cterm=bold
-	--         highlight HopNextKey2 guifg=#2b8db3 ctermfg=33
-	--         highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242
-	--         highlight link HopCursor Cursor
+		vim.cmd([[
+	        highlight HopNextKey  guifg=#ff007c gui=bold ctermfg=198 cterm=bold
+	        highlight HopNextKey1 guifg=#00dfff gui=bold ctermfg=45 cterm=bold
+	        highlight HopNextKey2 guifg=#2b8db3 ctermfg=33
+	        highlight HopUnmatched guifg=#666666 guibg=bg guisp=#666666 ctermfg=242
+	        highlight link HopCursor Cursor
 
-	--         augroup HopInitHighlight
-	--             autocmd!
-	--             autocmd ColorScheme * lua require'hop.highlight'.insert_highlights()
-	--         augroup end
-	--     ]])
+	        augroup HopInitHighlight
+	            autocmd!
+	            autocmd ColorScheme * lua require'hop.highlight'.insert_highlights()
+	        augroup end
+	    ]])
 	local hop = require("hop")
 	local directions = require("hop.hint").HintDirection
 	vim.keymap.set("", "ff", function()
