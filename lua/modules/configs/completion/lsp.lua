@@ -35,7 +35,7 @@ return function()
 	mason_lspconfig.setup({
 		ensure_installed = {
 			"bashls",
-			"clangd",
+			-- "clangd",
 			"efm",
 			"gopls",
 			"pyright",
@@ -142,13 +142,13 @@ return function()
 
 	-- Override default config here
 
-	-- flake8 = vim.tbl_extend("force", flake8, {
-	-- 	prefix = "flake8: max-line-length=160, ignore F403 and F405",
-	-- 	lintStdin = true,
-	-- 	lintIgnoreExitCode = true,
-	-- 	lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
-	-- 	lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
-	-- })
+	--[[ flake8 = vim.tbl_extend("force", flake8, {
+		prefix = "flake8: max-line-length=160, ignore F403 and F405",
+		lintStdin = true,
+		lintIgnoreExitCode = true,
+		lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
+		lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
+	}) ]]
 
 	-- Setup formatter and linter for efmls here
 	local python_ruff = {

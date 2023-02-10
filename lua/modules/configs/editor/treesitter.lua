@@ -26,6 +26,15 @@ return function()
 			"vue",
 			"css",
 		},
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "si",
+                node_incremental = "ss",
+                node_decremental = "sd",
+                scope_incremental = "sS",
+            },
+        },
 		highlight = {
 			enable = true,
 			disable = function(ft, bufnr)
@@ -42,32 +51,78 @@ return function()
 			select = {
 				enable = true,
 				keymaps = {
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-					["ac"] = "@class.outer",
-					["ic"] = "@class.inner",
+                    ["aa"] = "@parameter.outer",
+                    ["ia"] = "@parameter.inner",
+
+                    ["ab"] = "@block.outer",
+                    ["ib"] = "@block.inner",
+
+                    ["ac"] = "@conditional.outer",
+                    ["ic"] = "@conditional.inner",
+
+                    ["ao"] = "@loop.outer",
+                    ["io"] = "@loop.inner",
+
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+
+                    ["aC"] = "@class.outer",
+                    ["iC"] = "@class.inner",
+
+                    -- ["ar"] = "@call.outer",
+                    -- ["ir"] = "@call.inner",
+                    ["au"] = "@comment.outer",
 				},
 			},
 			move = {
 				enable = true,
 				set_jumps = true, -- whether to set jumps in the jumplist
-				goto_next_start = {
-					["]["] = "@function.outer",
-					["]m"] = "@class.outer",
-				},
-				goto_next_end = {
-					["]]"] = "@function.outer",
-					["]M"] = "@class.outer",
-				},
-				goto_previous_start = {
-					["[["] = "@function.outer",
-					["[m"] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[]"] = "@function.outer",
-					["[M"] = "@class.outer",
-				},
+				-- goto_next_start = {
+				-- 	["]["] = "@function.outer",
+				-- 	["]m"] = "@class.outer",
+				-- },
+				-- goto_next_end = {
+				-- 	["]]"] = "@function.outer",
+				-- 	["]M"] = "@class.outer",
+				-- },
+				-- goto_previous_start = {
+				-- 	["[["] = "@function.outer",
+				-- 	["[m"] = "@class.outer",
+				-- },
+				-- goto_previous_end = {
+				-- 	["[]"] = "@function.outer",
+				-- 	["[M"] = "@class.outer",
+				-- },
+                goto_next_start = {
+                    ["]f"] = "@function.outer",
+                    ["]c"] = "@class.outer",
+                },
+                goto_next_end = {
+                    ["]F"] = "@function.outer",
+                    ["]C"] = "@class.outer",
+                },
+                goto_previous_start = {
+                    ["[f"] = "@function.outer",
+                    ["[c"] = "@class.outer",
+                },
+                goto_previous_end = {
+                    ["[F"] = "@function.outer",
+                    ["[C"] = "@class.outer",
+                },
 			},
+            swap = {
+                enable = true,
+                swap_next = {
+                    ["<leader>ma"] = "@parameter.inner",
+                    ["<leader>mf"] = "@function.outer",
+                    -- [">a"] = "@parameter.inner",
+                },
+                swap_previous = {
+                    ["<leader>mA"] = "@parameter.inner",
+                    ["<leader>mF"] = "@function.outer",
+                    -- ["<a"] = "@parameter.inner",
+                },
+            },
 		},
 		rainbow = {
 			enable = true,
@@ -78,6 +133,9 @@ return function()
 		matchup = { enable = true },
 	})
 	require("nvim-treesitter.install").prefer_git = true
+    require("nvim-treesitter.install").command_extra_args = {
+        curl = { "--proxy", "127.0.0.1:7890" },
+    }
 	if use_ssh then
 		local parsers = require("nvim-treesitter.parsers").get_parser_configs()
 		for _, p in pairs(parsers) do

@@ -178,13 +178,13 @@ return function()
 					},
 				},
 			},
-			project = {
+			projects = {
 				base_dirs = {
 					{ path = "~/gitrepos/", max_depth = 2 },
 				},
-				hidden_files = true, -- default: false
 				theme = "dropdown",
 				order_by = "asc",
+                hidden_files = true, -- default: false
 				sync_with_nvim_tree = true, -- default false
 			},
 		},

@@ -205,7 +205,6 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Code action for range"),
-	-- ["n|gd"] = map_cr("Lspsaga peek_definition"):with_noremap():with_silent():with_desc("lsp: Preview definition"),
 	["n|gd"] = map_cr("Lspsaga peek_definition"):with_noremap():with_silent():with_desc("lsp: Preview definition"),
 	["n|gD"] = map_cr("Lspsaga goto_definition"):with_noremap():with_silent():with_desc("lsp: Goto definition"),
 	["n|gr"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent():with_desc("lsp: Show reference"),
@@ -217,21 +216,23 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show outgoing calls"),
+	["n|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
 	["x|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
 	-- ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
 	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
+
 	-- toggleterm
-	["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_silent(), -- switch to normal mode in terminal.
+	-- ["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_silent(), -- switch to normal mode in terminal.
 	["t|jk"] = map_cmd([[<C-\><C-n>]]):with_silent(), -- switch to normal mode in terminal.
 	["n|<leader>tt"] = map_cr([[execute v:count . "ToggleTerm direction=horizontal"]])
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
-	["i|<C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=horizontal<CR>")
+	["i|<C-w>t"] = map_cmd("<Esc><Cmd>ToggleTerm direction=horizontal<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
-	["t|<C-w>t"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
+	["t|<C-w>d"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
@@ -330,6 +331,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("editn: Change current direrctory by zoxide"),
+    ["n|<Leader>fw"] = map_cu("Telescope current_buffer_fuzzy_find"):with_noremap():with_silent(),
 	["n|<Leader>fb"] = map_callback(function()
 			Telescope_rg_live_grep({ scope = "buffers" })
 		end)
@@ -343,13 +345,12 @@ local plug_map = {
 		:with_silent()
 		:with_desc("find: Word in project"),
 	["n|<leader>fk"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
-	["n|<Leader>fw"] = map_cu("Telescope current_buffer_fuzzy_find"):with_noremap():with_silent(),
-	["n|<Leader>fJ"] = map_cu("Telescope jumplist"):with_noremap():with_silent(),
-	["n|<Leader>fW"] = map_callback(function()
+	["n|<Leader>fK"] = map_callback(function()
 			Telescope_rg_kw({ word_match = true })
 		end)
 		:with_noremap()
 		:with_silent(),
+	["n|<Leader>fJ"] = map_cu("Telescope jumplist"):with_noremap():with_silent(),
 	["n|<Leader>fm"] = map_callback(command_panel):with_silent():with_noremap():with_desc("tool: Toggle command panel"),
 	["n|<Leader>fM"] = map_cu("Telescope marks"):with_noremap():with_silent(),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent(),
@@ -520,6 +521,9 @@ local plug_map = {
 		:with_desc("debug: Open REPL"),
 
 	["o|m"] = map_callback(function()
+		require("tsht").nodes()
+	end):with_silent(),
+	["x|m"] = map_callback(function()
 		require("tsht").nodes()
 	end):with_silent(),
 

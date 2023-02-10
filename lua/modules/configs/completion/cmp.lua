@@ -125,10 +125,10 @@ return function()
 			{ name = "path" },
 			{ name = "spell" },
 			-- { name = "tmux" },
-			{ name = "orgmode" },
+			-- { name = "orgmode" },
 			{ name = "buffer" },
 			-- { name = "latex_symbols" },
-			{ name = "copilot" },
+			-- { name = "copilot" },
 			-- { name = "cmp_tabnine" },
 		},
 	})

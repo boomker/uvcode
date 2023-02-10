@@ -8,7 +8,7 @@ local lang = {}
 } ]]
 
 lang["ray-x/go.nvim"] = {
-	opt = true,
+	lazy = true,
 	ft = "go",
 	-- run = ":GoInstallBinaries",
 	-- config = conf.lang_go,
