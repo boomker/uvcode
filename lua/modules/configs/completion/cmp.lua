@@ -128,8 +128,9 @@ return function()
 			-- { name = "tmux" },
 			-- { name = "orgmode" },
 			{ name = "buffer" },
-			-- { name = "latex_symbols" },
-			-- { name = "copilot" },
+			{ name = "latex_symbols" },
+			{ name = "copilot" },
+			-- { name = "codeium" },
 			-- { name = "cmp_tabnine" },
 		},
 	})
