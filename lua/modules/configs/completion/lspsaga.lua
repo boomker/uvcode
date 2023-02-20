@@ -159,6 +159,6 @@ return function()
 				Unit = { icons.kind.Unit, "LspKindUnit" },
 				Value = { icons.kind.Value, "LspKindValue" },
 			},
-		}, ]]
+		},
 	})
 end

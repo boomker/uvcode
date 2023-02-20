@@ -380,12 +380,8 @@ local plug_map = {
 		:with_desc("debug: Open REPL"),
 
     -- Plugin: treehopper
-	["o|m"] = map_callback(function()
-		require("tsht").nodes()
-	end):with_silent(),
-	["x|m"] = map_callback(function()
-		require("tsht").nodes()
-	end):with_silent(),
+    ["o|m"] = map_cr("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
+    ["x|m"] = map_cr("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
 
 	-- Plugin Diffview
 	["n|<leader>df"] = map_cr("DiffviewOpen"):with_silent():with_noremap():with_desc("git: Show diff"),

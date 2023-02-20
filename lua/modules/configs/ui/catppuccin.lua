@@ -2,12 +2,12 @@ return function()
 	local transparent_background = false -- Set background transparency here!
 
 	require("catppuccin").setup({
-		flavour = "mocha", -- Can be one of: latte, frappe, macchiato, mocha
-		background = { light = "latte", dark = "mocha" },
+		flavour = "frappe", -- Can be one of: latte, frappe, macchiato, mocha
+		background = { light = "latte", dark = "frappe" },
 		dim_inactive = {
 			enabled = false,
 			-- Dim inactive splits/windows/buffers.
-			-- NOT recommended if you use old palette (a.k.a., mocha).
+			-- NOT recommended if you use old palette (a.k.a., frappe).
 			shade = "dark",
 			percentage = 0.15,
 		},
@@ -88,7 +88,7 @@ return function()
 			which_key = true,
 		},
 		color_overrides = {
-			mocha = {
+			frappe = {
 				rosewater = "#F5E0DC",
 				flamingo = "#F2CDCD",
 				mauve = "#DDB6F2",
@@ -101,7 +101,8 @@ return function()
 				blue = "#96CDFB",
 				sky = "#89DCEB",
 				teal = "#B5E8E0",
-				lavender = "#C9CBFF",
+				lavender = "#edbebf",
+				-- lavender = "#C9CBFF",
 
 				text = "#D9E0EE",
 				subtext1 = "#BAC2DE",
@@ -119,7 +120,7 @@ return function()
 			},
 		},
 		highlight_overrides = {
-			mocha = function(cp)
+			frappe = function(cp)
 				return {
 					-- For base configs.
 					NormalFloat = { fg = cp.text, bg = transparent_background and cp.none or cp.base },
@@ -219,6 +220,7 @@ return function()
 					["@parameter.bash"] = { fg = cp.yellow, style = { "italic" } },
 
 					["@field.lua"] = { fg = cp.lavender },
+					["@keyword.function.lua"] = { fg = "#9bd1da" },
 					["@constructor.lua"] = { fg = cp.flamingo },
 
 					["@constant.java"] = { fg = cp.teal },
