@@ -59,7 +59,7 @@ return function()
 
 	local leader = " "
 	dashboard.section.buttons.val = {
-		button("space f c", " Scheme change", leader, nil, {
+		button("space s c", " Scheme change", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -67,7 +67,7 @@ return function()
 				require("telescope.builtin").colorscheme()
 			end,
 		}),
-		button("space f r", " File frecency", leader, nil, {
+		button("space f f", " File frecency", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -75,7 +75,7 @@ return function()
 				require("telescope").extensions.frecency.frecency()
 			end,
 		}),
-		button("space f e", " File history", leader, nil, {
+		button("space f o", " File history", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -91,7 +91,7 @@ return function()
 				require("telescope").extensions.projects.projects({})
 			end,
 		}),
-		button("space f f", " File find", leader, nil, {
+		button("space f d", " File find", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,

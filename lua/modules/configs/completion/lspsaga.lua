@@ -22,7 +22,7 @@ return function()
 
 	set_sidebar_icons()
 
-	local colors = require("modules.utils").get_palette()
+	-- local colors = require("modules.utils").get_palette()
 
 	require("lspsaga").setup({
 		preview = {
@@ -99,7 +99,7 @@ return function()
 			},
 		},
 		symbol_in_winbar = {
-			enable = true,
+			enable = false,
 			separator = " " .. icons.ui.Separator,
 			hide_keyword = true,
 			show_file = false,
@@ -109,7 +109,7 @@ return function()
 			enable = true,
 			frequency = 12,
 		},
-		ui = {
+		--[[ ui = {
 			theme = "round",
 			border = "single", -- Can be single, double, rounded, solid, shadow.
 			winblend = 0,
@@ -160,6 +160,6 @@ return function()
 				Unit = { icons.kind.Unit, colors.green },
 				Value = { icons.kind.Value, colors.peach },
 			},
-		},
+		}, ]]
 	})
 end

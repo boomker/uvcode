@@ -1,3 +1,4 @@
+---@diagnostic disable: different-requires
 local completion = {}
 
 completion["neovim/nvim-lspconfig"] = {
@@ -22,6 +23,18 @@ completion["neovim/nvim-lspconfig"] = {
 		},
 	},
 }
+
+--[[ completion["glepnir/lspsaga.nvim"] = {
+	lazy = true,
+    event = "BufRead",
+	-- config = require("completion.lspsaga"),
+    dependencies = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+} ]]
+
 completion["hrsh7th/nvim-cmp"] = {
 	lazy = true,
 	event = "InsertEnter",
@@ -37,11 +50,11 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-nvim-lua" },
-		{ "andersevenrud/cmp-tmux" },
+		-- { "andersevenrud/cmp-tmux" },
 		{ "hrsh7th/cmp-path" },
 		{ "f3fora/cmp-spell" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "kdheepak/cmp-latex-symbols" },
+		-- { "kdheepak/cmp-latex-symbols" },
 		{ "ray-x/cmp-treesitter" },
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
 		-- {
@@ -54,7 +67,7 @@ completion["hrsh7th/nvim-cmp"] = {
 		-- },
 	},
 }
-completion["zbirenbaum/copilot.lua"] = {
+--[[ completion["zbirenbaum/copilot.lua"] = {
 	lazy = true,
 	cmd = "Copilot",
 	event = "InsertEnter",
@@ -65,6 +78,6 @@ completion["zbirenbaum/copilot.lua"] = {
 			config = require("completion.copilot-cmp"),
 		},
 	},
-}
+} ]]
 
 return completion

@@ -15,6 +15,8 @@ return function()
 		vim.notify("Copied " .. entry_val .. " to clipboard", vim.log.levels.INFO)
 		actions.close(prompt_bufnr)
 	end
+    -- local cwd_path = vim.fn.expand("%:p:h")
+
 	require("telescope").setup({
 		defaults = {
 			initial_mode = "insert",
@@ -100,6 +102,7 @@ return function()
 				},
 				-- "--no-ignore-vcs",
 				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
+                -- cwd = cwd_path,
 			},
 			git_files = {
 				mappings = {

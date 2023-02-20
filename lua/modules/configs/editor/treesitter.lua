@@ -30,10 +30,10 @@ return function()
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "si",
-                node_incremental = "ss",
-                node_decremental = "sd",
-                scope_incremental = "sS",
+                init_selection = "gsi",
+                node_incremental = "gss",
+                node_decremental = "gsd",
+                scope_incremental = "gsS",
             },
         },
 		highlight = {

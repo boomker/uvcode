@@ -111,7 +111,7 @@ return function()
 		ignore_ft_on_setup = {},
 		filters = {
 			dotfiles = false,
-			custom = { ".DS_Store" },
+			custom = { ".DS_Store", "^.git*" },
 			exclude = {},
 		},
 		actions = {
@@ -153,7 +153,7 @@ return function()
 		},
 		git = {
 			enable = true,
-			ignore = true,
+			ignore = false,
 			show_on_dirs = true,
 			timeout = 400,
 		},

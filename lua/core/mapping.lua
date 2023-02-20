@@ -83,6 +83,11 @@ local core_map = {
 		:with_silent(),
 	-- select the last pasted region, useful
 	["n|<leader>sv"] = map_cmd('"`[" . strpart(getregtype(), 0, 1) . "`]"'):with_noremap():with_expr(),
+	-- replace with magic by default
+	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
+	["c|<C-s>"] = map_cmd([[%s/\v]]):with_noremap(),
+	["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
+
 	-- Substitute current search result to null
 	["n|<leader>sn"] = map_cmd(":%s//<CR>"):with_noremap():with_silent(),
 	["n|<leader>sN"] = map_cmd(":%s///g<CR>"):with_noremap():with_silent(),
@@ -117,11 +122,10 @@ local core_map = {
 	["n|=p"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["n|=P"] = map_cmd([[<Plug>(YankyPutBeforeFilter)]]):with_noremap():with_silent(),
 
+    -- TODO: Yank multi lines not adjacent
 	["n|cvj"] = map_cmd([[<Plug>(YankyCycleForward)]]):with_noremap():with_silent(),
 	["n|cvk"] = map_cmd([[<Plug>(YankyCycleBackward)]]):with_noremap():with_silent(),
 	["n|gcy"] = map_cmd("m'yyp<Plug>(comment_toggle_linewise_current)`'"):with_noremap():with_silent(),
-
-	-- TODO: Yank multi lines not adjacent
 
 	-- Replacing up to next underscore `_`
 	["n|cu"] = map_cmd("ct_"):with_noremap():with_silent(),
@@ -154,11 +158,12 @@ local core_map = {
 
 	-- more like MacVim
 	-- ["n|gf"] = map_cmd([[:tabedit <cfile><CR>]]):with_noremap():with_silent(),
+    ["n|<D-s>"] = map_cu("write"):with_noremap(),
 	["n|<D-f>"] = map_cmd("/"):with_noremap():with_silent(),
-	["n|<C-S-f>"] = map_cmd([[:vimgrep //j % |copen<C-Left><C-Left>]]):with_noremap():with_silent(),
+	["n|<D-S-g>"] = map_cmd([[:vimgrep //j % |copen<C-Left><C-Left><C-Left><Right>]]):with_noremap(),
 	["n|<D-v>"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
-	["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
+	["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
 	-- Insert
 	["i|<C-u>"] = map_cmd("<C-G>u<C-U>"):with_noremap(),
 	["i|<C-h>"] = map_cmd("<esc>^i"):with_noremap(),
@@ -185,28 +190,22 @@ local core_map = {
 	["i|<C-x>g"] = map_cmd("<esc>:Telescope grep_string<CR>"):with_noremap():with_silent(),
 	["i|<C-x>a"] = map_cmd("<esc>:ToggleAlternate<CR>a"):with_noremap():with_silent(),
 	["i|<C-x>t"] = map_cmd("<esc>:execute v:count . 'ToggleTerm direction=float'<CR>"):with_noremap(),
-	["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
-	-- ["i|<D-p>"] = map_cmd("<esc>:Telescope buffers<CR>"):with_noremap():with_silent(),
-	["i|<D-/>"] = map_cmd("<esc>/"):with_silent(),
-	["n|<D-s>"] = map_cu("write"):with_noremap(),
+
+    ["i|<D-/>"] = map_cmd("<esc>/"):with_silent(),
+	["i|<D-p>"] = map_cmd("<esc>:Telescope buffers<CR>"):with_noremap():with_silent(),
+    ["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
 	["i|<D-s>"] = map_cmd("<C-O>:w<CR>"):with_noremap(),
 	["i|<D-b>"] = map_cmd("<C-O>b"):with_noremap():with_silent(),
 	["i|<D-f>"] = map_cmd("<C-O>w"):with_noremap():with_silent(),
 	["i|<D-d>"] = map_cmd("<C-O>diw"):with_noremap():with_silent(),
 	["i|<D-z>"] = map_cmd("<C-O>u"):with_noremap():with_silent(),
 
-	-- replace with magic by default
-	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
-	["c|<C-s>"] = map_cmd([[%s/\v]]):with_noremap(),
-	["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
-
-	-- window jump
-	-- ["n|<C-h>"] = map_cmd("<C-w>h"):with_noremap(),
-	-- ["n|<C-l>"] = map_cmd("<C-w>l"):with_noremap(),
-	-- ["n|<C-j>"] = map_cmd("<C-w>j"):with_noremap(),
-	-- ["n|<C-k>"] = map_cmd("<C-w>k"):with_noremap(),
-
 	-- window
+	["n|<D-C-w>"] = map_cmd("<C-w>w"):with_noremap():with_desc("window: Focus least"),
+	["n|<D-C-h>"] = map_cmd("<C-w>h"):with_noremap():with_desc("window: Focus left"),
+	["n|<D-C-l>"] = map_cmd("<C-w>l"):with_noremap():with_desc("window: Focus right"),
+	["n|<D-C-j>"] = map_cmd("<C-w>j"):with_noremap():with_desc("window: Focus down"),
+	["n|<D-C-k>"] = map_cmd("<C-w>k"):with_noremap():with_desc("window: Focus up"),
 	["n|<leader>wj"] = map_cr("<C-w>J"):with_noremap():with_silent(),
 	["n|<leader>wk"] = map_cr("<C-w>K"):with_noremap():with_silent(),
 	["n|<leader>wh"] = map_cr("<C-w>H"):with_noremap():with_silent(),
@@ -237,10 +236,11 @@ local core_map = {
 	["n|<D-Left>"] = map_cr("vertical resize -5"):with_silent(),
 	["n|<D-˙>"] = map_cr("vertical resize -5"):with_silent(),
 
-	["t|<D-Right>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
-	["t|<D-¬>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
-	["t|<D-Left>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
-	["t|<D-˙>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
+    -- ToggleTerm
+	["t|<D-Right>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
+	["t|<D-¬>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
+	["t|<D-Left>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
+	["t|<D-˙>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
 	["t|<D-Down>"] = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
 	["t|<D-∆>"] = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
 	["t|<D-Up>"] = map_cmd("<Esc><Cmd>resize +2<CR>"):with_silent(),
@@ -249,16 +249,17 @@ local core_map = {
 	["t|<D-b>"] = map_cmd("<C-Left>"):with_noremap():with_silent(),
 	["t|<D-f>"] = map_cmd("<C-Right>"):with_noremap():with_silent(),
 	["t|<D-v>"] = map_cmd([[<C-\><C-n>pi<Right>]]):with_noremap():with_silent(),
-	["t|<c-w>j"] = map_cmd([[<C-\><C-n><C-w>j]]):with_noremap():with_silent(),
-	["t|<c-w>k"] = map_cmd([[<C-\><C-n><C-w>k]]):with_noremap():with_silent(),
-	["t|<c-w>h"] = map_cmd([[<C-\><C-n><C-w>h]]):with_noremap():with_silent(),
-	["t|<c-w>l"] = map_cmd([[<C-\><C-n><C-w>l]]):with_noremap():with_silent(),
-	["t|<c-w>t"] = map_cmd([[<C-\><C-n><C-w>t]]):with_noremap():with_silent(),
-	["t|<c-w>b"] = map_cmd([[<C-\><C-n><C-w>b]]):with_noremap():with_silent(),
-	["t|<c-w>m"] = map_cmd([[<C-\><C-n><C-w>_<C-w>|]]):with_noremap():with_silent(),
-	["t|<c-w>n"] = map_cmd([[<C-\><C-n><C-w>t<C-w>_<C-w>|]]):with_noremap():with_silent(),
-	["t|<c-w>c"] = map_cmd([[<C-\><C-n><C-w>t:]]):with_noremap():with_silent(),
-	-- ["t|<c-w>e"] = map_cmd([[<C-\><C-n><C-w>=]]):with_noremap():with_silent(),
+	["t|<D-C-w>"] = map_cmd([[<C-\><C-n><C-w>w]]):with_noremap():with_silent(),
+	["t|<D-C-j>"] = map_cmd([[<C-\><C-n><C-w>j]]):with_noremap():with_silent(),
+	["t|<D-C-k>"] = map_cmd([[<C-\><C-n><C-w>k]]):with_noremap():with_silent(),
+	["t|<D-C-h>"] = map_cmd([[<C-\><C-n><C-w>h]]):with_noremap():with_silent(),
+	["t|<D-C-l>"] = map_cmd([[<C-\><C-n><C-w>l]]):with_noremap():with_silent(),
+	["t|<D-C-t>"] = map_cmd([[<C-\><C-n><C-w>t]]):with_noremap():with_silent(),
+	["t|<D-C-b>"] = map_cmd([[<C-\><C-n><C-w>b]]):with_noremap():with_silent(),
+	["t|<D-C-m>"] = map_cmd([[<C-\><C-n><C-w>_<C-w>|]]):with_noremap():with_silent(),
+	["t|<D-C-n>"] = map_cmd([[<C-\><C-n><C-w>t<C-w>_<C-w>|]]):with_noremap():with_silent(),
+	["t|<D-C-c>"] = map_cmd([[<C-\><C-n><C-w>t:]]):with_noremap(),
+	-- ["t|<D-C-o>"] = map_cmd([[<C-\><C-n><C-w>=]]):with_noremap():with_silent(),
 
 	-- command line
 	["c|<D-b>"] = map_cmd("<C-Left>"):with_noremap(),

@@ -138,8 +138,8 @@ return function()
 		sections = {
 			lualine_a = { { "mode" } },
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
-			-- lualine_c = { lspsaga_symbols },
-			lualine_c = {
+			lualine_c = { lspsaga_symbols },
+			--[[ lualine_c = {
 				{
 					"filename",
 					file_status = true,
@@ -150,7 +150,7 @@ return function()
 					-- 3: Absolute path, with tilde as the home directory
 					fmt = shorten_filename(),
 				},
-			},
+			}, ]]
 			lualine_x = {
 				{ escape_status },
 				{
@@ -200,9 +200,9 @@ return function()
 	})
 
 	-- Properly set background color for lspsaga
-	--[[ local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle)
+	local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle)
 	for _, hlGroup in pairs(require("lspsaga.lspkind").get_kind()) do
 		require("modules.utils").extend_hl("LspSagaWinbar" .. hlGroup[1], { bg = winbar_bg })
 	end
-	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg }) ]]
+	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
 end

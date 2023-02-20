@@ -44,6 +44,7 @@ editor["numToStr/Comment.nvim"] = {
 editor["sindrets/diffview.nvim"] = {
 	lazy = true,
 	cmd = { "DiffviewOpen", "DiffviewClose" },
+    config = require('editor.diffview')
 }
 editor["junegunn/vim-easy-align"] = {
 	lazy = true,
@@ -60,14 +61,14 @@ editor["RRethy/vim-illuminate"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.vim-illuminate"),
 }
-editor["luukvbaal/stabilize.nvim"] = {
+--[[ editor["luukvbaal/stabilize.nvim"] = {
 	lazy = true,
 	event = "BufReadPost",
-}
-editor["romainl/vim-cool"] = {
+} ]]
+--[[ editor["romainl/vim-cool"] = {
 	lazy = true,
 	event = { "CursorMoved", "InsertEnter" },
-}
+} ]]
 
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
