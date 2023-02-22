@@ -72,17 +72,14 @@ local core_map = {
 	-- insert blankline to up/down without leave cursor
 	["n|[<Space>"] = map_cmd(":<C-u> put! =repeat(nr2char(10), 1) <Bar> ']+1<CR>"):with_noremap():with_silent(),
 	["n|]<Space>"] = map_cmd([[:<C-u> put =repeat(nr2char(10), 1) <Bar> '[-1<CR>]]):with_noremap():with_silent(),
-	-- insert blankline without leave cursor
-	-- ["n|<leader>sj"] = map_cmd([[:<C-u> put =repeat(nr2char(10), 1) <Bar> '[-1<CR>]]):with_noremap():with_silent(),
-	-- ["n|<leader>sk"] = map_cmd(":<C-u> put! =repeat(nr2char(10), 1) <Bar> ']+1<CR>"):with_noremap():with_silent(),
 
 	-- highlight word under the cursor without moved
-	["n|<leader>hc"] = map_cmd([[:let @/ = expand('<cword>')|set hlsearch<C-M>]]):with_noremap():with_silent(),
-	["n|<leader>hC"] = map_cmd([[:let @/ = '\<'.expand('<cword>').'\>'|set hlsearch<C-M>]])
+	["n|<leader>hw"] = map_cmd([[:let @/ = expand('<cword>')|set hlsearch<C-M>]]):with_noremap():with_silent(),
+	["n|<leader>hW"] = map_cmd([[:let @/ = '\<'.expand('<cword>').'\>'|set hlsearch<C-M>]])
 		:with_noremap()
 		:with_silent(),
-	-- select the last pasted region, useful
-	["n|<leader>sv"] = map_cmd('"`[" . strpart(getregtype(), 0, 1) . "`]"'):with_noremap():with_expr(),
+	["n|<leader>nh"] = map_cmd([[:nohl<cr>]]):with_noremap():with_silent(),
+
 	-- replace with magic by default
 	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
 	["c|<C-s>"] = map_cmd([[%s/\v]]):with_noremap(),
@@ -94,6 +91,8 @@ local core_map = {
 	-- ["n|<leader>sl"] = map_cr("setlocal spell! spelllang=en_us"),
 	["n|<leader>sb"] = map_cmd(":source %:p<CR>"):with_noremap():with_silent(),
 	["n|<leader>se"] = map_cmd(":e $MYVIMRC<CR>"):with_noremap():with_silent(),
+	-- select the last pasted region, useful
+	["n|<leader>sv"] = map_cmd('"`[" . strpart(getregtype(), 0, 1) . "`]"'):with_noremap():with_expr(),
 
 	["n|Y"] = map_cmd("y$"),
     -- WARN: with "kylechui/nvim-surround" conflict

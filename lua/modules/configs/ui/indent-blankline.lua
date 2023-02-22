@@ -1,8 +1,10 @@
 return function()
 	vim.opt.termguicolors = true
 
-	vim.api.nvim_command([[highlight IndentBlanklineChar guifg=#C678DD gui=nocombine]])
-	vim.cmd([[highlight IndentBlanklineContextStart guisp=#7dc4e4 gui=underline]])
+	vim.api.nvim_command([[highlight IndentBlanklineChar guifg=#6e6c7e gui=nocombine]])
+    vim.cmd([[highlight IndentBlanklineContextChar guifg=#C678DD  gui=nocombine]])
+	vim.cmd([[highlight IndentBlanklineContextStart guisp=#C678DD gui=underline]])
+
 	require("indent_blankline").setup({
 
 		char = "│",

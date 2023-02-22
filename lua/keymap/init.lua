@@ -14,7 +14,7 @@ local plug_map = {
 	-- Bufferline
 	["n|<leader>k"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
     -- ["n|<leader>js"] = map_cmd("<C-6>"):with_noremap():with_silent(),
-    ["n|<leader>jb"] = map_cmd("<C-6>"):with_noremap():with_silent(),
+    ["n|<leader>jl"] = map_cmd("<C-6>"):with_noremap():with_silent(),
 	["n|<leader>jn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
 	["n|<leader>jp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
     -- ["n|<leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
@@ -276,8 +276,8 @@ local plug_map = {
 	["|<leader>jd"] = map_cu("HopWordAC"):with_noremap():with_silent(),
     ["|<leader>ju"] = map_cu("HopWordBC"):with_noremap():with_silent(),
 	-- ["|<leader>jf"] = map_cu("HopChar1"):with_noremap():with_silent(),
-	["|<leader>jz"] = map_cu("HopChar2"):with_noremap():with_silent(),
-	["|<leader>jl"] = map_cu("HopChar1CurrentLine"):with_noremap():with_silent(),
+	-- ["|<leader>jz"] = map_cu("HopChar2"):with_noremap():with_silent(),
+	-- ["|<leader>jl"] = map_cu("HopChar1CurrentLine"):with_noremap():with_silent(),
 
 	-- Plugin vim-visual-multi
 	-- NOTE: `Tab`:switch mode; `q, Q`: skip, remove region; n, N: goto next/prev
