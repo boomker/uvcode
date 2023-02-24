@@ -23,7 +23,7 @@ return function()
 			operators = { "bold" },
 			conditionals = { "bold" },
 			loops = { "bold" },
-			booleans = { "bold", "italic" },
+			booleans = { "italic" },
 			numbers = {},
 			types = {},
 			strings = {},
@@ -181,7 +181,7 @@ return function()
 					["@parameter"] = { fg = cp.rosewater },
 					["@keyword"] = { fg = cp.red, style = { "italic" } },
 					["@keyword.function"] = { fg = cp.maroon },
-					["@keyword.return"] = { fg = cp.pink, style = {} },
+					["@keyword.return"] = { fg = cp.pink, style = {"bold"} },
 
 					-- ["@text.note"] = { fg = cp.base, bg = cp.blue },
 					-- ["@text.warning"] = { fg = cp.base, bg = cp.yellow },

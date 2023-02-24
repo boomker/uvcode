@@ -102,7 +102,7 @@ return function()
 				},
 				-- "--no-ignore-vcs",
 				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
-                -- cwd = cwd_path,
+                -- cwd = "cwd",
 			},
 			git_files = {
 				mappings = {
@@ -162,7 +162,7 @@ return function()
 				-- define mappings, e.g.
 				mappings = { -- extend mappings
 					i = {
-						["<C-k>"] = lga_actions.quote_prompt(),
+						["<C-e>"] = lga_actions.quote_prompt({ postfix = " -t"}),
 						["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
 					},
 				},

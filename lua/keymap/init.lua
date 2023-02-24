@@ -181,6 +181,8 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("ui: Change colorscheme for current session"),
+    ["n|<Leader>fa"] = map_cu("Telescope"):with_noremap():with_silent(),
+    ["n|<Leader>fc"] = map_cu("Telescope commands"):with_noremap():with_silent(),
 	["n|<leader>fu"] = map_callback(function()
 			require("telescope").extensions.undo.undo()
 		end)
@@ -200,8 +202,7 @@ local plug_map = {
 		:with_silent()
 		:with_desc("find: File by frecency"),
 	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
-	-- ["n|<leader>fd"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in CWD"),
-	-- ["n|<leader>fj"] = map_cu("Telescope git_files")
+	-- ["n|<leader>fe"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in CWD"),
 	["n|<leader>fj"] = map_callback(function()
 			Telescope_project_files()
 		end)
@@ -225,7 +226,7 @@ local plug_map = {
         :with_noremap()
         :with_silent()
         :with_desc("rg live: word in project"),
-	["n|<leader>fg"] = map_callback(function()
+	["n|<leader>fL"] = map_callback(function()
 			require("telescope").extensions.live_grep_args.live_grep_args()
 		end)
 		:with_noremap()
@@ -238,13 +239,12 @@ local plug_map = {
 		:with_noremap()
 		:with_silent(),
 	["n|<Leader>fJ"] = map_cu("Telescope jumplist"):with_noremap():with_silent(),
-	["n|<Leader>fm"] = map_callback(command_panel):with_silent():with_noremap():with_desc("tool: Toggle command panel"),
-	["n|<Leader>fM"] = map_cu("Telescope marks"):with_noremap():with_silent(),
+	["n|<Leader>fM"] = map_callback(command_panel):with_silent():with_noremap():with_desc("tool: Toggle command panel"),
+	["n|<Leader>fm"] = map_cu("Telescope marks"):with_noremap():with_silent(),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent(),
 	["n|<Leader>fr"] = map_cu("Telescope lsp_references"):with_noremap():with_silent(),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols"):with_noremap():with_silent(),
-	["n|<Leader>fc"] = map_cu("Telescope git_status"):with_noremap():with_silent(),
-	["n|<Leader>fC"] = map_cu("Telescope commands"):with_noremap():with_silent(),
+	["n|<Leader>fg"] = map_cu("Telescope git_status"):with_noremap():with_silent(),
 	-- ["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent(),
 	-- NOTE: do diagnostic for all buffers
 	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent(),
