@@ -3,7 +3,7 @@ local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 local map_callback = bind.map_callback
-require("keymap.helpers")
+require "keymap.helpers"
 
 local function t(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)

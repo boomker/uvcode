@@ -1,17 +1,26 @@
 local lang = {}
 
---[[ lang["fatih/vim-go"] = {
+--[[ lang["AckslD/swenv.nvim"] = {
 	lazy = true,
-	ft = "go",
-	build = ":GoInstallBinaries",
-	config = require("lang.vim-go"),
+	ft = "python",
+	config = function()
+		require("swenv").setup({
+			get_venvs = function(venvs_path)
+				return require("swenv.api").get_venvs(venvs_path)
+			end,
+			venvs_path = {
+                dva = vim.fn.expand("~/gitrepos/django-vue-admin/backend/.venv"),
+            },
+			post_set_venv = nil,
+		})
+	end,
+	dependencies = { "nvim-lua/plenary.nvim" },
 } ]]
 
 lang["ray-x/go.nvim"] = {
 	lazy = true,
 	ft = "go",
 	-- run = ":GoInstallBinaries",
-	-- config = conf.lang_go,
 	config = require("lang.vim-go"),
 }
 
@@ -21,6 +30,7 @@ lang["simrat39/rust-tools.nvim"] = {
 	config = require("lang.rust-tools"),
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
+
 lang["Saecki/crates.nvim"] = {
 	lazy = true,
 	event = "BufReadPost Cargo.toml",
