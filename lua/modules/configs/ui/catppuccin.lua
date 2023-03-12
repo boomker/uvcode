@@ -224,6 +224,7 @@ return function()
 					["@field.lua"] = { fg = cp.lavender },
 					["@keyword.function.lua"] = { fg = "#9bd1da" },
 					["@constructor.lua"] = { fg = cp.flamingo },
+					["@variable.builtin.lua"] = { fg = cp.teal },
 
 					["@constant.java"] = { fg = cp.teal },
 
