@@ -154,17 +154,17 @@ function Telescope_rg_live_grep(searchScope)
 	require("telescope.builtin").live_grep(options)
 end
 
--- local delta_bcommits = require('telescope.previewers').new_termopen_previewer {
---     get_command = function(entry)
---         return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
---     end
--- }
+--[[ local delta_bcommits = require('telescope.previewers').new_termopen_previewer {
+    get_command = function(entry)
+        return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
+    end
+}
 
--- local delta = require('telescope.previewers').new_termopen_previewer {
---     get_command = function(entry)
---         return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
---     end
--- }
+local delta = require('telescope.previewers').new_termopen_previewer {
+    get_command = function(entry)
+        return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
+    end
+} ]]
 
 Telescope_git_commits = function(opts)
 	opts = opts or {}
@@ -207,12 +207,9 @@ Telescope_git_bcommits = function(opts)
 	require("telescope.builtin").git_bcommits(opts)
 end
 
--- local lib = require("diffview.lib")
--- local diffview = require("diffview")
-
--- ╭──────────────────────────────────────────────────────────╮
--- │ Custom Ecovim toggle file history function via <leader>gd│
--- ╰──────────────────────────────────────────────────────────╯
+-- ╭───────────────────────────────────────────────────────────────╮
+-- │ From Ecovim Custom toggle file history function via <leader>gd│
+-- ╰───────────────────────────────────────────────────────────────╯
 toggle_file_history = function()
 	local view = require("diffview.lib").get_current_view()
 	if view == nil then
@@ -226,9 +223,9 @@ toggle_file_history = function()
 	end
 end
 
--- ╭──────────────────────────────────────────────────────────╮
--- │ Custom Ecovim toggle status function via <leader>gs      │
--- ╰──────────────────────────────────────────────────────────╯
+-- ╭───────────────────────────────────────────────────────────────╮
+-- │ From Ecovim Custom toggle status function via <leader>gs      │
+-- ╰───────────────────────────────────────────────────────────────╯
 toggle_status = function()
 	local view = require("diffview.lib").get_current_view()
 	if view == nil then
@@ -241,4 +238,3 @@ toggle_status = function()
 		require("diffview.lib").dispose_view(view)
 	end
 end
-
