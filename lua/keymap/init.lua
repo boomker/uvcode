@@ -233,13 +233,14 @@ local plug_map = {
 		:with_noremap()
 		:with_silent(),
 	["n|<Leader>fJ"] = map_cu("Telescope jumplist"):with_noremap():with_silent(),
-	["n|<Leader>fM"] = map_callback(command_panel):with_silent():with_noremap():with_desc("tool: Toggle command panel"),
+	["n|<Leader>fM"] = map_callback(keymaps_panel):with_silent():with_noremap():with_desc("tool: Toggle keymapping panel"),
 	["n|<Leader>fm"] = map_cu("Telescope marks"):with_noremap():with_silent(),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent(),
 	["n|<Leader>fr"] = map_cu("Telescope lsp_references"):with_noremap():with_silent(),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols"):with_noremap():with_silent(),
-	["n|<Leader>fg"] = map_cu("Telescope git_status"):with_noremap():with_silent(),
-	-- ["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent(),
+	["n|<Leader>fg"] = map_callback(Telescope_git_bcommits):with_noremap():with_silent(),
+	["n|<Leader>fG"] = map_callback(Telescope_git_commits):with_noremap():with_silent(),
+	["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent(),
 	-- NOTE: do diagnostic for all buffers
 	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent(),
 	["n|<Leader>fy"] = map_cu("Telescope yank_history"):with_noremap():with_silent(),
@@ -378,9 +379,11 @@ local plug_map = {
     ["x|m"] = map_cr("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
 
 	-- Plugin Diffview
-	["n|<leader>df"] = map_cr("DiffviewOpen"):with_silent():with_noremap():with_desc("git: Show diff"),
-	["n|<leader>dx"] = map_cr("DiffviewClose"):with_silent():with_noremap():with_desc("git: Close diff"),
-	["n|<leader>dh"] = map_cr("DiffviewFileHistory"):with_silent():with_noremap(),
+	["n|<leader>df"] = map_callback(toggle_status):with_silent():with_noremap():with_desc("git: Show diff"),
+	["n|<leader>dh"] = map_callback(toggle_file_history):with_silent():with_noremap(),
+    -- ["n|<leader>dx"] = map_cr("DiffviewClose"):with_silent():with_noremap():with_desc("git: Close diff"),
+    -- ["n|<leader>df"] = map_cr("DiffviewOpen"):with_silent():with_noremap():with_desc("git: Show diff"),
+	-- ["n|<leader>dh"] = map_cr("DiffviewFileHistory"):with_silent():with_noremap(),
 
 	-- Plugin Tabout
 	["i|<C-S-l>"] = map_cmd("<Plug>(TaboutMulti)"):with_silent():with_noremap():with_desc("editi: Goto end of pair"),
@@ -406,14 +409,14 @@ local plug_map = {
 		:with_noremap()
 		:with_expr()
 		:with_desc("editn: Toggle comment for block"),
-	--[[ ["n|gc"] = map_cmd("<Plug>(comment_toggle_linewise)")
+	["n|gc"] = map_cmd("<Plug>(comment_toggle_linewise)")
 		:with_silent()
 		:with_noremap()
 		:with_desc("editn: Toggle comment for line with operator"),
 	["n|gb"] = map_cmd("<Plug>(comment_toggle_blockwise)")
 		:with_silent()
 		:with_noremap()
-		:with_desc("editn: Toggle comment for block with operator"), ]]
+		:with_desc("editn: Toggle comment for block with operator"),
 	["x|gc"] = map_cmd("<Plug>(comment_toggle_linewise_visual)")
 		:with_silent()
 		:with_noremap()

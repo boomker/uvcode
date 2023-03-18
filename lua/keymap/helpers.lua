@@ -1,4 +1,5 @@
 ---@diagnostic disable: lowercase-global
+
 _G._command_panel = function()
 	require("telescope.builtin").keymaps({
 		lhs_filter = function(lhs)
@@ -29,7 +30,6 @@ _G._toggle_lazygit = function()
 	end
 end
 
--- local _lazygit = nil
 function toggle_lazygit()
 	if not _lazygit then
 		local Terminal = require("toggleterm.terminal").Terminal
@@ -55,7 +55,7 @@ function toggle_ipython()
 	_ipython:toggle()
 end
 
-function command_panel()
+function keymaps_panel()
 	local opts = {
 		lhs_filter = function(lhs)
 			return not string.find(lhs, "Þ")
@@ -152,5 +152,93 @@ function Telescope_rg_live_grep(searchScope)
 	end
 
 	require("telescope.builtin").live_grep(options)
+end
+
+-- local delta_bcommits = require('telescope.previewers').new_termopen_previewer {
+--     get_command = function(entry)
+--         return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
+--     end
+-- }
+
+-- local delta = require('telescope.previewers').new_termopen_previewer {
+--     get_command = function(entry)
+--         return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
+--     end
+-- }
+
+Telescope_git_commits = function(opts)
+	opts = opts or {}
+	opts.previewer = {
+		-- delta,
+		require("telescope.previewers").new_termopen_previewer({
+			get_command = function(entry)
+				return { "git", "-c", "core.pager=delta", "-c", "delta.side-by-side=false", "diff", entry.value .. "^!" }
+			end,
+		}),
+		require("telescope.previewers").git_commit_message.new(opts),
+		require("telescope.previewers").git_commit_diff_as_was.new(opts),
+	}
+
+	require("telescope.builtin").git_commits(opts)
+end
+
+Telescope_git_bcommits = function(opts)
+	opts = opts or {}
+	opts.previewer = {
+		require("telescope.previewers").new_termopen_previewer({
+			get_command = function(entry)
+				return {
+					"git",
+					"-c",
+					"core.pager=delta",
+					"-c",
+					"delta.side-by-side=false",
+					"diff",
+					entry.value .. "^!",
+					"--",
+					entry.current_file,
+				}
+			end,
+		}),
+		require("telescope.previewers").git_commit_message.new(opts),
+		require("telescope.previewers").git_commit_diff_as_was.new(opts),
+	}
+
+	require("telescope.builtin").git_bcommits(opts)
+end
+
+-- local lib = require("diffview.lib")
+-- local diffview = require("diffview")
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Custom Ecovim toggle file history function via <leader>gd│
+-- ╰──────────────────────────────────────────────────────────╯
+toggle_file_history = function()
+	local view = require("diffview.lib").get_current_view()
+	if view == nil then
+		require("diffview").file_history()
+		return
+	end
+
+	if view then
+		view:close()
+		require("diffview.lib").dispose_view(view)
+	end
+end
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Custom Ecovim toggle status function via <leader>gs      │
+-- ╰──────────────────────────────────────────────────────────╯
+toggle_status = function()
+	local view = require("diffview.lib").get_current_view()
+	if view == nil then
+		require("diffview").open()
+		return
+	end
+
+	if view then
+		view:close()
+		require("diffview.lib").dispose_view(view)
+	end
 end
 

@@ -1,11 +1,11 @@
 return function()
-	local icons = { ui = require("modules.utils.icons").get("ui", true) }
-	local lga_actions = require("telescope-live-grep-args.actions")
-	require("modules.configs.tool.telescope_ui")
+    require("modules.configs.tool.telescope_ui")
+	local icons          = { ui = require("modules.utils.icons").get("ui", true) }
+	local lga_actions    = require("telescope-live-grep-args.actions")
 
 	local actions_layout = require("telescope.actions.layout")
-	local action_state = require("telescope.actions.state")
-	local actions = require("telescope.actions")
+	local action_state   = require("telescope.actions.state")
+	local actions        = require("telescope.actions")
 	local copy_to_clipboard_action = function(prompt_bufnr)
 		local entry = action_state.get_selected_entry()
 		local entry_val = entry.value
