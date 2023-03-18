@@ -1,4 +1,5 @@
 return function()
+
 	require("illuminate").configure({
 		providers = {
 			"lsp",
@@ -23,6 +24,6 @@ return function()
 			"norg",
 			"toggleterm",
 		},
-		under_cursor = false,
+		under_cursor = true,
 	})
 end

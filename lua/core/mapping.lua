@@ -78,7 +78,7 @@ local core_map = {
 	["n|<leader>hW"] = map_cmd([[:let @/ = '\<'.expand('<cword>').'\>'|set hlsearch<C-M>]])
 		:with_noremap()
 		:with_silent(),
-	["n|<leader>nh"] = map_cmd([[:nohl<cr>]]):with_noremap():with_silent(),
+	["n|<leader>nl"] = map_cmd([[:nohl<cr>]]):with_noremap():with_silent(),
 
 	-- replace with magic by default
 	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),

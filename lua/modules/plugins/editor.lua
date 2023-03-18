@@ -46,9 +46,14 @@ editor["sindrets/diffview.nvim"] = {
 	cmd = { "DiffviewOpen", "DiffviewClose" },
     config = require('editor.diffview')
 }
-editor["junegunn/vim-easy-align"] = {
+editor["echasnovski/mini.align"] = {
 	lazy = true,
-	cmd = "EasyAlign",
+	-- cmd = "EasyAlign",
+    version = false,
+    event = { "VeryLazy" },
+    config = function()
+        require("mini.align").setup()
+    end,
 }
 editor["phaazon/hop.nvim"] = {
 	lazy = true,

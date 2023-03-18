@@ -151,6 +151,8 @@ return function()
 					-- For trouble.nvim
 					TroubleNormal = { bg = cp.base },
 
+                    illuminatedWord = { bg = "#4b5d6b" },
+
 					-- For treesitter.
 					["@field"] = { fg = cp.rosewater },
 					["@property"] = { fg = cp.yellow },
