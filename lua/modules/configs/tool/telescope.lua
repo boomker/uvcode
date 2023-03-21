@@ -67,7 +67,7 @@ return function()
 
 				horizontal = {
 					-- width = { padding = 0.15 },
-					preview_width = 0.4,
+					preview_width = 0.48,
 				},
 				vertical = {
 					preview_height = 0.75,
@@ -94,14 +94,13 @@ return function()
 				theme = "dropdown",
 			},
 			find_files = {
-				-- copy_to_clipboard,
 				mappings = {
 					i = {
 						["<C-y>"] = copy_to_clipboard_action,
 					},
 				},
-				-- "--no-ignore-vcs",
 				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
+                -- "--no-ignore-vcs",
                 -- cwd = "cwd",
 			},
 			git_files = {

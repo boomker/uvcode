@@ -86,7 +86,7 @@ function Telescope_project_files()
 		git_command = {
 			"git",
 			"ls-files",
-			"--exclude-standard",
+			-- "--exclude-standard",
 			"--cached",
 			"--others",
 			":!:*.git*",
@@ -205,6 +205,35 @@ Telescope_git_bcommits = function(opts)
 	}
 
 	require("telescope.builtin").git_bcommits(opts)
+end
+
+Telescope_git_status = function(opts)
+	opts = opts or {}
+	opts.previewer = {
+		require("telescope.previewers").new_termopen_previewer({
+			get_command = function(entry)
+				return {
+					"git",
+					"-c",
+					"core.pager=delta",
+					"-c",
+					"delta.side-by-side=false",
+					"diff",
+					entry.value,
+				}
+			end,
+		}),
+		require("telescope.previewers").git_file_diff.new(opts),
+	}
+    opts.layout_config = {
+        width = 0.88,
+        height = 0.88,
+
+        horizontal = {
+            preview_width = 0.6,
+        },
+    }
+	require("telescope.builtin").git_status(opts)
 end
 
 -- ╭───────────────────────────────────────────────────────────────╮

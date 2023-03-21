@@ -14,19 +14,37 @@ return function()
 
 	local hop = require("hop")
 	local directions = require("hop.hint").HintDirection
-    vim.keymap.set("", "<leader>jf", function()
+    vim.keymap.set("", "ff", function()
 		hop.hint_char1({ direction = nil, current_line_only = false })
+    end, { remap = true })
+
+    vim.keymap.set("", "fh", function()
+        hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
 	end, { remap = true })
-    vim.keymap.set("", "<leader>jj", function()
+
+    vim.keymap.set("", "fj", function()
 		hop.hint_lines({ direction = directions.AFTER_CURSOR, current_line_only = false })
 	end, { remap = true })
-	vim.keymap.set("", "<leader>jk", function()
+
+	vim.keymap.set("", "fk", function()
 		hop.hint_lines({ direction = directions.BEFORE_CURSOR, current_line_only = false })
 	end, { remap = true })
 
-	vim.keymap.set("", "f", function()
-		hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+    vim.keymap.set("", "fl", function()
+        hop.hint_words({ current_line_only = true })
+    end, { remap = true })
+
+	vim.keymap.set("", "fu", function()
+		hop.hint_words({ direction = directions.BEFORE_CURSOR, current_line_only = false })
 	end, { remap = true })
+
+    vim.keymap.set("", "fd", function()
+		hop.hint_words({ direction = directions.AFTER_CURSOR, current_line_only = false })
+	end, { remap = true })
+
+	-- vim.keymap.set("", "f", function()
+	-- 	hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+	-- end, { remap = true })
 	vim.keymap.set("", "F", function()
 		hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
 	end, { remap = true })
@@ -38,7 +56,7 @@ return function()
 	end, { remap = true })
 
 	hop.setup({
-		keys = "dsfjklnmweriouhvcxztypbga",
+		keys = "dsfnmweriouhvcxztybgajkl",
 		quit_key = "<esc>",
 		char2_fallback_key = "<esc>",
 		teasing = false, -- Don't display annoying error message

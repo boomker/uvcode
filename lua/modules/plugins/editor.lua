@@ -44,17 +44,48 @@ editor["numToStr/Comment.nvim"] = {
 editor["sindrets/diffview.nvim"] = {
 	lazy = true,
 	cmd = { "DiffviewOpen", "DiffviewClose" },
-    config = require('editor.diffview')
+	config = require("editor.diffview"),
 }
+
 editor["echasnovski/mini.align"] = {
 	lazy = true,
-	-- cmd = "EasyAlign",
+	version = false,
+	event = { "VeryLazy" },
+	config = function()
+		require("mini.align").setup()
+	end,
+}
+
+editor["echasnovski/mini.surround"] = {
+	lazy = true,
+	version = false,
+	event = { "VeryLazy" },
+	config = function()
+		require("mini.surround").setup({
+			mappings = {
+				add            = "sm", -- Add surrounding `mark` in Normal and Visual modes
+				delete         = "sd", -- Delete surrounding
+                replace        = "sc", -- Replace/change surrounding
+				find           = "", -- Find surrounding (to the right)
+				find_left      = "", -- Find surrounding (to the left)
+				highlight      = "", -- Highlight surrounding
+				update_n_lines = "sN", -- Update `n_lines`
+			},
+		})
+	end,
+}
+
+editor["echasnovski/mini.bracketed"] = {
     version = false,
-    event = { "VeryLazy" },
     config = function()
-        require("mini.align").setup()
+        require("mini.bracketed").setup({
+            comment    = { suffix = 'a', options = {} },
+            diagnostic = { suffix = 'e' },
+            file       = { suffix = 'v', options = {} },
+        })
     end,
 }
+
 editor["phaazon/hop.nvim"] = {
 	lazy = true,
 	branch = "v2",
