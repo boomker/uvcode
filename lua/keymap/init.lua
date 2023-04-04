@@ -9,7 +9,6 @@ require("keymap.helpers")
 local plug_map = {
 	-- Bufferline
 	["n|<leader>k"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
-	-- ["n|<leader>js"] = map_cmd("<C-6>"):with_noremap():with_silent(),
 	["n|<leader>jl"] = map_cmd("<C-6>"):with_noremap():with_silent(),
 	["n|<leader>jn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
 	["n|<leader>jp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
@@ -67,14 +66,10 @@ local plug_map = {
 		:with_silent()
 		:with_desc("lsp: Rename in project range"),
 	["n|K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent():with_desc("lsp: Show doc"),
-	["n|<leader>ca"] = map_cr("Lspsaga code_action")
+	["nv|<leader>ca"] = map_cr("Lspsaga code_action")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Code action for cursor"),
-	["v|<leader>ca"] = map_cu("Lspsaga code_action")
-		:with_noremap()
-		:with_silent()
-		:with_desc("lsp: Code action for range"),
 	["n|gd"] = map_cr("Lspsaga peek_definition"):with_noremap():with_silent():with_desc("lsp: Preview definition"),
 	["n|gD"] = map_cr("Lspsaga goto_definition"):with_noremap():with_silent():with_desc("lsp: Goto definition"),
 	["n|gr"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent():with_desc("lsp: Show reference"),
@@ -86,18 +81,13 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show outgoing calls"),
-	["n|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
-	["x|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
+	["nx|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
 	-- ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
 	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 
 	-- toggleterm
 	-- ["t|jk"] = map_cmd("<C-\\><C-n>"):with_silent(), -- switch to normal mode in terminal.
-	["n|<D-C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle horizontal"),
-	["t|<D-C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
+	["nt|<D-C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
@@ -122,9 +112,9 @@ local plug_map = {
 		:with_desc("python: Toggle ipython"),
 
 	-- sent code of current line to term
-	["n|<leader>tL"] = map_cmd(":ToggleTermSendCurrentLine<CR>"):with_noremap():with_silent(),
-	["v|<leader>tV"] = map_cmd(":ToggleTermSendVisualLines<CR>"):with_noremap():with_silent(),
-	["n|<leader>lg"] = map_callback(function()
+	["nv|<leader>tc"] = map_cmd(":ToggleTermSendCurrentLine<CR>"):with_noremap():with_silent(),
+	-- ["v|<leader>tV"] = map_cmd(":ToggleTermSendVisualLines<CR>"):with_noremap():with_silent(),
+	["nt|<leader>lg"] = map_callback(function()
 			toggle_lazygit()
 		end)
 		:with_noremap()
@@ -273,23 +263,11 @@ local plug_map = {
 
 	-- Plugin vim-visual-multi
 	-- NOTE: `Tab`:switch mode; `q, Q`: skip, remove region; n, N: goto next/prev
-	["n|gsa"] = map_cmd([[<Plug>(VM-Select-All)]]):with_noremap():with_silent(),
-	["x|gsa"] = map_cmd([[<Plug>(VM-Select-All)]]):with_silent(),
+	["nx|gsa"] = map_cmd([[<Plug>(VM-Select-All)]]):with_noremap():with_silent(),
+	-- ["x|gsa"] = map_cmd([[<Plug>(VM-Select-All)]]):with_silent(),
 	["n|<D-d>"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent(),
 	["n|<A-d>"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent(),
 	["x|<D-d>"] = map_cmd([[<Plug>(VM-Find-Subword-Under)]]):with_silent(),
-
-	-- Plugin EasyAlign
-	--[[ ["n|ga"] = map_callback(function()
-			return et("<Plug>(EasyAlign)")
-		end)
-		:with_expr()
-		:with_desc("editn: Align with delimiter"),
-	["x|ga"] = map_callback(function()
-			return et("<Plug>(EasyAlign)")
-		end)
-		:with_expr()
-		:with_desc("editx: Align with delimiter"), ]]
 
 	-- Plugin MarkdownPreview
 	-- ["n|<F12>"] = map_cr("MarkdownPreviewToggle"):with_noremap():with_silent():with_desc("tool: Preview markdown"),
@@ -405,9 +383,15 @@ local plug_map = {
 		:with_silent()
 		:with_desc("debug: Open REPL"),
 
+	-- Plugin: hop
+	["nv|<leader>jw"] = map_cmd("<Cmd>HopWord<CR>"):with_noremap():with_desc("jump: Goto word"),
+	["nv|<leader>jj"] = map_cmd("<Cmd>HopLine<CR>"):with_noremap():with_desc("jump: Goto line"),
+	["nv|<leader>jk"] = map_cmd("<Cmd>HopLine<CR>"):with_noremap():with_desc("jump: Goto line"),
+	["nv|<leader>jc"] = map_cmd("<Cmd>HopChar1<CR>"):with_noremap():with_desc("jump: Goto one char"),
+	-- ["nv|<leader>jc"] = map_cmd("<Cmd>HopChar2<CR>"):with_noremap():with_desc("jump: Goto two chars"),
+
 	-- Plugin: treehopper
-	["o|m"] = map_cr("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
-	["x|m"] = map_cr("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
+	["ox|m"] = map_cr("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),
 
 	-- Plugin Diffview
 	["n|<leader>df"] = map_callback(toggle_status):with_silent():with_noremap():with_desc("git: Show diff"),
@@ -419,13 +403,6 @@ local plug_map = {
 		:with_silent()
 		:with_desc("View Git diff"),
 	-- ["n|<leader>dx"] = map_cr("DiffviewClose"):with_silent():with_noremap():with_desc("git: Close diff"),
-
-	-- Plugin Tabout
-	["i|<D-S-l>"] = map_cmd("<Plug>(TaboutMulti)"):with_silent():with_noremap():with_desc("editi: Goto end of pair"),
-	["i|<D-S-h>"] = map_cmd("<Plug>(TaboutBackMulti)")
-		:with_silent()
-		:with_noremap()
-		:with_desc("editi: Goto begin of pair"),
 
 	-- Plugin Comment.nvim
 	["n|gcc"] = map_callback(function()
@@ -460,6 +437,13 @@ local plug_map = {
 		:with_silent()
 		:with_noremap()
 		:with_desc("editx: Toggle comment for block with selection"),
+
+	-- Plugin Tabout
+	["i|<D-S-l>"] = map_cmd("<Plug>(TaboutMulti)"):with_silent():with_noremap():with_desc("editi: Goto end of pair"),
+	["i|<D-S-h>"] = map_cmd("<Plug>(TaboutBackMulti)")
+		:with_silent()
+		:with_noremap()
+		:with_desc("editi: Goto begin of pair"),
 
 	-- plugin nvim-gomove(move/copy text)
 	-- insert mode move text

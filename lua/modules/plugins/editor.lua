@@ -92,11 +92,13 @@ editor["phaazon/hop.nvim"] = {
 	event = "BufReadPost",
 	config = require("editor.hop"),
 }
+
 editor["RRethy/vim-illuminate"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.vim-illuminate"),
 }
+
 --[[ editor["luukvbaal/stabilize.nvim"] = {
 	lazy = true,
 	event = "BufReadPost",
