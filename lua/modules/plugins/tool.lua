@@ -14,12 +14,6 @@ tool["nvim-pack/nvim-spectre"] = {
 		{ "nvim-lua/popup.nvim", lazy = true },
 	},
 }
--- Please don't remove which-key.nvim otherwise you need to set timeoutlen=300 at `lua/core/options.lua`
-tool["folke/which-key.nvim"] = {
-	lazy = true,
-	event = "VeryLazy",
-	config = require("tool.which-key"),
-}
 -- only for fcitx5 user who uses non-English language during coding
 
 --[[ tool["pysan3/fcitx5.nvim"] = {
@@ -70,6 +64,11 @@ tool["folke/trouble.nvim"] = {
 	lazy = true,
 	cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
 	config = require("tool.trouble"),
+}
+tool["folke/which-key.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("tool.which-key"),
 }
 tool["gelguy/wilder.nvim"] = {
 	lazy = true,
