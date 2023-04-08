@@ -3,6 +3,7 @@ local tool = {}
 --[[ tool["tpope/vim-fugitive"] = {
 	lazy = true,
 	cmd = { "Git", "G" },
+}
 } ]]
 
 tool["nvim-pack/nvim-spectre"] = {
