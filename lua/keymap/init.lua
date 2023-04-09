@@ -86,8 +86,9 @@ local plug_map = {
 	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 
 	-- toggleterm
-	-- ["t|jk"] = map_cmd("<C-\\><C-n>"):with_silent(), -- switch to normal mode in terminal.
-	["nt|<D-C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>")
+	["t|<ESC><ESC>"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
+	["t|jk"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
+	["nt|<D-C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
@@ -114,7 +115,7 @@ local plug_map = {
 	-- sent code of current line to term
 	["nv|<leader>tc"] = map_cmd(":ToggleTermSendCurrentLine<CR>"):with_noremap():with_silent(),
 	-- ["v|<leader>tV"] = map_cmd(":ToggleTermSendVisualLines<CR>"):with_noremap():with_silent(),
-	["nt|<leader>lg"] = map_callback(function()
+	["n|<leader>lg"] = map_callback(function()
 			toggle_lazygit()
 		end)
 		:with_noremap()

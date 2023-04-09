@@ -76,7 +76,7 @@ settings["lsp_deps"] = {
 ---@type string[]
 settings["null_ls_deps"] = {
 	"black",
-	"clang_format",
+	-- "clang_format",
 	"editorconfig_checker",
 	"prettier",
 	"rustfmt",

@@ -6,7 +6,7 @@ return function()
 		live_update = false, -- auto excute search again when you write any file in vim
 		line_sep_start = "┌-----------------------------------------",
 		result_padding = "¦  ",
-		line_sep = "└-----------------------------------------",
+		line_sep       = "└-----------------------------------------",
 		highlight = {
 			ui = "String",
 			search = "DiffChange",
