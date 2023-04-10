@@ -100,8 +100,6 @@ return function()
 					},
 				},
 				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
-                -- "--no-ignore-vcs",
-                -- cwd = "cwd",
 			},
 			git_files = {
 				mappings = {
@@ -199,4 +197,5 @@ return function()
 	require("telescope").load_extension("projects")
 	require("telescope").load_extension("undo")
 	require("telescope").load_extension("zoxide")
+    require("telescope").load_extension("recent_files")
 end

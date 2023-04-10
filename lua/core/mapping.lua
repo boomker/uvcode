@@ -156,6 +156,8 @@ local core_map = {
 	["n|<leader>S"] = map_cmd(":wall!<CR>"):with_noremap():with_silent(),
 
     -- quicklist
+    ['n|<leader>lc'] = map_cmd(':lclose<CR>'):with_noremap():with_silent():with_desc('close locallist'),
+    ['n|<leader>lq'] = map_cmd(':copen<CR>'):with_noremap():with_silent():with_desc('close quicklist'),
     ['n|<leader>cc'] = map_cmd(':cclose<CR>'):with_noremap():with_silent():with_desc('close quicklist'),
     ['n|<leader>cq'] = map_cmd(':copen<CR>'):with_noremap():with_silent():with_desc('Open quicklist'),
 	["n|<leader>cg"] = map_cmd([[:vimgrep //j % |copen<C-Left><C-Left><C-Left><Right>]]):with_noremap(),

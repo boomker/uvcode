@@ -80,8 +80,9 @@ local function git_proj_root()
 	return false, cwd_parent
 end
 
-function Telescope_project_files()
+function Telescope_project_files(searchScope)
 	local is_git_repo, proj_path = git_proj_root()
+	local cwd_parent = vim.fn.expand("%:p:h")
 	local git_files_opts = {
 		git_command = {
 			"git",
@@ -94,6 +95,7 @@ function Telescope_project_files()
 			":!:*.gif*",
 			":!:*.jpg*",
 			":!:*.jpeg*",
+			":!:*.obsidian*",
 			":!:LICENSE",
 		},
 		use_git_root = true,
@@ -103,13 +105,21 @@ function Telescope_project_files()
 
 	local fd_files_opts = {
 		find_command = { "fd", "-IH", "--type", "f", "--strip-cwd-prefix", "--follow" },
-		cwd = proj_path,
+		cwd = cwd_parent,
+        layout_config = {
+            width = 0.88,
+            height = 0.88,
+
+            horizontal = {
+                preview_width = 0.6,
+            },
+        }
 	}
 
-	if is_git_repo then
+	if is_git_repo and searchScope.scope ~= "cwd" then
 		require("telescope.builtin").git_files(git_files_opts)
-	else
-		require("telescope.builtin").find_files(fd_files_opts)
+    else
+        require("telescope.builtin").find_files(fd_files_opts)
 	end
 end
 

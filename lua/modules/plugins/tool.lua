@@ -100,6 +100,7 @@ tool["nvim-telescope/telescope.nvim"] = {
 		} },
 		{ "jvgrootveld/telescope-zoxide" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
+        { "smartpde/telescope-recent-files" },
 	},
 }
 

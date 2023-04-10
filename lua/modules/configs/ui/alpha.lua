@@ -72,12 +72,13 @@ return function()
 				require("telescope").extensions.frecency.frecency()
 			end,
 		}),
-		button("space f o", " File history", leader, nil, {
+		button("space f o", " Recent File", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
 			callback = function()
-				require("telescope.builtin").oldfiles()
+				-- require("telescope.builtin").oldfiles()
+                require("telescope").extensions.recent_files.pick()
 			end,
 		}),
 		button("space f p", " Project find", leader, nil, {

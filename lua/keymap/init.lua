@@ -187,10 +187,21 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: File by frecency"),
-	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
-	-- ["n|<leader>fe"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in CWD"),
+    ["n|<leader>fo"] = map_callback(function()
+            require("telescope").extensions.recent_files.pick()
+        end)
+        :with_noremap()
+        :with_silent()
+        :with_desc("Search Recent Files"),
+	-- ["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
+	["n|<leader>fe"] = map_callback(function()
+			Telescope_project_files({scope = "cwd"})
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("find: file in git CWD"),
 	["n|<leader>fj"] = map_callback(function()
-			Telescope_project_files()
+			Telescope_project_files({scope = "auto"})
 		end)
 		:with_noremap()
 		:with_silent()
@@ -233,15 +244,19 @@ local plug_map = {
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent(),
 	["n|<Leader>fr"] = map_cu("Telescope lsp_references"):with_noremap():with_silent(),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols"):with_noremap():with_silent(),
+    ["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent(),
 	["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent(),
 	-- NOTE: do diagnostic for all buffers
-	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent(),
 	["n|<Leader>fy"] = map_cu("Telescope yank_history"):with_noremap():with_silent(),
 	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent(),
 	["n|<Leader>ft"] = map_cu("TodoTelescope"):with_noremap():with_silent(),
 	["n|<Leader>gs"] = map_callback(Telescope_git_status):with_noremap():with_silent(),
 	["n|<Leader>gc"] = map_callback(Telescope_git_bcommits):with_noremap():with_silent(),
 	["n|<Leader>gC"] = map_callback(Telescope_git_commits):with_noremap():with_silent(),
+
+    -- Plugin marks
+    ["n|<Leader>ml"] = map_cu("MarksListAll"):with_noremap():with_silent():with_desc("Search All Marks"),
+    ["n|<Leader>bl"] = map_cu("BookmarksListAll"):with_noremap():with_silent():with_desc("Search All Bookmarks"),
 
 	-- Plugin accelerate-jk
 	["n|j"] = map_callback(function()
