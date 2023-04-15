@@ -38,6 +38,8 @@ lang["Saecki/crates.nvim"] = {
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
 
+-- https://github.com/jose-elias-alvarez/typescript.nvim
+
 -- lang["iamcco/markdown-preview.nvim"] = {
 -- 	lazy = true,
 -- 	ft = "markdown",
