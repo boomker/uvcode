@@ -187,13 +187,13 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: File by frecency"),
-    ["n|<leader>fo"] = map_callback(function()
+    --[[ ["n|<leader>fo"] = map_callback(function()
             require("telescope").extensions.recent_files.pick()
         end)
         :with_noremap()
         :with_silent()
-        :with_desc("Search Recent Files"),
-	-- ["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
+        :with_desc("Search Recent Files") ]]
+	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
 	["n|<leader>fe"] = map_callback(function()
 			Telescope_project_files({scope = "cwd"})
 		end)

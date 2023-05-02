@@ -106,7 +106,7 @@ return function()
 		},
 		filters = {
 			dotfiles = false,
-			custom = { ".DS_Store", "^.git*" },
+			custom = { ".DS_Store", "^.git*", "__pycache__" },
 			exclude = {},
 		},
 		actions = {

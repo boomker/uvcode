@@ -88,6 +88,11 @@ return function()
 			qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 			file_sorter = require("telescope.sorters").get_fuzzy_file,
 			generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+            history = {
+                -- path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+				path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
+                limit = 100,
+            }
 		},
 		pickers = {
 			keymaps = {
@@ -160,7 +165,7 @@ return function()
 				mappings = { -- extend mappings
 					i = {
 						["<C-e>"] = lga_actions.quote_prompt({ postfix = " -t"}),
-						["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+						["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob *." }),
 					},
 				},
 			},
@@ -197,5 +202,6 @@ return function()
 	require("telescope").load_extension("projects")
 	require("telescope").load_extension("undo")
 	require("telescope").load_extension("zoxide")
-    require("telescope").load_extension("recent_files")
+    require('telescope').load_extension('smart_history')
+    -- require("telescope").load_extension("recent_files")
 end
