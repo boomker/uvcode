@@ -62,7 +62,7 @@ settings["server_formatting_block_list"] = {
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 ---@type string[]
 settings["lsp_deps"] = {
-    "bashls", "clangd", "html", "jsonls", "lua_ls", "pyright", "ruff_lsp"
+    "bashls", "clangd", "html", "jsonls", "lua_ls", "jedi_language_server", "ruff_lsp"
     -- "gopls",
 }
 
