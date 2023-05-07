@@ -8,6 +8,10 @@ settings["use_ssh"] = true
 -- Set it to false if there are no need to format on save.
 settings["format_on_save"] = false
 
+-- Set it to false if diagnostics virtual text is annoying for you
+---@type boolean
+settings["diagnostics_virtual_text"] = true
+
 -- Set the format disabled directories here, files under these dirs won't be formatted on save.
 ---@type string[]
 settings["format_disabled_dirs"] = {home .. "/format_disabled_dir_under_home"}
@@ -75,9 +79,5 @@ settings["null_ls_deps"] = {
     "black", "isort", "ruff", "lua_format", "luacheck", -- "clang_format",
     "editorconfig_checker", "prettier", "rustfmt", "shfmt", "stylua", "vint"
 }
-
--- Set the inline_diagnostic_virtual_text to false if they are annoying for you
----@type boolean
-settings["inline_diagnostic_virtual_text"] = true
 
 return settings

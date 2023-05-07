@@ -160,6 +160,7 @@ return function()
 						error = icons.diagnostics.Error,
 						warn = icons.diagnostics.Warning,
 						info = icons.diagnostics.Information,
+						hint = icons.diagnostics.Hint_alt,
 					},
 				},
 			},
