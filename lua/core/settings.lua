@@ -29,7 +29,8 @@ settings["load_big_files_faster"] = true
 settings["palette_overwrite"] = {}
 
 -- Set the colorscheme to use here.
--- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`, `edge`, `nord`.
+-- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`,
+-- `catppuccin-macchiato`, `edge`, `nord`.
 settings["colorscheme"] = "catppuccin-frappe"
 
 -- Set it to true if your terminal has transparent background.
@@ -73,6 +74,7 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"pylsp",
+    -- "yamlls",
 	-- "gopls",
 }
 
@@ -82,7 +84,7 @@ settings["lsp_deps"] = {
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
 ---@type string[]
 settings["null_ls_deps"] = {
-    "black", "isort", "ruff", "lua_format", "luacheck", -- "clang_format",
+    "black", "isort", "ruff", "lua_format", "luacheck", "yamlfmt" ,-- "clang_format",
     "editorconfig_checker", "prettier", "rustfmt", "shfmt", "stylua", "vint"
 }
 
