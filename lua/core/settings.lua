@@ -8,6 +8,10 @@ settings["use_ssh"] = true
 -- Set it to false if there are no need to format on save.
 settings["format_on_save"] = false
 
+-- Set it to false if the nofitication after formatting is annoying for you.
+---@type boolean
+settings["format_notify"] = true
+
 -- Set it to false if diagnostics virtual text is annoying for you
 ---@type boolean
 settings["diagnostics_virtual_text"] = true
