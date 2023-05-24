@@ -43,16 +43,17 @@ ui["zbirenbaum/neodim"] = {
 	lazy = true,
 	event = "LspAttach",
 	config = require("ui.neodim"),
+    pin = "6506918f",
 }
 ui["karb94/neoscroll.nvim"] = {
 	lazy = true,
 	event = "BufReadPost",
 	config = require("ui.neoscroll"),
 }
-ui["shaunsingh/nord.nvim"] = {
+--[[ ui["shaunsingh/nord.nvim"] = {
 	lazy = true,
 	config = require("ui.nord"),
-}
+} ]]
 ui["rcarriga/nvim-notify"] = {
 	lazy = true,
 	event = "VeryLazy",

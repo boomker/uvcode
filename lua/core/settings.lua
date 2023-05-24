@@ -72,8 +72,9 @@ settings["lsp_deps"] = {
 	"clangd",
 	"html",
 	"jsonls",
-	"lua_ls",
 	"pylsp",
+    "volar",
+    "lua_ls",
     -- "yamlls",
 	-- "gopls",
 }
