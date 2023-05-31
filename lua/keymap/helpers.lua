@@ -97,6 +97,7 @@ function Telescope_project_files(searchScope)
 			":!:*.jpeg*",
 			":!:*.obsidian*",
 			":!:LICENSE",
+            ":!:build/",
 		},
 		use_git_root = true,
 		show_untracked = true,

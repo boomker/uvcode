@@ -121,6 +121,7 @@ return function()
 					":!:*.png*",
 					":!:*.gif*",
 					":!:LICENSE",
+					":!:build/",
 				},
 				-- "--others",
 				-- show_untracked = true,

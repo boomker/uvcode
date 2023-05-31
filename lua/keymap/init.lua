@@ -187,12 +187,10 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: File by frecency"),
-    --[[ ["n|<leader>fo"] = map_callback(function()
-            require("telescope").extensions.recent_files.pick()
-        end)
+    ["n|<leader>fg"] = map_cu("Telescope git_files")
         :with_noremap()
         :with_silent()
-        :with_desc("Search Recent Files") ]]
+        :with_desc("Search GitRepo Files"),
 	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
 	["n|<leader>fe"] = map_callback(function()
 			Telescope_project_files({scope = "cwd"})
@@ -243,6 +241,7 @@ local plug_map = {
 	["n|<Leader>fm"] = map_cu("Telescope marks"):with_noremap():with_silent(),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent(),
 	["n|<Leader>fr"] = map_cu("Telescope lsp_references"):with_noremap():with_silent(),
+	["n|<Leader>fR"] = map_cu("Telescope registers"):with_noremap():with_silent(),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols"):with_noremap():with_silent(),
     ["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent(),
 	["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent(),
