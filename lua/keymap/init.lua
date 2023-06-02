@@ -249,6 +249,7 @@ local plug_map = {
 	["n|<Leader>fy"] = map_cu("Telescope yank_history"):with_noremap():with_silent(),
 	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent(),
 	["n|<Leader>ft"] = map_cu("TodoTelescope"):with_noremap():with_silent(),
+	["n|<Leader>fS"] = map_callback(Telescope_yaml_symbols):with_noremap():with_silent(),
 	["n|<Leader>gs"] = map_callback(Telescope_git_status):with_noremap():with_silent(),
 	["n|<Leader>gc"] = map_callback(Telescope_git_bcommits):with_noremap():with_silent(),
 	["n|<Leader>gC"] = map_callback(Telescope_git_commits):with_noremap():with_silent(),
