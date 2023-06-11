@@ -44,7 +44,7 @@ ui["zbirenbaum/neodim"] = {
 	lazy = true,
 	event = "LspAttach",
 	config = require("ui.neodim"),
-    pin = "6506918f",
+    -- pin = "6506918f",
 }
 ui["karb94/neoscroll.nvim"] = {
 	lazy = true,
