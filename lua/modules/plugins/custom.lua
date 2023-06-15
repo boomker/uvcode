@@ -1,6 +1,6 @@
 local custom = {}
 local conf = require("modules.configs.custom.exten_plugins_config")
-local overseer_conf = require("modules.configs.custom.overseer")
+-- local overseer_conf = require("modules.configs.custom.overseer")
 
 custom["folke/todo-comments.nvim"] = {
 	lazy = true,
@@ -154,12 +154,12 @@ custom["nvim-treesitter/nvim-treesitter-context"] = {
 	config = conf.nvim_treesitter_context,
 }
 
-custom["stevearc/overseer.nvim"] = {
-	lazy = true,
-	event = "BufRead",
-	-- dependencies = "nvim-treesitter/nvim-treesitter",
-    config = overseer_conf
-}
+-- custom["stevearc/overseer.nvim"] = {
+-- 	lazy = true,
+-- 	event = "BufRead",
+-- 	-- dependencies = "nvim-treesitter/nvim-treesitter",
+--     config = overseer_conf
+-- }
 
 custom["someone-stole-my-name/yaml-companion.nvim"] = {
   dependencies = {
