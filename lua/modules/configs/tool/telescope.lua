@@ -205,4 +205,5 @@ return function()
 	require("telescope").load_extension("zoxide")
     require('telescope').load_extension('smart_history')
     -- require("telescope").load_extension("recent_files")
+	require("telescope").load_extension("persisted")
 end
