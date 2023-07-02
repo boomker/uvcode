@@ -44,8 +44,8 @@ ui["nvim-lualine/lualine.nvim"] = {
 ui["zbirenbaum/neodim"] = {
 	lazy = true,
 	event = "LspAttach",
+    branch = "v2",
 	config = require("ui.neodim"),
-    -- pin = "6506918f",
 }
 ui["karb94/neoscroll.nvim"] = {
 	lazy = true,

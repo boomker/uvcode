@@ -205,7 +205,7 @@ function M.gen_neodim_blend_attr()
 	local trans_bg = require("core.settings").transparent_background
 	local appearance = require("core.settings").background
 
-	if trans_bg and appearance == "dark" then
+	if trans_bg and (appearance == "dark") then
 		return "#000000"
 	elseif trans_bg and appearance == "light" then
 		return "#FFFFFF"
