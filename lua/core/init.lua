@@ -83,7 +83,7 @@ local neovide_config = function()
 	vim.api.nvim_set_option_value("guifont", "JetBrainsMono Nerd Font Mono:h17:#e-antialias", {})
 	-- vim.g.neovide_refresh_rate = 60
 	vim.g.neovide_cursor_vfx_mode = "railgun"
-    vim.g.neovide_transparency = 0.94
+    vim.g.neovide_transparency = 0.85
 	-- vim.g.neovide_no_idle = true
 	-- vim.g.neovide_cursor_animation_length = 0.03
 	-- vim.g.neovide_cursor_trail_length = 0.05

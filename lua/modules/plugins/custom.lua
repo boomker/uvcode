@@ -239,10 +239,8 @@ custom["someone-stole-my-name/yaml-companion.nvim"] = {
     }
 --]]
 
-
 -- 'kkoomen/vim-doge' # (Do)cumentation (Ge)nerator
 -- "gbprod/stay-in-place.nvim"
--- 'ggandor/leap.nvim' # like hop.nvim
 -- 'ThePrimeagen/harpoon' # goto file, term, tmux, mark
 -- "s1n7ax/nvim-window-picker"
 -- "anuvyklack/windows.nvim"

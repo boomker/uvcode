@@ -95,11 +95,13 @@ editor["echasnovski/mini.bracketed"] = {
     end,
 }
 
-editor["phaazon/hop.nvim"] = {
+editor["folke/flash.nvim"] = {
 	lazy = true,
-	branch = "v2",
-	event = "BufReadPost",
-	config = require("editor.hop"),
+	event = "VeryLazy",
+    -- opts = {},
+    keys = function() return {} end,
+	config = require("editor.flash"),
+	-- config = require("editor.hop"),
 }
 
 editor["RRethy/vim-illuminate"] = {

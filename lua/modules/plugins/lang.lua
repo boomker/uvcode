@@ -24,19 +24,19 @@ lang["ray-x/go.nvim"] = {
 	config = require("lang.vim-go"),
 }
 
-lang["simrat39/rust-tools.nvim"] = {
+--[[ lang["simrat39/rust-tools.nvim"] = {
 	lazy = true,
 	ft = "rust",
 	config = require("lang.rust-tools"),
 	dependencies = { "nvim-lua/plenary.nvim" },
-}
+} ]]
 
-lang["Saecki/crates.nvim"] = {
+--[[ lang["Saecki/crates.nvim"] = {
 	lazy = true,
 	event = "BufReadPost Cargo.toml",
 	config = require("lang.crates"),
 	dependencies = { "nvim-lua/plenary.nvim" },
-}
+} ]]
 
 -- https://github.com/jose-elias-alvarez/typescript.nvim
 
