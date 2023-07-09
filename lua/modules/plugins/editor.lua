@@ -34,10 +34,6 @@ editor["LunarVim/bigfile.nvim"] = {
 	config = require("editor.bigfile"),
 	cond = require("core.settings").load_big_files_faster,
 }
-editor["ojroques/nvim-bufdel"] = {
-	lazy = true,
-	event = "BufReadPost",
-}
 
 --[[ editor["rhysd/clever-f.vim"] = {
 	lazy = true,
@@ -75,10 +71,10 @@ editor["echasnovski/mini.surround"] = {
 				add            = "sm", -- Add surrounding `mark` in Normal and Visual modes
 				delete         = "sd", -- Delete surrounding
                 replace        = "sc", -- Replace/change surrounding
-				find           = "", -- Find surrounding (to the right)
-				find_left      = "", -- Find surrounding (to the left)
-				highlight      = "", -- Highlight surrounding
-				update_n_lines = "sN", -- Update `n_lines`
+				find           = "sf", -- Find surrounding (to the right)
+				find_left      = "sF", -- Find surrounding (to the left)
+				highlight      = "sh", -- Highlight surrounding
+				update_n_lines = "sn", -- Update `n_lines`
 			},
 		})
 	end,
@@ -95,13 +91,26 @@ editor["echasnovski/mini.bracketed"] = {
     end,
 }
 
+editor["echasnovski/mini.bufremove"] = {
+	lazy = true,
+	version = false,
+	event = { "VeryLazy" },
+	config = function()
+		require("mini.bufremove").setup()
+	end,
+}
+
+editor["smoka7/hop.nvim"] = {
+	lazy = true,
+	event = "VeryLazy",
+	config = require("editor.hop"),
+}
+
 editor["folke/flash.nvim"] = {
 	lazy = true,
 	event = "VeryLazy",
-    -- opts = {},
     keys = function() return {} end,
 	config = require("editor.flash"),
-	-- config = require("editor.hop"),
 }
 
 editor["RRethy/vim-illuminate"] = {
@@ -133,7 +142,7 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	config = require("editor.treesitter"),
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
-		{ "mrjones2014/nvim-ts-rainbow" },
+		{ "HiPhish/rainbow-delimiters.nvim" },
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		{ "mfussenegger/nvim-treehopper" },
 		{ "andymass/vim-matchup" },

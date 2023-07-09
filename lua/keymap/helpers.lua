@@ -241,7 +241,7 @@ end
 -- ╭───────────────────────────────────────────────────────────────╮
 -- │ From Ecovim Custom toggle status function via <leader>gs      │
 -- ╰───────────────────────────────────────────────────────────────╯
-toggle_status = function()
+toggle_show_diff = function()
     local view = require("diffview.lib").get_current_view()
     if view == nil then
         require("diffview").open()

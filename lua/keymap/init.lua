@@ -395,14 +395,13 @@ local plug_map = {
         "jump: Operate across syntax tree"),
 
     -- Plugin Diffview
-    ["n|<leader>df"] = map_callback(toggle_status):with_silent():with_noremap()
+    ["n|<leader>df"] = map_callback(toggle_show_diff):with_silent():with_noremap()
         :with_desc("git: Show diff"),
     ["n|<leader>dh"] = map_callback(toggle_file_history):with_silent()
-        :with_noremap(),
-    ["n|<leader>gd"] = map_callback(
+        :with_noremap():with_desc("git: show file history"),
+    --[[ ["n|<leader>gd"] = map_callback(
         function() require("gitsigns").diffthis() end):with_noremap()
-        :with_silent():with_desc("View Git diff"),
-    -- ["n|<leader>dx"] = map_cr("DiffviewClose"):with_silent():with_noremap():with_desc("git: Close diff"),
+        :with_silent():with_desc("View Git diff"), ]]
 
     -- Plugin Comment.nvim
     ["n|gcc"] = map_callback(function()

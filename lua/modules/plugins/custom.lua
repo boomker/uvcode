@@ -86,10 +86,10 @@ custom["stevearc/dressing.nvim"] = {
 	config = conf.nvim_dressing,
 }
 
-custom["ishan9299/nvim-solarized-lua"] = {
+--[[ custom["ishan9299/nvim-solarized-lua"] = {
 	lazy = true,
 	event = "BufRead",
-}
+} ]]
 
 custom["ethanholz/nvim-lastplace"] = {
 	lazy = true,
@@ -154,13 +154,6 @@ custom["nvim-treesitter/nvim-treesitter-context"] = {
 	config = conf.nvim_treesitter_context,
 }
 
--- custom["stevearc/overseer.nvim"] = {
--- 	lazy = true,
--- 	event = "BufRead",
--- 	-- dependencies = "nvim-treesitter/nvim-treesitter",
---     config = overseer_conf
--- }
-
 custom["someone-stole-my-name/yaml-companion.nvim"] = {
   dependencies = {
       -- { "neovim/nvim-lspconfig" },
@@ -180,18 +173,19 @@ custom["someone-stole-my-name/yaml-companion.nvim"] = {
   end,
 }
 
--- custom["petertriho/nvim-scrollbar"] = {
+-- custom["stevearc/overseer.nvim"] = {
+-- 	lazy = true,
+-- 	event = "BufRead",
+-- 	-- dependencies = "nvim-treesitter/nvim-treesitter",
+--     config = overseer_conf
+-- }
+
 --[[ custom['lewis6991/satellite.nvim'] = {
 	lazy = true,
 	event = "BufRead",
-	-- dependencies = {
- --        "m-demare/hlargs.nvim",
- --        "lewis6991/gitsigns.nvim",
- --    },
-	config = function()
-	    -- require("scrollbar").setup({})
-        require('satellite').setup()
-	end
+	-- config = function()
+ --        require('satellite').setup()
+	-- end
 } ]]
 
 --[[ custom["jackMort/ChatGPT.nvim"] = {
