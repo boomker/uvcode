@@ -102,7 +102,8 @@ editor["echasnovski/mini.bufremove"] = {
 
 editor["smoka7/hop.nvim"] = {
 	lazy = true,
-	event = "VeryLazy",
+	version = "*",
+	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.hop"),
 }
 
@@ -138,14 +139,17 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 			vim.api.nvim_command("TSUpdate")
 		end
 	end,
-	event = { "CursorHold", "CursorHoldI" },
+	event = "BufReadPre",
 	config = require("editor.treesitter"),
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
-		{ "HiPhish/rainbow-delimiters.nvim" },
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		{ "mfussenegger/nvim-treehopper" },
 		{ "andymass/vim-matchup" },
+		{
+			"hiphish/rainbow-delimiters.nvim",
+			config = require("editor.rainbow_delims"),
+		},
 		{
 			"nvim-treesitter/nvim-treesitter-context",
 			config = require("editor.ts-context"),
