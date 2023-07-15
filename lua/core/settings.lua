@@ -88,7 +88,7 @@ settings["lsp_deps"] = {
 	"pylsp",
     "volar",
     "lua_ls",
-    "yamlls",
+    -- "yamlls",
 	-- "gopls",
 }
 
@@ -100,7 +100,7 @@ settings["lsp_deps"] = {
 settings["null_ls_deps"] = {
 	"clang_format",
 	"prettier",
-	"rustfmt",
+	-- "rustfmt",
 	"shfmt",
 	"stylua",
 	"vint",
