@@ -3,8 +3,8 @@ return function()
 	local clear = {}
 
 	require("catppuccin").setup({
-		flavour = "frappe", -- Can be one of: latte, frappe, macchiato, mocha
-		background = { light = "latte", dark = "frappe" },
+		flavour = "macchiato", -- Can be one of: latte, frappe, macchiato, mocha
+		background = { light = "latte", dark = "macchiato" },
 		dim_inactive = {
 			enabled = false,
 			-- Dim inactive splits/windows/buffers.
