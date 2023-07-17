@@ -37,7 +37,7 @@ editor["LunarVim/bigfile.nvim"] = {
 
 --[[ editor["rhysd/clever-f.vim"] = {
 	lazy = true,
-	event = { "BufReadPost", "BufAdd", "BufNewFile" },
+	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.cleverf"),
 } ]]
 
@@ -139,7 +139,7 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 			vim.api.nvim_command("TSUpdate")
 		end
 	end,
-	event = "BufReadPre",
+	event = "BufReadPost",
 	config = require("editor.treesitter"),
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
