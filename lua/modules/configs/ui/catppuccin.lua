@@ -141,6 +141,7 @@ return function()
 					TroubleNormal = { bg = cp.base },
 
 					-- For telescope.nvim
+					TelescopeMatching = { fg = cp.lavender },
 					TelescopeResultsDiffAdd = { fg = cp.green },
 					TelescopeResultsDiffChange = { fg = cp.yellow },
 					TelescopeResultsDiffDelete = { fg = cp.red },
