@@ -78,31 +78,33 @@ local leader_map = function()
 end
 
 local neovide_config = function()
+    vim.g.neovide_theme = 'auto'
     vim.api.nvim_set_option_value("guifont",
                                   "JetBrainsMono Nerd Font Mono:h17:#e-antialias",
                                   {})
     -- vim.g.neovide_refresh_rate = 60
-    vim.g.neovide_cursor_vfx_mode = "railgun"
-    vim.g.neovide_transparency = 0.85
     -- vim.g.neovide_no_idle = true
-    -- vim.g.neovide_cursor_animation_length = 0.03
-    -- vim.g.neovide_cursor_trail_length = 0.05
-    -- vim.g.neovide_cursor_antialiasing = true
+    vim.g.neovide_transparency = 0.85
+    vim.g.neovide_cursor_vfx_mode = "railgun"
     -- vim.g.neovide_cursor_vfx_opacity = 200.0
     -- vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
     -- vim.g.neovide_cursor_vfx_particle_speed = 20.0
     -- vim.g.neovide_cursor_vfx_particle_density = 5.0
 
-    vim.g.neovide_floating_opacity = 0.15
+    -- vim.g.neovide_input_ime = true
     vim.g.neovide_floating_blur = true
     vim.g.neovide_floating_blur_amount_x = 2.0
     vim.g.neovide_floating_blur_amount_y = 2.0
+    vim.g.neovide_floating_opacity = 0.15
     vim.g.neovide_cursor_unfocused_outline_width = 0.061
     vim.g.neovide_scroll_animation_length = 0
 
     vim.g.neovide_remember_window_size = true
     vim.g.neovide_hide_mouse_when_typing = true
-    vim.g.neovide_cursor_animation_length = 0.05
+    vim.g.neovide_cursor_antialiasing = true
+    vim.g.neovide_cursor_animation_length = 0
+    -- vim.g.neovide_cursor_animation_length = 0.05
+    -- vim.g.neovide_cursor_trail_length = 0.05
     vim.g.neovide_cursor_trail_size = 0
     vim.g.gui_font_default_size = 17
     vim.g.gui_font_size = vim.g.gui_font_default_size

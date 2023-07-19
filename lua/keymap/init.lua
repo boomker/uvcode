@@ -372,14 +372,24 @@ local plug_map = {
     end):with_noremap():with_desc("jump: Goto word"),
     ["nv|<leader>jk"] = map_callback(function()
         require("flash").jump({
-            search = {mode = "search", max_length = 0, forward = false, wrap = false},
+            search = {
+                mode = "search",
+                max_length = 0,
+                forward = false,
+                wrap = false
+            },
             label = {after = {1, 0}, uppercase = false},
             pattern = "^"
         })
     end):with_noremap():with_desc("jump: Goto line"),
     ["nv|<leader>jj"] = map_callback(function()
         require("flash").jump({
-            search = {mode = "search", max_length = 0, forward = true, wrap = false},
+            search = {
+                mode = "search",
+                max_length = 0,
+                forward = true,
+                wrap = false
+            },
             label = {after = {1, 0}, uppercase = false},
             pattern = "^"
         })
@@ -395,8 +405,8 @@ local plug_map = {
         "jump: Operate across syntax tree"),
 
     -- Plugin Diffview
-    ["n|<leader>df"] = map_callback(toggle_show_diff):with_silent():with_noremap()
-        :with_desc("git: Show diff"),
+    ["n|<leader>df"] = map_callback(toggle_show_diff):with_silent()
+        :with_noremap():with_desc("git: Show diff"),
     ["n|<leader>dh"] = map_callback(toggle_file_history):with_silent()
         :with_noremap():with_desc("git: show file history"),
     --[[ ["n|<leader>gd"] = map_callback(
