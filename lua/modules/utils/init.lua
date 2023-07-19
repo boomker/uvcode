@@ -54,8 +54,8 @@ local function init_palette()
     end
 
     if not palette then
-        palette = vim.g.colors_name:find("catppuccin") and
-                      require("catppuccin.palettes").get_palette() or {
+        -- palette = vim.g.colors_name:find("catppuccin") and
+        palette = require("catppuccin.palettes").get_palette() or {
             rosewater = "#DC8A78",
             flamingo = "#DD7878",
             mauve = "#CBA6F7",
