@@ -26,6 +26,7 @@
   "fzf": { "branch": "master", "commit": "89b9189efa56bcd5e6e39bd864acfb781b38556d" },
   "fzy-lua-native": { "branch": "master", "commit": "820f745b7c442176bcc243e8f38ef4b985febfaf" },
   "gitsigns.nvim": { "branch": "main", "commit": "31178496552584e84fa9e74e087dec1f6c347f5d" },
+  "glance.nvim": { "branch": "master", "commit": "b78ef99ffda23fa42ce85de50e3fc13a5472ecfd" },
   "go.nvim": { "branch": "master", "commit": "7e5602dd51a230581f43c42559d7acc2fbca23cf" },
   "hlargs.nvim": { "branch": "main", "commit": "cfc9beab4e176a13311efe03e38e6b6fed5df4f6" },
   "hop.nvim": { "branch": "master", "commit": "31e0e42e629bf16affea747132d9c54f55fb17c8" },
