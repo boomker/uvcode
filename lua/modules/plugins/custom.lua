@@ -110,6 +110,16 @@ custom["booperlv/nvim-gomove"] = {
 custom["rmagatti/alternate-toggler"] = {
 	lazy = true,
 	event = "BufReadPost",
+	config = function()
+		require("alternate-toggler").setup({
+            alternates = {
+                ["yes"] = "no",
+                ["<="] = ">=",
+                ["=="] = "!=",
+                ["~="] = "=="
+            }
+        })
+    end
 }
 
 custom["danymat/neogen"] = {
