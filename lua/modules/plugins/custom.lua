@@ -116,7 +116,7 @@ custom["rmagatti/alternate-toggler"] = {
                 ["yes"] = "no",
                 ["<="] = ">=",
                 ["=="] = "!=",
-                ["~="] = "=="
+                -- ["~="] = "=="
             }
         })
     end
