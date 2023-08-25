@@ -5,7 +5,7 @@ return function()
     vim.cmd([[highlight IndentBlanklineContextChar guifg=#C678DD  gui=nocombine]])
 	vim.cmd([[highlight IndentBlanklineContextStart guisp=#C678DD gui=underline]])
 
-	require("indent_blankline").setup({
+	require("modules.utils").load_plugin("indent_blankline", {
 
 		char = "│",
 		context_char = "┃",

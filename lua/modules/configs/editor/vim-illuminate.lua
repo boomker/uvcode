@@ -1,6 +1,5 @@
 return function()
-
-	require("illuminate").configure({
+	require("modules.utils").load_plugin("vim-illuminate", {
 		providers = {
 			"lsp",
 			"treesitter",
@@ -24,6 +23,6 @@ return function()
 			"norg",
 			"toggleterm",
 		},
-		under_cursor = true,
-	})
+		under_cursor = false,
+	}, false, require("illuminate").configure)
 end
