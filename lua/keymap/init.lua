@@ -478,14 +478,14 @@ local plug_map = {
 bind.nvim_load_mapping(plug_map)
 
 -- Plugin keymaps
-require("keymap.completion")
-require("keymap.editor")
-require("keymap.lang")
-require("keymap.tool")
-require("keymap.ui")
+-- require("keymap.completion")
+-- require("keymap.editor")
+-- require("keymap.lang")
+-- require("keymap.tool")
+-- require("keymap.ui")
 
--- User keymaps
-local ok, mappings = pcall(require, "user.keymap.init")
-if ok then
-	require("modules.utils.keymap").replace(mappings)
-end
+-- -- User keymaps
+-- local ok, mappings = pcall(require, "user.keymap.init")
+-- if ok then
+-- 	require("modules.utils.keymap").replace(mappings)
+-- end
