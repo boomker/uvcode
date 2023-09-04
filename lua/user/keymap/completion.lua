@@ -5,7 +5,7 @@ local map_cmd = bind.map_cmd
 local mappings = {}
 
 -- Place global keymaps here.
-mappings["plug_map"] = {
+local plug_map = {
 	["n|<leader>tF"] = map_cmd("<Cmd>FormatToggle<CR>"):with_noremap():with_desc("Formater: Toggle format on save"),
 	["nx|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
 }
@@ -32,4 +32,5 @@ mappings["lsp"] = function(buf)
 	}
 end
 
+bind.nvim_load_mapping(plug_map)
 return mappings
