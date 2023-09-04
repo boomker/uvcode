@@ -7,9 +7,9 @@ require("keymap.helpers")
 
 local plug_map = {
 	-- Plugin: vim-fugitive
-	["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
-	["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
-	["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
+	-- ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
+	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
+	-- ["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
 
 	-- Plugin: nvim-tree
 	["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
@@ -17,30 +17,30 @@ local plug_map = {
 	["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
 
 	-- Plugin: sniprun
-	["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
-	["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
+	-- ["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
+	-- ["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
 
 	-- Plugin: toggleterm
 	["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
 	["t|jk"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
-	["n|<C-\\>"] = map_cr([[execute v:count . "ToggleTerm direction=horizontal"]])
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle horizontal"),
-	["i|<C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=horizontal<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle horizontal"),
-	["t|<C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle horizontal"),
-	["n|<A-\\>"] = map_cr([[execute v:count . "ToggleTerm direction=vertical"]])
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle vertical"),
-	["i|<A-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=vertical<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle vertical"),
-	["t|<A-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle vertical"),
+	-- ["n|<C-\\>"] = map_cr([[execute v:count . "ToggleTerm direction=horizontal"]])
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("terminal: Toggle horizontal"),
+	-- ["i|<C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=horizontal<CR>")
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("terminal: Toggle horizontal"),
+	-- ["t|<C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle horizontal"),
+	-- ["n|<A-\\>"] = map_cr([[execute v:count . "ToggleTerm direction=vertical"]])
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("terminal: Toggle vertical"),
+	-- ["i|<A-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=vertical<CR>")
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("terminal: Toggle vertical"),
+	-- ["t|<A-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle vertical"),
 	["n|<F5>"] = map_cr([[execute v:count . "ToggleTerm direction=vertical"]])
 		:with_noremap()
 		:with_silent()
@@ -50,21 +50,21 @@ local plug_map = {
 		:with_silent()
 		:with_desc("terminal: Toggle vertical"),
 	["t|<F5>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle vertical"),
-	["n|<A-d>"] = map_cr([[execute v:count . "ToggleTerm direction=float"]])
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle float"),
-	["i|<A-d>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle float"),
-	["t|<A-d>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle float"),
-	["n|<leader>g"] = map_callback(function()
-			_toggle_lazygit()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("git: Toggle lazygit"),
+	-- ["n|<A-d>"] = map_cr([[execute v:count . "ToggleTerm direction=float"]])
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("terminal: Toggle float"),
+	-- ["i|<A-d>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>")
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("terminal: Toggle float"),
+	-- ["t|<A-d>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle float"),
+	-- ["n|<leader>g"] = map_callback(function()
+	-- 		_toggle_lazygit()
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("git: Toggle lazygit"),
 
 	-- Plugin: trouble
 	["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
@@ -87,7 +87,7 @@ local plug_map = {
 	["n|<leader>tl"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent():with_desc("lsp: Show loclist"),
 
 	-- Plugin: telescope
-	["n|<C-p>"] = map_callback(function()
+	--[[ ["n|<C-p>"] = map_callback(function()
 			_command_panel()
 		end)
 		:with_noremap()
@@ -133,8 +133,8 @@ local plug_map = {
 		:with_silent()
 		:with_desc("edit: Change current direrctory by zoxide"),
 	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
-	["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
-	["n|<leader>fd"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
+	["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"), ]]
+	["n|<leader>fP"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
 
 	-- Plugin: dap
 	["n|<F6>"] = map_callback(function()
@@ -173,7 +173,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step over"),
-	["n|<leader>db"] = map_callback(function()
+	--[[ ["n|<leader>db"] = map_callback(function()
 			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end)
 		:with_noremap()
@@ -196,7 +196,7 @@ local plug_map = {
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("debug: Open REPL"),
+		:with_desc("debug: Open REPL"), ]]
 }
 
 bind.nvim_load_mapping(plug_map)

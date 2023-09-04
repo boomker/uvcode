@@ -7,8 +7,6 @@ return vim.schedule_wrap(function()
 	require("modules.utils").load_plugin("nvim-treesitter", {
 		ensure_installed = {
 			"bash",
-			"c",
-			"cpp",
 			"css",
 			"go",
 			"gomod",

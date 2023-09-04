@@ -95,14 +95,16 @@ tool["nvim-telescope/telescope.nvim"] = {
 			config = require("tool.project"),
 		},
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		{ "nvim-telescope/telescope-frecency.nvim", dependencies = {
-			{ "kkharji/sqlite.lua" },
-		} },
-        { "nvim-telescope/telescope-smart-history.nvim", dependencies = {"kkharji/sqlite.lua" }},
+		{
+			"nvim-telescope/telescope-frecency.nvim",
+			dependencies = { { "kkharji/sqlite.lua" } },
+		},
+		{
+			"nvim-telescope/telescope-smart-history.nvim",
+			dependencies = { "kkharji/sqlite.lua" },
+		},
 		{ "jvgrootveld/telescope-zoxide" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
-        -- { "smartpde/telescope-recent-files" },
-
 	},
 }
 
@@ -124,10 +126,7 @@ tool["mfussenegger/nvim-dap"] = {
 	},
 	config = require("tool.dap"),
 	dependencies = {
-		{
-			"rcarriga/nvim-dap-ui",
-			config = require("tool.dap.dapui"),
-		},
+		{ "rcarriga/nvim-dap-ui", config = require("tool.dap.dapui") },
 		{ "jay-babu/mason-nvim-dap.nvim" },
 	},
 }

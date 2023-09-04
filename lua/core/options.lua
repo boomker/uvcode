@@ -59,7 +59,7 @@ local function load_options()
 		relativenumber = true,
 		ruler = true,
 		scrolloff = 10,
-		sessionoptions = "buffers,curdir,folds,globals,help,tabpages,winpos,winsize",
+		sessionoptions = "buffers,curdir,folds,help,tabpages,winpos,winsize",
 		shada = "!,'500,<50,@100,s10,h",
 		shiftround = true,
 		shiftwidth = 4,
@@ -107,18 +107,18 @@ local function load_options()
 	local function isempty(s)
 		return s == nil or s == ""
 	end
+	local function use_if_defined(val, fallback)
+		return val ~= nil and val or fallback
+	end
 
 	-- custom python provider
 	local conda_prefix = os.getenv("CONDA_PREFIX")
 	if not isempty(conda_prefix) then
-		vim.g.python_host_prog = conda_prefix .. "/bin/python"
-		vim.g.python3_host_prog = conda_prefix .. "/bin/python"
-	elseif global.is_mac then
-		vim.g.python_host_prog = "/usr/bin/python"
-		vim.g.python3_host_prog = "/usr/local/bin/python3"
+		vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, conda_prefix .. "/bin/python")
+		vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, conda_prefix .. "/bin/python")
 	else
-		vim.g.python_host_prog = "/usr/bin/python"
-		vim.g.python3_host_prog = "/usr/bin/python3"
+		vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "/usr/bin/python")
+		vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "/usr/local/bin/python3")
 	end
 
 	-- custom sqlite3 provider

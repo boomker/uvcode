@@ -43,5 +43,4 @@ return function()
 		word_diff = false,
 		diff_opts = { internal = true },
 	})
-    -- require("scrollbar.handlers.gitsigns").setup()
 end

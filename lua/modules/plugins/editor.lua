@@ -120,10 +120,6 @@ editor["RRethy/vim-illuminate"] = {
 	config = require("editor.vim-illuminate"),
 }
 
---[[ editor["luukvbaal/stabilize.nvim"] = {
-	lazy = true,
-	event = "BufReadPost",
-} ]]
 --[[ editor["romainl/vim-cool"] = {
 	lazy = true,
 	event = { "CursorMoved", "InsertEnter" },

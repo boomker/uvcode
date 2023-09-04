@@ -19,7 +19,10 @@ completion["nvimdev/lspsaga.nvim"] = {
 	lazy = true,
 	event = "LspAttach",
 	config = require("completion.lspsaga"),
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+		"nvim-tree/nvim-web-devicons",
+	},
 }
 completion["dnlhc/glance.nvim"] = {
 	lazy = true,
@@ -35,22 +38,8 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("completion.null-ls"),
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"jay-babu/mason-null-ls.nvim",
-	},
+	dependencies = { "nvim-lua/plenary.nvim", "jay-babu/mason-null-ls.nvim" },
 }
-
---[[ completion["glepnir/lspsaga.nvim"] = {
-	lazy = true,
-    event = "BufRead",
-	-- config = require("completion.lspsaga"),
-    dependencies = {
-        {"nvim-tree/nvim-web-devicons"},
-        --Please make sure you install markdown and markdown_inline parser
-        {"nvim-treesitter/nvim-treesitter"}
-    }
-} ]]
 
 completion["hrsh7th/nvim-cmp"] = {
 	lazy = true,

@@ -3,9 +3,11 @@ local global = require("core.global")
 -- Create cache dir and data dirs
 local createdir = function()
     local data_dir = {
-        global.cache_dir .. "backup", global.cache_dir .. "session",
-        global.cache_dir .. "swap", global.cache_dir .. "tags",
-        global.cache_dir .. "undo"
+		global.cache_dir .. "backup",
+		global.cache_dir .. "session",
+		global.cache_dir .. "swap",
+		global.cache_dir .. "tags",
+		global.cache_dir .. "undo",
     }
     -- Only check whether cache_dir exists, this would be enough.
     if vim.fn.isdirectory(global.cache_dir) == 0 then
@@ -72,7 +74,6 @@ end
 local leader_map = function()
     vim.g.mapleader = " "
     vim.g.maplocalleader = " "
-    -- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
     vim.api.nvim_set_keymap("n", " ", "", {noremap = true})
     vim.api.nvim_set_keymap("x", " ", "", {noremap = true})
 end
@@ -144,20 +145,20 @@ local clipboard_config = function()
             name = "macOS-clipboard",
             copy = {["+"] = "pbcopy", ["*"] = "pbcopy"},
             paste = {["+"] = "pbpaste", ["*"] = "pbpaste"},
-            cache_enabled = 0
+			cache_enabled = 0,
         }
     elseif global.is_wsl then
         vim.g.clipboard = {
             name = "win32yank-wsl",
             copy = {
                 ["+"] = "win32yank.exe -i --crlf",
-                ["*"] = "win32yank.exe -i --crlf"
+				["*"] = "win32yank.exe -i --crlf",
             },
             paste = {
                 ["+"] = "win32yank.exe -o --lf",
-                ["*"] = "win32yank.exe -o --lf"
+				["*"] = "win32yank.exe -o --lf",
             },
-            cache_enabled = 0
+			cache_enabled = 0,
         }
     end
 end
@@ -173,7 +174,9 @@ PowerShell is either not installed, missing from PATH, or not executable;
 cmd.exe will be used instead for `:!` (shell bang) and toggleterm.nvim.
 
 You're recommended to install PowerShell for better experience.]],
-                       vim.log.levels.WARN, {title = "[core] Runtime error"})
+				vim.log.levels.WARN,
+				{ title = "[core] Runtime Warning" }
+			)
             return
         end
 
