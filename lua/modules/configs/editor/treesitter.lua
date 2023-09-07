@@ -5,34 +5,7 @@ return vim.schedule_wrap(function()
 	vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
 
 	require("modules.utils").load_plugin("nvim-treesitter", {
-		ensure_installed = {
-			"bash",
-			"css",
-			"go",
-			"gomod",
-			"html",
-			"javascript",
-			"json",
-			"latex",
-			"lua",
-			"make",
-			"markdown",
-			"markdown_inline",
-			"python",
-			"typescript",
-			"vimdoc",
-			"vue",
-			"yaml",
-		},
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = "gsi",
-                node_incremental = "gss",
-                node_decremental = "gsd",
-                scope_incremental = "gsS",
-            },
-        },
+		ensure_installed = require("core.settings")["treesitter_deps"],
 		highlight = {
 			enable = true,
 			disable = function(ft, bufnr)
