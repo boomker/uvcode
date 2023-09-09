@@ -6,7 +6,7 @@ settings["use_ssh"] = true
 
 -- Set it to false if there are no need to format on save.
 ---@type boolean
-settings["format_on_save"] = true
+settings["format_on_save"] = false
 
 -- Set it to false if the notification after formatting is annoying.
 ---@type boolean
@@ -32,9 +32,7 @@ settings["diagnostics_level"] = "Hint"
 --- NOTE: Directories may contain regular expressions (grammar: vim). |regexp|
 --- NOTE: Directories are automatically normalized. |vim.fs.normalize()|
 ---@type string[]
-settings["format_disabled_dirs"] = {
-	"~/format_disabled_dir",
-}
+settings["format_disabled_dirs"] = { "~/format_disabled_dir" }
 
 -- Set the plugins to disable here.
 -- Example: "Some-User/A-Repo"
@@ -75,7 +73,8 @@ settings["external_browser"] = "chrome-cli open"
 -- Filetypes in this list will skip lsp formatting if rhs is true.
 ---@type table<string, boolean>
 settings["formatter_block_list"] = {
-    -- lua = false, -- example
+	lua  = true, -- example
+    yaml = true,
 }
 
 -- Servers in this list will skip setting formatting capabilities if rhs is true.
@@ -92,12 +91,13 @@ settings["server_formatting_block_list"] = {
 ---@type string[]
 settings["lsp_deps"] = {
 	"bashls",
+    "dockerls",
 	"html",
 	"jsonls",
 	"pylsp",
-    "volar",
-    "lua_ls",
-    -- "yamlls",
+	"volar",
+	"lua_ls",
+	"yamlls",
 	-- "gopls",
 }
 
@@ -112,6 +112,9 @@ settings["null_ls_deps"] = {
 	"shfmt",
 	"stylua",
 	"vint",
+    "black",
+    "ruff",
+    "yamllint"
 }
 
 -- Set the Debug Adapter Protocol (DAP) clients that will be installed and configured during bootstrap here.
@@ -131,18 +134,20 @@ settings["dap_deps"] = {
 settings["treesitter_deps"] = {
 	"bash",
 	"css",
+    "dockerfile",
 	"go",
 	"gomod",
 	"html",
 	"javascript",
+	"typescript",
 	"json",
 	"lua",
 	"make",
 	"python",
-	"typescript",
 	"vimdoc",
 	"vue",
 	"yaml",
+	"toml",
 }
 
 return require("modules.utils").extend_config(settings, "user.settings")

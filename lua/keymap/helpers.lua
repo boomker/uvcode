@@ -246,7 +246,6 @@ end
 
 -- yaml_symbols
 
----@diagnostic disable-next-line: unused-local
 local function visit_yaml_node(node, name, yaml_path, result, file_path, bufnr)
     local key = ''
     if node:type() == "block_mapping_pair" then

@@ -35,7 +35,6 @@ return function()
 		})
 	end
 
-	-- require("telescope").setup({
 	require("modules.utils").load_plugin("telescope", {
 		defaults = {
 			initial_mode = "insert",

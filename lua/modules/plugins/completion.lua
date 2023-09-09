@@ -1,4 +1,3 @@
----@diagnostic disable: different-requires
 local completion = {}
 local use_copilot = require("core.settings").use_copilot
 
@@ -62,14 +61,14 @@ completion["hrsh7th/nvim-cmp"] = {
 		-- { "kdheepak/cmp-latex-symbols" },
 		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
-		-- {
-		-- 	"jcdickinson/codeium.nvim",
-		-- 	dependencies = {
-		-- 		"nvim-lua/plenary.nvim",
-		-- 		"MunifTanjim/nui.nvim",
-		-- 	},
-		-- 	config = require("completion.codeium"),
-		-- },
+		{
+			"jcdickinson/codeium.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+			},
+			config = require("completion.codeium"),
+		},
 	},
 }
 if use_copilot then
