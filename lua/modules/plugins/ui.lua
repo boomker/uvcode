@@ -40,6 +40,7 @@ ui["nvim-lualine/lualine.nvim"] = {
 }
 ui["zbirenbaum/neodim"] = {
 	lazy = true,
+	commit = "9477da0",
 	event = "LspAttach",
     branch = "v2",
 	config = require("ui.neodim"),
