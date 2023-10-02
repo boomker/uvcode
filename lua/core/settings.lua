@@ -51,7 +51,8 @@ settings["load_big_files_faster"] = true
 settings["palette_overwrite"] = {}
 
 -- Set the colorscheme to use here.
--- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
+-- Available values are: `catppuccin`, `catppuccin-latte`,
+-- `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
 ---@type string
 settings["colorscheme"] = "catppuccin-macchiato"
 
@@ -98,7 +99,7 @@ settings["lsp_deps"] = {
 	"volar",
 	"lua_ls",
 	-- "yamlls",
-	-- "gopls",
+	"gopls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.
@@ -108,7 +109,7 @@ settings["lsp_deps"] = {
 ---@type string[]
 settings["null_ls_deps"] = {
 	"clang_format",
-	"gofumpt",
+	-- "gofumpt",
 	"goimports",
 	"prettier",
 	"shfmt",
