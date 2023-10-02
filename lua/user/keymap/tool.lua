@@ -28,15 +28,15 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
-	["n|<leader>tt"] = map_cr([[execute v:count . "ToggleTerm direction=horizontal"]])
+	["n|<leader>tt"] = map_cr("ToggleTerm direction=horizontal")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
-	["n|<leader>tv"] = map_cr([[execute v:count . "ToggleTerm direction=vertical"]])
+	["n|<leader>tv"] = map_cr("ToggleTerm direction=vertical")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle vertical"),
-	["n|<leader>tf"] = map_cr([[execute v:count . "ToggleTerm direction=float"]])
+	["n|<leader>tf"] = map_cr("ToggleTerm direction=float")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle float"),
