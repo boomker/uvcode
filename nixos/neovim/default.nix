@@ -129,7 +129,7 @@ in
           ripgrep
         ] ++ optionals cfg.setBuildEnv [ patchelf nvim-depends-library nvim-depends-include nvim-depends-pkgconfig ];
         home.extraOutputsToInstall = optional cfg.setBuildEnv "nvim-depends";
-        home.shellAliases.nvim = optionalString cfg.setBuildEnv (concatStringsSep " " buildEnv) + " SQLITE_CLIB_PATH=${pkgs.sqlite.out}/lib/libsqlite3.so " + "nvim";
+        home.shellAliases.nvim = optionalString cfg.setBuildEnv (concatStringsSep " " buildEnv) + " nvim";
 
         programs.neovim = {
           enable = true;
@@ -142,7 +142,6 @@ in
             [
               # Dependent packages used by default plugins
               doq
-              sqlite
             ]
             ++ optionals cfg.withBuildTools [
               pkg-config
