@@ -50,7 +50,6 @@ return function()
 						"arguments",
 						"assignment_statement",
 						"Block",
-						"chunk",
 						"class",
 						"ContainerDecl",
 						"dictionary",
