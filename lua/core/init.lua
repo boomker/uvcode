@@ -1,5 +1,5 @@
-local global = require("core.global")
 local settings = require("core.settings")
+local global = require("core.global")
 
 -- Create cache dir and data dirs
 local createdir = function()
@@ -80,8 +80,7 @@ local leader_map = function()
 end
 
 local gui_config = function()
-	local config = settings.gui_config
-	vim.api.nvim_set_option_value("guifont", config.font_name .. ":h" .. config.font_size, {})
+	vim.api.nvim_set_option_value("guifont", settings.gui_config.font_name .. ":h" .. settings.gui_config.font_size, {})
 end
 
 local neovide_config = function()
