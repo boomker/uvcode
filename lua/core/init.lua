@@ -1,4 +1,5 @@
 local global = require("core.global")
+local settings = require("core.settings")
 
 -- Create cache dir and data dirs
 local createdir = function()
@@ -76,6 +77,11 @@ local leader_map = function()
     vim.g.maplocalleader = " "
     vim.api.nvim_set_keymap("n", " ", "", {noremap = true})
     vim.api.nvim_set_keymap("x", " ", "", {noremap = true})
+end
+
+local gui_config = function()
+	local config = settings.gui_config
+	vim.api.nvim_set_option_value("guifont", config.font_name .. ":h" .. config.font_size, {})
 end
 
 local neovide_config = function()
@@ -205,9 +211,10 @@ local load_core = function()
     disable_distribution_plugins()
     leader_map()
 
-    neovide_config()
-    clipboard_config()
-    shell_config()
+	gui_config()
+	neovide_config()
+	clipboard_config()
+	shell_config()
 
     require("core.options")
     require("core.mapping")
@@ -215,10 +222,10 @@ local load_core = function()
     require("core.event")
     require("core.pack")
 
-    local colorscheme = require("core.settings").colorscheme
-    local background = require("core.settings").background
-    vim.api.nvim_command("set background=" .. background)
-    vim.api.nvim_command("colorscheme " .. colorscheme)
+	local colorscheme = settings.colorscheme
+	local background = settings.background
+	vim.api.nvim_command("set background=" .. background)
+	vim.api.nvim_command("colorscheme " .. colorscheme)
 end
 
 load_core()
