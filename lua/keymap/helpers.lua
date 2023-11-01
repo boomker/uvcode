@@ -21,6 +21,17 @@ _G._command_panel = function()
     })
 end
 
+_G._flash_esc_or_noh = function()
+	local flash_active, state = pcall(function()
+		return require("flash.plugins.char").state
+	end)
+	if flash_active and state then
+		state:hide()
+	else
+		vim.cmd([[noh]])
+	end
+end
+
 local _lazygit = nil
 
 function toggle_lazygit()
