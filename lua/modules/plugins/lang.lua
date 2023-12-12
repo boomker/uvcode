@@ -1,5 +1,14 @@
 local lang = {}
 
+lang["kevinhwang91/nvim-bqf"] = {
+	lazy = true,
+	ft = "qf",
+	config = require("lang.bqf"),
+	dependencies = {
+		{ "junegunn/fzf", build = ":call fzf#install()" },
+	},
+}
+
 --[[ lang["AckslD/swenv.nvim"] = {
 	lazy = true,
 	ft = "python",
