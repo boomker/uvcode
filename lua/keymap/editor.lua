@@ -19,8 +19,11 @@ local plug_map = {
 	["n|<leader>sl"] = map_cu("SessionLoad"):with_noremap():with_silent():with_desc("session: Load current"),
 	["n|<leader>sd"] = map_cu("SessionDelete"):with_noremap():with_silent():with_desc("session: Delete"),
 
-	-- Plugin: nvim-bufdel
-	-- ["n|<A-q>"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
+	-- Plugin: MiniBufremove
+	["n|<C-q>"] = map_cu("lua require('mini.bufremove').delete()")
+		:with_noremap()
+		:with_silent()
+		:with_desc("buffer: Close current"),
 
 	-- Plugin: clever-f
 	--[[ ["n|;"] = map_callback(function()

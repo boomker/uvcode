@@ -97,8 +97,6 @@ local core_map = {
 	["n|W"] = map_cmd("i<CR><esc>`["):with_silent(),
 
 	-- buffer file save or quit
-	-- ["n|<C-q>"] = map_callback(function() buffer.close() end):with_noremap():with_desc("buffer: Close current"),
-    ["n|<C-q>"] = map_cr("wq"):with_desc("edit: Save file and quit"),
 	["n|<leader>q"] = map_cmd(":quit!<CR>"):with_noremap():with_silent(),
 	["n|<leader>S"] = map_cmd(":wall!<CR>"):with_noremap():with_silent(),
 
