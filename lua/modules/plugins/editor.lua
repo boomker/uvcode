@@ -68,12 +68,12 @@ editor["echasnovski/mini.surround"] = {
 	config = function()
 		require("mini.surround").setup({
 			mappings = {
-				add            = "sm", -- Add surrounding `mark` in Normal and Visual modes
-				delete         = "sd", -- Delete surrounding
-                replace        = "sc", -- Replace/change surrounding
-				find           = "sf", -- Find surrounding (to the right)
-				find_left      = "sF", -- Find surrounding (to the left)
-				highlight      = "sh", -- Highlight surrounding
+				add = "sm", -- Add surrounding `mark` in Normal and Visual modes
+				delete = "sd", -- Delete surrounding
+				replace = "sc", -- Replace/change surrounding
+				find = "sf", -- Find surrounding (to the right)
+				find_left = "sF", -- Find surrounding (to the left)
+				highlight = "sh", -- Highlight surrounding
 				update_n_lines = "sn", -- Update `n_lines`
 			},
 		})
@@ -81,14 +81,14 @@ editor["echasnovski/mini.surround"] = {
 }
 
 editor["echasnovski/mini.bracketed"] = {
-    version = false,
-    config = function()
-        require("mini.bracketed").setup({
-            comment    = { suffix = 'a', options = {} },
-            diagnostic = { suffix = 'e' },
-            file       = { suffix = 'v', options = {} },
-        })
-    end,
+	version = false,
+	config = function()
+		require("mini.bracketed").setup({
+			comment = { suffix = "a", options = {} },
+			diagnostic = { suffix = "e" },
+			file = { suffix = "v", options = {} },
+		})
+	end,
 }
 
 editor["echasnovski/mini.bufremove"] = {
@@ -107,12 +107,12 @@ editor["smoka7/hop.nvim"] = {
 	config = require("editor.hop"),
 }
 
-editor["folke/flash.nvim"] = {
+--[[ editor["folke/flash.nvim"] = {
 	lazy = true,
 	event = "VeryLazy",
     keys = function() return {} end,
 	config = require("editor.flash"),
-}
+} ]]
 
 editor["RRethy/vim-illuminate"] = {
 	lazy = true,

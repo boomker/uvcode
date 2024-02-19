@@ -16,7 +16,7 @@ return function()
 		actions.close(prompt_bufnr)
 	end
 
-	local flash_pick = function(prompt_bufnr)
+	--[[ local flash_pick = function(prompt_bufnr)
 		require("flash").jump({
 			pattern = "^",
 			label = { after = { 0, 0 } },
@@ -33,7 +33,7 @@ return function()
 				picker:set_selection(match.pos[1] - 1)
 			end,
 		})
-	end
+	end ]]
 
 	require("modules.utils").load_plugin("telescope", {
 		defaults = {
@@ -77,7 +77,7 @@ return function()
 					-- ["<C-v>"] = custom_actions.multi_selection_open_vsplit,
 					-- ["<C-t>"] = custom_actions.multi_selection_open_tab,
 					-- ["<C-s>"] = custom_actions.multi_selection_open_split,
-					["<C-s>"] = flash_pick,
+					-- ["<C-s>"] = flash_pick,
 					["<C-y>"] = copy_to_clipboard_action,
 				},
 			},
@@ -222,6 +222,7 @@ return function()
 	require("telescope").load_extension("undo")
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("smart_history")
+	require("telescope").load_extension("yank_history")
 	require("telescope").load_extension("persisted")
 	require("telescope").load_extension("aerial")
 end

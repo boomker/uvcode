@@ -19,7 +19,7 @@ local plug_map = {
 	["n|<leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by inline"),
 	["v|<leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
 	["n|<leader>rf"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
-	["c|%R"] = map_cu([[%SnipRun]]):with_noremap(),
+	["c|Sr!!"] = map_cu([[%SnipRun]]):with_noremap(),
 
 	-- toggleterm
 	["t|<ESC><ESC>"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.

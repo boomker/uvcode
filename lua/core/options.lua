@@ -9,7 +9,7 @@ local function load_options()
 		autoindent = true,
 		autoread = true,
 		autowrite = true,
-        -- autochdir = true,
+		-- autochdir = true,
 		backspace = "indent,eol,start",
 		backup = false,
 		backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",

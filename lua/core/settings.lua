@@ -10,7 +10,7 @@ settings["use_copilot"] = false
 
 -- Set it to false if there are no need to format on save.
 ---@type boolean
-settings["format_on_save"] = false
+settings["format_on_save"] = true
 
 -- Set it to false if the notification after formatting is annoying.
 ---@type boolean
@@ -65,7 +65,7 @@ settings["palette_overwrite"] = {}
 -- Available values are: `catppuccin`, `catppuccin-latte`,
 -- `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
 ---@type string
-settings["colorscheme"] = "catppuccin-macchiato"
+settings["colorscheme"] = "catppuccin-frappe"
 
 -- Set it to true if your terminal has transparent background.
 ---@type boolean
@@ -85,14 +85,14 @@ settings["external_browser"] = "chrome-cli open"
 -- Filetypes in this list will skip lsp formatting if rhs is true.
 ---@type table<string, boolean>
 settings["formatter_block_list"] = {
-	lua  = true, -- example
+	-- lua  = true, -- example
     yaml = true,
 }
 
 -- Servers in this list will skip setting formatting capabilities if rhs is true.
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-	lua_ls = true,
+	-- lua_ls = true,
 	tsserver = true,
 	clangd = true,
 }
@@ -169,7 +169,7 @@ settings["treesitter_deps"] = {
 ---@type { font_name: string, font_size: number }
 settings["gui_config"] = {
 	font_name = "JetBrainsMono Nerd Font",
-	font_size = 12,
+	font_size = 14,
 }
 
 -- Set the options specific to `neovide` here.
@@ -179,7 +179,7 @@ settings["gui_config"] = {
 ---@type table<string, boolean|number|string>
 settings["neovide_config"] = {
 	no_idle = true,
-	refresh_rate = 120,
+	refresh_rate = 60,
 	cursor_vfx_mode = "railgun",
 	cursor_vfx_opacity = 200.0,
 	cursor_antialiasing = true,

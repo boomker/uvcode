@@ -58,8 +58,13 @@ return function()
 		})
 	end, { remap = true })
 
-	vim.keymap.set("", "fv", function()
-		hop.paste_char1({ current_line_only = true })
+	vim.keymap.set("", "fs", function()
+		hop.hint_patterns({ current_line_only = false })
+	end, { remap = true })
+
+	vim.keymap.set("", "fn", function()
+		require("hop-treesitter").hint_nodes({ current_line_only = false })
+		-- hop.paste_char1({ current_line_only = true })
 	end, { remap = true })
 
 	vim.keymap.set("", "fi", function()

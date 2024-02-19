@@ -3,22 +3,22 @@ local global = require("core.global")
 
 -- Create cache dir and data dirs
 local createdir = function()
-    local data_dir = {
+	local data_dir = {
 		global.cache_dir .. "backup",
 		global.cache_dir .. "session",
 		global.cache_dir .. "swap",
 		global.cache_dir .. "tags",
 		global.cache_dir .. "undo",
-    }
-    -- Only check whether cache_dir exists, this would be enough.
-    if vim.fn.isdirectory(global.cache_dir) == 0 then
-        os.execute("mkdir -p " .. global.cache_dir)
-        for _, v in pairs(data_dir) do
-            if vim.fn.isdirectory(v) == 0 then
-                os.execute("mkdir -p " .. v)
-            end
-        end
-    end
+	}
+	-- Only check whether cache_dir exists, this would be enough.
+	if vim.fn.isdirectory(global.cache_dir) == 0 then
+		os.execute("mkdir -p " .. global.cache_dir)
+		for _, v in pairs(data_dir) do
+			if vim.fn.isdirectory(v) == 0 then
+				os.execute("mkdir -p " .. v)
+			end
+		end
+	end
 end
 
 local disable_distribution_plugins = function()
@@ -29,22 +29,22 @@ local disable_distribution_plugins = function()
 	-- Comment this if you define your own filetypes in `after/ftplugin`
 	-- vim.g.did_load_filetypes = 1
 
-    -- Do not load native syntax completion
-    vim.g.loaded_syntax_completion = 1
+	-- Do not load native syntax completion
+	vim.g.loaded_syntax_completion = 1
 
-    -- Do not load spell files
-    vim.g.loaded_spellfile_plugin = 1
+	-- Do not load spell files
+	vim.g.loaded_spellfile_plugin = 1
 
-    -- Whether to load netrw by default
-    -- vim.g.loaded_netrw = 1
-    -- vim.g.loaded_netrwFileHandlers = 1
-    -- vim.g.loaded_netrwPlugin = 1
-    -- vim.g.loaded_netrwSettings = 1
-    -- newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
-    vim.g.netrw_liststyle = 3
+	-- Whether to load netrw by default
+	-- vim.g.loaded_netrw = 1
+	-- vim.g.loaded_netrwFileHandlers = 1
+	-- vim.g.loaded_netrwPlugin = 1
+	-- vim.g.loaded_netrwSettings = 1
+	-- newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
+	vim.g.netrw_liststyle = 3
 
-    -- Do not load tohtml.vim
-    vim.g.loaded_2html_plugin = 1
+	-- Do not load tohtml.vim
+	vim.g.loaded_2html_plugin = 1
 
 	-- Do not load zipPlugin.vim, gzip.vim and tarPlugin.vim (all of these plugins are
 	-- related to reading files inside compressed containers)
@@ -74,10 +74,10 @@ local disable_distribution_plugins = function()
 end
 
 local leader_map = function()
-    vim.g.mapleader = " "
-    vim.g.maplocalleader = " "
-    vim.api.nvim_set_keymap("n", " ", "", {noremap = true})
-    vim.api.nvim_set_keymap("x", " ", "", {noremap = true})
+	vim.g.mapleader = " "
+	vim.g.maplocalleader = " "
+	vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
+	vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 end
 
 local gui_config = function()
@@ -85,95 +85,95 @@ local gui_config = function()
 end
 
 local neovide_config = function()
-    vim.g.neovide_theme = 'auto'
-    vim.api.nvim_set_option_value("guifont",
-                                  "JetBrainsMono Nerd Font Mono:h17:#e-antialias",
-                                  {})
-    -- vim.g.neovide_refresh_rate = 60
-    -- vim.g.neovide_no_idle = true
-    vim.g.neovide_transparency = 0.85
-    vim.g.neovide_cursor_vfx_mode = "railgun"
-    -- vim.g.neovide_cursor_vfx_opacity = 200.0
-    -- vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
-    -- vim.g.neovide_cursor_vfx_particle_speed = 20.0
-    -- vim.g.neovide_cursor_vfx_particle_density = 5.0
+	vim.g.neovide_theme = "dark"
+	vim.api.nvim_set_option_value("guifont", "JetBrainsMono Nerd Font Mono:h17:#e-antialias", {})
+	vim.g.neovide_transparency = 0.90
+	vim.g.neovide_cursor_vfx_mode = "railgun"
+	-- vim.g.neovide_refresh_rate = 60
+	-- vim.g.neovide_no_idle = true
+	-- vim.g.neovide_cursor_vfx_opacity = 200.0
+	-- vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+	-- vim.g.neovide_cursor_vfx_particle_speed = 20.0
+	-- vim.g.neovide_cursor_vfx_particle_density = 5.0
 
-    -- vim.g.neovide_input_ime = true
-    vim.g.neovide_floating_blur = true
-    vim.g.neovide_floating_blur_amount_x = 2.0
-    vim.g.neovide_floating_blur_amount_y = 2.0
-    vim.g.neovide_floating_opacity = 0.15
-    vim.g.neovide_cursor_unfocused_outline_width = 0.061
-    vim.g.neovide_scroll_animation_length = 0
+	-- vim.g.neovide_input_ime = true
+	vim.g.neovide_floating_blur = true
+	vim.g.neovide_floating_blur_amount_x = 2.0
+	vim.g.neovide_floating_blur_amount_y = 2.0
+	vim.g.neovide_floating_opacity = 0.15
+	vim.g.neovide_cursor_unfocused_outline_width = 0.061
+	vim.g.neovide_scroll_animation_length = 0
 
-    vim.g.neovide_remember_window_size = true
-    vim.g.neovide_hide_mouse_when_typing = true
-    vim.g.neovide_cursor_antialiasing = true
-    vim.g.neovide_cursor_animation_length = 0
-    -- vim.g.neovide_cursor_animation_length = 0.05
-    -- vim.g.neovide_cursor_trail_length = 0.05
-    vim.g.neovide_cursor_trail_size = 0
-    vim.g.gui_font_default_size = 17
-    vim.g.gui_font_size = vim.g.gui_font_default_size
-    -- vim.g.gui_font_face = "FiraCode Nerd Font Mono"
-    vim.g.gui_font_face = "JetBrainsMono Nerd Font Mono"
+	vim.g.neovide_remember_window_size = true
+	vim.g.neovide_hide_mouse_when_typing = true
+	vim.g.neovide_cursor_antialiasing = true
+	vim.g.neovide_cursor_animation_length = 0
+	-- vim.g.neovide_cursor_animation_length = 0.05
+	-- vim.g.neovide_cursor_trail_length = 0.05
+	vim.g.neovide_cursor_trail_size = 0
+	vim.g.gui_font_default_size = 17
+	vim.g.gui_font_size = vim.g.gui_font_default_size
+	vim.g.gui_font_face = "JetBrainsMono Nerd Font Mono"
 
-    RefreshGuiFont = function()
-        vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face,
-                                        vim.g.gui_font_size)
-    end
+	RefreshGuiFont = function()
+		vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
+	end
 
-    ResizeGuiFont = function(delta)
-        vim.g.gui_font_size = vim.g.gui_font_size + delta
-        RefreshGuiFont()
-    end
+	ResizeGuiFont = function(delta)
+		vim.g.gui_font_size = vim.g.gui_font_size + delta
+		RefreshGuiFont()
+	end
 
-    ResetGuiFont = function()
-        vim.g.gui_font_size = vim.g.gui_font_default_size
-        RefreshGuiFont()
-    end
+	ResetGuiFont = function()
+		vim.g.gui_font_size = vim.g.gui_font_default_size
+		RefreshGuiFont()
+	end
 
-    -- Call function on startup to set default value
-    ResetGuiFont()
+	-- Call function on startup to set default value
+	ResetGuiFont()
 
-    -- Keymaps
+	-- Keymaps
 
-    local opts = {noremap = true, silent = true}
+	local opts = { noremap = true, silent = true }
 
-    vim.keymap.set({"n", "i"}, "<D-+>", function() ResizeGuiFont(1) end, opts)
+	vim.keymap.set({ "n", "i" }, "<D-+>", function()
+		ResizeGuiFont(1)
+	end, opts)
 
-    vim.keymap.set({"n", "i"}, "<D-->", function() ResizeGuiFont(-1) end, opts)
+	vim.keymap.set({ "n", "i" }, "<D-->", function()
+		ResizeGuiFont(-1)
+	end, opts)
 end
 
 local clipboard_config = function()
-    if global.is_mac then
-        vim.g.clipboard = {
-            name = "macOS-clipboard",
-            copy = {["+"] = "pbcopy", ["*"] = "pbcopy"},
-            paste = {["+"] = "pbpaste", ["*"] = "pbpaste"},
+	if global.is_mac then
+		vim.g.clipboard = {
+			name = "macOS-clipboard",
+			copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
+			paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
 			cache_enabled = 0,
-        }
-    elseif global.is_wsl then
-        vim.g.clipboard = {
-            name = "win32yank-wsl",
-            copy = {
-                ["+"] = "win32yank.exe -i --crlf",
+		}
+	elseif global.is_wsl then
+		vim.g.clipboard = {
+			name = "win32yank-wsl",
+			copy = {
+				["+"] = "win32yank.exe -i --crlf",
 				["*"] = "win32yank.exe -i --crlf",
-            },
-            paste = {
-                ["+"] = "win32yank.exe -o --lf",
+			},
+			paste = {
+				["+"] = "win32yank.exe -o --lf",
 				["*"] = "win32yank.exe -o --lf",
-            },
+			},
 			cache_enabled = 0,
-        }
-    end
+		}
+	end
 end
 
 local shell_config = function()
-    if global.is_windows then
-        if not (vim.fn.executable("pwsh") == 1 or
-            vim.fn.executable("powershell") == 1) then
-            vim.notify([[
+	if global.is_windows then
+		if not (vim.fn.executable("pwsh") == 1 or vim.fn.executable("powershell") == 1) then
+			vim.notify(
+				[[
 Failed to setup terminal config
 
 PowerShell is either not installed, missing from PATH, or not executable;
@@ -183,44 +183,35 @@ You're recommended to install PowerShell for better experience.]],
 				vim.log.levels.WARN,
 				{ title = "[core] Runtime Warning" }
 			)
-            return
-        end
+			return
+		end
 
-        local basecmd = "-NoLogo -MTA -ExecutionPolicy RemoteSigned"
-        local ctrlcmd =
-            "-Command [console]::InputEncoding = [console]::OutputEncoding = [System.Text.Encoding]::UTF8"
-        vim.api.nvim_set_option_value("shell",
-                                      vim.fn.executable("pwsh") == 1 and "pwsh" or
-                                          "powershell", {})
-        vim.api.nvim_set_option_value("shellcmdflag", string.format("%s %s;",
-                                                                    basecmd,
-                                                                    ctrlcmd), {})
-        vim.api.nvim_set_option_value("shellredir",
-                                      "-RedirectStandardOutput %s -NoNewWindow -Wait",
-                                      {})
-        vim.api.nvim_set_option_value("shellpipe",
-                                      "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-                                      {})
-        vim.api.nvim_set_option_value("shellquote", nil, {})
-        vim.api.nvim_set_option_value("shellxquote", nil, {})
-    end
+		local basecmd = "-NoLogo -MTA -ExecutionPolicy RemoteSigned"
+		local ctrlcmd = "-Command [console]::InputEncoding = [console]::OutputEncoding = [System.Text.Encoding]::UTF8"
+		vim.api.nvim_set_option_value("shell", vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell", {})
+		vim.api.nvim_set_option_value("shellcmdflag", string.format("%s %s;", basecmd, ctrlcmd), {})
+		vim.api.nvim_set_option_value("shellredir", "-RedirectStandardOutput %s -NoNewWindow -Wait", {})
+		vim.api.nvim_set_option_value("shellpipe", "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode", {})
+		vim.api.nvim_set_option_value("shellquote", nil, {})
+		vim.api.nvim_set_option_value("shellxquote", nil, {})
+	end
 end
 
 local load_core = function()
-    createdir()
-    disable_distribution_plugins()
-    leader_map()
+	createdir()
+	disable_distribution_plugins()
+	leader_map()
 
 	gui_config()
 	neovide_config()
 	clipboard_config()
 	shell_config()
 
-    require("core.options")
-    require("core.mapping")
-    require("keymap")
-    require("core.event")
-    require("core.pack")
+	require("core.options")
+	require("core.mapping")
+	require("keymap")
+	require("core.event")
+	require("core.pack")
 
 	local colorscheme = settings.colorscheme
 	local background = settings.background

@@ -35,11 +35,11 @@ return function()
 				"markdown",
 			},
 		}),
-        btns.formatting.lua_format.with({
+		--[[ btns.formatting.lua_format.with({
             filetypes = {
                 "lua"
             }
-        })
+        }) ]]
 	}
 	require("modules.utils").load_plugin("null-ls", {
 		border = "rounded",

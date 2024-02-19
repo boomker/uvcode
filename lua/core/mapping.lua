@@ -68,7 +68,7 @@ local core_map = {
 	["n|=p"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["n|=P"] = map_cmd([[<Plug>(YankyPutBeforeFilter)]]):with_noremap():with_silent(),
 
-    -- TODO: Yank multi lines not adjacent
+	-- TODO: Yank multi lines not adjacent
 	["n|cvj"] = map_cmd([[<Plug>(YankyCycleForward)]]):with_noremap():with_silent(),
 	["n|cvk"] = map_cmd([[<Plug>(YankyCycleBackward)]]):with_noremap():with_silent(),
 	["n|gcy"] = map_cmd("m'yyp<Plug>(comment_toggle_linewise_current)`'"):with_noremap():with_silent(),
@@ -100,16 +100,16 @@ local core_map = {
 	["n|<leader>q"] = map_cmd(":quit!<CR>"):with_noremap():with_silent(),
 	["n|<leader>S"] = map_cmd(":wall!<CR>"):with_noremap():with_silent(),
 
-    -- quicklist
-    ['n|<leader>lc'] = map_cmd(':lclose<CR>'):with_noremap():with_silent():with_desc('close locallist'),
-    ['n|<leader>lq'] = map_cmd(':copen<CR>'):with_noremap():with_silent():with_desc('close quicklist'),
-    ['n|<leader>cc'] = map_cmd(':cclose<CR>'):with_noremap():with_silent():with_desc('close quicklist'),
-    ['n|<leader>cq'] = map_cmd(':copen<CR>'):with_noremap():with_silent():with_desc('Open quicklist'),
-	["n|<leader>cg"] = map_cmd([[:vimgrep //j % |copen<C-Left><C-Left><C-Left><Right>]]):with_noremap(),
+	-- quicklist
+	["n|<leader>lq"] = map_cmd(":lopen<CR>"):with_noremap():with_silent():with_desc("close quicklist"),
+	["n|<leader>lc"] = map_cmd(":lclose<CR>"):with_noremap():with_silent():with_desc("close locallist"),
+	["n|<leader>cc"] = map_cmd(":cclose<CR>"):with_noremap():with_silent():with_desc("close quicklist"),
+	["n|<leader>cq"] = map_cmd(":copen<CR>"):with_noremap():with_silent():with_desc("Open quicklist"),
+	["n|<leader>cg"] = map_cmd([[:grep '' % |copen<C-Left><C-Left><C-Left><Right>]]):with_noremap(),
 
 	-- more like MacVim
 	-- ["n|gf"] = map_cmd([[:tabedit <cfile><CR>]]):with_noremap():with_silent(),
-    ["n|<D-s>"] = map_cu("write"):with_noremap(),
+	["n|<D-s>"] = map_cu("write"):with_noremap(),
 	["n|<D-f>"] = map_cmd("/"):with_noremap():with_silent(),
 	["n|<D-v>"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
@@ -142,9 +142,9 @@ local core_map = {
 	["i|<C-x>a"] = map_cmd("<esc>:ToggleAlternate<CR>a"):with_noremap():with_silent(),
 	["i|<C-x>t"] = map_cmd("<esc>:execute v:count . 'ToggleTerm direction=float'<CR>"):with_noremap(),
 
-    ["i|<D-/>"] = map_cmd("<esc>/"):with_silent(),
+	["i|<D-/>"] = map_cmd("<esc>/"):with_silent(),
 	["i|<D-p>"] = map_cmd("<esc>:Telescope buffers<CR>"):with_noremap():with_silent(),
-    ["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
+	["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
 	["i|<D-s>"] = map_cmd("<C-O>:w<CR>"):with_noremap(),
 	["i|<D-b>"] = map_cmd("<C-O>b"):with_noremap():with_silent(),
 	["i|<D-f>"] = map_cmd("<C-O>w"):with_noremap():with_silent(),
@@ -177,25 +177,25 @@ local core_map = {
 	["n|<C-w>M"] = map_cmd("<C-w>_<C-w>|"):with_silent(),
 	-- ["n|<leader>rM"] = map_cmd("<C-w>|"):with_silent(),
 
-	["n|<D-Up>"]    = map_cr("resize -2"):with_silent(),
+	["n|<D-Up>"] = map_cr("resize -2"):with_silent(),
 	-- <cmd-opt-↑>
-	["n|<D-˚>"]     = map_cr("resize -2"):with_silent(),
-	["n|<D-Down>"]  = map_cr("resize +2"):with_silent(),
-	["n|<D-∆>"]     = map_cr("resize +2"):with_silent(),
+	["n|<D-˚>"] = map_cr("resize -2"):with_silent(),
+	["n|<D-Down>"] = map_cr("resize +2"):with_silent(),
+	["n|<D-∆>"] = map_cr("resize +2"):with_silent(),
 	["n|<D-Right>"] = map_cr("vertical resize +5"):with_silent(),
-	["n|<D-¬>"]     = map_cr("vertical resize +5"):with_silent(),
-	["n|<D-Left>"]  = map_cr("vertical resize -5"):with_silent(),
-	["n|<D-˙>"]     = map_cr("vertical resize -5"):with_silent(),
+	["n|<D-¬>"] = map_cr("vertical resize +5"):with_silent(),
+	["n|<D-Left>"] = map_cr("vertical resize -5"):with_silent(),
+	["n|<D-˙>"] = map_cr("vertical resize -5"):with_silent(),
 
-    -- ToggleTerm
+	-- ToggleTerm
 	["t|<D-Right>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
-	["t|<D-¬>"]     = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
-	["t|<D-Left>"]  = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
-	["t|<D-˙>"]     = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
-	["t|<D-Down>"]  = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
-	["t|<D-∆>"]     = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
-	["t|<D-Up>"]    = map_cmd("<Esc><Cmd>resize +2<CR>"):with_silent(),
-	["t|<D-˚>"]     = map_cmd("<Esc><Cmd>resize +2<CR>"):with_silent(),
+	["t|<D-¬>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
+	["t|<D-Left>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
+	["t|<D-˙>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
+	["t|<D-Down>"] = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
+	["t|<D-∆>"] = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
+	["t|<D-Up>"] = map_cmd("<Esc><Cmd>resize +2<CR>"):with_silent(),
+	["t|<D-˚>"] = map_cmd("<Esc><Cmd>resize +2<CR>"):with_silent(),
 
 	["t|<D-b>"] = map_cmd("<C-Left>"):with_noremap():with_silent(),
 	["t|<D-f>"] = map_cmd("<C-Right>"):with_noremap():with_silent(),
@@ -222,7 +222,7 @@ local core_map = {
 	["c|<C-d>"] = map_cmd("<Del>"):with_noremap(),
 	["c|<C-h>"] = map_cmd("<BS>"):with_noremap(),
 	["c|<C-t>"] = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]]):with_noremap(),
-	["c|%w!!"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"),
+	["c|Sw!!"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"),
 
 	-- Visual
 	-- ["v|J"] = map_cmd(":m '>+1<cr>gv=gv"),

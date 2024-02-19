@@ -1,6 +1,6 @@
 local lang = {}
 
-lang["kevinhwang91/nvim-bqf"] = {
+--[[ lang["kevinhwang91/nvim-bqf"] = {
 	lazy = true,
 	ft = "qf",
 	config = require("lang.bqf"),
@@ -9,7 +9,7 @@ lang["kevinhwang91/nvim-bqf"] = {
 	},
 }
 
---[[ lang["AckslD/swenv.nvim"] = {
+lang["AckslD/swenv.nvim"] = {
 	lazy = true,
 	ft = "python",
 	config = function()

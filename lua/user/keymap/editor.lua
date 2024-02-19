@@ -75,7 +75,7 @@ local plug_map = {
 		:with_desc("[R]efactor: [I]nline variable"),
 
 	-- Plugin: flash
-	["nv|<leader>jw"] = map_callback(function()
+	--[[ ["nv|<leader>jw"] = map_callback(function()
 			require("flash").jump({
 				search = {
 					mode = function(str)
@@ -137,7 +137,7 @@ local plug_map = {
 			require("flash").treesitter()
 		end)
 		:with_noremap()
-		:with_desc("Flash Treesitter Select"),
+		:with_desc("Flash Treesitter Select"), ]]
 }
 
 bind.nvim_load_mapping(plug_map)
