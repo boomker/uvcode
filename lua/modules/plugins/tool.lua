@@ -28,7 +28,7 @@ tool["nvim-pack/nvim-spectre"] = {
 	lazy = true,
 	event = "BufReadPost",
 	config = require("tool.smartyank"),
-} ]]
+}
 
 tool["nvim-tree/nvim-tree.lua"] = {
 	lazy = true,
@@ -40,7 +40,8 @@ tool["nvim-tree/nvim-tree.lua"] = {
 		"NvimTreeRefresh",
 	},
 	config = require("tool.nvim-tree"),
-}
+} ]]
+
 tool["michaelb/sniprun"] = {
 	lazy = true,
 	-- You need to cd to `~/.local/share/nvim/site/lazy/sniprun/` and execute `bash ./install.sh`,

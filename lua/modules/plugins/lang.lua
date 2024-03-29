@@ -1,31 +1,5 @@
 local lang = {}
 
---[[ lang["kevinhwang91/nvim-bqf"] = {
-	lazy = true,
-	ft = "qf",
-	config = require("lang.bqf"),
-	dependencies = {
-		{ "junegunn/fzf", build = ":call fzf#install()" },
-	},
-}
-
-lang["AckslD/swenv.nvim"] = {
-	lazy = true,
-	ft = "python",
-	config = function()
-		require("swenv").setup({
-			get_venvs = function(venvs_path)
-				return require("swenv.api").get_venvs(venvs_path)
-			end,
-			venvs_path = {
-                dva = vim.fn.expand("~/gitrepos/django-vue-admin/backend/.venv"),
-            },
-			post_set_venv = nil,
-		})
-	end,
-	dependencies = { "nvim-lua/plenary.nvim" },
-} ]]
-
 lang["ray-x/go.nvim"] = {
 	lazy = true,
 	ft = "go",

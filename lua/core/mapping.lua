@@ -68,7 +68,6 @@ local core_map = {
 	["n|=p"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["n|=P"] = map_cmd([[<Plug>(YankyPutBeforeFilter)]]):with_noremap():with_silent(),
 
-	-- TODO: Yank multi lines not adjacent
 	["n|cvj"] = map_cmd([[<Plug>(YankyCycleForward)]]):with_noremap():with_silent(),
 	["n|cvk"] = map_cmd([[<Plug>(YankyCycleBackward)]]):with_noremap():with_silent(),
 	["n|gcy"] = map_cmd("m'yyp<Plug>(comment_toggle_linewise_current)`'"):with_noremap():with_silent(),

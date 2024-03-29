@@ -9,6 +9,7 @@ local plug_map = {
 	["n|<leader>jl"] = map_cmd("<C-6>"):with_noremap():with_silent(),
 	["n|<leader>jn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
 	["n|<leader>jp"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
+    ["n|<leader>nn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
 
 	-- plugin todo-comments
 	["n|<leader>tj"] = map_cr("lua require('todo-comments').jump_next()"):with_noremap():with_silent(),

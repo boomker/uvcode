@@ -55,7 +55,7 @@ function toggle_ipython()
 	if not _ipython then
 		local Terminal = require("toggleterm.terminal").Terminal
 		_ipython = Terminal:new({
-			cmd = "ipython",
+			cmd = "/usr/local/opt/pyenv/shims/ipython3",
 			hidden = true,
 			direction = "horizontal",
 		})

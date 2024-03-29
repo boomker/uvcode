@@ -63,7 +63,7 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "hrsh7th/cmp-buffer" },
 		-- { "kdheepak/cmp-latex-symbols" },
 		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
-		--[[ {
+		{
 			"Exafunction/codeium.nvim",
 			dependencies = {
 				"nvim-lua/plenary.nvim",
@@ -71,7 +71,7 @@ completion["hrsh7th/nvim-cmp"] = {
 				"hrsh7th/nvim-cmp",
 			},
 			config = require("completion.codeium"),
-		}, ]]
+		},
 	},
 }
 if use_copilot then

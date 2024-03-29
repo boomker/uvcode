@@ -12,8 +12,13 @@ local plug_map = {
 	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 
 	-- Plugin nvim-tree
-	["n|<leader>nt"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
-	["n|<leader>nb"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
+	-- ["n|<leader>nt"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	-- ["n|<leader>nb"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
+
+	-- Plugin neotree
+	["n|<leader>nt"] = map_cr("Neotree toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	["n|<leader>nb"] = map_cr("Neotree buffers"):with_noremap():with_silent():with_desc("filetree: Buffers"),
+	["n|<leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Buffers"),
 
 	-- Plugin SnipRun
 	["n|<leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by inline"),
@@ -50,7 +55,7 @@ local plug_map = {
 	-- sent code of current line to term
 	["nv|<leader>tc"] = map_cmd(":ToggleTermSendCurrentLine<CR>"):with_noremap():with_silent(),
 	-- ["v|<leader>tV"] = map_cmd(":ToggleTermSendVisualLines<CR>"):with_noremap():with_silent(),
-	["n|<leader>lg"] = map_callback(function()
+	["n|<leader>tg"] = map_callback(function()
 			toggle_lazygit()
 		end)
 		:with_noremap()
@@ -86,6 +91,8 @@ local plug_map = {
 		:with_desc("find: File by frecency"),
 	["n|<leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent():with_desc("Search GitRepo Files"),
 	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
+	["n|<leader>fO"] = map_cu("Telescope aerial"):with_noremap():with_silent():with_desc(""),
+
 	["n|<leader>fe"] = map_callback(function()
 			Telescope_project_files({ scope = "cwd" })
 		end)
@@ -101,21 +108,21 @@ local plug_map = {
 	["n|<leader>fz"] = map_cu("Telescope zoxide list")
 		:with_noremap()
 		:with_silent()
-		:with_desc("editn: Change current direrctory by zoxide"),
+		:with_desc("edit: Change direrctory zoxide"),
 	["n|<Leader>fw"] = map_cu("Telescope current_buffer_fuzzy_find"):with_noremap():with_silent(),
-	["n|<Leader>fb"] = map_callback(function()
+	["n|<Leader>fB"] = map_callback(function()
 			Telescope_rg_live_grep({ scope = "buffers" })
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("rg live: word in buffers opened"),
-	["n|<Leader>fl"] = map_callback(function()
-			Telescope_rg_live_grep({ scope = "project" })
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("rg live: word in project"),
-	["n|<leader>fL"] = map_callback(function()
+	-- ["n|<Leader>fl"] = map_callback(function()
+	-- 		Telescope_rg_live_grep({ scope = "project" })
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("rg live: word in project"),
+	["n|<leader>fl"] = map_callback(function()
 			require("telescope").extensions.live_grep_args.live_grep_args()
 		end)
 		:with_noremap()
@@ -134,24 +141,29 @@ local plug_map = {
 		:with_desc("tool: Toggle keymapping panel"),
 	["n|<Leader>fm"] = map_cu("Telescope marks"):with_noremap():with_silent(),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent(),
-	["n|<Leader>fr"] = map_cu("Telescope lsp_references"):with_noremap():with_silent(),
+	["n|<Leader>fr"] = map_cu("Telescope resume"):with_noremap():with_silent(),
 	["n|<Leader>fR"] = map_cu("Telescope registers"):with_noremap():with_silent(),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols"):with_noremap():with_silent(),
+	["n|<leader>fS"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
 	-- NOTE: do diagnostic for all buffers
 	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent(),
 	["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent(),
 	["n|<Leader>fy"] = map_cu("Telescope yank_history"):with_noremap():with_silent(),
 	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent(),
+	["n|<leader>fH"] = map_cu("Telescope smart_history"):with_noremap():with_silent():with_desc(""),
 	["n|<Leader>ft"] = map_cu("TodoTelescope"):with_noremap():with_silent(),
-	["n|<Leader>fS"] = map_callback(Telescope_yaml_symbols):with_noremap():with_silent(),
+	["n|<Leader>fY"] = map_callback(Telescope_yaml_symbols):with_noremap():with_silent(),
 	["n|<Leader>gs"] = map_callback(Telescope_git_status):with_noremap():with_silent(),
 	["n|<Leader>gc"] = map_callback(Telescope_git_bcommits):with_noremap():with_silent(),
 	["n|<Leader>gC"] = map_callback(Telescope_git_commits):with_noremap():with_silent(),
-	["n|<leader>sc"] = map_cu("Telescope colorscheme")
+	["n|<leader>sc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent():with_desc("ui: Change colorscheme"),
+	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
+
+	-- Plugin swenv
+	["n|<leader>ce"] = map_cr("lua require('swenv.api').pick_venv()")
 		:with_noremap()
 		:with_silent()
-		:with_desc("ui: Change colorscheme for current session"),
-	["n|<D-p>"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
+		:with_desc("choose venv"),
 
 	-- Plugin dap
 	["n|<leader>dc"] = map_callback(function()
@@ -252,5 +264,37 @@ local plug_map = {
 	["n|<D-S-k>"] = map_cmd([[<Plug>GoNSDUp]]):with_noremap():with_silent(),
 	["x|<D-S-j>"] = map_cmd([[<Plug>GoVSDDown]]):with_noremap():with_silent(),
 	["x|<D-S-k>"] = map_cmd([[<Plug>GoVSDUp]]):with_noremap():with_silent(),
+
+	-- refactoring
+	["v|<leader>re"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: [E]xtract function"),
+	["v|<leader>rf"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: Extract function to [F]ile"),
+	["v|<leader>rv"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: Extract [V]ariable"),
+	["v|<leader>ri"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: [I]nline variable"),
+	-- Extract block doesn't need visual mode
+	["n|<leader>rb"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Extract Block')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: Extract [B]lock"),
+	["n|<leader>rB"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: Extract [B]lock to [F]ile"),
+	-- Inline variable can also pick up the identifier currently under the cursor without visual mode
+	["n|<leader>ri"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]])
+		:with_noremap()
+		:with_silent()
+		:with_desc("[R]efactor: [I]nline variable"),
 }
 bind.nvim_load_mapping(plug_map)
