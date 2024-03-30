@@ -1,10 +1,5 @@
 local editor = {}
 
-editor["rainbowhxch/accelerated-jk.nvim"] = {
-	lazy = true,
-	event = "VeryLazy",
-	config = require("editor.accelerated-jk"),
-}
 editor["olimorris/persisted.nvim"] = {
 	lazy = true,
 	cmd = {
@@ -23,11 +18,6 @@ editor["m4xshen/autoclose.nvim"] = {
 	lazy = true,
 	event = "InsertEnter",
 	config = require("editor.autoclose"),
-}
-editor["max397574/better-escape.nvim"] = {
-	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("editor.better-escape"),
 }
 editor["LunarVim/bigfile.nvim"] = {
 	lazy = false,
@@ -100,6 +90,12 @@ editor["echasnovski/mini.bufremove"] = {
 	end,
 }
 
+editor["tzachar/local-highlight.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("editor.local-highlight"),
+}
+
 editor["smoka7/hop.nvim"] = {
 	lazy = true,
 	version = "*",
@@ -113,12 +109,6 @@ editor["smoka7/hop.nvim"] = {
     keys = function() return {} end,
 	config = require("editor.flash"),
 } ]]
-
-editor["RRethy/vim-illuminate"] = {
-	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("editor.vim-illuminate"),
-}
 
 --[[ editor["romainl/vim-cool"] = {
 	lazy = true,
@@ -141,10 +131,6 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 		{ "andymass/vim-matchup" },
 		{ "mfussenegger/nvim-treehopper" },
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
-		{
-			"abecodes/tabout.nvim",
-			config = require("editor.tabout"),
-		},
 		{
 			"windwp/nvim-ts-autotag",
 			config = require("editor.autotag"),

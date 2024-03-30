@@ -1,11 +1,5 @@
 local tool = {}
 
---[[ tool["tpope/vim-fugitive"] = {
-	lazy = true,
-	cmd = { "Git", "G" },
-}
-} ]]
-
 tool["nvim-pack/nvim-spectre"] = {
 	lazy = true,
 	module = "spectre",
@@ -15,32 +9,6 @@ tool["nvim-pack/nvim-spectre"] = {
 		{ "nvim-lua/popup.nvim", lazy = true },
 	},
 }
--- only for fcitx5 user who uses non-English language during coding
-
---[[ tool["pysan3/fcitx5.nvim"] = {
-	lazy = true,
-	event = "BufReadPost",
-	cond = vim.fn.executable("fcitx5-remote") == 1,
-	config = require("tool.fcitx5"),
-} ]]
-
---[[ tool["ibhagwan/smartyank.nvim"] = {
-	lazy = true,
-	event = "BufReadPost",
-	config = require("tool.smartyank"),
-}
-
-tool["nvim-tree/nvim-tree.lua"] = {
-	lazy = true,
-	cmd = {
-		"NvimTreeToggle",
-		"NvimTreeOpen",
-		"NvimTreeFindFile",
-		"NvimTreeFindFileToggle",
-		"NvimTreeRefresh",
-	},
-	config = require("tool.nvim-tree"),
-} ]]
 
 tool["michaelb/sniprun"] = {
 	lazy = true,
@@ -72,12 +40,6 @@ tool["folke/which-key.nvim"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("tool.which-key"),
 }
-tool["gelguy/wilder.nvim"] = {
-	lazy = true,
-	event = "CmdlineEnter",
-	config = require("tool.wilder"),
-	dependencies = { "romgrk/fzy-lua-native" },
-}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
@@ -99,10 +61,10 @@ tool["nvim-telescope/telescope.nvim"] = {
 		{ "nvim-telescope/telescope-frecency.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-        {
-            "nvim-telescope/telescope-smart-history.nvim",
-            dependencies = { "kkharji/sqlite.lua" },
-        }
+		{
+			"nvim-telescope/telescope-smart-history.nvim",
+			dependencies = { "kkharji/sqlite.lua" },
+		},
 	},
 }
 

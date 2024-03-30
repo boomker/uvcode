@@ -64,7 +64,7 @@ return function()
 			harpoon = false,
 			headlines = false,
 			hop = true,
-			illuminate = true,
+			illuminate = false,
 			indent_blankline = { enabled = true, colored_indent_levels = true },
 			leap = false,
 			lightspeed = false,
@@ -170,17 +170,17 @@ return function()
 						style = { "bold", "underline" },
 					},
 
-                    -- flash
-                    FlashMatch = {bg = cp.none, fg = "#89b4fa", bold = true, italic = true},
-                    FlashCurrent = {
-                        bg = cp.none,
-                        fg = "#04a5e5",
-                        bold = true,
-                        italic = true,
-                        underline = true
-                    },
-                    FlashLabel = {bg = cp.none, fg = "#ff007c", bold = true},
-                    FlashBackdrop = {bg = cp.none, fg = "#6c7086"},
+					-- flash
+					FlashMatch = { bg = cp.none, fg = "#89b4fa", bold = true, italic = true },
+					FlashCurrent = {
+						bg = cp.none,
+						fg = "#04a5e5",
+						bold = true,
+						italic = true,
+						underline = true,
+					},
+					FlashLabel = { bg = cp.none, fg = "#ff007c", bold = true },
+					FlashBackdrop = { bg = cp.none, fg = "#6c7086" },
 
 					-- For treesitter
 					["@keyword.return"] = { fg = cp.pink, style = clear },

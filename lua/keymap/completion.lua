@@ -4,7 +4,7 @@ local map_cmd = bind.map_cmd
 local map_callback = bind.map_callback
 
 local plug_map = {
-	["n|<A-f>"] = map_cmd("<Cmd>FormatToggle<CR>"):with_noremap():with_desc("Formater: Toggle format on save"),
+	["n|<leader>tF"] = map_cmd("<Cmd>FormatToggle<CR>"):with_noremap():with_desc("Formater: Toggle format on save"),
 }
 bind.nvim_load_mapping(plug_map)
 
@@ -16,7 +16,7 @@ function mapping.lsp(buf)
 		["n|<leader>li"] = map_cr("LspInfo"):with_silent():with_buffer(buf):with_desc("lsp: Info"),
 		["n|<leader>lr"] = map_cr("LspRestart"):with_silent():with_buffer(buf):with_nowait():with_desc("lsp: Restart"),
 		["n|go"] = map_cr("AerialToggle!"):with_silent():with_buffer(buf):with_desc("lsp: Toggle outline"),
-		["n|gto"] = map_callback(function()
+		--[[ ["n|gto"] = map_callback(function()
 				require("telescope").extensions.aerial.aerial()
 			end)
 			:with_silent()
@@ -29,7 +29,7 @@ function mapping.lsp(buf)
 		["n|g]"] = map_cr("Lspsaga diagnostic_jump_next")
 			:with_silent()
 			:with_buffer(buf)
-			:with_desc("lsp: Next diagnostic"),
+			:with_desc("lsp: Next diagnostic"), ]]
 		["n|<leader>ld"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
 			:with_silent()
 			:with_buffer(buf)

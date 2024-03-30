@@ -24,23 +24,13 @@ local plug_map = {
 		:with_noremap()
 		:with_desc("git: show file history"),
 
-	-- Plugin Tabout
-	["i|<D-S-l>"] = map_cmd("<Plug>(TaboutMulti)"):with_silent():with_noremap():with_desc("editi: Goto end of pair"),
-	["i|<D-S-h>"] = map_cmd("<Plug>(TaboutBackMulti)")
-		:with_silent()
-		:with_noremap()
-		:with_desc("editi: Goto begin of pair"),
-
 	-- Plugin rmagatti/alternate-toggler
-	["n|<leader>a"] = map_cu("ToggleAlternate"):with_noremap():with_silent(),
+	["n|<leader>a"] = map_cu("ToggleAlternate"):with_noremap():with_silent():with_desc("alternate value"),
 
 	-- Plugin vim-visual-multi
-	-- NOTE: `Tab`:switch mode; `q, Q`: skip, remove region; n, N: goto next/prev
-	["nx|gsa"] = map_cmd([[<Plug>(VM-Select-All)]]):with_noremap():with_silent(),
-	-- ["x|gsa"] = map_cmd([[<Plug>(VM-Select-All)]]):with_silent(),
-	["n|<D-d>"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent(),
-	["n|<A-d>"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent(),
-	["x|<D-d>"] = map_cmd([[<Plug>(VM-Find-Subword-Under)]]):with_silent(),
+	-- Note: `Tab`:switch mode; `q, Q`: skip, remove region; n, N: goto next/prev
+	["n|gb"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent():with_desc("add cursor word"),
+	-- ["x|<D-d>"] = map_cmd([[<Plug>(VM-Find-Subword-Under)]]):with_silent(),
 
 	-- Plugin: flash
 	--[[ ["nv|<leader>jw"] = map_callback(function()

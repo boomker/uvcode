@@ -7,7 +7,7 @@ local mappings = {}
 -- Place global keymaps here.
 local plug_map = {
 	["n|<leader>tF"] = map_cmd("<Cmd>FormatToggle<CR>"):with_noremap():with_desc("Formater: Toggle format on save"),
-	["nx|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent(),
+	["nx|<leader>cf"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent():with_desc("format buffer"),
 }
 
 -- NOTE: This function is special! Keymaps defined here are ONLY effective in buffers with LSP(s) attached

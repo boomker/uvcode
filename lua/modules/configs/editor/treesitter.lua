@@ -22,27 +22,27 @@ return vim.schedule_wrap(function()
 			select = {
 				enable = true,
 				keymaps = {
-                    ["aa"] = "@parameter.outer",
-                    ["ia"] = "@parameter.inner",
+					["aa"] = "@parameter.outer",
+					["ia"] = "@parameter.inner",
 
-                    ["ab"] = "@block.outer",
-                    ["ib"] = "@block.inner",
+					["ab"] = "@block.outer",
+					["ib"] = "@block.inner",
 
-                    ["ac"] = "@conditional.outer",
-                    ["ic"] = "@conditional.inner",
+					["ac"] = "@conditional.outer",
+					["ic"] = "@conditional.inner",
 
-                    ["ao"] = "@loop.outer",
-                    ["io"] = "@loop.inner",
+					["ao"] = "@loop.outer",
+					["io"] = "@loop.inner",
 
-                    ["af"] = "@function.outer",
-                    ["if"] = "@function.inner",
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
 
-                    ["aC"] = "@class.outer",
-                    ["iC"] = "@class.inner",
+					["aC"] = "@class.outer",
+					["iC"] = "@class.inner",
 
-                    -- ["ar"] = "@call.outer",
-                    -- ["ir"] = "@call.inner",
-                    ["au"] = "@comment.outer",
+					-- ["ar"] = "@call.outer",
+					-- ["ir"] = "@call.inner",
+					["au"] = "@comment.outer",
 				},
 			},
 			move = {
@@ -64,45 +64,46 @@ return vim.schedule_wrap(function()
 				-- 	["[]"] = "@function.outer",
 				-- 	["[M"] = "@class.outer",
 				-- },
-                goto_next_start = {
-                    ["]f"] = "@function.outer",
-                    ["]c"] = "@class.outer",
-                },
-                goto_next_end = {
-                    ["]F"] = "@function.outer",
-                    ["]C"] = "@class.outer",
-                },
-                goto_previous_start = {
-                    ["[f"] = "@function.outer",
-                    ["[c"] = "@class.outer",
-                },
-                goto_previous_end = {
-                    ["[F"] = "@function.outer",
-                    ["[C"] = "@class.outer",
-                },
+				goto_next_start = {
+					["]f"] = "@function.outer",
+					["]c"] = "@class.outer",
+				},
+				goto_next_end = {
+					["]F"] = "@function.outer",
+					["]C"] = "@class.outer",
+				},
+				goto_previous_start = {
+					["[f"] = "@function.outer",
+					["[c"] = "@class.outer",
+				},
+				goto_previous_end = {
+					["[F"] = "@function.outer",
+					["[C"] = "@class.outer",
+				},
 			},
-            swap = {
-                enable = true,
-                swap_next = {
-                    ["<leader>ma"] = "@parameter.inner",
-                    ["<leader>mf"] = "@function.outer",
-                    -- [">a"] = "@parameter.inner",
-                },
-                swap_previous = {
-                    ["<leader>mA"] = "@parameter.inner",
-                    ["<leader>mF"] = "@function.outer",
-                    -- ["<a"] = "@parameter.inner",
-                },
-            },
+			swap = {
+				enable = true,
+				swap_next = {
+					["<leader>ma"] = "@parameter.inner",
+					["<leader>mf"] = "@function.outer",
+					-- [">a"] = "@parameter.inner",
+				},
+				swap_previous = {
+					["<leader>mA"] = "@parameter.inner",
+					["<leader>mF"] = "@function.outer",
+					-- ["<a"] = "@parameter.inner",
+				},
+			},
 		},
 		indent = { enable = true },
 		matchup = { enable = true },
 	}, false, require("nvim-treesitter.configs").setup)
 	require("nvim-treesitter.install").prefer_git = true
-    require("nvim-treesitter.install").command_extra_args = {
-        curl = { "--proxy", "127.0.0.1:1080" },
-        -- curl = { "--proxy", "127.0.0.1:7890" },
-    }
+	require("nvim-treesitter.install").command_extra_args = {
+		curl = { "--proxy", "127.0.0.1:7897" },
+		-- curl = { "--proxy", "127.0.0.1:7890" },
+		-- curl = { "--proxy", "127.0.0.1:1080" },
+	}
 	if use_ssh then
 		local parsers = require("nvim-treesitter.parsers").get_parser_configs()
 		for _, p in pairs(parsers) do

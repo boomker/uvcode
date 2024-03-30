@@ -86,7 +86,7 @@ settings["external_browser"] = "chrome-cli open"
 ---@type table<string, boolean>
 settings["formatter_block_list"] = {
 	-- lua  = true, -- example
-    yaml = true,
+	yaml = true,
 }
 
 -- Servers in this list will skip setting formatting capabilities if rhs is true.
@@ -103,7 +103,7 @@ settings["server_formatting_block_list"] = {
 ---@type string[]
 settings["lsp_deps"] = {
 	"bashls",
-    "dockerls",
+	"dockerls",
 	"html",
 	"jsonls",
 	"pylsp",
@@ -126,9 +126,9 @@ settings["null_ls_deps"] = {
 	"shfmt",
 	"stylua",
 	"vint",
-    "black",
-    "ruff",
-    "yamllint"
+	"black",
+	"ruff",
+	"yamllint",
 }
 
 -- Set the Debug Adapter Protocol (DAP) clients that will be installed and configured during bootstrap here.
@@ -148,7 +148,7 @@ settings["dap_deps"] = {
 settings["treesitter_deps"] = {
 	"bash",
 	"css",
-    "dockerfile",
+	"dockerfile",
 	"go",
 	"gomod",
 	"html",
@@ -162,6 +162,8 @@ settings["treesitter_deps"] = {
 	"vue",
 	"yaml",
 	"toml",
+	"markdown",
+	"markdown_inline",
 }
 
 -- Set the options for neovim's gui clients like `neovide` and `neovim-qt` here.

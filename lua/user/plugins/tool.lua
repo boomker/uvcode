@@ -1,23 +1,23 @@
 local tool = {}
 
--- tool["numToStr/Navigator.nvim"] = {
--- 	lazy = true,
--- 	event = "VeryLazy",
--- 	config = require("configs.tool.navigator"),
--- }
+--[[ tool["numToStr/Navigator.nvim"] = {
+	lazy = true,
+	event = "VeryLazy",
+	config = require("configs.tool.navigator"),
+}
 
--- tool["amitds1997/remote-nvim.nvim"] = {
--- 	lazy = true,
--- 	cmd = { "RemoteStart", "RemoteStop", "RemoteInfo", "RemoteCleanup", "RemoteConfigDel", "RemoteLog" },
--- 	version = "*",
--- 	dependencies = {
--- 		"nvim-lua/plenary.nvim", -- For standard functions
--- 		"MunifTanjim/nui.nvim", -- To build the plugin UI
--- 		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
--- 	},
--- 	-- config = true,
--- 	config = require("configs.tool.remote-nvim"),
--- }
+tool["amitds1997/remote-nvim.nvim"] = {
+	lazy = true,
+	cmd = { "RemoteStart", "RemoteStop", "RemoteInfo", "RemoteCleanup", "RemoteConfigDel", "RemoteLog" },
+	version = "*",
+	dependencies = {
+		"nvim-lua/plenary.nvim", -- For standard functions
+		"MunifTanjim/nui.nvim", -- To build the plugin UI
+		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+	},
+	-- config = true,
+	config = require("configs.tool.remote-nvim"),
+} ]]
 
 tool["nvim-neo-tree/neo-tree.nvim"] = {
 	lazy = true,
@@ -90,5 +90,22 @@ tool["AckslD/swenv.nvim"] = {
 	end,
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
+
+tool["mg979/vim-visual-multi"] = {
+	lazy = true,
+	event = "BufRead",
+	config = function()
+		vim.api.nvim_command([[let g:VM_theme = 'purplegray']])
+	end,
+}
+
+-- tool["brenton-leighton/multiple-cursors.nvim"] = {
+-- 	lazy = true,
+-- 	version = "*",
+-- 	event = "BufRead",
+-- 	config = function()
+-- 		require("multiple-cursors").setup()
+-- 	end,
+-- }
 
 return tool

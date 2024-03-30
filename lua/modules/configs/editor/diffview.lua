@@ -130,12 +130,12 @@ return function()
 					actions.focus_files,
 					{ desc = "diffview: Bring focus to the file panel" },
 				},
-				{
-					"n",
-					"<leader>b",
-					actions.toggle_files,
-					{ desc = "diffview: Toggle the file panel." },
-				},
+				-- {
+				-- 	"n",
+				-- 	"<leader>b",
+				-- 	actions.toggle_files,
+				-- 	{ desc = "diffview: Toggle the file panel." },
+				-- },
 				{
 					"n",
 					"g<C-x>",
@@ -418,7 +418,7 @@ return function()
 					actions.focus_files,
 					{ desc = "diffview: Bring focus to the file panel" },
 				},
-				{ "n", "<leader>b", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
+				-- { "n", "<leader>b", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
 				{ "n", "g<C-x>", actions.cycle_layout, { desc = "diffview: Cycle available layouts" } },
 				{
 					"n",
@@ -556,7 +556,7 @@ return function()
 					actions.focus_files,
 					{ desc = "diffview: Bring focus to the file panel" },
 				},
-				{ "n", "<leader>b", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
+				-- { "n", "<leader>b", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
 				{ "n", "g<C-x>", actions.cycle_layout, { desc = "diffview: Cycle available layouts" } },
 				{ "n", "g?", actions.help("file_history_panel"), { desc = "diffview: Open the help panel" } },
 			},

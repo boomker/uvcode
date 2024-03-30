@@ -8,6 +8,7 @@ completion["neovim/nvim-lspconfig"] = {
 	dependencies = {
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
+		{ "folke/neoconf.nvim" },
 		{
 			"Jint-lzxy/lsp_signature.nvim",
 			config = require("completion.lsp-signature"),
@@ -46,7 +47,7 @@ completion["nvimtools/none-ls.nvim"] = {
 
 completion["hrsh7th/nvim-cmp"] = {
 	lazy = true,
-	event = "InsertEnter",
+	event = { "InsertEnter", "CmdlineEnter" },
 	config = require("completion.cmp"),
 	dependencies = {
 		{
@@ -61,8 +62,9 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "hrsh7th/cmp-path" },
 		{ "f3fora/cmp-spell" },
 		{ "hrsh7th/cmp-buffer" },
+		{ "hrsh7th/cmp-cmdline" },
 		-- { "kdheepak/cmp-latex-symbols" },
-		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
+		{ "ray-x/cmp-treesitter" },
 		{
 			"Exafunction/codeium.nvim",
 			dependencies = {
