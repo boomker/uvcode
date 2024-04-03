@@ -79,7 +79,7 @@ tool["AckslD/swenv.nvim"] = {
 	event = { "BufRead", "BufNew" },
 	config = function()
 		require("swenv").setup({
-			venvs_path = vim.fn.expand("/usr/local/opt/pyenv/versions/3.12.2/envs"),
+			venvs_path = vim.fn.expand("/usr/local/opt/pyenv/versions/3.11.8/envs"),
 			get_venvs = function(venvs_path)
 				return require("swenv.api").get_venvs(venvs_path)
 			end,
