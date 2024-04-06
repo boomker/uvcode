@@ -282,6 +282,23 @@ function check_nvim_version ([Parameter(Mandatory = $True)][ValidateNotNullOrEmp
 	return ($nvim_version -ge $RequiredVersionMin)
 }
 
+function clone_repo ([Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()] [string]$WithURL) {
+	if ((check_nvim_version -RequiredVersionMin $REQUIRED_NVIM_VERSION)) {
+		safe_execute -WithCmd { git clone --progress -b "$env:CCLONE_BRANCH" "$env:CCLONE_ATTR" $WithURL "$env:CCDEST_DIR" }
+	} elseif ((check_nvim_version -RequiredVersionMin $REQUIRED_NVIM_VERSION_LEGACY)) {
+		warn -Msg "You have outdated Nvim installed (< $REQUIRED_NVIM_VERSION)."
+		info -Msg "Automatically redirecting you to the latest compatible version..."
+		safe_execute -WithCmd { git clone --progress -b "$env:CCLONE_BRANCH_LEGACY" "$env:CCLONE_ATTR" $WithURL "$env:CCDEST_DIR" }
+	} else {
+		warn -Msg "You have outdated Nvim installed (< $REQUIRED_NVIM_VERSION_LEGACY)."
+		_abort -Msg "This Neovim distribution is no longer supported." -Type "NotImplemented" -Info_msg @"
+You have a legacy Neovim distribution installed.
+Please make sure you have nvim v$REQUIRED_NVIM_VERSION_LEGACY installed at the very least.
+
+"@
+	}
+}
+
 function ring_bell {
 	[System.Console]::beep()
 }
@@ -353,35 +370,9 @@ You must install Git before installing this Nvim config. See:
 	info -Msg "Fetching in progress..."
 
 	if ($USE_SSH) {
-		if ((check_nvim_version -RequiredVersionMin $REQUIRED_NVIM_VERSION)) {
-			safe_execute -WithCmd { git clone --progress -b "$env:CCLONE_BRANCH" "$env:CCLONE_ATTR" 'git@github.com:ayamir/nvimdots.git' "$env:CCDEST_DIR" }
-		} elseif ((check_nvim_version -RequiredVersionMin $REQUIRED_NVIM_VERSION_LEGACY)) {
-			warn -Msg "You have outdated Nvim installed (< $REQUIRED_NVIM_VERSION)."
-			info -Msg "Automatically redirecting you to the latest compatible version..."
-			safe_execute -WithCmd { git clone --progress -b 0.8 "$env:CCLONE_ATTR" 'git@github.com:ayamir/nvimdots.git' "$env:CCDEST_DIR" }
-		} else {
-			warn -Msg "You have outdated Nvim installed (< $REQUIRED_NVIM_VERSION_LEGACY)."
-			_abort -Msg "This Neovim distribution is no longer supported." -Type "NotImplemented" -Info_msg @"
-You have a legacy Neovim distribution installed.
-Please make sure you have nvim v$REQUIRED_NVIM_VERSION_LEGACY installed at the very least.
-
-"@
-		}
+		clone_repo -WithURL 'git@github.com:ayamir/nvimdots.git'
 	} else {
-		if ((check_nvim_version -RequiredVersionMin $REQUIRED_NVIM_VERSION)) {
-			safe_execute -WithCmd { git clone --progress -b "$env:CCLONE_BRANCH" "$env:CCLONE_ATTR" 'https://github.com/ayamir/nvimdots.git' "$env:CCDEST_DIR" }
-		} elseif ((check_nvim_version -RequiredVersionMin $REQUIRED_NVIM_VERSION_LEGACY)) {
-			warn -Msg "You have outdated Nvim installed (< $REQUIRED_NVIM_VERSION)."
-			info -Msg "Automatically redirecting you to the latest compatible version..."
-			safe_execute -WithCmd { git clone --progress -b 0.8 "$env:CCLONE_ATTR" 'https://github.com/ayamir/nvimdots.git' "$env:CCDEST_DIR" }
-		} else {
-			warn -Msg "You have outdated Nvim installed (< $REQUIRED_NVIM_VERSION_LEGACY)."
-			_abort -Msg "This Neovim distribution is no longer supported." -Type "NotImplemented" -Info_msg @"
-You have a legacy Neovim distribution installed.
-Please make sure you have nvim v$REQUIRED_NVIM_VERSION_LEGACY installed at the very least.
-
-"@
-		}
+		clone_repo -WithURL 'https://github.com/ayamir/nvimdots.git'
 	}
 
 	safe_execute -WithCmd { Set-Location -Path "$env:CCDEST_DIR" }

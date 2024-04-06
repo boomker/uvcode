@@ -45,6 +45,7 @@ Branch info:
 | Branch | Supported neovim version |
 | :----: | :----------------------: |
 |  main  |     nvim 0.9 stable      |
+|  0.10  |    nvim 0.10 nightly     |
 |  0.8   |         nvim 0.8         |
 |  0.7   |         nvim 0.7         |
 
