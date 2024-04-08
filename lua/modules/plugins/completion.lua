@@ -62,9 +62,9 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "hrsh7th/cmp-path" },
 		{ "f3fora/cmp-spell" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "hrsh7th/cmp-cmdline" },
 		-- { "kdheepak/cmp-latex-symbols" },
-		{ "ray-x/cmp-treesitter" },
+		{ "hrsh7th/cmp-cmdline" },
+		{ "ray-x/cmp-treesitter", commit = "c8e3a74" },
 		{
 			"Exafunction/codeium.nvim",
 			dependencies = {

@@ -44,8 +44,9 @@ editor["sindrets/diffview.nvim"] = {
 
 editor["echasnovski/mini.align"] = {
 	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	-- event = { "VeryLazy" },
 	version = false,
-	event = { "VeryLazy" },
 	config = function()
 		require("mini.align").setup()
 	end,
