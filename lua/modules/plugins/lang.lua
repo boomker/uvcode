@@ -3,8 +3,8 @@ local lang = {}
 lang["ray-x/go.nvim"] = {
 	lazy = true,
 	ft = "go",
-	-- run = ":GoInstallBinaries",
-	config = require("lang.vim-go"),
+	build = ":GoInstallBinaries",
+	init = require("lang.vim-go"),
 }
 --[[
 lang["mrcjkb/rustaceanvim"] = {

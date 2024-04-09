@@ -79,9 +79,9 @@ editor["romainl/vim-cool"] = {
     event = { "CursorMoved", "InsertEnter" },
 }
 editor["lambdalisue/suda.vim"] = {
-    lazy = true,
-    cmd = { "SudaRead", "SudaWrite" },
-    init = require("editor.suda"),
+	lazy = true,
+	cmd = { "SudaRead", "SudaWrite" },
+	init = require("editor.suda"),
 }
 editor["tpope/vim-sleuth"] = {
     lazy = true,
