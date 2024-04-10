@@ -1,7 +1,7 @@
 local editor = {}
 
 editor["olimorris/persisted.nvim"] = {
-	lazy = true,
+	lazy = false,
 	cmd = {
 		"SessionToggle",
 		"SessionStart",

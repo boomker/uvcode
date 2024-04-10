@@ -239,11 +239,11 @@ local plug_map = {
 
 	-- Plugin spectre
 	-- search cursor word
-	["n|<leader>sw"] = map_cr("lua require('spectre').open_visual({select_word=true})"):with_noremap():with_silent(),
-	["v|<leader>ss"] = map_cr("lua require('spectre').open_visual()"):with_noremap():with_silent(),
-	["n|<leader>ss"] = map_cr("lua require('spectre').open()"):with_noremap():with_silent(),
+	["n|<leader>sw"] = map_cr("lua require('spectre').open_visual({select_word=true})"):with_noremap():with_silent():with_desc("spectre: Search cursor word"),
+	["v|<leader>sV"] = map_cr("lua require('spectre').open_visual()"):with_noremap():with_silent():with_desc("spectre: open_visual"),
+	["n|<leader>sO"] = map_cr("lua require('spectre').open()"):with_noremap():with_silent():with_desc("spectre: open"),
 	-- search in current file
-	["n|<leader>sf"] = map_cr("lua require('spectre').open_file_search()"):with_noremap():with_silent(),
+	["n|<leader>sf"] = map_cr("lua require('spectre').open_file_search()"):with_noremap():with_silent():with_desc("spectre: Search current file"),
 
 	-- Plugin Scratch
 	["n|<leader>sn"] = map_cu("Scratch"):with_noremap():with_silent():with_desc("Scratch new"),
