@@ -109,7 +109,7 @@ settings["lsp_deps"] = {
 	"pylsp",
 	"volar",
 	"lua_ls",
-	-- "yamlls",
+	"pylsp",
 	"gopls",
 }
 

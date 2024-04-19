@@ -1,10 +1,19 @@
 local lang = {}
 
+lang["kevinhwang91/nvim-bqf"] = {
+	lazy = true,
+	ft = "qf",
+	config = require("lang.bqf"),
+	dependencies = {
+		{ "junegunn/fzf", build = ":call fzf#install()" },
+	},
+}
 lang["ray-x/go.nvim"] = {
 	lazy = true,
-	ft = "go",
+	ft = { "go", "gomod", "gosum" },
 	build = ":GoInstallBinaries",
-	init = require("lang.vim-go"),
+	config = require("lang.go"),
+	dependencies = { "ray-x/guihua.lua" },
 }
 --[[
 lang["mrcjkb/rustaceanvim"] = {
