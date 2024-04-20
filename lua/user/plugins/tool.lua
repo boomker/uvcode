@@ -34,21 +34,6 @@ tool["kevinhwang91/nvim-ufo"] = {
 	dependencies = { { "kevinhwang91/promise-async", lazy = true } },
 }
 
-tool["kevinhwang91/nvim-bqf"] = {
-	lazy = true,
-	ft = "qf",
-	config = require("configs.tool.nvim-bqf"),
-	dependencies = {
-		{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-		{
-			"junegunn/fzf",
-			build = function()
-				vim.fn["fzf#install"]()
-			end,
-		},
-	},
-}
-
 tool["LintaoAmons/scratch.nvim"] = {
 	lazy = true,
 	event = "BufRead",

@@ -5,9 +5,11 @@ lang["kevinhwang91/nvim-bqf"] = {
 	ft = "qf",
 	config = require("lang.bqf"),
 	dependencies = {
+		-- { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 		{ "junegunn/fzf", build = ":call fzf#install()" },
 	},
 }
+
 lang["ray-x/go.nvim"] = {
 	lazy = true,
 	ft = { "go", "gomod", "gosum" },
