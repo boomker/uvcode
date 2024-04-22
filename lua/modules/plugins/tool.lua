@@ -2,14 +2,31 @@ local tool = {}
 
 tool["nvim-pack/nvim-spectre"] = {
 	lazy = true,
-	module = "spectre",
-	config = require("tool.spectre"),
-	dependencies = {
-		{ "nvim-lua/plenary.nvim", lazy = false },
-		{ "nvim-lua/popup.nvim", lazy = true },
-	},
+	cmd = { "Git", "G" },
 }
-
+-- only for fcitx5 user who uses non-English language during coding
+-- tool["pysan3/fcitx5.nvim"] = {
+-- 	lazy = true,
+-- 	event = "BufReadPost",
+-- 	cond = vim.fn.executable("fcitx5-remote") == 1,
+-- 	config = require("tool.fcitx5"),
+-- }
+tool["nvim-tree/nvim-tree.lua"] = {
+	lazy = true,
+	cmd = {
+		"NvimTreeToggle",
+		"NvimTreeOpen",
+		"NvimTreeFindFile",
+		"NvimTreeFindFileToggle",
+		"NvimTreeRefresh",
+	},
+	config = require("tool.nvim-tree"),
+}
+tool["ibhagwan/smartyank.nvim"] = {
+	lazy = true,
+	event = "BufReadPost",
+	config = require("tool.smartyank"),
+}
 tool["michaelb/sniprun"] = {
 	lazy = true,
 	-- You need to cd to `~/.local/share/nvim/site/lazy/sniprun/` and execute `bash ./install.sh`,
