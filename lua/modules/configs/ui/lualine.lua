@@ -361,10 +361,11 @@ return function()
 		tabline = {},
 		extensions = {
 			"quickfix",
-			"nvim-tree",
+			-- "nvim-tree",
+			"neo-tree",
 			"nvim-dap-ui",
 			"toggleterm",
-			"fugitive",
+			-- "fugitive",
 			outline,
 			diffview,
 		},

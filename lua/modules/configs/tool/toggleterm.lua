@@ -15,9 +15,9 @@ return function()
 			vim.api.nvim_set_option_value("foldexpr", "0", { scope = "local" })
 
 			-- Prevent horizontal terminal from obscuring `nvim-tree`.
-			local api = require("nvim-tree.api")
-			local tree = require("nvim-tree.view")
-			if tree.is_visible() and term.direction == "horizontal" then
+			local api_s, api = pcall(require, "nvim-tree.api")
+			local tree_s, tree = pcall(require, "nvim-tree.view")
+			if api_s and tree_s and tree.is_visible() and term.direction == "horizontal" then
 				local width = vim.fn.winwidth(tree.get_winnr())
 				api.tree.toggle()
 				tree.View.width = width
