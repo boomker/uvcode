@@ -133,7 +133,7 @@ in
 
           withNodeJs = true;
           withPython3 = true;
-          withRuby = true;
+          withRuby = false;
           extraWrapperArgs = optionals (cfg.setBuildEnv && (lib.versionAtLeast config.home.stateVersion "24.05")) [
             "--suffix"
             "CPATH"
@@ -175,6 +175,7 @@ in
               ninja
               cargo
               yarn
+              lua51Packages.luarocks
             ]
             ++ optionals cfg.withHaskell [
               (pkgs.writeShellApplication {
@@ -191,9 +192,9 @@ in
             docformatter
             pynvim
           ];
-          extraLuaPackages = ls: with ls; [
-            luarocks
-          ];
+          # extraLuaPackages = ls: with ls; [
+          # luarocks # doesn't work, put in extraPackages
+          # ];
         };
       };
 }
