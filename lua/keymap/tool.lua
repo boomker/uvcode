@@ -124,7 +124,7 @@ local plug_map = {
 	["n|<leader>fz"] = map_cu("Telescope zoxide list")
 		:with_noremap()
 		:with_silent()
-		:with_desc("edit: Change direrctory zoxide"),
+		:with_desc("edit: Change current directory by zoxide"),
 	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
 	["n|<leader>fk"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
 	["v|<leader>fk"] = map_callback(function()
