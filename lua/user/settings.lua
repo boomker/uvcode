@@ -15,5 +15,6 @@ settings["disabled_plugins"] = {
     "romainl/vim-cool",
     "lambdalisue/suda.vim",
     "tpope/vim-sleuth",
+    "zbirenbaum/neodim",
 }
 return settings

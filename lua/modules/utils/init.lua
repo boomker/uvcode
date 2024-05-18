@@ -241,7 +241,7 @@ function M.gen_alpha_hl()
 	set_global_hl("AlphaFooter", colors.yellow)
 end
 
--- Generate blend_color for neodim.
+--[[ Generate blend_color for neodim.
 function M.gen_neodim_blend_attr()
 	local trans_bg = require("core.settings").transparent_background
 	local appearance = require("core.settings").background
@@ -254,6 +254,7 @@ function M.gen_neodim_blend_attr()
 		return M.hl_to_rgb("Normal", true)
 	end
 end
+--]]
 
 ---Convert number (0/1) to boolean
 ---@param value number @The value to check
