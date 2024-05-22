@@ -17,7 +17,7 @@ tool["nvim-neo-tree/neo-tree.nvim"] = {
 
 tool["ThePrimeagen/refactoring.nvim"] = {
 	lazy = true,
-	envet = "VeryLazy",
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",

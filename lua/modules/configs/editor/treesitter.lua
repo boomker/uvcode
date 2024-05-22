@@ -100,9 +100,9 @@ return vim.schedule_wrap(function()
 	}, false, require("nvim-treesitter.configs").setup)
 	require("nvim-treesitter.install").prefer_git = true
 	require("nvim-treesitter.install").command_extra_args = {
-		curl = { "--proxy", "127.0.0.1:7897" },
+		-- curl = { "--proxy", "127.0.0.1:7897" },
 		-- curl = { "--proxy", "127.0.0.1:7890" },
-		-- curl = { "--proxy", "127.0.0.1:1080" },
+		curl = { "--proxy", "127.0.0.1:1080" },
 	}
 	if use_ssh then
 		local parsers = require("nvim-treesitter.parsers").get_parser_configs()
