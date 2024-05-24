@@ -224,5 +224,5 @@ return function()
 	require("telescope").load_extension("smart_history")
 	require("telescope").load_extension("yank_history")
 	require("telescope").load_extension("persisted")
-	require("telescope").load_extension("aerial")
+	-- require("telescope").load_extension("aerial")
 end
