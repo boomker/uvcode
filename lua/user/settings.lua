@@ -16,6 +16,5 @@ settings["disabled_plugins"] = {
 	"lambdalisue/suda.vim",
 	"tpope/vim-sleuth",
 	"zbirenbaum/neodim",
-	"stevearc/aerial.nvim",
 }
 return settings
