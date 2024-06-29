@@ -19,15 +19,14 @@ mappings["lsp"] = function(buf)
 		["n|[d"] = map_cr("Lspsaga diagnostic_jump_prev"):with_buffer(buf):with_desc("lsp: Prev diagnostic"),
 		["n|]d"] = map_cr("Lspsaga diagnostic_jump_next"):with_buffer(buf):with_desc("lsp: Next diagnostic"),
 
-		-- ["n|gd"] = map_cr("Lspsaga peek_definition"):with_buffer():with_desc("lsp: Preview definition"),
-		-- ["n|gr"] = map_cr("Lspsaga lsp_finder"):with_buffer():with_desc("lsp: Show reference"),
 		["n|<leader>st"] = map_cr("Lspsaga show_cursor_diagnostics")
 			:with_buffer(buf)
 			:with_desc("lsp: Cursor diagnostic"),
-		["n|<leader>rn"] = map_cr("Lspsaga rename"):with_buffer(buf):with_desc("lsp: Rename in file range"),
-		["n|<leader>rN"] = map_cr("Lspsaga rename ++project")
-			:with_buffer(buf)
-			:with_desc("lsp: Rename in project range"),
+		-- ["n|<leader>rn"] = map_cr("Lspsaga rename"):with_buffer(buf):with_desc("lsp: Rename in file range"),
+		["n|<leader>rn"] = map_cr("lua vim.lsp.buf.rename()"):with_buffer(buf):with_desc("lsp: Rename in file range"),
+		-- ["n|<leader>rN"] = map_cr("Lspsaga rename ++project")
+		-- 	:with_buffer(buf)
+		-- 	:with_desc("lsp: Rename in project range"),
 		["nv|<leader>ca"] = map_cr("Lspsaga code_action"):with_buffer(buf):with_desc("lsp: Code action for cursor"),
 	}
 end
