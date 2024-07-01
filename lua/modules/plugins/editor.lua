@@ -72,16 +72,23 @@ editor["tzachar/local-highlight.nvim"] = {
     lazy = true,
     event = { "CursorHold", "CursorHoldI" },
     config = require("editor.local-highlight"),
+    lazy = true,
+    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    config = require("editor.local-highlight"),
 }
-
+editor["brenoprata10/nvim-highlight-colors"] = {
+    lazy = true,
+    event = { "CursorHold", "CursorHoldI" },
+    config = require("editor.highlight-colors"),
+}
 editor["romainl/vim-cool"] = {
     lazy = true,
     event = { "CursorMoved", "InsertEnter" },
 }
 editor["lambdalisue/suda.vim"] = {
-	lazy = true,
-	cmd = { "SudaRead", "SudaWrite" },
-	init = require("editor.suda"),
+    lazy = true,
+    cmd = { "SudaRead", "SudaWrite" },
+    init = require("editor.suda"),
 }
 editor["tpope/vim-sleuth"] = {
     lazy = true,
@@ -120,6 +127,35 @@ editor["nvim-treesitter/nvim-treesitter"] = {
         {
             "NvChad/nvim-colorizer.lua",
             config = require("editor.colorizer"),
+        },
+        {
+            "hiphish/rainbow-delimiters.nvim",
+            config = require("editor.rainbow_delims"),
+        },
+        {
+            "nvim-treesitter/nvim-treesitter-context",
+            config = require("editor.ts-context"),
+        },
+        {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+            config = require("editor.ts-context-commentstring"),
+        },
+    },
+    lazy = true,
+    build = function ()
+        if vim.fn.has("gui_running") == 1 then
+            vim.api.nvim_command([[TSUpdate]])
+        end
+    end,
+    event = "BufReadPre",
+    config = require("editor.treesitter"),
+    dependencies = {
+        { "andymass/vim-matchup" },
+        { "mfussenegger/nvim-treehopper" },
+        { "nvim-treesitter/nvim-treesitter-textobjects" },
+        {
+            "windwp/nvim-ts-autotag",
+            config = require("editor.autotag"),
         },
         {
             "hiphish/rainbow-delimiters.nvim",

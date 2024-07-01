@@ -33,6 +33,10 @@ completion["dnlhc/glance.nvim"] = {
     lazy = true,
     event = "LspAttach",
     config = require("completion.glance"),
+completion["DNLHC/glance.nvim"] = {
+	lazy = true,
+	event = "LspAttach",
+	config = require("completion.glance"),
 }
 completion["joechrisellis/lsp-format-modifications.nvim"] = {
     lazy = true,
@@ -47,7 +51,7 @@ completion["nvimtools/none-ls.nvim"] = {
 
 completion["hrsh7th/nvim-cmp"] = {
     lazy = true,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = "InsertEnter",
     config = require("completion.cmp"),
     dependencies = {
         {
@@ -67,11 +71,10 @@ completion["hrsh7th/nvim-cmp"] = {
         { "ray-x/cmp-treesitter",              commit = "c8e3a74" },
         -- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
         -- {
-        -- 	"Exafunction/codeium.nvim",
+        -- 	"jcdickinson/codeium.nvim",
         -- 	dependencies = {
         -- 		"nvim-lua/plenary.nvim",
         -- 		"MunifTanjim/nui.nvim",
-        -- 		"hrsh7th/nvim-cmp",
         -- 	},
         -- 	config = require("completion.codeium"),
         -- },

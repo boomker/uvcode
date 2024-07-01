@@ -1,4 +1,4 @@
-return function()
+return function ()
 	require("modules.configs.tool.telescope_ui")
 	local icons = { ui = require("modules.utils.icons").get("ui", true) }
 	local lga_actions = require("telescope-live-grep-args.actions")
@@ -6,7 +6,7 @@ return function()
 	local actions_layout = require("telescope.actions.layout")
 	local action_state = require("telescope.actions.state")
 	local actions = require("telescope.actions")
-	local copy_to_clipboard_action = function(prompt_bufnr)
+	local copy_to_clipboard_action = function (prompt_bufnr)
 		local entry = action_state.get_selected_entry()
 		local entry_val = entry.value
 		vim.fn.setreg("+", entry_val)
@@ -180,7 +180,6 @@ return function()
 			},
 			live_grep_args = {
 				auto_quoting = true, -- enable/disable auto-quoting
-				-- define mappings, e.g.
 				mappings = { -- extend mappings
 					i = {
 						["<C-e>"] = lga_actions.quote_prompt({ postfix = " -t" }),
@@ -192,12 +191,8 @@ return function()
 			},
 			undo = {
 				side_by_side = true,
-				mappings = { -- this whole table is the default
+				mappings = {
 					i = {
-						-- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
-						-- you want to use the following actions. This means installing as a dependency of
-						-- telescope in it's `requirements` and loading this extension from there instead of
-						-- having the separate plugin definition as outlined above. See issue #6.
 						["<cr>"] = require("telescope-undo.actions").yank_additions,
 						["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
 						["<C-cr>"] = require("telescope-undo.actions").restore,
@@ -210,6 +205,11 @@ return function()
 				order_by = "asc",
 				hidden_files = true, -- default: false
 				sync_with_nvim_tree = true, -- default false
+			},
+			advanced_git_search = {
+				diff_plugin = "diffview",
+				git_flags = { "-c", "delta.side-by-side=true" },
+				entry_default_author_or_date = "author", -- one of "author" or "date"
 			},
 		},
 	})
@@ -224,5 +224,6 @@ return function()
 	require("telescope").load_extension("smart_history")
 	require("telescope").load_extension("yank_history")
 	require("telescope").load_extension("persisted")
-	-- require("telescope").load_extension("aerial")
+	require("telescope").load_extension("aerial")
+	require("telescope").load_extension("advanced_git_search")
 end

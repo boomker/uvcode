@@ -1,4 +1,4 @@
-return function()
+return function ()
 	local dashboard = require("alpha.themes.dashboard")
 	require("modules.utils").gen_alpha_hl()
 
@@ -56,12 +56,19 @@ return function()
 	end
 
 	local leader = " "
+	local icons = {
+		documents = require("modules.utils.icons").get("documents", true),
+		git = require("modules.utils.icons").get("git", true),
+		ui = require("modules.utils.icons").get("ui", true),
+		misc = require("modules.utils.icons").get("misc", true),
+	}
+
 	dashboard.section.buttons.val = {
 		button("space s c", " Scheme change", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				require("telescope.builtin").colorscheme()
 			end,
 		}),
@@ -69,7 +76,7 @@ return function()
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				require("telescope").extensions.frecency.frecency({})
 			end,
 		}),
@@ -77,16 +84,16 @@ return function()
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				require("telescope.builtin").oldfiles()
-                -- require("telescope").extensions.recent_files.pick()
+				-- require("telescope").extensions.recent_files.pick()
 			end,
 		}),
 		button("space f p", " Project find", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				require("telescope").extensions.projects.projects({})
 			end,
 		}),
@@ -94,7 +101,7 @@ return function()
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				require("telescope.builtin").find_files()
 			end,
 		}),
@@ -102,7 +109,7 @@ return function()
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				vim.api.nvim_command("enew")
 			end,
 		}),
@@ -110,7 +117,7 @@ return function()
 			noremap = true,
 			silent = true,
 			nowait = true,
-			callback = function()
+			callback = function ()
 				require("telescope.builtin").live_grep()
 			end,
 		}),
@@ -139,7 +146,7 @@ return function()
 
 	local head_butt_padding = 2
 	local occu_height = #dashboard.section.header.val + 2 * #dashboard.section.buttons.val + head_butt_padding
-	local header_padding = math.max(0, math.ceil((vim.fn.winheight("$") - occu_height) * 0.25))
+	local header_padding = math.max(0, math.ceil((vim.fn.winheight(0) - occu_height) * 0.25))
 	local foot_butt_padding = 1
 
 	dashboard.config.layout = {
@@ -155,7 +162,7 @@ return function()
 
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "LazyVimStarted",
-		callback = function()
+		callback = function ()
 			dashboard.section.footer.val = footer()
 			pcall(vim.cmd.AlphaRedraw)
 		end,

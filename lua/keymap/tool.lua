@@ -45,13 +45,13 @@ local plug_map = {
 		:with_silent()
 		:with_desc("terminal: Toggle float"),
 	["t|<A-d>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle float"),
-	["n|<leader>tg"] = map_callback(function()
+	["n|<leader>tg"] = map_callback(function ()
 			toggle_lazygit()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("git: Toggle lazygit"),
-	["n|<leader>tp"] = map_callback(function()
+	["n|<leader>tp"] = map_callback(function ()
 			toggle_ipython()
 		end)
 		:with_noremap()
@@ -79,31 +79,31 @@ local plug_map = {
 	["n|<leader>tl"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent():with_desc("lsp: Show loclist"),
 
 	-- Plugin: telescope
-	["n|<leader>fM"] = map_callback(function()
+	["n|<leader>fM"] = map_callback(function ()
 			_command_panel()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("tool: Toggle command panel"),
-	["n|<leader>fu"] = map_callback(function()
+	["n|<leader>fu"] = map_callback(function ()
 			require("telescope").extensions.undo.undo()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("edit: Show undo history"),
-	["n|<leader>fp"] = map_callback(function()
+	["n|<leader>fp"] = map_callback(function ()
 			require("telescope").extensions.projects.projects({})
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: Project"),
-	["n|<leader>ff"] = map_callback(function()
+	["n|<leader>ff"] = map_callback(function ()
 			require("telescope").extensions.frecency.frecency({})
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: File by frecency"),
-	["n|<leader>fl"] = map_callback(function()
+	["n|<leader>fl"] = map_callback(function ()
 			require("telescope").extensions.live_grep_args.live_grep_args()
 		end)
 		:with_noremap()
@@ -111,7 +111,7 @@ local plug_map = {
 		:with_desc("find: Word in project"),
 	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
 	["n|<leader>fj"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in project"),
-	["n|<leader>sc"] = map_callback(function()
+	["n|<leader>sc"] = map_callback(function ()
 			require("telescope.builtin").colorscheme({ enable_preview = true })
 		end)
 		:with_noremap()
@@ -127,7 +127,7 @@ local plug_map = {
 		:with_desc("edit: Change current directory by zoxide"),
 	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
 	["n|<leader>fk"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
-	["v|<leader>fk"] = map_callback(function()
+	["v|<leader>fk"] = map_callback(function ()
 			require("telescope.builtin").grep_string({ search = _buf_vtext() })
 		end)
 		:with_noremap()
@@ -136,37 +136,37 @@ local plug_map = {
 	["n|<leader>fS"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
 
 	-- Plugin: dap
-	["n|<F6>"] = map_callback(function()
+	["n|<F6>"] = map_callback(function ()
 			require("dap").continue()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Run/Continue"),
-	["n|<F7>"] = map_callback(function()
+	["n|<F7>"] = map_callback(function ()
 			require("dap").terminate()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Stop"),
-	["n|<F8>"] = map_callback(function()
+	["n|<F8>"] = map_callback(function ()
 			require("dap").toggle_breakpoint()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Toggle breakpoint"),
-	["n|<F9>"] = map_callback(function()
+	["n|<F9>"] = map_callback(function ()
 			require("dap").step_into()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step into"),
-	["n|<F10>"] = map_callback(function()
+	["n|<F10>"] = map_callback(function ()
 			require("dap").step_out()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step out"),
-	["n|<F11>"] = map_callback(function()
+	["n|<F11>"] = map_callback(function ()
 			require("dap").step_over()
 		end)
 		:with_noremap()
