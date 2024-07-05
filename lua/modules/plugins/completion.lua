@@ -29,14 +29,10 @@ completion["stevearc/aerial.nvim"] = {
     event = "LspAttach",
     config = require("completion.aerial"),
 }
-completion["dnlhc/glance.nvim"] = {
+completion["DNLHC/glance.nvim"] = {
     lazy = true,
     event = "LspAttach",
     config = require("completion.glance"),
-completion["DNLHC/glance.nvim"] = {
-	lazy = true,
-	event = "LspAttach",
-	config = require("completion.glance"),
 }
 completion["joechrisellis/lsp-format-modifications.nvim"] = {
     lazy = true,

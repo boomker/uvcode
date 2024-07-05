@@ -86,7 +86,6 @@ return function ()
 			nowait = true,
 			callback = function ()
 				require("telescope.builtin").oldfiles()
-				-- require("telescope").extensions.recent_files.pick()
 			end,
 		}),
 		button("space f p", " Project find", leader, nil, {

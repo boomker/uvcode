@@ -108,11 +108,6 @@ return function ()
 			file_sorter = require("telescope.sorters").get_fuzzy_file,
 			generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 			buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-			history = {
-				-- path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
-				path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
-				limit = 100,
-			},
 		},
 		pickers = {
 			keymaps = { theme = "dropdown" },
@@ -221,7 +216,6 @@ return function ()
 	require("telescope").load_extension("projects")
 	require("telescope").load_extension("undo")
 	require("telescope").load_extension("zoxide")
-	require("telescope").load_extension("smart_history")
 	require("telescope").load_extension("yank_history")
 	require("telescope").load_extension("persisted")
 	require("telescope").load_extension("aerial")
