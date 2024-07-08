@@ -16,6 +16,6 @@ settings["disabled_plugins"] = {
 	"lambdalisue/suda.vim",
 	"tpope/vim-sleuth",
 	"zbirenbaum/neodim",
-	"karb94/neoscroll.nvim",
+	-- "karb94/neoscroll.nvim",
 }
 return settings

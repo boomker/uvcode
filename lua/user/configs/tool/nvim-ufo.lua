@@ -38,6 +38,12 @@ return function()
 		git = "",
 	}
 
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.foldingRange = {
+		dynamicRegistration = false,
+		lineFoldingOnly = true,
+	}
+
 	require("ufo").setup({
 		fold_virt_text_handler = handler,
 		open_fold_hl_timeout = 150,
@@ -54,9 +60,8 @@ return function()
 			},
 		},
 		provider_selector = function(bufnr, filetype, buftype)
-			-- if you prefer treesitter provider rather than lsp,
-			-- return ftMap[filetype] or {'treesitter', 'indent'}
-			return ftMap[filetype]
+			return ftMap[filetype] or { "treesitter", "indent" }
+			-- return ftMap[filetype]
 
 			-- refer to ./doc/example.lua for detail
 		end,

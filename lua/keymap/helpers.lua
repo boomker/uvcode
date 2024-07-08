@@ -398,7 +398,7 @@ Telescope_yaml_symbols = function(opts)
 	local yaml_path = {}
 	local result = {}
 	local bufnr = vim.api.nvim_get_current_buf()
-	local ft = vim.api.nvim_buf_get_option(bufnr, "ft")
+	local ft = vim.api.nvim_get_option_value("ft", { buf = bufnr })
 	local tree = vim.treesitter.get_parser(bufnr, ft):parse()[1]
 	local file_path = vim.api.nvim_buf_get_name(bufnr)
 	local root = tree:root()
