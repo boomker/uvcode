@@ -115,9 +115,15 @@ return function()
 					vim_item.abbr = truncated_label .. "..."
 				end
 
+				-- deduplicate results from nvim_lsp
+				if entry.source.name == "nvim_lsp" then
+					vim_item.dup = 0
+				end
+
 				return vim_item
 			end,
 		},
+
 		matching = {
 			disallow_partial_fuzzy_matching = false,
 		},

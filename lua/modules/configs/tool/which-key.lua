@@ -9,37 +9,37 @@ return function()
 	require("which-key").register({
 		["<leader>"] = {
 			b = {
-				name = icons.ui.Buffer .. " Buffer | BookMark",
+				group = icons.ui.Buffer .. " Buffer | BookMark",
 			},
 			d = {
-				name = icons.ui.Bug .. " Debug | Diff",
+				group = icons.ui.Bug .. " Debug | Diff",
 			},
 			f = {
-				name = icons.ui.Telescope .. " Fuzzy Find",
+				group = icons.ui.Telescope .. " Fuzzy Find",
 			},
 			g = {
-				name = icons.git.Git .. "Git",
+				group = icons.git.Git .. "Git",
 			},
 			h = {
-				name = icons.git.Git .. "GitHunk",
+				group = icons.git.Git .. "GitHunk",
 			},
 			l = {
-				name = icons.misc.LspAvailable .. " Lsp",
+				group = icons.misc.LspAvailable .. " Lsp",
 			},
 			n = {
-				name = icons.ui.FolderOpen .. " Neo-Tree",
+				group = icons.ui.FolderOpen .. " Neo-Tree",
 			},
 			p = {
-				name = icons.ui.Package .. " Package",
+				group = icons.ui.Package .. " Package",
 			},
 			s = {
-				name = icons.cmp.tmux .. "Session",
+				group = icons.cmp.tmux .. "Session",
 			},
 			S = {
-				name = icons.ui.Search .. " Search",
+				group = icons.ui.Search .. " Search",
 			},
 			w = {
-				name = icons.ui.Window .. " Window",
+				group = icons.ui.Window .. " Window",
 			},
 		},
 	})
