@@ -170,6 +170,7 @@ return function ()
 			frecency = {
 				use_sqlite = false,
 				-- show_scores = true,
+				db_safe_mode = false,
 				show_unindexed = true,
 				ignore_patterns = { "*.git/*", "*/tmp/*" },
 			},
@@ -211,13 +212,13 @@ return function ()
 
 	require("telescope").load_extension("frecency")
 	require("telescope").load_extension("fzf")
-	require("telescope").load_extension("live_grep_args")
-	require("telescope").load_extension("notify")
-	require("telescope").load_extension("projects")
 	require("telescope").load_extension("undo")
+	require("telescope").load_extension("notify")
 	require("telescope").load_extension("zoxide")
-	require("telescope").load_extension("yank_history")
-	require("telescope").load_extension("persisted")
 	require("telescope").load_extension("aerial")
+	require("telescope").load_extension("projects")
+	require("telescope").load_extension("persisted")
+	require("telescope").load_extension("yank_history")
+	require("telescope").load_extension("live_grep_args")
 	require("telescope").load_extension("advanced_git_search")
 end
