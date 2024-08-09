@@ -31,17 +31,22 @@ lang["Saecki/crates.nvim"] = {
 	event = "BufReadPost Cargo.toml",
 	config = require("lang.crates"),
 	dependencies = { "nvim-lua/plenary.nvim" },
-} ]]
-
--- https://github.com/jose-elias-alvarez/typescript.nvim
-
--- lang["iamcco/markdown-preview.nvim"] = {
--- 	lazy = true,
--- 	ft = "markdown",
--- 	build = ":call mkdp#util#install()",
--- }
-
---[[ lang["chrisbra/csv.vim"] = {
+}
+lang["MeanderingProgrammer/render-markdown.nvim"] = {
+	lazy = true,
+	ft = "markdown",
+	config = require("lang.render-markdown"),
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"nvim-treesitter/nvim-treesitter",
+	},
+}
+lang["iamcco/markdown-preview.nvim"] = {
+	lazy = true,
+	ft = "markdown",
+	build = ":call mkdp#util#install()",
+}
+lang["chrisbra/csv.vim"] = {
 	lazy = true,
 	ft = "csv",
 } ]]
