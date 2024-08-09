@@ -81,61 +81,56 @@ local leader_map = function()
 	vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 end
 
-local gui_config = function()
-	vim.api.nvim_set_option_value("guifont", settings.gui_config.font_name .. ":h" .. settings.gui_config.font_size, {})
-end
-
 local neovide_config = function()
 	vim.g.neovide_theme = "dark"
-	vim.api.nvim_set_option_value("guifont", "JetBrainsMono Nerd Font Mono:h17:#e-antialias", {})
+	vim.g.gui_font_size = 17
+	vim.g.gui_font_default_size = 17
 	vim.g.neovide_transparency = 0.90
-	vim.g.neovide_cursor_vfx_mode = "railgun"
-	-- vim.g.neovide_refresh_rate = 60
+	vim.g.gui_font_face = settings.gui_config.gui_font_face
+	vim.o.guifont = settings.gui_config.gui_font_face .. ":h17"
+
 	-- vim.g.neovide_no_idle = true
+	-- vim.g.neovide_refresh_rate = 60
+	-- vim.g.neovide_cursor_trail_length = 0.05
+	-- vim.g.neovide_cursor_animation_length = 0.05
 	-- vim.g.neovide_cursor_vfx_opacity = 200.0
-	-- vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
 	-- vim.g.neovide_cursor_vfx_particle_speed = 20.0
 	-- vim.g.neovide_cursor_vfx_particle_density = 5.0
+	-- vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+	vim.g.neovide_cursor_antialiasing = true
+	vim.g.neovide_cursor_vfx_mode = "railgun"
+	vim.g.neovide_cursor_trail_size = 0
+	vim.g.neovide_cursor_animation_length = 0
+	vim.g.neovide_cursor_unfocused_outline_width = 0.061
 
 	-- vim.g.neovide_input_ime = true
 	vim.g.neovide_floating_blur = true
 	vim.g.neovide_floating_blur_amount_x = 2.0
 	vim.g.neovide_floating_blur_amount_y = 2.0
 	vim.g.neovide_floating_opacity = 0.15
-	vim.g.neovide_cursor_unfocused_outline_width = 0.061
 	vim.g.neovide_scroll_animation_length = 0
+	vim.g.neovide_underline_stroke_scale = 1.5
 
 	vim.g.neovide_remember_window_size = true
 	vim.g.neovide_hide_mouse_when_typing = true
-	vim.g.neovide_cursor_antialiasing = true
-	vim.g.neovide_cursor_animation_length = 0
-	-- vim.g.neovide_cursor_animation_length = 0.05
-	-- vim.g.neovide_cursor_trail_length = 0.05
-	vim.g.neovide_cursor_trail_size = 0
-	vim.g.gui_font_default_size = 17
-	vim.g.gui_font_size = vim.g.gui_font_default_size
-	vim.g.gui_font_face = "JetBrainsMono Nerd Font Mono"
+	vim.g.neovide_input_macos_option_key_is_meta = "only_left"
 
 	RefreshGuiFont = function()
-		vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
+		vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_default_size)
 	end
 
 	ResizeGuiFont = function(delta)
-		vim.g.gui_font_size = vim.g.gui_font_size + delta
+		vim.g.gui_font_size = vim.g.gui_font_default_size + delta
 		RefreshGuiFont()
 	end
-
-	ResetGuiFont = function()
-		vim.g.gui_font_size = vim.g.gui_font_default_size
-		RefreshGuiFont()
-	end
-
-	-- Call function on startup to set default value
-	ResetGuiFont()
 
 	-- Keymaps
 
 	local opts = { noremap = true, silent = true }
+
+	vim.keymap.set({ "n", "i" }, "<D-=>", function()
+		ResizeGuiFont(0)
+	end, opts)
 
 	vim.keymap.set({ "n", "i" }, "<D-+>", function()
 		ResizeGuiFont(1)
@@ -204,7 +199,6 @@ local load_core = function()
 	disable_distribution_plugins()
 	leader_map()
 
-	gui_config()
 	neovide_config()
 	clipboard_config()
 	shell_config()
