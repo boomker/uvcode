@@ -168,7 +168,7 @@ local plug_map = {
 	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
 
 	-- Plugin swenv
-	["n|<leader>ce"] = map_cr("lua require('swenv.api').pick_venv()")
+	["n|<leader>cv"] = map_cr("lua require('swenv.api').pick_venv()")
 		:with_noremap()
 		:with_silent()
 		:with_desc("choose venv"),
@@ -237,25 +237,37 @@ local plug_map = {
 		:with_desc("debug: Open REPL"),
 
 	-- Plugin spectre
-	-- search cursor word
 	["n|<leader>sw"] = map_cr("lua require('spectre').open_visual({select_word=true})")
 		:with_noremap()
 		:with_silent()
 		:with_desc("spectre: Search cursor word"),
-	["v|<leader>sV"] = map_cr("lua require('spectre').open_visual()")
-		:with_noremap()
-		:with_silent()
-		:with_desc("spectre: open_visual"),
-	["n|<leader>sO"] = map_cr("lua require('spectre').open()"):with_noremap():with_silent():with_desc("spectre: open"),
 	-- search in current file
 	["n|<leader>sf"] = map_cr("lua require('spectre').open_file_search()")
 		:with_noremap()
 		:with_silent()
 		:with_desc("spectre: Search current file"),
+	["v|<leader>sV"] = map_cr("lua require('spectre').open_visual()")
+		:with_noremap()
+		:with_silent()
+		:with_desc("spectre: open_visual"),
+	["n|<leader>sO"] = map_cr("lua require('spectre').open()")
+        :with_noremap()
+        :with_silent()
+        :with_desc("spectre: open"),
 
 	-- Plugin Scratch
-	["n|<leader>sn"] = map_cu("Scratch"):with_noremap():with_silent():with_desc("Scratch new"),
-	["n|<leader>so"] = map_cu("ScratchOpen"):with_noremap():with_silent():with_desc("Scratch Open"),
+	["n|<leader>sn"] = map_cu("Scratch")
+        :with_noremap()
+        :with_silent()
+        :with_desc("Scratch new"),
+	["n|<leader>so"] = map_cu("ScratchOpen")
+        :with_noremap()
+        :with_silent()
+        :with_desc("Scratch Open"),
+	["n|<leader>sg"] = map_cu("ScratchOpenFzf")
+        :with_noremap()
+        :with_silent()
+        :with_desc("Scratch Open via grep string"),
 
 	-- plugin nvim-gomove(move/copy text)
 	["i|<M-j>"] = map_cmd("<esc><Plug>GoNSMDown<esc>a"):with_noremap():with_silent(),
