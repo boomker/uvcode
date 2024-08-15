@@ -36,7 +36,24 @@ tool["kevinhwang91/nvim-ufo"] = {
 
 tool["LintaoAmons/scratch.nvim"] = {
 	lazy = true,
-	event = "BufRead",
+	event = "VeryLazy",
+    config = function ()
+	require("scratch").setup({
+		use_telescope = true,
+		file_picker = "telescope", -- "fzflua" | "telescope" | nil
+		filetypes = {
+			"sh",
+			"py",
+			"js",
+			"go",
+			"lua",
+			"awk",
+			"json",
+			"toml",
+			"yaml",
+		},
+	})
+    end
 }
 
 tool["AckslD/swenv.nvim"] = {

@@ -48,7 +48,6 @@ settings["formatter_block_list"] = {
 settings["server_formatting_block_list"] = {
 	lua_ls = true,
 	clangd = true,
-	-- tsserver = true,
 }
 
 -- Set it to false if you want to turn off LSP Inlay Hints
@@ -116,15 +115,14 @@ settings["formatter_block_list"] = {
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 ---@type string[]
 settings["lsp_deps"] = {
-	"bashls",
-	"dockerls",
 	"html",
-	"jsonls",
 	"pylsp",
 	"volar",
-	"lua_ls",
-	"pylsp",
 	"gopls",
+	"bashls",
+	"jsonls",
+	"lua_ls",
+	"dockerls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.
@@ -135,14 +133,13 @@ settings["lsp_deps"] = {
 settings["null_ls_deps"] = {
 	-- "clang_format",
 	-- "gofumpt",
-	"goimports",
-	"prettier",
+	"ruff",
+	"black",
 	"shfmt",
 	"stylua",
-	"vint",
-	"black",
-	"ruff",
+	"prettier",
 	"yamllint",
+	"goimports",
 }
 
 -- Set the Debug Adapter Protocol (DAP) clients that will be installed and configured during bootstrap here.

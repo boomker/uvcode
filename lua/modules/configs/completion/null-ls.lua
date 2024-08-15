@@ -22,24 +22,21 @@ return function()
 		}),
 		btns.formatting.prettier.with({
 			filetypes = {
+				"sh",
+				"js",
+				"ts",
 				"vue",
+				"css",
+				"scss",
+				"html",
+				"yaml",
+				"markdown",
 				"typescript",
 				"javascript",
 				"typescriptreact",
 				"javascriptreact",
-				"yaml",
-				"html",
-				"css",
-				"scss",
-				"sh",
-				"markdown",
 			},
 		}),
-		--[[ btns.formatting.lua_format.with({
-            filetypes = {
-                "lua"
-            }
-        }) ]]
 	}
 	require("modules.utils").load_plugin("null-ls", {
 		border = "rounded",
