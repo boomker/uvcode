@@ -26,7 +26,7 @@ settings["format_notify"] = true
 --  > Any of the server attached to that buffer supports |DocumentRangeFormattingProvider| server capability.
 -- Otherwise Neovim would fall back to format the whole buffer, and a warning will be issued.
 ---@type boolean
-settings["format_modifications_only"] = false
+settings["format_modifications_only"] = true
 
 -- Set the format disabled directories here, files under these dirs won't be formatted on save.
 --- NOTE: Directories may contain regular expressions (grammar: vim). |regexp|
@@ -47,8 +47,8 @@ settings["formatter_block_list"] = {
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
 	lua_ls = true,
-	tsserver = true,
 	clangd = true,
+	-- tsserver = true,
 }
 
 -- Set it to false if you want to turn off LSP Inlay Hints

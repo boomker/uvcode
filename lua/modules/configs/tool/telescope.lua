@@ -1,4 +1,4 @@
-return function ()
+return function()
 	require("modules.configs.tool.telescope_ui")
 	local icons = { ui = require("modules.utils.icons").get("ui", true) }
 	local lga_actions = require("telescope-live-grep-args.actions")
@@ -6,7 +6,7 @@ return function ()
 	local actions_layout = require("telescope.actions.layout")
 	local action_state = require("telescope.actions.state")
 	local actions = require("telescope.actions")
-	local copy_to_clipboard_action = function (prompt_bufnr)
+	local copy_to_clipboard_action = function(prompt_bufnr)
 		local entry = action_state.get_selected_entry()
 		local entry_val = entry.value
 		vim.fn.setreg("+", entry_val)
@@ -48,16 +48,18 @@ return function ()
 			set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 			file_ignore_patterns = {
 				".git/",
+				".venv/",
+				".cache/",
 				"build/",
-				"node_modules/",
 				"target/",
 				"vendor/",
-				".cache",
-				"%.class",
+				"__pycache__/",
+				"node_modules/",
 				"%.pdf",
 				"%.mkv",
 				"%.mp4",
 				"%.zip",
+				"%.class",
 			},
 			mappings = {
 				i = {
