@@ -52,7 +52,7 @@ local plug_map = {
 		:with_desc("python: Toggle ipython"),
 
 	-- sent code of current line to term
-	["nv|<leader>tc"] = map_cmd(":ToggleTermSendCurrentLine<CR>")
+	["nv|<leader>tc"] = map_cmd("<Cmd>ToggleTermSendCurrentLine<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("sent current code to term"),

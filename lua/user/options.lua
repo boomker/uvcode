@@ -1,5 +1,6 @@
 local options = {
 	-- Example
+    autochdir = true,
 	autoindent = true,
 }
 

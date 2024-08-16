@@ -29,8 +29,8 @@ local plug_map = {
 
 	-- Plugin vim-visual-multi
 	-- Note: `Tab`:switch mode; `q, Q`: skip, remove region; n, N: goto next/prev
-	["n|gb"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent():with_desc("add cursor word"),
-	-- ["x|<D-d>"] = map_cmd([[<Plug>(VM-Find-Subword-Under)]]):with_silent(),
+	-- ["n|gb"] = map_cmd([[<Plug>(VM-Find-Under)]]):with_noremap():with_silent():with_desc("add cursor word"),
+	["nx|gb"] = map_cmd("<Cmd>MultipleCursorsAddDown<CR>"):with_noremap():with_silent():with_desc("add cursor word"),
 
 	-- Plugin: flash
 	--[[ ["nv|<leader>jw"] = map_callback(function()

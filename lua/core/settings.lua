@@ -64,7 +64,7 @@ settings["diagnostics_virtual_text"] = true
 --  > e.g. if you set this option to `Warning`, only lsp warnings and errors will be shown.
 -- NOTE: This entry only works when `diagnostics_virtual_text` is true.
 ---@type "ERROR"|"WARN"|"INFO"|"HINT"
-settings["diagnostics_level"] = "HINT"
+settings["diagnostics_level"] = "WARN"
 
 -- Set the plugins to disable here.
 -- Example: "Some-User/A-Repo"
@@ -106,7 +106,6 @@ settings["external_browser"] = "chrome-cli open"
 -- Filetypes in this list will skip lsp formatting if rhs is true.
 ---@type table<string, boolean>
 settings["formatter_block_list"] = {
-	-- lua  = true, -- example
 	yaml = true,
 }
 
@@ -115,7 +114,7 @@ settings["formatter_block_list"] = {
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 ---@type string[]
 settings["lsp_deps"] = {
-	"html",
+	-- "html",
 	"pylsp",
 	"volar",
 	"gopls",

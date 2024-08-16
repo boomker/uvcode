@@ -1,8 +1,9 @@
 local definitions = {
 	-- Example
 	bufs = {
-		{ "BufWritePre", "COMMIT_EDITMSG", "setlocal noundofile" },
+        { "BufEnter", "*", "silent! lcd %:p:h"},
 		{ "FileType", "markdown,tex,bib", "set wrap" },
+		{ "BufWritePre", "COMMIT_EDITMSG", "setlocal noundofile" },
 	},
 }
 

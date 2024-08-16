@@ -48,12 +48,13 @@ tool["LintaoAmons/scratch.nvim"] = {
 			"go",
 			"lua",
 			"awk",
+			"html",
 			"json",
 			"toml",
 			"yaml",
 		},
 	})
-    end
+        end
 }
 
 tool["AckslD/swenv.nvim"] = {
@@ -62,7 +63,7 @@ tool["AckslD/swenv.nvim"] = {
 	event = { "BufRead", "BufNew" },
 	config = function()
 		require("swenv").setup({
-			venvs_path = vim.fn.expand("/usr/local/opt/pyenv/versions/3.11.8/envs"),
+			venvs_path = vim.fn.expand("~/Library/Caches/pypoetry/virtualenvs"),
 			get_venvs = function(venvs_path)
 				return require("swenv.api").get_venvs(venvs_path)
 			end,
@@ -74,18 +75,26 @@ tool["AckslD/swenv.nvim"] = {
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
 
-tool["mg979/vim-visual-multi"] = {
+tool["brenton-leighton/multiple-cursors.nvim"] = {
 	lazy = true,
+	version = "*",
 	event = "BufRead",
 	config = function()
-		vim.api.nvim_command([[let g:VM_theme = 'purplegray']])
+	require("multiple-cursors").setup()
 	end,
 }
 
---[[ tool["numToStr/Navigator.nvim"] = {
+
+--[[
+tool["numToStr/Navigator.nvim"] = {
 	lazy = true,
 	event = "VeryLazy",
 	config = require("configs.tool.navigator"),
+}
+
+tool["mg979/vim-visual-multi"] = {
+	lazy = true,
+	event = "BufRead",
 }
 
 tool["amitds1997/remote-nvim.nvim"] = {
@@ -97,17 +106,9 @@ tool["amitds1997/remote-nvim.nvim"] = {
 		"MunifTanjim/nui.nvim", -- To build the plugin UI
 		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
 	},
-	-- config = true,
 	config = require("configs.tool.remote-nvim"),
 }
 
-tool["brenton-leighton/multiple-cursors.nvim"] = {
-	lazy = true,
-	version = "*",
-	event = "BufRead",
-	config = function()
-		require("multiple-cursors").setup()
-	end,
-} ]]
+]]
 
 return tool
