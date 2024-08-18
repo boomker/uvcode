@@ -52,12 +52,12 @@ return function()
 			highlight_separator = "NeoTreeTabSeparatorInactive",
 			highlight_separator_active = "NeoTreeTabSeparatorActive",
 		},
-		close_if_last_window = true,
-		popup_border_style = "rounded",
 		enable_git_status = true,
 		enable_diagnostics = true,
+        close_if_last_window = true,
 		default_source = "filesystem",
-		open_files_do_not_replace_types = { "terminal", "trouble", "qf", "diff", "fugitive", "fugitiveblame" }, -- when opening files, do not use windows containing these filetypes or buftypes
+        popup_border_style = "rounded",
+        -- when opening files, do not use windows containing these filetypes or buftypes
 		sort_case_insensitive = false, -- used when sorting files and directories in the tree
 		sort_function = function(a, b)
 			if a.type == b.type then
@@ -139,6 +139,7 @@ return function()
 			},
 		},
 		commands = {},
+		nesting_rules = {},
 		window = {
 			position = "left",
 			width = 30,
@@ -200,7 +201,6 @@ return function()
 				["i"] = "show_file_details",
 			},
 		},
-		nesting_rules = {},
 		filesystem = {
 			filtered_items = {
 				visible = false, -- when true, they will just be displayed differently than normal items
@@ -314,6 +314,7 @@ return function()
 				},
 			},
 		},
+		open_files_do_not_replace_types = { "terminal", "trouble", "qf", "diff", "fugitive", "fugitiveblame" },
 	})
 
 	-- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])

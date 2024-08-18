@@ -13,20 +13,30 @@ local plug_map = {
 
 	-- Plugin: toggleterm
 	["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
-	["n|<leader>th"] = map_cr("ToggleTerm direction=horizontal")
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle horizontal"),
 	["i|<C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=horizontal<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),
 	["t|<C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle horizontal"),
+	["n|<leader>th"] = map_cr("ToggleTerm direction=horizontal")
+		:with_noremap()
+		:with_silent()
+		:with_desc("terminal: Toggle horizontal"),
 	["n|<leader>tv"] = map_cr("ToggleTerm direction=vertical")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle vertical"),
-	["i|<A-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=vertical<CR>")
+	["n|<leader>tf"] = map_cr("ToggleTerm direction=float")
+		:with_noremap()
+		:with_silent()
+		:with_desc("terminal: Toggle float"),
+	["n|<leader>tg"] = map_callback(function ()
+			toggle_lazygit()
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("git: Toggle lazygit"),
+	--[[ ["i|<A-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=vertical<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle vertical"),
@@ -36,27 +46,11 @@ local plug_map = {
 		:with_silent()
 		:with_desc("terminal: Toggle vertical"),
 	["t|<F5>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle vertical"),
-	["n|<leader>tf"] = map_cr("ToggleTerm direction=float")
+	--[[ ["i|<A-d>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle float"),
-	["i|<A-d>"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("terminal: Toggle float"),
-	["t|<A-d>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle float"),
-	["n|<leader>tg"] = map_callback(function ()
-			toggle_lazygit()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("git: Toggle lazygit"),
-	["n|<leader>tp"] = map_callback(function ()
-			toggle_ipython()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("Toggle ipython"),
+	["t|<A-d>"] = map_cmd("<Cmd>ToggleTerm<CR>"):with_noremap():with_silent():with_desc("terminal: Toggle float"), ]]
 
 	-- Plugin: trouble
 	["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
@@ -90,50 +84,41 @@ local plug_map = {
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("edit: Show undo history"),
-	["n|<leader>fp"] = map_callback(function ()
-			require("telescope").extensions.projects.projects({})
+		:with_desc("tool: Undo collections"),
+	["n|<leader>ff"] = map_callback(function()
+	require("search").open({ collection = "file" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: Project"),
-	["n|<leader>ff"] = map_callback(function ()
-			require("telescope").extensions.frecency.frecency({})
+		:with_desc("tool: Find files"),
+	["n|<leader>fp"] = map_callback(function()
+	require("search").open({ collection = "pattern" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: File by frecency"),
-	["n|<leader>fl"] = map_callback(function ()
-			require("telescope").extensions.live_grep_args.live_grep_args()
+		:with_desc("tool: Find patterns"),
+	["v|<leader>fs"] = map_cu("Telescope grep_string")
+		:with_noremap()
+		:with_silent()
+		:with_desc("tool: Find word under cursor"),
+	["n|<leader>fg"] = map_callback(function()
+	require("search").open({ collection = "git" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: Word in project"),
-	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
-	["n|<leader>fj"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in project"),
-	["n|<leader>sc"] = map_callback(function ()
-			require("telescope.builtin").colorscheme({ enable_preview = true })
+		:with_desc("tool: Locate Git objects"),
+	["n|<leader>fd"] = map_callback(function()
+	require("search").open({ collection = "dossier" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("ui: Change colorscheme for current session"),
-	["n|<leader>fg"] = map_cu("Telescope git_files")
-		:with_noremap()
-		:with_silent()
-		:with_desc("find: file in git project"),
-	["n|<leader>fz"] = map_cu("Telescope zoxide list")
-		:with_noremap()
-		:with_silent()
-		:with_desc("edit: Change current directory by zoxide"),
-	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
-	["n|<leader>fk"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
-	["v|<leader>fk"] = map_callback(function ()
-			require("telescope.builtin").grep_string({ search = _buf_vtext() })
+		:with_desc("tool: Retrieve dossiers"),
+	["n|<leader>fm"] = map_callback(function()
+	require("search").open({ collection = "misc" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: Selection text"),
-	["n|<leader>fS"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
+		:with_desc("tool: Miscellaneous"),
 
 	-- Plugin: dap
 	["n|<F6>"] = map_callback(function ()
@@ -172,7 +157,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step over"),
-	--[[ ["n|<leader>db"] = map_callback(function()
+	["n|<leader>db"] = map_callback(function()
 			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end)
 		:with_noremap()
@@ -195,7 +180,7 @@ local plug_map = {
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("debug: Open REPL"), ]]
+		:with_desc("debug: Open REPL"),
 }
 
 bind.nvim_load_mapping(plug_map)

@@ -12,7 +12,7 @@ local plug_map = {
 	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 
 	-- Plugin neo-tree
-	["n|<leader>nt"] = map_cmd("<Cmd>Neotree float reveal_file=%:p reveal_force_cwd<CR>")
+	["n|<leader>nt"] = map_cmd("<Cmd>Neotree float dir=./<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("filetree: Toggle"),
