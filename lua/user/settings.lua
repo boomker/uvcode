@@ -7,15 +7,15 @@ settings["use_copilot"] = false
 
 settings["colorscheme"] = "catppuccin"
 settings["disabled_plugins"] = {
-	"nvim-tree/nvim-tree.lua",
-	"kdheepak/cmp-latex-symbols",
-	"andersevenrud/cmp-tmux",
-	"ojroques/nvim-bufdel",
-	"folke/flash.nvim",
+    -- "folke/flash.nvim",
 	"romainl/vim-cool",
-	"lambdalisue/suda.vim",
 	"tpope/vim-sleuth",
 	"zbirenbaum/neodim",
+	"ojroques/nvim-bufdel",
+    "lambdalisue/suda.vim",
+    "andersevenrud/cmp-tmux",
+    "nvim-tree/nvim-tree.lua",
+	"kdheepak/cmp-latex-symbols",
 	-- "karb94/neoscroll.nvim",
 }
 return settings

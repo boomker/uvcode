@@ -6,7 +6,7 @@ return function()
 	local actions_layout = require("telescope.actions.layout")
 	local action_state = require("telescope.actions.state")
 	local actions = require("telescope.actions")
-	local copy_to_clipboard_action = function(prompt_bufnr)
+	local copy_to_clipboard = function(prompt_bufnr)
 		local entry = action_state.get_selected_entry()
 		local entry_val = entry.value
 		vim.fn.setreg("+", entry_val)
@@ -16,7 +16,7 @@ return function()
 		actions.close(prompt_bufnr)
 	end
 
-	--[[ local flash_pick = function(prompt_bufnr)
+	local flash_pick = function(prompt_bufnr)
 		require("flash").jump({
 			pattern = "^",
 			label = { after = { 0, 0 } },
@@ -33,7 +33,7 @@ return function()
 				picker:set_selection(match.pos[1] - 1)
 			end,
 		})
-	end ]]
+	end
 
 	require("modules.utils").load_plugin("telescope", {
 		defaults = {
@@ -63,24 +63,22 @@ return function()
 			},
 			mappings = {
 				i = {
-					-- ["<C-j>"] = actions.move_selection_next,
-					-- ["<C-k>"] = actions.move_selection_previous,
 					["<C-u>"] = false,
 					["<esc>"] = actions.close,
-					["<C-space>"] = actions_layout.toggle_preview,
-					["<C-h>"] = actions.which_key,
-					["<C-b>"] = actions.preview_scrolling_up,
+                    ["<C-h>"] = actions.which_key,
+                    ["<C-a>"] = actions.toggle_all,
 					["<C-n>"] = actions.cycle_history_next,
 					["<C-p>"] = actions.cycle_history_prev,
-					["<C-a>"] = actions.toggle_all,
+                    ["<C-b>"] = actions.preview_scrolling_up,
 					["<C-j>"] = actions.toggle_selection + actions.move_selection_next,
 					["<C-k>"] = actions.toggle_selection + actions.move_selection_previous,
 					-- ["<C-m>"] = custom_actions.multi_selection_open,
 					-- ["<C-v>"] = custom_actions.multi_selection_open_vsplit,
 					-- ["<C-t>"] = custom_actions.multi_selection_open_tab,
 					-- ["<C-s>"] = custom_actions.multi_selection_open_split,
-					-- ["<C-s>"] = flash_pick,
-					["<C-y>"] = copy_to_clipboard_action,
+					["<C-s>"] = flash_pick,
+					["<C-y>"] = copy_to_clipboard,
+                    ["<C-space>"] = actions_layout.toggle_preview,
 				},
 			},
 			layout_config = {
@@ -114,11 +112,11 @@ return function()
 		pickers = {
 			keymaps = { theme = "dropdown" },
 			find_files = {
-				mappings = { i = { ["<C-y>"] = copy_to_clipboard_action } },
+				mappings = { i = { ["<C-y>"] = copy_to_clipboard } },
 				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
 			},
 			git_files = {
-				mappings = { i = { ["<C-y>"] = copy_to_clipboard_action } },
+				mappings = { i = { ["<C-y>"] = copy_to_clipboard } },
 				git_command = {
 					"git",
 					"ls-files",
@@ -140,7 +138,7 @@ return function()
 					i = {
 						["<C-f>"] = actions.to_fuzzy_refine,
 						["<C-space>"] = actions_layout.toggle_preview,
-						["<C-y>"] = copy_to_clipboard_action,
+						["<C-y>"] = copy_to_clipboard,
 					},
 				},
 			},
@@ -150,7 +148,7 @@ return function()
 					i = {
 						["<C-f>"] = actions.to_fuzzy_refine,
 						["<C-space>"] = actions_layout.toggle_preview,
-						["<C-y>"] = copy_to_clipboard_action,
+						["<C-y>"] = copy_to_clipboard,
 					},
 				},
 			},

@@ -75,6 +75,7 @@ tool["AckslD/swenv.nvim"] = {
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
 
+-- "smoka7/multicursors.nvim"
 tool["brenton-leighton/multiple-cursors.nvim"] = {
 	lazy = true,
 	version = "*",
