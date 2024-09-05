@@ -14,8 +14,8 @@ settings["disabled_plugins"] = {
 	"ojroques/nvim-bufdel",
     "lambdalisue/suda.vim",
     "andersevenrud/cmp-tmux",
-    "nvim-tree/nvim-tree.lua",
 	"kdheepak/cmp-latex-symbols",
+	"nvim-neo-tree/neo-tree.nvim",
 	-- "karb94/neoscroll.nvim",
 }
 return settings

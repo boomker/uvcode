@@ -1,5 +1,27 @@
 return function()
     local flash = require("flash")
+	vim.keymap.set({ "n", "x", "o" }, "<leader>jt", function()
+		flash.treesitter()
+	end, { desc = "Flash: Treesitter" })
+
+	vim.keymap.set("n", "<leader>jj", function()
+		flash.jump({
+			search = { mode = "search", max_length = 0 },
+			label = { after = { 0, 0 } },
+			pattern = "^",
+		})
+	end, { desc = "Flash: Jump to a line" })
+
+	vim.keymap.set("n", "<leader>jw", function()
+		flash.jump({
+			search = {
+				mode = function(str)
+					return "\\<" .. str
+				end,
+			},
+		})
+	end, { desc = "Flash: Jump to beginning of words only" })
+
     flash.setup({
         labels = "dsfnmweriouhvcxztybgajkl",
         search = {
@@ -150,7 +172,7 @@ return function()
                 enabled = true,
                 -- dynamic configuration for ftFT motions
                 config = function(opts)
-                    -- autohide flash when in operator-pending mode
+				-- autohide flash when in operator-pending mode
                     opts.autohide = vim.fn.mode(true):find("no") and
                                         vim.v.operator == "y"
 
@@ -173,8 +195,7 @@ return function()
                 -- by removing them from the list.
                 -- If you rather use another key, you can map them
                 -- to something else, e.g., { [";"] = "L", [","] = H }
-                keys = {";", ","},
-                -- keys = { "f", "F", "t", "T", ";", ","},
+                keys = { "f", "F", "t", "T", ";", ","},
                 ---@alias Flash.CharActions table<string, "next" | "prev" | "right" | "left">
                 -- The direction for `prev` and `next` is determined by the motion.
                 -- `left` and `right` are always left and right.

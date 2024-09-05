@@ -11,13 +11,13 @@ local plug_map = {
 	-- ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
 	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 
-	-- Plugin neo-tree
-	["n|<leader>nt"] = map_cmd("<Cmd>Neotree float dir=./<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("filetree: Toggle"),
-	["n|<leader>nb"] = map_cr("Neotree buffers"):with_noremap():with_silent():with_desc("filetree: Buffers"),
-	["n|<leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Buffers"),
+	-- Plugin nvim-tree
+	["n|<leader>nt"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
+	["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
+	-- ["n|<leader>nt"] = map_cr("Neotree float"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	-- ["n|<leader>nb"] = map_cr("Neotree buffers"):with_noremap():with_silent():with_desc("filetree: Buffers"),
+	-- ["n|<leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Buffers"),
 
 	-- Plugin SnipRun
 	["n|<leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by inline"),

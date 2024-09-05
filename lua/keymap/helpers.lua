@@ -200,18 +200,6 @@ function Telescope_rg_live_grep(searchScope)
 	require("telescope.builtin").live_grep(options)
 end
 
---[[ local delta_bcommits = require('telescope.previewers').new_termopen_previewer {
-    get_command = function(entry)
-        return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!', '--', entry.current_file }
-    end
-}
-
-local delta = require('telescope.previewers').new_termopen_previewer {
-    get_command = function(entry)
-        return { 'git', '-c', 'core.pager=delta', '-c', 'delta.side-by-side=false', 'diff', entry.value .. '^!' }
-    end
-} ]]
-
 Telescope_git_commits = function(opts)
 	opts = opts or {}
 	opts.previewer = {
@@ -283,13 +271,13 @@ Telescope_git_status = function(opts)
 		width = 0.88,
 		height = 0.88,
 
-		horizontal = { preview_width = 0.6 },
+		horizontal = { preview_width = 0.65 },
 	}
 	require("telescope.builtin").git_status(opts)
 end
 
 -- ╭───────────────────────────────────────────────────────────────╮
--- │ From Ecovim Custom toggle file history function via <leader>gd│
+-- │ From Ecovim Custom toggle file history function via <leader>dh│
 -- ╰───────────────────────────────────────────────────────────────╯
 toggle_file_history = function()
 	local view = require("diffview.lib").get_current_view()
@@ -305,7 +293,7 @@ toggle_file_history = function()
 end
 
 -- ╭───────────────────────────────────────────────────────────────╮
--- │ From Ecovim Custom toggle status function via <leader>gs      │
+-- │ From Ecovim Custom toggle file diff function via <leader>df   │
 -- ╰───────────────────────────────────────────────────────────────╯
 toggle_show_diff = function()
 	local view = require("diffview.lib").get_current_view()
