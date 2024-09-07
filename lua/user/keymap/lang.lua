@@ -7,11 +7,11 @@ require("keymap.helpers")
 local plug_map = {
 
     -- LiveServer, html
-	["n|<leader>ls"] = map_cmd("<Cmd>LiveServerStart<CR>")
+	["n|<Leader>ls"] = map_cmd("<Cmd>LiveServerStart<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("LiveServer: Start"),
-	["n|<leader>lt"] = map_cmd("<Cmd>LiveServerStop<CR>")
+	["n|<Leader>lt"] = map_cmd("<Cmd>LiveServerStop<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("LiveServer: Stop"),
@@ -23,7 +23,7 @@ local plug_map = {
         :with_desc("yaml_symbols"),
 
 	-- Plugin swenv, ft: python
-	["n|<leader>sV"] = map_cr("lua require('swenv.api').pick_venv()")
+	["n|<Leader>sV"] = map_cr("lua require('swenv.api').pick_venv()")
 		:with_noremap()
 		:with_silent()
 		:with_desc("swenv: switch venv"),

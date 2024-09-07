@@ -73,10 +73,10 @@ local plug_map = {
     ["n|<C-l>"] = map_cu("SmartCursorMoveRight"):with_silent():with_noremap():with_desc("window: Focus right"),
     --]]
 
-    ["n|<leader>Wh"] = map_cu("SmartSwapLeft"):with_silent():with_noremap():with_desc("window: Move window leftward"),
-    ["n|<leader>Wj"] = map_cu("SmartSwapDown"):with_silent():with_noremap():with_desc("window: Move window downward"),
-    ["n|<leader>Wk"] = map_cu("SmartSwapUp"):with_silent():with_noremap():with_desc("window: Move window upward"),
-    ["n|<leader>Wl"] = map_cu("SmartSwapRight"):with_silent():with_noremap():with_desc("window: Move window rightward"),
+    ["n|<leader>sH"] = map_cu("SmartSwapLeft"):with_silent():with_noremap():with_desc("window: Move window leftward"),
+    ["n|<leader>sJ"] = map_cu("SmartSwapDown"):with_silent():with_noremap():with_desc("window: Move window downward"),
+    ["n|<leader>sK"] = map_cu("SmartSwapUp"):with_silent():with_noremap():with_desc("window: Move window upward"),
+    ["n|<leader>sL"] = map_cu("SmartSwapRight"):with_silent():with_noremap():with_desc("window: Move window rightward"),
 
 	-- Plugin: treehopper
 	-- ["x|m"] = map_cu("lua require('tsht').nodes()"):with_silent():with_desc("jump: Operate across syntax tree"),

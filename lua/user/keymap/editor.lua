@@ -18,24 +18,24 @@ local plug_map = {
 		:with_desc("editn: Toggle comment for block"),
 
 	-- Plugin Diffview
-	["n|<leader>jd"] = map_cu("DiffviewFocusFiles"):
+	["n|<Leader>jd"] = map_cu("DiffviewFocusFiles"):
 		with_noremap():
 		with_silent():
 		with_desc("git: DiffviewFocusFiles"),
-	["n|<leader>df"] = map_callback(toggle_show_diff):
+	["n|<Leader>df"] = map_callback(toggle_show_diff):
 		with_silent():
 		with_noremap():
 		with_desc("git: Show diff"),
-	["n|<leader>dh"] = map_callback(toggle_file_history)
+	["n|<Leader>dh"] = map_callback(toggle_file_history)
 		:with_silent()
 		:with_noremap()
 		:with_desc("git: show file history"),
 
 	-- Plugin rmagatti/alternate-toggler
-	["n|<leader>a"] = map_cu("ToggleAlternate"):
+	["n|<Leader>a"] = map_cu("ToggleAlternate"):
 		with_noremap():
 		with_silent():
-		with_desc("alternate value"),
+		with_desc("Toggle bool"),
 
 	-- Plugin nvim-multi-cursor
 	["nx|gb"] = map_cmd("<Cmd>MultipleCursorsAddDown<CR>"):

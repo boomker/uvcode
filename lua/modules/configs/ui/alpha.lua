@@ -88,7 +88,7 @@ return function ()
 				require("telescope").extensions.frecency.frecency({})
 			end,
 		}),
-		button("space f o", "󰋚 Recent File", leader, nil, {
+		button("space f r", "󰋚 Recent file", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -96,7 +96,7 @@ return function ()
 				require("telescope.builtin").oldfiles()
 			end,
 		}),
-		button("space f p", " find Session", leader, nil, {
+		button("space f p", " Find session", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -112,7 +112,7 @@ return function ()
 				require("telescope.builtin").find_files()
 			end,
 		}),
-		button("space f w", " Word find", leader, nil, {
+		button("space f w", " Find word", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,

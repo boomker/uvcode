@@ -64,7 +64,7 @@ function mapping.gitsigns(buf)
 		end)
 			:with_buffer(buf)
 			:with_desc("git: Stage hunk"),
-		["n|<leader>hu"] = bind.map_callback(function()
+		["n|<leader>hx"] = bind.map_callback(function()
 			actions.undo_stage_hunk()
 		end)
 			:with_buffer(buf)

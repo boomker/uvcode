@@ -6,17 +6,6 @@ local map_cmd = bind.map_cmd
 
 local core_map = {
 
-	-- fold
-	["n|<leader>zz"] = map_cmd(":set foldmethod=indent<CR>@=((foldclosed(line('.')) < 0) ? 'zc' : 'zv')<CR>")
-		:with_noremap()
-		:with_silent(),
-	["n|<leader>zo"] = map_cmd(":set foldmethod=indent<CR>@=((foldclosed(line('.')) < 0) ? 'zc' : 'zO')<CR>")
-		:with_noremap()
-		:with_silent(),
-	["n|<leader>zm"] = map_cmd(":set fdm=indent<CR>@=((foldclosed(line('.')) < 0) ? 'zMzz' : 'zMzOzz')<CR>")
-		:with_noremap()
-		:with_silent(),
-
 	-- insert blankline to up/down without leave cursor
 	["n|[<Space>"] = map_cmd(":<C-u> put! =repeat(nr2char(10), 1) <Bar> ']+1<CR>")
 		:with_noremap()
@@ -36,7 +25,10 @@ local core_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("highlight cursor word"),
-	["n|<leader>nl"] = map_cmd([[:nohl<cr>]]):with_noremap():with_silent():with_desc("nohlsearch"),
+	["n|<leader>nl"] = map_cmd([[:nohl<cr>]])
+        :with_noremap()
+        :with_silent()
+        :with_desc("nohlsearch"),
 
 	-- replace with magic by default
 	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
@@ -80,7 +72,6 @@ local core_map = {
 	["n|du"] = map_cmd("dt_"):with_noremap():with_silent(),
 	["n|dU"] = map_cmd("vT_d"):with_noremap():with_silent(),
 	["n|x"] = map_cmd('"_x'):with_noremap():with_silent(),
-	-- ["x|x"] = map_cmd('"_x'):with_noremap():with_silent(),
 
 	["n|H"] = map_cmd("^"),
 	["v|H"] = map_cmd("^"),
@@ -96,21 +87,22 @@ local core_map = {
 	["n|W"] = map_cmd("i<CR><esc>`["):with_silent(),
 
 	-- buffer file save or quit
-	["n|<leader>q"] = map_cmd(":quit!<CR>"):with_noremap():with_silent():with_desc("quit buffers"),
-	["n|<leader>wa"] = map_cmd(":wall!<CR>"):with_noremap():with_silent():with_desc("save buffers"),
+	["n|<leader>x"] = map_cmd(":x<CR>"):with_noremap():with_silent():with_desc("Quit buffers"),
+	["n|<leader>wa"] = map_cmd(":wall!<CR>"):with_noremap():with_silent():with_desc("Save buffers"),
 
-	-- quicklist
+	-- locallist & quicklist
 	["n|<leader>lo"] = map_cmd(":lopen<CR>"):with_noremap():with_silent():with_desc("open locallist"),
 	["n|<leader>lc"] = map_cmd(":lclose<CR>"):with_noremap():with_silent():with_desc("close locallist"),
+	["n|<leader>cl"] = map_cmd(":lclose<CR>"):with_noremap():with_silent():with_desc("close locallist"),
 	["n|<leader>cc"] = map_cmd(":cclose<CR>"):with_noremap():with_silent():with_desc("close quicklist"),
-	["n|<leader>cq"] = map_cmd(":copen<CR>"):with_noremap():with_silent():with_desc("Open quicklist"),
+	["n|<leader>cq"] = map_cmd(":copen<CR>"):with_noremap():with_silent():with_desc("open quicklist"),
 	["n|<leader>cg"] = map_cmd([[:grep '' % |copen<C-Left><C-Left><C-Left><Right>]])
 		:with_noremap()
 		:with_desc("grep kw into copen"),
 
 	-- more like MacVim
 	["n|<D-s>"] = map_cu("write"):with_noremap(),
-	["n|<D-f>"] = map_cmd("/"):with_noremap():with_silent(),
+	["n|<D-f>"] = map_cmd("/"):with_noremap(),
 	["n|<D-v>"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
 	["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),

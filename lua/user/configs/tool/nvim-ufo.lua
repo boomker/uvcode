@@ -70,10 +70,10 @@ return function()
 	vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 	vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
 	vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
-	vim.keymap.set("n", "<leader>jk", function()
+	vim.keymap.set("n", "<Leader>jk", function()
 		local winid = require("ufo").peekFoldedLinesUnderCursor()
 		if not winid then
 			vim.lsp.buf.hover()
 		end
-	end, { desc = "peekFoldedLinesUnderCursor" })
+	end, { desc = "UFO: peekFolded" })
 end

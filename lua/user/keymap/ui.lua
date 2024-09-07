@@ -5,22 +5,25 @@ local map_cmd = bind.map_cmd
 
 local plug_map = {
 
-    ["n|<leader>sc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent():with_desc("ui: Change colorscheme"),
+	["n|<Leader>sc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent():with_desc("ui: Change colorscheme"),
 
 	-- Bufferline
-	["n|<leader>k"] = map_cr("BufferLinePick"):with_noremap():with_silent():with_desc("pick buffer"),
-	["n|<leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
-	["n|<leader>bu"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
-	["n|<leader>nn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
-	["n|<leader>jl"] = map_cmd("<C-6>"):with_noremap():with_silent():with_desc("goto last buffer"),
+	["n|<Leader>k"] = map_cr("BufferLinePick"):with_noremap():with_silent():with_desc("Pick buffer"),
+	["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("Buffer: Switch to next"),
+	["n|<Leader>bu"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("Buffer: Switch to prev"),
+	["n|<Leader>nn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("Buffer: New"),
+	["n|<Leader>jl"] = map_cmd("<C-6>"):with_noremap():with_silent():with_desc("Buffer: goto last"),
 
 	-- plugin todo-comments
-	["n|<Leader>ft"] = map_cu("TodoTelescope"):with_noremap():with_silent():with_desc("TodoTelescope"),
-	["n|<leader>tn"] = map_cr("lua require('todo-comments').jump_next()")
+	["n|<Leader>tl"] = map_cu("TodoTelescope")
+        :with_noremap()
+        :with_silent()
+        :with_desc("TodoTelescope"),
+	["n|<Leader>tn"] = map_cr("lua require('todo-comments').jump_next()")
 		:with_noremap()
 		:with_silent()
 		:with_desc("jump next todo-comments"),
-	["n|<leader>tu"] = map_cr("lua require('todo-comments').jump_prev()")
+	["n|<Leader>tu"] = map_cr("lua require('todo-comments').jump_prev()")
 		:with_noremap()
 		:with_silent()
 		:with_desc("jump prev todo-comments"),
