@@ -67,23 +67,12 @@ local core_map = {
 	["n|gP"] = map_cmd([[<Plug>(YankyGPutBefore)]]):with_noremap():with_silent():with_desc("yanky put before"),
 	["x|gP"] = map_cmd([[<Plug>(YankyGPutBefore)]]):with_noremap():with_silent():with_desc("yanky put before"),
 
-	["n|]p"] = map_cmd([[<Plug>(YankyPutIndentAfterLinewise)]]):with_noremap():with_silent(),
-	["n|[p"] = map_cmd([[<Plug>(YankyPutIndentBeforeLinewise)]]):with_noremap():with_silent(),
-	["n|]P"] = map_cmd([[<Plug>(YankyPutIndentAfterLinewise)]]):with_noremap():with_silent(),
-	["n|[P"] = map_cmd([[<Plug>(YankyPutIndentBeforeLinewise)]]):with_noremap():with_silent(),
-
-	["n|>p"] = map_cmd([[<Plug>(YankyPutIndentAfterShiftRight)]]):with_noremap():with_silent(),
-	["n|<p"] = map_cmd([[<Plug>(YankyPutIndentAfterShiftLeft)]]):with_noremap():with_silent(),
-	["n|>P"] = map_cmd([[<Plug>(YankyPutIndentBeforeShiftRight)]]):with_noremap():with_silent(),
-	["n|<P"] = map_cmd([[<Plug>(YankyPutIndentBeforeShiftLeft)]]):with_noremap():with_silent(),
-
 	-- useful, for keep indent
 	["n|=p"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
 	["n|=P"] = map_cmd([[<Plug>(YankyPutBeforeFilter)]]):with_noremap():with_silent(),
 
 	["n|cvj"] = map_cmd([[<Plug>(YankyCycleForward)]]):with_noremap():with_silent(),
 	["n|cvk"] = map_cmd([[<Plug>(YankyCycleBackward)]]):with_noremap():with_silent(),
-	["n|gcy"] = map_cmd("m'yyp<Plug>(comment_toggle_linewise_current)`'"):with_noremap():with_silent(),
 
 	-- Replacing up to next underscore `_`
 	["n|cu"] = map_cmd("ct_"):with_noremap():with_silent(),

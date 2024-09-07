@@ -7,10 +7,6 @@ require("keymap.helpers")
 
 local plug_map = {
 
-	-- git
-	-- ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
-	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
-
 	-- Plugin nvim-tree
 	["n|<leader>nt"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
@@ -23,7 +19,6 @@ local plug_map = {
 	["n|<leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by inline"),
 	["v|<leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
 	["n|<leader>rf"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
-	["c|Sr!!"] = map_cu([[%SnipRun]]):with_noremap(),
 
 	-- toggleterm
 	["t|<ESC><ESC>"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
@@ -44,19 +39,22 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle float"),
+
+	["nv|<leader>tc"] = map_cmd("<Cmd>ToggleTermSendCurrentLine<CR>")
+		:with_noremap()
+		:with_silent()
+		:with_desc("sent current code to term"),
+	["v|<leader>tv"] = map_cmd("<Cmd>ToggleTermSendVisualLines<CR>")
+        :with_noremap()
+        :with_silent()
+		:with_desc("sent selected code to term"),
+
 	["n|<leader>tp"] = map_callback(function()
 			toggle_ipython()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("python: Toggle ipython"),
-
-	-- sent code of current line to term
-	["nv|<leader>tc"] = map_cmd("<Cmd>ToggleTermSendCurrentLine<CR>")
-		:with_noremap()
-		:with_silent()
-		:with_desc("sent current code to term"),
-	-- ["v|<leader>tV"] = map_cmd(":ToggleTermSendVisualLines<CR>"):with_noremap():with_silent(),
 	["n|<leader>tg"] = map_callback(function()
 			toggle_lazygit()
 		end)
@@ -73,18 +71,16 @@ local plug_map = {
 	-- Plugin Telescope
 	["n|<Leader>fa"] = map_cu("Telescope"):with_noremap():with_silent():with_desc("telescope all commands"),
 	["n|<Leader>fc"] = map_cu("Telescope commands"):with_noremap():with_silent():with_desc("telescope commands"),
-	["n|<leader>fu"] = map_callback(function()
-			require("telescope").extensions.undo.undo()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("editn: Show undo history"),
-	["n|<leader>fp"] = map_callback(function()
+	["n|<leader>fP"] = map_callback(function()
 			require("telescope").extensions.projects.projects({})
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: Project"),
+	["n|<leader>fz"] = map_cu("Telescope zoxide list")
+		:with_noremap()
+		:with_silent()
+		:with_desc("zoxide: Change direrctory"),
 	["n|<leader>ff"] = map_callback(function()
 			require("telescope").extensions.frecency.frecency()
 		end)
@@ -92,8 +88,8 @@ local plug_map = {
 		:with_silent()
 		:with_desc("find: File by frecency"),
 	["n|<leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent():with_desc("Search GitRepo Files"),
-	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
-	["n|<leader>fO"] = map_cu("Telescope aerial"):with_noremap():with_silent():with_desc("aerial outline"),
+	["n|<leader>fr"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
+	["n|<leader>fo"] = map_cu("Telescope aerial"):with_noremap():with_silent():with_desc("aerial outline"),
 
 	["n|<leader>fe"] = map_callback(function()
 			Telescope_project_files({ scope = "cwd" })
@@ -107,71 +103,60 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: file in git project"),
-	["n|<leader>fz"] = map_cu("Telescope zoxide list")
-		:with_noremap()
-		:with_silent()
-		:with_desc("edit: Change direrctory zoxide"),
 	["n|<Leader>fw"] = map_cu("Telescope current_buffer_fuzzy_find")
 		:with_noremap()
 		:with_silent()
 		:with_desc("grep: word in buffer"),
+	["n|<leader>fk"] = map_callback(function()
+            require("search").open({ collection = "pattern" })
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("tool: Find patterns"),
+	--[[ ["n|<leader>fk"] = map_cu("Telescope grep_string")
+        :with_noremap()
+        :with_silent()
+        :with_desc("grep: word under cursor in project"),
+	["n|<Leader>fK"] = map_callback(function()
+			Telescope_rg_kw({ word_match = true })
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("grep: word in project"), ]]
 	["n|<Leader>fB"] = map_callback(function()
 			Telescope_rg_live_grep({ scope = "buffers" })
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("rg: word in buffers opened"),
-	-- ["n|<Leader>fl"] = map_callback(function()
-	-- 		Telescope_rg_live_grep({ scope = "project" })
-	-- 	end)
-	-- 	:with_noremap()
-	-- 	:with_silent()
-	-- 	:with_desc("rg live: word in project"),
-	["n|<leader>fl"] = map_callback(function()
-			require("telescope").extensions.live_grep_args.live_grep_args()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("grep: Word in project"),
-	["n|<leader>fk"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("grep: Current word"),
-	["n|<Leader>fK"] = map_callback(function()
-			Telescope_rg_kw({ word_match = true })
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("grep: word in project"),
 	["n|<Leader>fJ"] = map_cu("Telescope jumplist"):with_noremap():with_silent():with_desc("jumplist"),
 	["n|<Leader>fM"] = map_callback(keymaps_panel)
 		:with_silent()
 		:with_noremap()
 		:with_desc("tool: Toggle keymapping panel"),
-	["n|<Leader>fm"] = map_cu("Telescope marks"):with_noremap():with_silent():with_desc("marks"),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent():with_desc("notify"),
-	["n|<Leader>fr"] = map_cu("Telescope resume"):with_noremap():with_silent():with_desc("resume"),
+	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent():with_desc("help_tags"),
+	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
+	-- NOTE: do diagnostic for all buffers
+	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent():with_desc("diagnostics in project"),
+	["n|<leader>fp"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
 	["n|<Leader>fR"] = map_cu("Telescope registers"):with_noremap():with_silent():with_desc("registers"),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols")
 		:with_noremap()
 		:with_silent()
 		:with_desc("symbols in workspace"),
-	["n|<leader>fS"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
-	-- NOTE: do diagnostic for all buffers
-	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent():with_desc("diagnostics in project"),
-	["n|<Leader>fC"] = map_cu("Telescope command_history"):with_noremap():with_silent():with_desc("command_history"),
-	["n|<Leader>fy"] = map_cu("Telescope yank_history"):with_noremap():with_silent():with_desc("yank_history"),
-	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent():with_desc("help_tags"),
-	["n|<Leader>ft"] = map_cu("TodoTelescope"):with_noremap():with_silent():with_desc("TodoTelescope"),
-	["n|<Leader>fY"] = map_callback(Telescope_yaml_symbols):with_noremap():with_silent():with_desc("yaml_symbols"),
+
+	["n|<Leader>hc"] = map_cu("Telescope command_history"):with_noremap():with_silent():with_desc("command_history"),
+	["n|<Leader>hy"] = map_cu("Telescope yank_history"):with_noremap():with_silent():with_desc("yank_history"),
+	["n|<leader>hU"] = map_callback(function() require("telescope").extensions.undo.undo() end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("Telescope undo history"),
+
+    -- git
 	["n|<Leader>gs"] = map_callback(Telescope_git_status):with_noremap():with_silent():with_desc("git_status"),
 	["n|<Leader>gc"] = map_callback(Telescope_git_bcommits):with_noremap():with_silent():with_desc("git_bcommits"),
 	["n|<Leader>gC"] = map_callback(Telescope_git_commits):with_noremap():with_silent():with_desc("git_commits"),
-	["n|<leader>sc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent():with_desc("ui: Change colorscheme"),
-	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
-
-	-- Plugin swenv
-	["n|<leader>cv"] = map_cr("lua require('swenv.api').pick_venv()")
-		:with_noremap()
-		:with_silent()
-		:with_desc("choose venv"),
 
 	-- Plugin dap
 	["n|<leader>dc"] = map_callback(function()

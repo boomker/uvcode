@@ -72,6 +72,14 @@ return function ()
 				require("telescope.builtin").colorscheme()
 			end,
 		}),
+		button("space n n", " File new", leader, nil, {
+			noremap = true,
+			silent = true,
+			nowait = true,
+			callback = function ()
+				vim.api.nvim_command("enew")
+			end,
+		}),
 		button("space f f", " File frecency", leader, nil, {
 			noremap = true,
 			silent = true,
@@ -88,28 +96,20 @@ return function ()
 				require("telescope.builtin").oldfiles()
 			end,
 		}),
-		button("space f p", " Project find", leader, nil, {
+		button("space f p", " find Session", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
 			callback = function ()
-				require("telescope").extensions.projects.projects({})
+				require("telescope").extensions.persisted.persisted({})
 			end,
 		}),
-		button("space f d", "󰈞 File find", leader, nil, {
+		button("space f e", "󰈞 File find", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
 			callback = function ()
 				require("telescope.builtin").find_files()
-			end,
-		}),
-		button("space f n", " File new", leader, nil, {
-			noremap = true,
-			silent = true,
-			nowait = true,
-			callback = function ()
-				vim.api.nvim_command("enew")
 			end,
 		}),
 		button("space f w", " Word find", leader, nil, {
