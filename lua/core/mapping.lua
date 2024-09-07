@@ -102,15 +102,13 @@ local core_map = {
 	["n|D"] = map_cmd("d$"):with_desc("edit: Delete text to EOL"),
 	["n|n"] = map_cmd("nzzzv"):with_noremap():with_desc("edit: Next search result"),
 	["n|N"] = map_cmd("Nzzzv"):with_noremap():with_desc("edit: Prev search result"),
-	-- ["n|*"] = map_cmd("*zz"):with_noremap(),
-	-- ["n|#"] = map_cmd("#zz"):with_noremap(),
 	["n|J"] = map_cmd("m'J`'"):with_noremap():with_desc("edit: Join next line"),
 	["n|Q"] = map_cmd("<Nop>"):with_noremap(),
 	["n|W"] = map_cmd("i<CR><esc>`["):with_silent(),
 
 	-- buffer file save or quit
 	["n|<leader>q"] = map_cmd(":quit!<CR>"):with_noremap():with_silent():with_desc("quit buffers"),
-	["n|<leader>S"] = map_cmd(":wall!<CR>"):with_noremap():with_silent():with_desc("save buffers"),
+	["n|<leader>wa"] = map_cmd(":wall!<CR>"):with_noremap():with_silent():with_desc("save buffers"),
 
 	-- quicklist
 	["n|<leader>lo"] = map_cmd(":lopen<CR>"):with_noremap():with_silent():with_desc("open locallist"),

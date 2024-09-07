@@ -11,6 +11,7 @@ settings["disabled_plugins"] = {
 	"romainl/vim-cool",
 	"tpope/vim-sleuth",
 	"zbirenbaum/neodim",
+    "tzachar/cmp-tabnine",
 	"ojroques/nvim-bufdel",
     "lambdalisue/suda.vim",
     "andersevenrud/cmp-tmux",
