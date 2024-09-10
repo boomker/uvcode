@@ -6,11 +6,11 @@ settings["use_ssh"] = true
 
 -- Set it to false if you don't use copilot
 ---@type boolean
-settings["use_copilot"] = false
+settings["use_copilot"] = true
 
 -- Set it to false if there is no need to format on save.
 ---@type boolean
-settings["format_on_save"] = false
+settings["format_on_save"] = true
 
 -- Set format timeout here (in ms).
 ---@type number
@@ -26,7 +26,7 @@ settings["format_notify"] = true
 --  > Any of the server attached to that buffer supports |DocumentRangeFormattingProvider| server capability.
 -- Otherwise Neovim would fall back to format the whole buffer, and a warning will be issued.
 ---@type boolean
-settings["format_modifications_only"] = true
+settings["format_modifications_only"] = false
 
 -- Set the format disabled directories here, files under these dirs won't be formatted on save.
 --- NOTE: Directories may contain regular expressions (grammar: vim). |regexp|
@@ -46,8 +46,9 @@ settings["formatter_block_list"] = {
 -- Servers in this list will skip setting formatting capabilities if rhs is true.
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-	lua_ls = true,
 	clangd = true,
+	lua_ls = true,
+	ts_ls = true,
 }
 
 -- Set it to false if you want to turn off LSP Inlay Hints
@@ -64,7 +65,7 @@ settings["diagnostics_virtual_text"] = true
 --  > e.g. if you set this option to `Warning`, only lsp warnings and errors will be shown.
 -- NOTE: This entry only works when `diagnostics_virtual_text` is true.
 ---@type "ERROR"|"WARN"|"INFO"|"HINT"
-settings["diagnostics_level"] = "WARN"
+settings["diagnostics_level"] = "HINT"
 
 -- Set the plugins to disable here.
 -- Example: "Some-User/A-Repo"
@@ -83,14 +84,13 @@ settings["load_big_files_faster"] = true
 settings["palette_overwrite"] = {}
 
 -- Set the colorscheme to use here.
--- Available values are: `catppuccin`, `catppuccin-latte`,
--- `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
+-- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
 ---@type string
-settings["colorscheme"] = "catppuccin-frappe"
+settings["colorscheme"] = "catppuccin"
 
 -- Set it to true if your terminal has transparent background.
 ---@type boolean
-settings["transparent_background"] = true
+settings["transparent_background"] = false
 
 -- Set background color to use here.
 -- Useful if you would like to use a colorscheme that has a light and dark variant like `edge`.
@@ -103,25 +103,18 @@ settings["background"] = "dark"
 ---@type string
 settings["external_browser"] = "chrome-cli open"
 
--- Filetypes in this list will skip lsp formatting if rhs is true.
----@type table<string, boolean>
-settings["formatter_block_list"] = {
-	yaml = true,
-}
-
 -- Set the language servers that will be installed during bootstrap here.
 -- check the below link for all the supported LSPs:
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 ---@type string[]
 settings["lsp_deps"] = {
-	-- "html",
-	"pylsp",
-	"volar",
-	"gopls",
 	"bashls",
+	"clangd",
+	"html",
 	"jsonls",
 	"lua_ls",
-	"dockerls",
+	"pylsp",
+	"gopls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.
@@ -130,15 +123,13 @@ settings["lsp_deps"] = {
 -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins
 ---@type string[]
 settings["null_ls_deps"] = {
-	-- "clang_format",
-	-- "gofumpt",
-	"ruff",
-	"black",
+	"clang_format",
+	"gofumpt",
+	"goimports",
+	"prettier",
 	"shfmt",
 	"stylua",
-	"prettier",
-	"yamllint",
-	"goimports",
+	"vint",
 }
 
 -- Set the Debug Adapter Protocol (DAP) clients that will be installed and configured during bootstrap here.
@@ -157,34 +148,34 @@ settings["dap_deps"] = {
 ---@type string[]
 settings["treesitter_deps"] = {
 	"bash",
+	"c",
+	"cpp",
 	"css",
-	"dockerfile",
 	"go",
 	"gomod",
 	"html",
 	"javascript",
-	"typescript",
 	"json",
 	"jsonc",
 	"latex",
 	"lua",
 	"make",
+	"markdown",
+	"markdown_inline",
 	"python",
+	"rust",
+	"typescript",
 	"vimdoc",
 	"vue",
 	"yaml",
-	"toml",
-	"markdown",
-	"markdown_inline",
 }
 
 -- Set the options for neovim's gui clients like `neovide` and `neovim-qt` here.
 -- NOTE: Currently, only the following options related to the GUI are supported. Other entries will be IGNORED.
 ---@type { font_name: string, font_size: number }
 settings["gui_config"] = {
-	font_size = 17,
 	font_name = "JetBrainsMono Nerd Font",
-	gui_font_face = "JetBrainsMono Nerd Font Mono:#e-antialias",
+	font_size = 12,
 }
 
 -- Set the options specific to `neovide` here.
@@ -194,7 +185,7 @@ settings["gui_config"] = {
 ---@type table<string, boolean|number|string>
 settings["neovide_config"] = {
 	no_idle = true,
-	refresh_rate = 60,
+	refresh_rate = 120,
 	cursor_vfx_mode = "railgun",
 	cursor_vfx_opacity = 200.0,
 	cursor_antialiasing = true,

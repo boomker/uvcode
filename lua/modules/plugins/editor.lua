@@ -36,13 +36,12 @@ editor["ojroques/nvim-bufdel"] = {
 --  > We have no plan to remove the above plugins for the time being.
 -- But as usual, you can always tweak the plugin to your liking.
 
--- editor["smoka7/hop.nvim"] = {
--- 	lazy = true,
--- 	version = "*",
--- 	event = { "CursorHold", "CursorHoldI" },
--- 	config = require("editor.hop"),
--- }
-
+editor["smoka7/hop.nvim"] = {
+	lazy = true,
+	version = "*",
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("editor.hop"),
+}
 editor["folke/flash.nvim"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
@@ -92,7 +91,8 @@ editor["nvim-pack/nvim-spectre"] = {
 }
 editor["mrjones2014/smart-splits.nvim"] = {
 	lazy = true,
-	event = { "CursorHoldI", "CursorHold" },
+	event = "VeryLazy",
+	-- event = { "CursorHoldI", "CursorHold" },
 	config = require("editor.splits"),
 }
 

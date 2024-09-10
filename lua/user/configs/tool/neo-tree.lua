@@ -314,8 +314,22 @@ return function()
 				},
 			},
 		},
-		open_files_do_not_replace_types = { "terminal", "trouble", "qf", "diff", "fugitive", "fugitiveblame" },
+		open_files_do_not_replace_types = {
+            "qf",
+            "git",
+            "diff",
+            "notify",
+            "Outline",
+            "trouble",
+            "terminal",
+            "NvimTree",
+            "dap-repl",
+            "fugitive",
+            "undotree",
+            "toggleterm",
+            "fugitiveblame",
+            "TelescopePrompt",
+        },
 	})
 
-	-- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 end

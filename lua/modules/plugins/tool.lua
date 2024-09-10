@@ -1,8 +1,8 @@
 local tool = {}
 
-tool["nvim-pack/nvim-spectre"] = {
-	lazy = true,
-	cmd = { "Git", "G" },
+tool["tpope/vim-fugitive"] = {
+    lazy = true,
+    cmd = { "Git", "G" },
 }
 -- This is specifically for fcitx5 users who code in languages other than English
 -- tool["pysan3/fcitx5.nvim"] = {
@@ -65,7 +65,12 @@ tool["folke/which-key.nvim"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("tool.which-key"),
 }
-
+tool["gelguy/wilder.nvim"] = {
+    lazy = true,
+    event = "CmdlineEnter",
+    config = require("tool.wilder"),
+    dependencies = { "romgrk/fzy-lua-native" },
+}
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
 ----------------------------------------------------------------------
@@ -80,7 +85,7 @@ tool["nvim-telescope/telescope.nvim"] = {
 		{ "debugloop/telescope-undo.nvim" },
 		{ "nvim-telescope/telescope-frecency.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
-		{ "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		{
 			"FabianWirth/search.nvim",
 			config = require("tool.search"),

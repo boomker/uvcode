@@ -6,12 +6,11 @@ local function load_options()
 		-- directory = global.cache_dir .. "/swap/",
 		-- spellfile = global.cache_dir .. "/spell/en.uft-8.add",
 		-- viewdir = global.cache_dir .. "/view/",
+		autoindent = true,
 		autoread = true,
 		autowrite = true,
-		autochdir = true,
-		autoindent = true,
-		backup = false,
 		backspace = "indent,eol,start",
+		backup = false,
 		backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
 		breakat = [[\ \	;:,!?]],
 		breakindentopt = "shift:2,min:20",
@@ -43,7 +42,7 @@ local function load_options()
 		incsearch = true,
 		infercase = true,
 		jumpoptions = "stack",
-		laststatus = 2,
+		laststatus = 3,
 		linebreak = true,
 		list = true,
 		listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
@@ -57,15 +56,17 @@ local function load_options()
 		redrawtime = 1500,
 		relativenumber = true,
 		ruler = true,
-		scrolloff = 10,
+		scrolloff = 2,
 		sessionoptions = "buffers,curdir,folds,help,tabpages,winpos,winsize",
 		shada = "!,'500,<50,@100,s10,h",
+		shiftround = true,
+		shiftwidth = 4,
 		shortmess = "aoOTIcF",
 		showbreak = "↳  ",
 		showcmd = false,
 		showmode = false,
 		showtabline = 2,
-		sidescrolloff = 8,
+		sidescrolloff = 5,
 		signcolumn = "yes",
 		smartcase = true,
 		smarttab = true,
@@ -77,8 +78,6 @@ local function load_options()
 		swapfile = false,
 		switchbuf = "usetab,uselast",
 		synmaxcol = 2500,
-		shiftround = true,
-		shiftwidth = 4,
 		tabstop = 4,
 		termguicolors = true,
 		timeout = true,
@@ -103,6 +102,7 @@ local function load_options()
 		wrapscan = true,
 		writebackup = false,
 	}
+
 	local function isempty(s)
 		return s == nil or s == ""
 	end
@@ -116,8 +116,8 @@ local function load_options()
 		vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, conda_prefix .. "/bin/python")
 		vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, conda_prefix .. "/bin/python")
 	else
-		vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "~/.venv/bin/python")
-		vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "~/.venv/bin/python3")
+		vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "python")
+		vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "python3")
 	end
 
 	for name, value in pairs(require("modules.utils").extend_config(global_local, "user.options")) do

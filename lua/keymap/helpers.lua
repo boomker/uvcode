@@ -1,16 +1,5 @@
 ---@diagnostic disable: lowercase-global
-local function table_maxn(t)
-	local mn = nil
-	for _, v in pairs(t) do
-		if mn == nil then
-			mn = v
-		end
-		if mn < v then
-			mn = v
-		end
-	end
-	return mn
-end
+local utils = require("core.utils")
 
 _G._command_panel = function()
 	require("telescope.builtin").keymaps({
@@ -64,7 +53,6 @@ _G._flash_esc_or_noh = function()
 end
 
 local _lazygit = nil
-
 function toggle_lazygit()
 	if not _lazygit then
 		local Terminal = require("toggleterm.terminal").Terminal
@@ -82,7 +70,7 @@ function toggle_ipython()
 	if not _ipython then
 		local Terminal = require("toggleterm.terminal").Terminal
 		_ipython = Terminal:new({
-			cmd = "/usr/local/opt/pyenv/shims/ipython3",
+			cmd = "~/.venv/bin/ipython3",
 			hidden = true,
 			direction = "horizontal",
 		})
@@ -90,30 +78,9 @@ function toggle_ipython()
 	_ipython:toggle()
 end
 
-function keymaps_panel()
-	local opts = {
-		lhs_filter = function(lhs)
-			return not string.find(lhs, "Þ")
-		end,
-		layout_config = { width = 0.6, height = 0.6, prompt_position = "top" },
-	}
-	require("telescope.builtin").keymaps(opts)
-end
-
-local function git_proj_root()
-	local cwd_parent = vim.fn.expand("%:p:h")
-	vim.fn.system("git rev-parse --is-inside-work-tree")
-	if vim.v.shell_error == 0 then
-		local cmd = "git -C " .. cwd_parent .. " rev-parse --show-toplevel"
-		local output = vim.fn.systemlist(cmd)
-		return true, output[1]
-	end
-	return false, cwd_parent
-end
-
-function Telescope_project_files(searchScope)
-	local is_git_repo, proj_path = git_proj_root()
-	local cwd_parent = vim.fn.expand("%:p:h")
+function Telescope_find_file(searchScope)
+	local is_git_repo, proj_path = utils.git_proj_root()
+	local cwd = vim.fn.expand("%:p:h")
 	local git_files_opts = {
 		git_command = {
 			"git",
@@ -143,7 +110,7 @@ function Telescope_project_files(searchScope)
 			"--strip-cwd-prefix",
 			"--follow",
 		},
-		cwd = cwd_parent,
+		cwd = cwd,
 		layout_config = {
 			width = 0.88,
 			height = 0.88,
@@ -159,45 +126,50 @@ function Telescope_project_files(searchScope)
 	end
 end
 
-function Telescope_rg_kw(matchWord)
-	local _, proj_path = git_proj_root()
+function Telescope_rg_word(matchWord)
+	local _, proj_path = utils.git_proj_root()
 
 	local get_cursor_word = function()
 		return vim.fn.escape(vim.fn.expand("<cword>"), [[\/]])
 	end
 	local options = {
 		cwd = proj_path,
-		-- search = get_cursor_word(),
-		-- word_match = "-w",
 		search_dirs = { proj_path },
-		prompt_title = "Rg KW in Git_Root(" .. get_cursor_word() .. ")",
+		prompt_title = "Rg word in Git_Root(" .. get_cursor_word() .. ")",
 	}
 
 	if matchWord then
 		options.word_match = "-w"
-		-- options.prompt_title = "Rg KW in Git_Root(" .. get_cursor_word() .. ")",
 	end
 
 	require("telescope.builtin").grep_string(options)
 end
 
-function Telescope_rg_live_grep(searchScope)
-	local _, proj_path = git_proj_root()
+function Telescope_rg_live_word(searchScope)
+	local _, proj_path = utils.git_proj_root()
 	local options = {
 		cwd = proj_path,
 		search_dirs = { proj_path },
-		-- grep_open_files = false,
-		prompt_title = "live_Rg KW in Git_Root",
+		prompt_title = "Live rg word in Git_Root",
 	}
 
 	if searchScope.scope == "buffers" then
 		options = {
-			prompt_title = "live_Rg string in open buffers",
+			prompt_title = "Live rg word in open buffers",
 			grep_open_files = true,
 		}
 	end
 
 	require("telescope.builtin").live_grep(options)
+end
+
+Telescope_find_neovim_config = function(opts)
+	opts = opts or {}
+	opts = {
+		cwd = vim.env.HOME .. "/gitrepos/uvcode",
+		prompt_title = "Find file in uvcode",
+	}
+	require("telescope.builtin").find_files(opts)
 end
 
 Telescope_git_commits = function(opts)
@@ -271,7 +243,7 @@ Telescope_git_status = function(opts)
 		width = 0.88,
 		height = 0.88,
 
-		horizontal = { preview_width = 0.65 },
+		horizontal = { preview_width = 0.60 },
 	}
 	require("telescope.builtin").git_status(opts)
 end
@@ -336,7 +308,7 @@ local function visit_yaml_node(node, name, yaml_path, result, file_path, bufnr)
 	end
 
 	if key ~= nil and string.len(key) > 0 then
-		table.remove(yaml_path, tonumber(table_maxn(yaml_path)))
+		table.remove(yaml_path, tonumber(utils.table_maxn(yaml_path)))
 	end
 end
 

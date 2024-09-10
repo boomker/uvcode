@@ -59,6 +59,7 @@ return function()
 				scrollD = "<C-d>",
 			},
 		},
+		---@diagnostic disable-next-line: unused-local
 		provider_selector = function(bufnr, filetype, buftype)
 			return ftMap[filetype] or { "treesitter", "indent" }
 			-- return ftMap[filetype]

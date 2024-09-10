@@ -9,8 +9,6 @@ local plug_map = {
 
 	-- Plugin nvim-tree
 	["n|<Leader>nt"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
-	["n|<Leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
-	["n|<Leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
 	-- ["n|<Leader>nt"] = map_cr("Neotree float"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	-- ["n|<Leader>nb"] = map_cr("Neotree buffers"):with_noremap():with_silent():with_desc("filetree: Buffers"),
 	-- ["n|<Leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Buffers"),
@@ -39,16 +37,14 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle float"),
-
 	["nv|<Leader>tc"] = map_cmd("<Cmd>ToggleTermSendCurrentLine<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("send current code to term"),
 	["v|<Leader>tv"] = map_cmd("<Cmd>ToggleTermSendVisualLines<CR>")
-        :with_noremap()
-        :with_silent()
+		:with_noremap()
+		:with_silent()
 		:with_desc("send selected code to term"),
-
 	["n|<Leader>tp"] = map_callback(function()
 			toggle_ipython()
 		end)
@@ -70,92 +66,56 @@ local plug_map = {
 
 	-- Plugin Telescope
 	["n|<Leader>fa"] = map_cu("Telescope"):with_noremap():with_silent():with_desc("telescope all commands"),
-	["n|<Leader>fc"] = map_cu("Telescope commands"):with_noremap():with_silent():with_desc("telescope commands"),
-	["n|<Leader>fP"] = map_callback(function()
-			require("telescope").extensions.projects.projects({})
+	-- ["n|<Leader>fc"] = map_cu("Telescope commands"):with_noremap():with_silent():with_desc("telescope commands"),
+	["n|<Leader>fc"] = map_callback(function()
+			_telescope_collections(require("telescope.themes").get_dropdown())
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: Project"),
-	["n|<Leader>ff"] = map_callback(function()
-			require("telescope").extensions.frecency.frecency()
+		:with_desc("tool: Open Telescope collections"),
+	["n|<Leader>fw"] = map_callback(function()
+			Telescope_find_file({ scope = "cwd" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("find: File by frecency"),
-	["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent():with_desc("Search GitRepo Files"),
-	["n|<Leader>fr"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
-	["n|<Leader>fo"] = map_cu("Telescope aerial"):with_noremap():with_silent():with_desc("aerial outline"),
-
-	["n|<Leader>fe"] = map_callback(function()
-			Telescope_project_files({ scope = "cwd" })
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("find: file in git CWD"),
-	["n|<Leader>fj"] = map_callback(function()
-			Telescope_project_files({ scope = "auto" })
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("find: file in git project"),
-	["n|<Leader>fw"] = map_cu("Telescope current_buffer_fuzzy_find")
-		:with_noremap()
-		:with_silent()
-		:with_desc("grep: word in buffer"),
+		:with_desc("find: file in cwd"),
 	["n|<Leader>fk"] = map_callback(function()
-            require("search").open({ collection = "pattern" })
+			require("search").open({ collection = "pattern" })
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("tool: Find patterns"),
-	--[[ ["n|<Leader>fk"] = map_cu("Telescope grep_string")
-        :with_noremap()
-        :with_silent()
-        :with_desc("grep: word under cursor in project"),
-	["n|<Leader>fK"] = map_callback(function()
-			Telescope_rg_kw({ word_match = true })
+	["n|<Leader>fh"] = map_callback(function()
+			require("search").open({ collection = "history" })
 		end)
 		:with_noremap()
 		:with_silent()
-		:with_desc("grep: word in project"), ]]
-	["n|<Leader>fB"] = map_callback(function()
-			Telescope_rg_live_grep({ scope = "buffers" })
-		end)
+		:with_desc("tool: Find history"),
+	["n|<Leader>f/"] = map_cu("Telescope current_buffer_fuzzy_find")
 		:with_noremap()
 		:with_silent()
-		:with_desc("rg: word in buffers opened"),
-	["n|<Leader>fM"] = map_callback(keymaps_panel)
+		:with_desc("grep: word in buffer"),
+	["n|<Leader>fM"] = map_callback(_command_panel)
 		:with_silent()
 		:with_noremap()
 		:with_desc("tool: Toggle keymapping panel"),
 	["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent():with_desc("notify"),
-	["n|<Leader>fh"] = map_cu("Telescope help_tags"):with_noremap():with_silent():with_desc("help_tags"),
+	["n|<Leader>fj"] = map_cu("Telescope jumplist"):with_noremap():with_silent():with_desc("jumplist"),
 	["n|<Leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
+	["n|<Leader>fr"] = map_cu("Telescope registers"):with_noremap():with_silent():with_desc("registers"),
+	["n|<Leader>fz"] = map_cu("Telescope help_tags"):with_noremap():with_silent():with_desc("help_tags"),
 	-- NOTE: do diagnostic for all buffers
-	["n|<Leader>fd"] = map_cu("Telescope diagnostics"):with_noremap():with_silent():with_desc("diagnostics in project"),
-	["n|<Leader>fp"] = map_cu("Telescope persisted"):with_noremap():with_silent():with_desc("find: Session"),
-	["n|<Leader>fR"] = map_cu("Telescope registers"):with_noremap():with_silent():with_desc("registers"),
+	["n|<Leader>fp"] = map_cu("Telescope diagnostics"):with_noremap():with_silent():with_desc("diagnostics in project"),
+	["n|<Leader>fo"] = map_cu("Telescope aerial"):with_noremap():with_silent():with_desc("aerial outline"),
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols")
 		:with_noremap()
 		:with_silent()
 		:with_desc("symbols in workspace"),
-	["n|<Leader>fz"] = map_cu("Telescope zoxide list")
+	-- search neovim config file and edit it
+	["n|<Leader>fu"] = map_callback(Telescope_find_neovim_config)
 		:with_noremap()
 		:with_silent()
-		:with_desc("zoxide: Change direrctory"),
-    -- History
-	["n|<Leader>hj"] = map_cu("Telescope jumplist"):with_noremap():with_silent():with_desc("jumplist"),
-	["n|<Leader>hc"] = map_cu("Telescope command_history"):with_noremap():with_silent():with_desc("command_history"),
-	["n|<Leader>hy"] = map_cu("Telescope yank_history"):with_noremap():with_silent():with_desc("yank_history"),
-	["n|<Leader>hu"] = map_callback(function()
-            require("telescope").extensions.undo.undo()
-        end):with_noremap():with_silent()
-		:with_desc("Telescope undo history"),
-    -- Git
-	["n|<Leader>gs"] = map_callback(Telescope_git_status):with_noremap():with_silent():with_desc("git_status"),
-	["n|<Leader>gc"] = map_callback(Telescope_git_bcommits):with_noremap():with_silent():with_desc("git_bcommits"),
-	["n|<Leader>gC"] = map_callback(Telescope_git_commits):with_noremap():with_silent():with_desc("git_commits"),
+		:with_desc("search Neovim config"),
 
 	-- Plugin dap
 	["n|<Leader>dc"] = map_callback(function()
@@ -220,38 +180,10 @@ local plug_map = {
 		:with_silent()
 		:with_desc("debug: Open REPL"),
 
-	-- Plugin spectre
-	["n|<Leader>sw"] = map_cr("lua require('spectre').open_visual({select_word=true})")
-		:with_noremap()
-		:with_silent()
-		:with_desc("spectre: Search cursor word"),
-	-- search in current file
-	["n|<Leader>sf"] = map_cr("lua require('spectre').open_file_search()")
-		:with_noremap()
-		:with_silent()
-		:with_desc("spectre: Search current file"),
-	["v|<Leader>sV"] = map_cr("lua require('spectre').open_visual()")
-		:with_noremap()
-		:with_silent()
-		:with_desc("spectre: open_visual"),
-	["n|<Leader>sO"] = map_cr("lua require('spectre').open()")
-        :with_noremap()
-        :with_silent()
-        :with_desc("spectre: open"),
-
 	-- Plugin Scratch
-	["n|<Leader>sn"] = map_cu("Scratch")
-        :with_noremap()
-        :with_silent()
-        :with_desc("Scratch new"),
-	["n|<Leader>so"] = map_cu("ScratchOpen")
-        :with_noremap()
-        :with_silent()
-        :with_desc("Scratch Open"),
-	["n|<Leader>sg"] = map_cu("ScratchOpenFzf")
-        :with_noremap()
-        :with_silent()
-        :with_desc("Scratch Open via grep string"),
+	["n|<Leader>sn"] = map_cu("Scratch"):with_noremap():with_silent():with_desc("Scratch new"),
+	["n|<Leader>so"] = map_cu("ScratchOpen"):with_noremap():with_silent():with_desc("Scratch Open"),
+	["n|<Leader>sg"] = map_cu("ScratchOpenFzf"):with_noremap():with_silent():with_desc("Scratch Open via grep string"),
 
 	-- Plugin nvim-gomove(move/copy text)
 	["i|<M-j>"] = map_cmd("<esc><Plug>GoNSMDown<esc>a"):with_noremap():with_silent(),

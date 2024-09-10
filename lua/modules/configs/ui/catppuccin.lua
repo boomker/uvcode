@@ -1,4 +1,4 @@
-return function ()
+return function()
 	local transparent_background = require("core.settings").transparent_background
 	local clear = {}
 
@@ -98,7 +98,7 @@ return function ()
 		color_overrides = {},
 		highlight_overrides = {
 			---@param cp palette
-			all = function (cp)
+			all = function(cp)
 				return {
 					-- For base configs
 					NormalFloat = { fg = cp.text, bg = transparent_background and cp.none or cp.mantle },

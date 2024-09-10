@@ -1,4 +1,4 @@
--- Now use `<A-k>` or `<A-1>` to back to the `dotstutor`.
+-- Now use `<A-o>` or `<A-1>` to back to the `dotstutor`.
 local autocmd = {}
 
 function autocmd.nvim_create_augroups(definitions)
@@ -71,40 +71,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(event.buf, "n", "q", "<Cmd>close<CR>", { silent = true })
 	end,
 })
-
--- Fix fold issue of files opened by telescope
-vim.api.nvim_create_autocmd("BufRead", {
-	callback = function()
-		vim.api.nvim_create_autocmd("BufWinEnter", {
-			once = true,
-			command = "normal! zx",
-		})
-	end,
-})
-
-
-local function set_ime(args)
-    if args.event:match("Enter$") then
-        vim.g.neovide_input_ime = true
-    else
-        vim.g.neovide_input_ime = false
-    end
-end
-
-local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
-
-vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
-    group = ime_input,
-    pattern = "*",
-    callback = set_ime
-})
-
-vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
-    group = ime_input,
-    pattern = "[/\\?]",
-    callback = set_ime
-})
-
 
 function autocmd.load_autocmds()
 	local definitions = {

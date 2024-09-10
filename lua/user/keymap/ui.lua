@@ -9,6 +9,8 @@ local plug_map = {
 
 	-- Bufferline
 	["n|<Leader>k"] = map_cr("BufferLinePick"):with_noremap():with_silent():with_desc("Pick buffer"),
+	["n|<Leader>bw"] = map_cr("BufferLineMovePrev"):with_noremap():with_silent():with_desc("Buffer: Move to prev"),
+	["n|<Leader>be"] = map_cr("BufferLineMoveNext"):with_noremap():with_silent():with_desc("Buffer: Move to next"),
 	["n|<Leader>bn"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("Buffer: Switch to next"),
 	["n|<Leader>bu"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("Buffer: Switch to prev"),
 	["n|<Leader>nn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("Buffer: New"),
@@ -27,10 +29,93 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("jump prev todo-comments"),
+	["n|[n"] = map_cr("lua require('todo-comments').jump_prev()")
+		:with_noremap()
+		:with_silent()
+		:with_desc("jump prev todo-comments"),
+	["n|]n"] = map_cr("lua require('todo-comments').jump_next()")
+		:with_noremap()
+		:with_silent()
+		:with_desc("jump next todo-comments"),
 
 	-- Plugin marks
-	["n|<Leader>ml"] = map_cu("MarksListAll"):with_noremap():with_silent():with_desc("Search All Marks"),
+	["n|<Leader>ml"] = map_cu("MarksListAll"):with_noremap():with_silent():with_desc("Marks: List all "),
 	["n|<Leader>bl"] = map_cu("BookmarksListAll"):with_noremap():with_silent():with_desc("Search All Bookmarks"),
 }
 
 bind.nvim_load_mapping(plug_map)
+
+local mapping = {}
+
+function mapping.gitsigns(buf)
+    local actions = require("gitsigns.actions")
+    local map = {
+        ["n|]g"] = bind.map_callback(function()
+            if vim.wo.diff then
+                return "]g"
+            end
+            vim.schedule(function()
+                actions.next_hunk()
+            end)
+            return "<Ignore>"
+        end)
+            :with_buffer(buf)
+            :with_expr()
+            :with_desc("git: Goto next hunk"),
+        ["n|[g"] = bind.map_callback(function()
+            if vim.wo.diff then
+                return "[g"
+            end
+            vim.schedule(function()
+                actions.prev_hunk()
+            end)
+            return "<Ignore>"
+        end)
+            :with_buffer(buf)
+            :with_expr()
+            :with_desc("git: Goto prev hunk"),
+        ["n|<leader>hs"] = bind.map_callback(function()
+            actions.stage_hunk()
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Stage hunk"),
+        ["v|<leader>hs"] = bind.map_callback(function()
+            actions.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Stage hunk"),
+        ["n|<leader>hx"] = bind.map_callback(function()
+            actions.undo_stage_hunk()
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Undo stage hunk"),
+        ["n|<leader>hr"] = bind.map_callback(function()
+            actions.reset_hunk()
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Reset hunk"),
+        ["v|<leader>hr"] = bind.map_callback(function()
+            actions.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Reset hunk"),
+        ["n|<leader>hR"] = bind.map_callback(function()
+            actions.reset_buffer()
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Reset buffer"),
+        ["n|<leader>hv"] = bind.map_callback(function()
+            actions.preview_hunk()
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Preview hunk"),
+        ["n|<leader>hb"] = bind.map_callback(function()
+            actions.blame_line({ full = true })
+        end)
+            :with_buffer(buf)
+            :with_desc("git: Blame line"),
+    }
+    bind.nvim_load_mapping(map)
+end
+
+return mapping
