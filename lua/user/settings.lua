@@ -90,7 +90,6 @@ settings["disabled_plugins"] = {
     "zbirenbaum/copilot.lua",
     "zbirenbaum/copilot-cmp",
 	"ojroques/nvim-bufdel",
-	"Bekaboo/dropbar.nvim", -- 导航栏下拉菜单选择文件, 可有可无
 	"lambdalisue/suda.vim", -- read or write files with sudo command
 	"andersevenrud/cmp-tmux",
 	"ibhagwan/smartyank.nvim",

@@ -1,5 +1,5 @@
 return function()
-	require("modules.configs.tool.telescope_ui")
+	require("user.configs.ui.telescope_ui")
 	local icons = { ui = require("modules.utils.icons").get("ui", true) }
 	local lga_actions = require("telescope-live-grep-args.actions")
 
@@ -69,7 +69,9 @@ return function()
 					["<esc>"] = actions.close,
 					["<C-h>"] = actions.which_key,
 					["<C-a>"] = actions.toggle_all,
-					["<C-b>"] = actions.preview_scrolling_up,
+					["<C-n>"] = actions.cycle_history_next,
+					["<C-p>"] = actions.cycle_history_prev,
+                    ["<C-b>"] = actions.preview_scrolling_up,
 					["<C-v>"] = actions_layout.toggle_preview,
 					["<C-j>"] = actions.toggle_selection + actions.move_selection_next,
 					["<C-k>"] = actions.toggle_selection + actions.move_selection_previous,
@@ -214,6 +216,7 @@ return function()
 	require("telescope").load_extension("notify")
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("aerial")
+    require("telescope").load_extension('cmdline')
 	require("telescope").load_extension("frecency")
 	require("telescope").load_extension("projects")
 	require("telescope").load_extension("persisted")

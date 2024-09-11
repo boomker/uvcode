@@ -1,5 +1,5 @@
 local bind = require("keymap.bind")
-local map_cr = bind.map_cr
+-- local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 -- local map_callback = bind.map_callback
@@ -30,7 +30,7 @@ local core_map = {
 	-- replace with magic by default
 	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
 	["c|<C-s>"] = map_cmd([[%s/\v]]):with_noremap(),
-	["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
+    ["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
 
 	-- Substitute current search kw to null
 	["n|<leader>sn"] = map_cmd(":.s//<CR>"):with_noremap():with_silent():with_desc("Substitute current line kw"),
@@ -42,16 +42,11 @@ local core_map = {
 		:with_expr()
 		:with_desc("select last pasted region"),
 
-	["n|y"] = map_cmd([[<Plug>(YankyYank)]]):with_noremap():with_silent(),
-	["x|y"] = map_cmd([[<Plug>(YankyYank)]]):with_noremap():with_silent(),
-	["n|p"] = map_cmd([[<Plug>(YankyPutAfter)]]):with_noremap():with_silent(),
-	["x|p"] = map_cmd([[<Plug>(YankyPutAfter)]]):with_noremap():with_silent(),
-	["n|P"] = map_cmd([[<Plug>(YankyPutBefore)]]):with_noremap():with_silent(),
-	["x|P"] = map_cmd([[<Plug>(YankyPutBefore)]]):with_noremap():with_silent(),
-	["n|gp"] = map_cmd([[<Plug>(YankyGPutAfter)]]):with_noremap():with_silent():with_desc("yanky put after"),
-	["x|gp"] = map_cmd([[<Plug>(YankyGPutAfter)]]):with_noremap():with_silent():with_desc("yanky put after"),
-	["n|gP"] = map_cmd([[<Plug>(YankyGPutBefore)]]):with_noremap():with_silent():with_desc("yanky put before"),
-	["x|gP"] = map_cmd([[<Plug>(YankyGPutBefore)]]):with_noremap():with_silent():with_desc("yanky put before"),
+	["nx|y"] = map_cmd([[<Plug>(YankyYank)]]):with_noremap():with_silent(),
+	["nx|p"] = map_cmd([[<Plug>(YankyPutAfter)]]):with_noremap():with_silent(),
+	["nx|P"] = map_cmd([[<Plug>(YankyPutBefore)]]):with_noremap():with_silent(),
+	["nx|gp"] = map_cmd([[<Plug>(YankyGPutAfter)]]):with_noremap():with_silent():with_desc("yanky put after"),
+	["nx|gP"] = map_cmd([[<Plug>(YankyGPutBefore)]]):with_noremap():with_silent():with_desc("yanky put before"),
 
 	-- useful, for keep indent
 	["n|=p"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
@@ -99,13 +94,15 @@ local core_map = {
 	["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
 	["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
 
-    -- Insert mode
+	-- Insert mode
+	["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap():with_desc("edit: Move cursor to line start"),
 	["i|<C-l>"] = map_cmd("<esc>$a"):with_noremap():with_desc("edit: Move cursor to line end"),
 	["i|<C-x>e"] = map_cmd("<esc><C-w>="):with_noremap(),
+	["i|<C-x>o"] = map_cmd("<esc><C-w>o"):with_noremap(),
 	["i|<C-x>x"] = map_cmd("<esc><C-w>o"):with_noremap(),
 	["i|<C-x>s"] = map_cmd("<esc><C-w>r"):with_noremap(),
 	["i|<C-x>w"] = map_cmd("<esc><C-w>w"):with_noremap(),
-    ["i|<C-x>m"] = map_cmd("<esc><C-w>_<C-w>|"):with_noremap(),
+	["i|<C-x>m"] = map_cmd("<esc><C-w>_<C-w>|"):with_noremap(),
 	["i|<C-x>d"] = map_cmd("<esc>ddi"):with_noremap(),
 	["i|<C-x>h"] = map_cmd("<esc>m'*`'"):with_noremap(),
 	["i|<C-x>u"] = map_cmd("<esc>m'gUiw`'a"):with_noremap(),
@@ -120,7 +117,6 @@ local core_map = {
 	["i|<C-x>t"] = map_cmd("<esc>:'ToggleTerm direction=float'<CR>"):with_noremap(),
 	["i|<C-x>f"] = map_cmd("<esc>:Telescope current_buffer_fuzzy_find<CR>"):with_noremap(),
 
-	["i|<D-/>"] = map_cmd("<esc>/"):with_noremap(),
 	["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
 	["i|<D-b>"] = map_cmd("<C-O>b"):with_noremap(),
 	["i|<D-f>"] = map_cmd("<C-O>w"):with_noremap(),
@@ -137,47 +133,27 @@ local core_map = {
 	["n|<leader>ww"] = map_cmd("<C-w>w"):with_noremap():with_desc("window: Focus least"),
 	["n|<leader>wv"] = map_cmd("<C-w>v<C-^>"):with_noremap():with_silent():with_desc("window horizon"),
 	["n|<leader>ws"] = map_cmd("<C-w>s<C-^>"):with_noremap():with_silent():with_desc("window split"),
-	-- ["n|<leader>wJ"] = map_cmd("<C-w>J"):with_noremap():with_silent():with_desc("window: swap up/down pos"),
-	-- ["n|<leader>wK"] = map_cmd("<C-w>K"):with_noremap():with_silent():with_desc("window: swap up/down pos"),
-	-- ["n|<leader>wH"] = map_cmd("<C-w>H"):with_noremap():with_silent():with_desc("window: swap left/right pos"),
-	-- ["n|<leader>wL"] = map_cmd("<C-w>L"):with_noremap():with_silent():with_desc("window: swap left/right pos"),
-	-- ["n|<leader>wr"] = map_cmd("<C-w>r"):with_noremap():with_silent(),
 	-- ["n|<leader>wS"] = map_cmd(":split<CR>"):with_noremap():with_silent(),
 	-- ["n|<leader>wV"] = map_cmd(":vsplit<CR>"):with_noremap():with_silent(),
 
 	-- window resize
 	["n|<leader>re"] = map_cmd("<C-w>="):with_noremap():with_silent():with_desc("window size reset"),
-	["n|<leader>rj"] = map_cr("resize +2"):with_noremap():with_silent():with_desc("window resize add"),
-	["n|<leader>rk"] = map_cr("resize -2"):with_noremap():with_silent():with_desc("window resize min"),
-	["n|<leader>rh"] = map_cr("vertical resize +5"):with_noremap():with_silent():with_desc("split window resize add"),
-	["n|<leader>rl"] = map_cr("vertical resize -5"):with_noremap():with_silent():with_desc("split window resize min"),
-
-	--[[
-    ["n|<D-Up>"] = map_cr("resize -2"):with_silent(),
-	["n|<D-Down>"] = map_cr("resize +2"):with_silent(),
-	["n|<D-Left>"] = map_cr("vertical resize -5"):with_silent(),
-	["n|<D-Right>"] = map_cr("vertical resize +5"):with_silent(),
-    ]]
-
-	-- ToggleTerm
-	["t|<D-Up>"] = map_cmd("<Esc><Cmd>resize -2<CR>"):with_silent(),
-    ["t|<D-Down>"] = map_cmd("<Esc><Cmd>resize +2<CR>"):with_silent(),
-	["t|<D-Left>"] = map_cmd("<Esc><Cmd>vertical resize -5<CR>"):with_silent(),
-    ["t|<D-Right>"] = map_cmd("<Esc><Cmd>vertical resize +5<CR>"):with_silent(),
+	["n|<leader>rm"] = map_cmd("<C-w>_<C-w>|"):with_noremap():with_silent():with_desc("window size max"),
 
 	["t|<D-b>"] = map_cmd("<C-Left>"):with_noremap():with_silent(),
 	["t|<D-f>"] = map_cmd("<C-Right>"):with_noremap():with_silent(),
 	["t|<D-v>"] = map_cmd([[<C-\><C-n>pa]]):with_noremap():with_silent(),
-    ["t|<D-C-h>"] = map_cmd("<Cmd>wincmd h<CR>"):with_silent():with_noremap():with_desc("window: Focus left"),
-    ["t|<D-C-l>"] = map_cmd("<Cmd>wincmd l<CR>"):with_silent():with_noremap():with_desc("window: Focus right"),
-    ["t|<D-C-j>"] = map_cmd("<Cmd>wincmd j<CR>"):with_silent():with_noremap():with_desc("window: Focus down"),
-    ["t|<D-C-k>"] = map_cmd("<Cmd>wincmd k<CR>"):with_silent():with_noremap():with_desc("window: Focus up"),
+	["t|<D-C-h>"] = map_cmd("<Cmd>wincmd h<CR>"):with_silent():with_noremap():with_desc("window: Focus left"),
+	["t|<D-C-l>"] = map_cmd("<Cmd>wincmd l<CR>"):with_silent():with_noremap():with_desc("window: Focus right"),
+	["t|<D-C-j>"] = map_cmd("<Cmd>wincmd j<CR>"):with_silent():with_noremap():with_desc("window: Focus down"),
+	["t|<D-C-k>"] = map_cmd("<Cmd>wincmd k<CR>"):with_silent():with_noremap():with_desc("window: Focus up"),
 	["t|<D-C-w>"] = map_cmd([[<C-\><C-n><C-w>w]]):with_noremap():with_silent(),
 	["t|<D-C-t>"] = map_cmd([[<C-\><C-n><C-w>t]]):with_noremap():with_silent(),
 	["t|<D-C-b>"] = map_cmd([[<C-\><C-n><C-w>b]]):with_noremap():with_silent(),
+	["t|<D-C-m>"] = map_cmd([[<C-\><C-n><C-w>_<C-w>|]]):with_noremap():with_silent(),
 	["t|<D-C-c>"] = map_cmd([[<C-\><C-n><C-w>t:]]):with_noremap(),
 
-    -- Command mode
+	-- Command mode
 	["c|<D-b>"] = map_cmd("<C-Left>"):with_noremap(),
 	["c|<D-f>"] = map_cmd("<C-Right>"):with_noremap(),
 	["c|SW!"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"),

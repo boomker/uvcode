@@ -46,19 +46,19 @@ local plug_map = {
 		:with_silent()
 		:with_desc("send selected code to term"),
 	["n|<Leader>tp"] = map_callback(function()
-			toggle_ipython()
+			Toggle_ipython()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("python: Toggle ipython"),
 	["n|<Leader>tg"] = map_callback(function()
-			toggle_lazygit()
+			Toggle_lazygit()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("git: Toggle lazygit"),
 	["t|<D-g>"] = map_callback(function()
-			toggle_lazygit()
+			Toggle_lazygit()
 		end)
 		:with_noremap()
 		:with_silent()
@@ -66,8 +66,7 @@ local plug_map = {
 
 	-- Plugin Telescope
 	["n|<Leader>fa"] = map_cu("Telescope"):with_noremap():with_silent():with_desc("telescope all commands"),
-	-- ["n|<Leader>fc"] = map_cu("Telescope commands"):with_noremap():with_silent():with_desc("telescope commands"),
-	["n|<Leader>fc"] = map_callback(function()
+	["n|<Leader>fC"] = map_callback(function()
 			_telescope_collections(require("telescope.themes").get_dropdown())
 		end)
 		:with_noremap()
@@ -95,6 +94,14 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("grep: word in buffer"),
+	["n|<Leader>fc"] = map_cmd(":Telescope cmdline<CR>")
+		:with_noremap()
+		:with_silent()
+		:with_desc("tool: Cmdline"),
+	["n|:"] = map_cmd(":Telescope cmdline<CR>")
+		:with_noremap()
+		:with_silent()
+		:with_desc("tool: Cmdline"),
 	["n|<Leader>fM"] = map_callback(_command_panel)
 		:with_silent()
 		:with_noremap()
@@ -186,8 +193,8 @@ local plug_map = {
 	["n|<Leader>sg"] = map_cu("ScratchOpenFzf"):with_noremap():with_silent():with_desc("Scratch Open via grep string"),
 
 	-- Plugin nvim-gomove(move/copy text)
-	["i|<M-j>"] = map_cmd("<esc><Plug>GoNSMDown<esc>a"):with_noremap():with_silent(),
-	["i|<M-k>"] = map_cmd("<esc><Plug>GoNSMUp<esc>a"):with_noremap():with_silent(),
+	["i|<M-j>"] = map_cmd("<esc><Plug>GoNSMDown"):with_noremap():with_silent(),
+	["i|<M-k>"] = map_cmd("<esc><Plug>GoNSMUp"):with_noremap():with_silent(),
 	-- normal mode move text
 	["n|<M-j>"] = map_cmd([[<Plug>GoNSMDown]]):with_noremap():with_silent(),
 	["n|<M-k>"] = map_cmd([[<Plug>GoNSMUp]]):with_noremap():with_silent(),

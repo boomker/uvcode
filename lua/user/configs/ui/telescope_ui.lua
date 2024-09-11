@@ -1,7 +1,7 @@
-local normal_hl = vim.api.nvim_get_hl_by_name("Normal", true)
+local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
 
-local purple1 = "#333352"
 local beige1 = "#575268"
+local purple1 = "#333352"
 -- local purple2 = "#232338"
 local purple3 = "#12121c"
 local red1 = "#fc2e34"
@@ -63,7 +63,8 @@ vim.api.nvim_set_hl(0, "TelescopeResultsTitle", {
 
 vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", {
 	fg = blue1,
-	bg = vim.api.nvim_get_hl_by_name("TelescopeSelection", true).background,
+    bg = beige1
+	-- bg = vim.api.nvim_get_hl_by_name("TelescopeSelection", true).background,
 })
 
 ----------------------------------------------------------------------

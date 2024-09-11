@@ -4,20 +4,20 @@ editor["danymat/neogen"] = {
 	lazy = true,
 	cmd = { "Neogen" },
 	dependencies = "nvim-treesitter/nvim-treesitter",
-	config = require("configs.editor.neogen"),
+	config = require("user.configs.editor.neogen"),
 }
 
 editor["gbprod/yanky.nvim"] = {
 	lazy = true,
 	event = "VimEnter",
-	config = require("configs.editor.yanky"),
+	config = require("user.configs.editor.yanky"),
 	dependencies = { "kkharji/sqlite.lua" },
 }
 
 editor["gbprod/substitute.nvim"] = {
 	lazy = true,
 	event = "BufRead",
-	config = require("configs.editor.substitute"),
+	config = require("user.configs.editor.substitute"),
 }
 
 editor["booperlv/nvim-gomove"] = {
@@ -69,5 +69,36 @@ editor["brenton-leighton/multiple-cursors.nvim"] = {
 		require("multiple-cursors").setup()
 	end,
 }
+
+-- === overwrite plugins config -- ===
+editor["sindrets/diffview.nvim"] = {
+	lazy = true,
+	cmd = { "DiffviewOpen", "DiffviewClose" },
+	keys = {
+		{ "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "git: File history" },
+	},
+	config = require("user.configs.editor.diffview"),
+}
+
+editor["m4xshen/autoclose.nvim"] = {
+	lazy = true,
+	event = "InsertEnter",
+	config = require("user.configs.editor.autoclose"),
+}
+
+editor["folke/flash.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("user.configs.editor.flash"),
+}
+
+--[[
+editor["smoka7/hop.nvim"] = {
+	lazy = true,
+	version = "*",
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("user.configs.editor.hop"),
+}
+]]
 
 return editor

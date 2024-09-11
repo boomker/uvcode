@@ -1,4 +1,3 @@
----@diagnostic disable: lowercase-global
 local utils = require("core.utils")
 
 _G._command_panel = function()
@@ -53,7 +52,7 @@ _G._flash_esc_or_noh = function()
 end
 
 local _lazygit = nil
-function toggle_lazygit()
+function Toggle_lazygit()
 	if not _lazygit then
 		local Terminal = require("toggleterm.terminal").Terminal
 		_lazygit = Terminal:new({
@@ -66,7 +65,7 @@ function toggle_lazygit()
 end
 
 local _ipython = nil
-function toggle_ipython()
+function Toggle_ipython()
 	if not _ipython then
 		local Terminal = require("toggleterm.terminal").Terminal
 		_ipython = Terminal:new({
@@ -249,11 +248,11 @@ Telescope_git_status = function(opts)
 end
 
 -- ╭───────────────────────────────────────────────────────────────╮
--- │ From Ecovim Custom toggle file history function via <leader>dh│
+-- │ From Ecovim Custom toggle file history function via <leader>dF│
 -- ╰───────────────────────────────────────────────────────────────╯
-toggle_file_history = function()
+Toggle_files_diff = function()
 	local view = require("diffview.lib").get_current_view()
-	if view == nil then
+	if not view  then
 		require("diffview").file_history()
 		return
 	end
@@ -267,9 +266,9 @@ end
 -- ╭───────────────────────────────────────────────────────────────╮
 -- │ From Ecovim Custom toggle file diff function via <leader>df   │
 -- ╰───────────────────────────────────────────────────────────────╯
-toggle_show_diff = function()
+Toggle_diffview = function()
 	local view = require("diffview.lib").get_current_view()
-	if view == nil then
+	if not view then
 		require("diffview").open()
 		return
 	end

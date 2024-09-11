@@ -20,20 +20,20 @@ tool["m-demare/hlargs.nvim"] = {
 tool["kevinhwang91/nvim-ufo"] = {
 	lazy = true,
 	event = "BufRead",
-	config = require("configs.tool.nvim-ufo"),
+	config = require("user.configs.tool.nvim-ufo"),
 	dependencies = { { "kevinhwang91/promise-async", lazy = true } },
 }
 
 tool["kevinhwang91/nvim-hlslens"] = {
 	lazy = true,
 	event = "SearchWrapped",
-	config = require("configs.tool.nvim-hlslens"),
+	config = require("user.configs.tool.nvim-hlslens"),
 }
 
 tool["chentoast/marks.nvim"] = {
 	lazy = true,
 	event = "BufRead",
-	config = require("configs.tool.marks"),
+	config = require("user.configs.tool.marks"),
 }
 
 -- [ + upper-suffix : go first.
@@ -63,7 +63,7 @@ tool["echasnovski/mini.bufremove"] = {
 tool["willothy/flatten.nvim"] = {
 	lazy = false,
 	-- event = "VeryLazy",
-	config = require("configs.tool.flatten"),
+	config = require("user.configs.tool.flatten"),
 }
 
 tool["LintaoAmons/scratch.nvim"] = {
@@ -101,11 +101,65 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 	end,
 }
 
+-- === overwrite plugins config -- ===
+
+tool["nvim-tree/nvim-tree.lua"] = {
+	lazy = true,
+	cmd = {
+		"NvimTreeToggle",
+		"NvimTreeOpen",
+		"NvimTreeFindFile",
+		"NvimTreeFindFileToggle",
+		"NvimTreeRefresh",
+	},
+	config = require("user.configs.tool.nvim-tree"),
+}
+
+tool["folke/which-key.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("user.configs.tool.which-key"),
+}
+
+tool["nvim-telescope/telescope.nvim"] = {
+	lazy = true,
+	cmd = "Telescope",
+	config = require("user.configs.tool.telescope"),
+	dependencies = {
+		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-tree/nvim-web-devicons" },
+		{ "jvgrootveld/telescope-zoxide" },
+		{ "debugloop/telescope-undo.nvim" },
+        { "jonarrien/telescope-cmdline.nvim" },
+		{ "nvim-telescope/telescope-frecency.nvim" },
+		{ "nvim-telescope/telescope-live-grep-args.nvim" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{
+			"FabianWirth/search.nvim",
+			config = require("user.configs.tool.search"),
+		},
+		{
+			"ahmedkhalf/project.nvim",
+			event = { "CursorHold", "CursorHoldI" },
+			config = require("tool.project"),
+		},
+		{
+			"aaronhallaert/advanced-git-search.nvim",
+			cmd = { "AdvancedGitSearch" },
+			dependencies = {
+				"tpope/vim-rhubarb",
+				"tpope/vim-fugitive",
+				"sindrets/diffview.nvim",
+			},
+		},
+	},
+}
+
 --[[
 tool["numToStr/Navigator.nvim"] = {
 	lazy = true,
 	event = "VeryLazy",
-	config = require("configs.tool.navigator"),
+	config = require("user.configs.tool.navigator"),
 }
 
 tool["amitds1997/remote-nvim.nvim"] = {
@@ -117,7 +171,7 @@ tool["amitds1997/remote-nvim.nvim"] = {
 		"MunifTanjim/nui.nvim", -- To build the plugin UI
 		"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
 	},
-	config = require("configs.tool.remote-nvim"),
+	config = require("user.configs.tool.remote-nvim"),
 }
 
 tool["nvim-neo-tree/neo-tree.nvim"] = {
@@ -132,7 +186,7 @@ tool["nvim-neo-tree/neo-tree.nvim"] = {
 		"MunifTanjim/nui.nvim",
 		-- "3rd/image.nvim",
 	},
-	config = require("configs.tool.neo-tree"),
+	config = require("user.configs.tool.neo-tree"),
 }
 
 ]]
