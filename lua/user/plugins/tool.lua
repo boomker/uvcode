@@ -130,7 +130,7 @@ tool["nvim-telescope/telescope.nvim"] = {
 		{ "nvim-tree/nvim-web-devicons" },
 		{ "jvgrootveld/telescope-zoxide" },
 		{ "debugloop/telescope-undo.nvim" },
-        { "jonarrien/telescope-cmdline.nvim" },
+		{ "jonarrien/telescope-cmdline.nvim" },
 		{ "nvim-telescope/telescope-frecency.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -155,7 +155,27 @@ tool["nvim-telescope/telescope.nvim"] = {
 	},
 }
 
+tool["nvim-neo-tree/neo-tree.nvim"] = {
+	lazy = true,
+	cmd = {
+		"Neotree",
+	},
+	branch = "v3.x",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"MunifTanjim/nui.nvim",
+		-- "3rd/image.nvim",
+	},
+	config = require("user.configs.tool.neo-tree"),
+}
+
 --[[
+tool["zeioth/garbage-day.nvim"] = {
+    lazy = true,
+    event = "LspAttach",
+}
+
 tool["numToStr/Navigator.nvim"] = {
 	lazy = true,
 	event = "VeryLazy",
@@ -174,20 +194,6 @@ tool["amitds1997/remote-nvim.nvim"] = {
 	config = require("user.configs.tool.remote-nvim"),
 }
 
-tool["nvim-neo-tree/neo-tree.nvim"] = {
-	lazy = true,
-	cmd = {
-		"Neotree",
-	},
-	branch = "v3.x",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
-		"MunifTanjim/nui.nvim",
-		-- "3rd/image.nvim",
-	},
-	config = require("user.configs.tool.neo-tree"),
-}
 
 ]]
 

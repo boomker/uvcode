@@ -32,7 +32,7 @@ return function()
 			default = {
 				-- Config for changed files, and staged files in diff views.
 				layout = "diff2_horizontal",
-				winbar_info = false, -- See ':h diffview-config-view.x.winbar_info'
+				winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
 			},
 			merge_tool = {
 				-- Config for conflicted files in diff views during a merge or rebase.
@@ -43,7 +43,7 @@ return function()
 			file_history = {
 				-- Config for changed files in file history views.
 				layout = "diff2_horizontal",
-				winbar_info = false, -- See ':h diffview-config-view.x.winbar_info'
+				winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
 			},
 		},
 		file_panel = {

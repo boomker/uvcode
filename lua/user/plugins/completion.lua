@@ -12,9 +12,11 @@ completion["Exafunction/codeium.nvim"] = {
 }
 
 --[[
-completion["zeioth/garbage-day.nvim"] = {
-    lazy = true,
-    event = "LspAttach",
+{
+      "yetone/avante.nvim",
+      event = "VeryLazy",
+      lazy = false,
+      version = false, -- set this if you want to always pull the latest change
 }
 
 completion["iurimateus/luasnip-latex-snippets.nvim"] = {
@@ -23,43 +25,6 @@ completion["iurimateus/luasnip-latex-snippets.nvim"] = {
     config = require("configs.completion.luasnip-latex-snippets"),
 }
 
-completion["hrsh7th/cmp-cmdline"] = {
-	lazy = true,
-	event = { "InsertEnter" },
-	dependencies = { "hrsh7th/nvim-cmp" },
-	opts = function()
-		local cmp = require("cmp")
-		return {
-			{
-				type = "/",
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-				},
-			},
-			{
-				type = ":",
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "path" },
-				}, {
-					{
-						name = "cmdline",
-						option = {
-							ignore_cmds = { "Man", "!" },
-						},
-					},
-				}),
-			},
-		}
-	end,
-	config = function(_, opts)
-		local cmp = require("cmp")
-		vim.tbl_map(function(val)
-			cmp.setup.cmdline(val.type, val)
-		end, opts)
-	end,
-}
 ]]
 
 return completion

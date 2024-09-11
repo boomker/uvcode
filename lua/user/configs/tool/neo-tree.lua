@@ -8,7 +8,7 @@ return function()
 		sources = {
 			"filesystem",
 			"git_status",
-			"buffers",
+			-- "buffers",
 		},
 		source_selector = {
 			winbar = true, -- toggle to show selector on winbar
@@ -17,8 +17,8 @@ return function()
 			-- of the top visible node when scrolled down.
 			sources = {
 				{ source = "filesystem" },
-				{ source = "buffers" },
 				{ source = "git_status" },
+				-- { source = "buffers" },
 			},
 			content_layout = "center", -- only with `tabs_layout` = "equal", "focus"
 			--                start  : |/ 󰓩 bufname     \/...
@@ -54,10 +54,10 @@ return function()
 		},
 		enable_git_status = true,
 		enable_diagnostics = true,
-        close_if_last_window = true,
+		close_if_last_window = true,
 		default_source = "filesystem",
-        popup_border_style = "rounded",
-        -- when opening files, do not use windows containing these filetypes or buftypes
+		popup_border_style = "rounded",
+		-- when opening files, do not use windows containing these filetypes or buftypes
 		sort_case_insensitive = false, -- used when sorting files and directories in the tree
 		sort_function = function(a, b)
 			if a.type == b.type then
@@ -138,7 +138,45 @@ return function()
 				enabled = false,
 			},
 		},
-		commands = {},
+		commands = {
+			copy_selector = function(state)
+				local node = state.tree:get_node()
+				local filepath = node:get_id()
+				local filename = node.name
+				local modify = vim.fn.fnamemodify
+
+				local vals = {
+					["FILENAME"] = filename,
+					["BASENAME"] = modify(filename, ":r"),
+					["EXTENSION"] = modify(filename, ":e"),
+					["PATH (relative)"] = modify(filepath, ":."),
+					["PATH (home)"] = modify(filepath, ":~"),
+					["PATH (uri)"] = vim.uri_from_fname(filepath),
+					["PATH (absolute)"] = filepath,
+				}
+
+				local options = vim.tbl_filter(function(val)
+					return vals[val] ~= ""
+				end, vim.tbl_keys(vals))
+				if vim.tbl_isempty(options) then
+					vim.notify("No values to copy", vim.log.levels.WARN)
+					return
+				end
+				table.sort(options)
+				vim.ui.select(options, {
+					prompt = "Choose to copy to clipboard:",
+					format_item = function(item)
+						return ("%s: %s"):format(item, vals[item])
+					end,
+				}, function(choice)
+					local result = vals[choice]
+					if result then
+						vim.notify(("Copied: `%s`"):format(result))
+						vim.fn.setreg("+", result)
+					end
+				end)
+			end,
+		},
 		nesting_rules = {},
 		window = {
 			position = "left",
@@ -152,25 +190,26 @@ return function()
 					"toggle_node",
 					nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
 				},
-				["<2-LeftMouse>"] = "open",
+				["o"] = "open",
+				["l"] = "open",
 				["<cr>"] = "open",
+				-- ["<cr>"] = "open_drop",
+				["<2-LeftMouse>"] = "open",
 				["<esc>"] = "cancel", -- close preview or floating neo-tree window
 				["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 				-- Read `# Preview Mode` for more information
-				["l"] = "focus_preview",
+				["V"] = "focus_preview",
 				["S"] = "open_split",
 				["s"] = "open_vsplit",
 				-- ["S"] = "split_with_window_picker",
 				-- ["s"] = "vsplit_with_window_picker",
 				["t"] = "open_tabnew",
-				-- ["<cr>"] = "open_drop",
 				-- ["t"] = "open_tab_drop",
 				["w"] = "open_with_window_picker",
-				--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
 				["C"] = "close_node",
 				-- ['C'] = 'close_all_subnodes',
 				["z"] = "close_all_nodes",
-				--["Z"] = "expand_all_nodes",
+				["Z"] = "expand_all_nodes",
 				["a"] = {
 					"add",
 					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -182,19 +221,15 @@ return function()
 				["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
 				["d"] = "delete",
 				["r"] = "rename",
+				["Y"] = "copy_selector",
 				["y"] = "copy_to_clipboard",
 				["x"] = "cut_to_clipboard",
 				["p"] = "paste_from_clipboard",
 				["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-				-- ["c"] = {
-				--  "copy",
-				--  config = {
-				--    show_path = "none" -- "none", "relative", "absolute"
-				--  }
-				--}
 				["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 				["q"] = "close_window",
 				["R"] = "refresh",
+				["O"] = false,
 				["?"] = "show_help",
 				["<"] = "prev_source",
 				[">"] = "next_source",
@@ -210,16 +245,30 @@ return function()
 				hide_by_name = {
 					--"node_modules"
 				},
-				hide_by_pattern = { -- uses glob style patterns
-					--"*.meta",
-					--"*/src/*/tsconfig.json",
+				hide_by_pattern = {
+					"*.gif",
+					"*.pdf",
+					"*.png",
+					"*.sim",
+					"*.digi",
+					"*.mdf",
+					"*.dst",
+					"test_catalog-*.000000.xml",
 				},
 				always_show = { -- remains visible even if other settings would normally hide it
-					--".gitignored",
+					".config",
+					".gitignore",
+					"config.json",
+					"histo.root",
+					"tuple.root",
+					"yaml",
+					".schema.json",
 				},
 				never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-					--".DS_Store",
-					--"thumbs.db"
+					-- "^.git/",
+					".DS_Store",
+					"thumbs.db",
+					"__pycache__",
 				},
 				never_show_by_pattern = { -- uses glob style patterns
 					--".null-ls_*",
@@ -251,14 +300,15 @@ return function()
 					["<c-x>"] = "clear_filter",
 					["[g"] = "prev_git_modified",
 					["]g"] = "next_git_modified",
-					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["oc"] = { "order_by_created", nowait = false },
-					["od"] = { "order_by_diagnostics", nowait = false },
-					["og"] = { "order_by_git_status", nowait = false },
-					["om"] = { "order_by_modified", nowait = false },
-					["on"] = { "order_by_name", nowait = false },
-					["os"] = { "order_by_size", nowait = false },
-					["ot"] = { "order_by_type", nowait = false },
+					["O"] = false,
+					-- ["O"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+					["Oc"] = { "order_by_created", nowait = false },
+					["Od"] = { "order_by_diagnostics", nowait = false },
+					["Og"] = { "order_by_git_status", nowait = false },
+					["Om"] = { "order_by_modified", nowait = false },
+					["On"] = { "order_by_name", nowait = false },
+					["Os"] = { "order_by_size", nowait = false },
+					["Ot"] = { "order_by_type", nowait = false },
 				},
 				fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 					["<down>"] = "move_cursor_down",
@@ -283,13 +333,14 @@ return function()
 					["bd"] = "buffer_delete",
 					["<bs>"] = "navigate_up",
 					["."] = "set_root",
-					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["oc"] = { "order_by_created", nowait = false },
-					["od"] = { "order_by_diagnostics", nowait = false },
-					["om"] = { "order_by_modified", nowait = false },
-					["on"] = { "order_by_name", nowait = false },
-					["os"] = { "order_by_size", nowait = false },
-					["ot"] = { "order_by_type", nowait = false },
+					["O"] = false,
+					-- ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+					["Oc"] = { "order_by_created", nowait = false },
+					["Od"] = { "order_by_diagnostics", nowait = false },
+					["Om"] = { "order_by_modified", nowait = false },
+					["On"] = { "order_by_name", nowait = false },
+					["Os"] = { "order_by_size", nowait = false },
+					["Ot"] = { "order_by_type", nowait = false },
 				},
 			},
 		},
@@ -304,32 +355,36 @@ return function()
 					["gc"] = "git_commit",
 					["gp"] = "git_push",
 					["gg"] = "git_commit_and_push",
-					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["oc"] = { "order_by_created", nowait = false },
-					["od"] = { "order_by_diagnostics", nowait = false },
-					["om"] = { "order_by_modified", nowait = false },
-					["on"] = { "order_by_name", nowait = false },
-					["os"] = { "order_by_size", nowait = false },
-					["ot"] = { "order_by_type", nowait = false },
+					-- ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+					["o"] = { "open" },
+					["O"] = false,
+					["Oc"] = { "order_by_created", nowait = false },
+					["Od"] = { "order_by_diagnostics", nowait = false },
+					["Om"] = { "order_by_modified", nowait = false },
+					["On"] = { "order_by_name", nowait = false },
+					["Os"] = { "order_by_size", nowait = false },
+					["Ot"] = { "order_by_type", nowait = false },
 				},
 			},
 		},
 		open_files_do_not_replace_types = {
-            "qf",
-            "git",
-            "diff",
-            "notify",
-            "Outline",
-            "trouble",
-            "terminal",
-            "NvimTree",
-            "dap-repl",
-            "fugitive",
-            "undotree",
-            "toggleterm",
-            "fugitiveblame",
-            "TelescopePrompt",
-        },
+			-- "git",
+			-- "edgy",
+			-- "overseerlist",
+			-- "OverseerList",
+			"qf",
+			"diff",
+			"notify",
+			"Outline",
+			"trouble",
+			"terminal",
+			"NvimTree",
+			"dap-repl",
+			"fugitive",
+			"undotree",
+			"toggleterm",
+			"fugitiveblame",
+			"TelescopePrompt",
+		},
 	})
-
 end

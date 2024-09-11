@@ -94,7 +94,7 @@ settings["disabled_plugins"] = {
 	"andersevenrud/cmp-tmux",
 	"ibhagwan/smartyank.nvim",
 	"kdheepak/cmp-latex-symbols",
-	"nvim-neo-tree/neo-tree.nvim",
+    "nvim-tree/nvim-tree.lua",
 	"mfussenegger/nvim-treehopper",
     "iamcco/markdown-preview.nvim",
 	"aaronhallaert/advanced-git-search.nvim",

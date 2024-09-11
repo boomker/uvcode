@@ -1,4 +1,4 @@
-local utils = require("core.utils")
+local utils = require("user.utils")
 local _, _venvs_path = utils.git_proj_root()
 
 local lang = {}

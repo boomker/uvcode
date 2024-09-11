@@ -31,7 +31,7 @@ return function()
 			relativenumber = false,
 			signcolumn = "yes",
 			float = {
-				enable = false,
+				enable = true,
 				open_win_config = {
 					relative = "editor",
 					border = "rounded",

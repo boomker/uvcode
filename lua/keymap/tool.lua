@@ -11,13 +11,13 @@ local plug_map = {
     ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
     ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
     ["n|<leader>gG"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
-    ]]
 
 	-- Plugin: nvim-tree
-	-- ["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
 	["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
 
+    ]]
 	-- Plugin: sniprun
 	-- ["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
 	-- ["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
@@ -82,7 +82,7 @@ local plug_map = {
 		:with_desc("lsp: Show document diagnostics"),
 
 	-- Plugin: telescope
-    --[[
+	--[[
 	["n|<C-p>"] = map_callback(function()
 			_command_panel()
 		end)

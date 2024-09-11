@@ -1,6 +1,9 @@
 require("keymap.helpers")
 local bind = require("keymap.bind")
 local map_cr = bind.map_cr
+-- local map_cu = bind.map_cu
+-- local map_cmd = bind.map_cmd
+-- local map_callback = bind.map_callback
 
 local plug_map = {
 	-- Lazy.nvim
@@ -21,7 +24,7 @@ bind.nvim_load_mapping(plug_map)
 -- Plugin keymaps
 require("keymap.completion")
 require("keymap.editor")
--- require("keymap.lang")
+require("keymap.lang")
 require("keymap.tool")
 require("keymap.ui")
 
