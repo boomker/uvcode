@@ -71,11 +71,6 @@ local core_map = {
 	["n|<leader>x"] = map_cmd(":x<CR>"):with_noremap():with_silent():with_desc("Quit buffers"),
 	["n|<leader>q"] = map_cmd(":q<CR>"):with_noremap():with_silent():with_desc("Quit window"),
 	["n|<leader>wa"] = map_cmd(":wall!<CR>"):with_noremap():with_silent():with_desc("Save buffers"),
-	-- Plugin: MiniBufremove
-	["n|<C-q>"] = map_cu("lua require('mini.bufremove').delete()")
-		:with_noremap()
-		:with_silent()
-		:with_desc("buffer: Close current"),
 
 	-- locallist & quicklist
 	["n|<leader>lo"] = map_cmd(":lopen<CR>"):with_noremap():with_silent():with_desc("open locallist"),
@@ -118,12 +113,10 @@ local core_map = {
 	["i|<C-x>f"] = map_cmd("<esc>:Telescope current_buffer_fuzzy_find<CR>"):with_noremap(),
 
 	["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
-	["i|<D-b>"] = map_cmd("<C-O>b"):with_noremap(),
-	["i|<D-f>"] = map_cmd("<C-O>w"):with_noremap(),
+    ["i|<D-f>"] = map_cmd("<C-O>/"):with_noremap(),
 	["i|<D-z>"] = map_cmd("<C-O>u"):with_noremap(),
 	["i|<D-d>"] = map_cmd("<C-O>diw"):with_noremap(),
-	["i|<D-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
-	["i|<D-p>"] = map_cmd("<esc>:Telescope buffers<CR>"):with_noremap(),
+	["i|<D-s>"] = map_cmd("<esc>:w<CR>"):with_desc("edit: Save file"),
 
 	-- window focus
 	["n|<leader>wh"] = map_cmd("<C-w>h"):with_noremap():with_desc("window: Focus left"),

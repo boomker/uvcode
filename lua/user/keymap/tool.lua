@@ -8,8 +8,14 @@ local map_callback = bind.map_callback
 local plug_map = {
 
 	-- Plugin neotree
+	["n|<D-b>"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	["i|<D-b>"] = map_cmd("<esc>:Neotree reveal=true toggle<CR>"):with_noremap():with_desc("filetree: Toggle"),
+	["n|<D-g>"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["n|<Leader>nt"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
-	["n|<Leader>nf"] = map_cr("Neotree reveal=true float toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	["n|<Leader>nf"] = map_cr("Neotree reveal=true float toggle")
+		:with_noremap()
+		:with_silent()
+		:with_desc("filetree: Toggle"),
 	["n|<Leader>nb"] = map_cr("Neotree buffers"):with_noremap():with_silent():with_desc("filetree: Buffers"),
 	["n|<Leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Buffers"),
 
@@ -65,6 +71,12 @@ local plug_map = {
 		:with_desc("git: Toggle lazygit"),
 
 	-- Plugin Telescope
+	["i|<D-o>"] = map_cmd("<esc>:Telescope frecency<CR>"):with_noremap():with_silent():with_desc("find freq file"),
+	["i|<D-p>"] = map_cmd("<esc>:Telescope find_files<CR>"):with_noremap():with_desc("find file"),
+	["i|<D-M-b>"] = map_cmd("<esc>:Telescope buffers<CR>"):with_noremap():with_desc("find buffer"),
+	["n|<D-o>"] = map_cu("Telescope frecency"):with_noremap():with_silent():with_desc("find freq file"),
+	["n|<D-p>"] = map_cu("Telescope find_files"):with_noremap():with_desc("find file"),
+	["n|<D-M-b>"] = map_cu("Telescope buffers"):with_noremap():with_desc("find buffer"),
 	["n|<Leader>fa"] = map_cu("Telescope"):with_noremap():with_silent():with_desc("telescope all commands"),
 	["n|<Leader>fC"] = map_callback(function()
 			_telescope_collections(require("telescope.themes").get_dropdown())
