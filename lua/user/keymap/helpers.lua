@@ -316,8 +316,8 @@ Telescope_yaml_symbols = function(opts)
 end
 
 Buffer_close_others = function()
-	local filetypes = { "OverseerList", "Terminal", "quickfix", "terminal" }
-	local buftypes = { "terminal", "toggleterm" }
+	local filetypes = { "toggleterm", "neo-tree", "quickfix", "terminal", "OverseerList" }
+	local buftypes = { "toggleterm", "terminal" }
 
 	local current_buf = vim.fn.bufnr("%")
 	local buffers = vim.fn.getbufinfo({ bufloaded = 1 })

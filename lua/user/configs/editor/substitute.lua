@@ -8,10 +8,8 @@ return function()
 	vim.keymap.set("x", "gse", "<cmd>lua require('substitute.exchange').visual()<cr>", { noremap = true })
 	vim.keymap.set("n", "gse", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
 	vim.keymap.set("n", "gsw", "<cmd>lua require('substitute.range').word()<cr>", { noremap = true })
-	require("substitute").setup({
 
-		require("substitute").setup({
-			on_substitute = require("yanky.integration").substitute(),
-		}),
+	require("substitute").setup({
+		on_substitute = require("yanky.integration").substitute(),
 	})
 end

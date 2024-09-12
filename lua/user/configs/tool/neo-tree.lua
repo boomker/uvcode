@@ -176,6 +176,27 @@ return function()
 					end
 				end)
 			end,
+
+			open_and_clear_filter = function(state)
+				local node = state.tree:get_node()
+				if node and node.type == "file" then
+					local file_path = node:get_id()
+					-- reuse built-in commands to open and clear filter
+					local cmds = require("neo-tree.sources.filesystem.commands")
+					cmds.open(state)
+					cmds.clear_filter(state)
+					-- reveal the selected file without focusing the tree
+					require("neo-tree.sources.filesystem").navigate(state, state.path, file_path)
+				end
+			end,
+
+			git_files_history = function()
+				require("diffview").file_history()
+			end,
+
+			git_files_status = function()
+				require("diffview").open()
+			end,
 		},
 		nesting_rules = {},
 		window = {
@@ -199,17 +220,19 @@ return function()
 				["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 				-- Read `# Preview Mode` for more information
 				["V"] = "focus_preview",
-				["S"] = "open_split",
-				["s"] = "open_vsplit",
-				-- ["S"] = "split_with_window_picker",
+				["<c-s>"] = "open_split",
+				["<c-v>"] = "open_vsplit",
+				["S"] = "split_with_window_picker",
 				-- ["s"] = "vsplit_with_window_picker",
-				["t"] = "open_tabnew",
 				-- ["t"] = "open_tab_drop",
+				["t"] = "open_tabnew",
 				["w"] = "open_with_window_picker",
-				["C"] = "close_node",
+				["h"] = "close_node",
+				["z"] = false,
+				["zh"] = "close_all_nodes",
+				["zl"] = "expand_all_nodes",
+				["zc"] = "close_all_subnodes",
 				-- ['C'] = 'close_all_subnodes',
-				["z"] = "close_all_nodes",
-				["Z"] = "expand_all_nodes",
 				["a"] = {
 					"add",
 					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -225,11 +248,10 @@ return function()
 				["y"] = "copy_to_clipboard",
 				["x"] = "cut_to_clipboard",
 				["p"] = "paste_from_clipboard",
-				["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+				["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 				["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 				["q"] = "close_window",
 				["R"] = "refresh",
-				["O"] = false,
 				["?"] = "show_help",
 				["<"] = "prev_source",
 				[">"] = "next_source",
@@ -243,7 +265,7 @@ return function()
 				hide_gitignored = true,
 				hide_hidden = true, -- only works on Windows for hidden files/directories
 				hide_by_name = {
-					--"node_modules"
+					"node_modules",
 				},
 				hide_by_pattern = {
 					"*.gif",
@@ -265,18 +287,18 @@ return function()
 					".schema.json",
 				},
 				never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-					-- "^.git/",
 					".DS_Store",
 					"thumbs.db",
 					"__pycache__",
 				},
 				never_show_by_pattern = { -- uses glob style patterns
-					--".null-ls_*",
+					".null-ls_*",
+					"*.gram",
 				},
 			},
 			follow_current_file = {
 				enabled = true, -- This will find and focus the file in the active buffer every time
-				--               -- the current file is changed while the tree is open.
+				--              -- the current file is changed while the tree is open.
 				leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 			},
 			group_empty_dirs = false, -- when true, empty folders will be grouped together
@@ -290,25 +312,26 @@ return function()
 			window = {
 				mappings = {
 					["<bs>"] = "navigate_up",
+                    ["o"] = "open_and_clear_filter",
+                    ["<cr>"] = "open_and_clear_filter",
 					["."] = "set_root",
 					["H"] = "toggle_hidden",
 					["/"] = "fuzzy_finder",
-					["D"] = "fuzzy_finder_directory",
 					["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
 					-- ["D"] = "fuzzy_sorter_directory",
+					["D"] = "fuzzy_finder_directory",
 					["f"] = "filter_on_submit",
 					["<c-x>"] = "clear_filter",
 					["[g"] = "prev_git_modified",
 					["]g"] = "next_git_modified",
-					["O"] = false,
-					-- ["O"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["Oc"] = { "order_by_created", nowait = false },
-					["Od"] = { "order_by_diagnostics", nowait = false },
-					["Og"] = { "order_by_git_status", nowait = false },
-					["Om"] = { "order_by_modified", nowait = false },
-					["On"] = { "order_by_name", nowait = false },
-					["Os"] = { "order_by_size", nowait = false },
-					["Ot"] = { "order_by_type", nowait = false },
+					["s"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "s" } },
+					["sc"] = { "order_by_created", nowait = false },
+					["sd"] = { "order_by_diagnostics", nowait = false },
+					["sg"] = { "order_by_git_status", nowait = false },
+					["sm"] = { "order_by_modified", nowait = false },
+					["sn"] = { "order_by_name", nowait = false },
+					["ss"] = { "order_by_size", nowait = false },
+					["st"] = { "order_by_type", nowait = false },
 				},
 				fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 					["<down>"] = "move_cursor_down",
@@ -333,14 +356,13 @@ return function()
 					["bd"] = "buffer_delete",
 					["<bs>"] = "navigate_up",
 					["."] = "set_root",
-					["O"] = false,
-					-- ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["Oc"] = { "order_by_created", nowait = false },
-					["Od"] = { "order_by_diagnostics", nowait = false },
-					["Om"] = { "order_by_modified", nowait = false },
-					["On"] = { "order_by_name", nowait = false },
-					["Os"] = { "order_by_size", nowait = false },
-					["Ot"] = { "order_by_type", nowait = false },
+					["s"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "s" } },
+					["sc"] = { "order_by_created", nowait = false },
+					["sd"] = { "order_by_diagnostics", nowait = false },
+					["sm"] = { "order_by_modified", nowait = false },
+					["sn"] = { "order_by_name", nowait = false },
+					["ss"] = { "order_by_size", nowait = false },
+					["st"] = { "order_by_type", nowait = false },
 				},
 			},
 		},
@@ -349,21 +371,21 @@ return function()
 				position = "float",
 				mappings = {
 					["A"] = "git_add_all",
+					["gs"] = "git_files_status",
+					["gh"] = "git_files_history",
 					["gu"] = "git_unstage_file",
 					["ga"] = "git_add_file",
 					["gr"] = "git_revert_file",
 					["gc"] = "git_commit",
 					["gp"] = "git_push",
 					["gg"] = "git_commit_and_push",
-					-- ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["o"] = { "open" },
-					["O"] = false,
-					["Oc"] = { "order_by_created", nowait = false },
-					["Od"] = { "order_by_diagnostics", nowait = false },
-					["Om"] = { "order_by_modified", nowait = false },
-					["On"] = { "order_by_name", nowait = false },
-					["Os"] = { "order_by_size", nowait = false },
-					["Ot"] = { "order_by_type", nowait = false },
+					["s"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "s" } },
+					["sc"] = { "order_by_created", nowait = false },
+					["sd"] = { "order_by_diagnostics", nowait = false },
+					["sm"] = { "order_by_modified", nowait = false },
+					["sn"] = { "order_by_name", nowait = false },
+					["ss"] = { "order_by_size", nowait = false },
+					["st"] = { "order_by_type", nowait = false },
 				},
 			},
 		},

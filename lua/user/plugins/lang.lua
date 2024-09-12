@@ -1,6 +1,3 @@
-local utils = require("user.utils")
-local _, _venvs_path = utils.git_proj_root()
-
 local lang = {}
 
 lang["barrett-ruth/live-server.nvim"] = {
@@ -15,18 +12,28 @@ lang["AckslD/swenv.nvim"] = {
 	lazy = true,
 	ft = "python",
 	event = { "BufRead", "BufNew" },
-	config = function()
-		require("swenv").setup({
-			venvs_path = vim.fn.expand(_venvs_path .. '/.venv'),
-			get_venvs = function(venvs_path)
-				return require("swenv.api").get_venvs(venvs_path)
-			end,
-			post_set_venv = function()
-				vim.cmd("LspRestart")
-			end,
-		})
-	end,
-	dependencies = { "nvim-lua/plenary.nvim" },
+	-- config = true,
+    config = require("user.configs.lang.swenv"),
+	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim" },
 }
+--[[
+
+{
+  'linux-cultist/venv-selector.nvim',
+  dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+  opts = {
+    -- Your options go here
+    -- name = "venv",
+    -- auto_refresh = false
+  },
+  event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+  keys = {
+    -- Keymap to open VenvSelector to pick a venv.
+    { '<leader>vs', '<cmd>VenvSelect<cr>' },
+    -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+    { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
+  },
+}
+--]]
 
 return lang

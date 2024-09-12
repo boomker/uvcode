@@ -123,7 +123,7 @@ local plug_map = {
 	["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols")
 		:with_noremap()
 		:with_silent()
-		:with_desc("symbols in workspace"),
+		:with_desc("symbols in document"),
 	-- search neovim config file and edit it
 	["n|<Leader>fu"] = map_callback(Telescope_find_neovim_config)
 		:with_noremap()

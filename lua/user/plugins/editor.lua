@@ -25,44 +25,10 @@ editor["booperlv/nvim-gomove"] = {
 	event = "BufRead",
 }
 
-editor["rmagatti/alternate-toggler"] = {
+editor["boomker/alternate-toggler"] = {
 	lazy = true,
-	event = "BufReadPost",
-	config = function()
-		require("alternate-toggler").setup({
-			alternates = {
-				["k"] = "v",
-				["key"] = "val",
-				["and"] = "or",
-				["yes"] = "no",
-				["Yes"] = "No",
-				["YES"] = "NO",
-				["true"] = "false",
-				["True"] = "False",
-				["TRUE"] = "FALSE",
-				["dark"] = "light",
-				["left"] = "right",
-				["Left"] = "Right",
-				["inner"] = "outer",
-				["Inner"] = "Outer",
-				["local"] = "global",
-				["public"] = "private",
-				["1"] = "0",
-				["<"] = ">",
-				["("] = ")",
-				["["] = "]",
-				["{"] = "}",
-				["+"] = "-",
-				["<="] = ">=",
-				-- ["~="] = "==",
-				["=="] = "!=",
-				["==="] = "!==",
-				['"'] = "'",
-				['""'] = "''",
-				['"""'] = "'''",
-			},
-		})
-	end,
+	event = "VeryLazy",
+	config = require("user.configs.editor.alternate-toggler"),
 }
 
 editor["echasnovski/mini.surround"] = {
@@ -88,7 +54,7 @@ editor["echasnovski/mini.surround"] = {
 editor["brenton-leighton/multiple-cursors.nvim"] = {
 	lazy = true,
 	version = "*",
-	event = "BufRead",
+	event = "VeryLazy",
 	config = function()
 		require("multiple-cursors").setup()
 	end,

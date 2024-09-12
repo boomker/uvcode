@@ -39,6 +39,7 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"dockerls",
+    "basedpyright"
 }
 
 settings["null_ls_deps"] = {

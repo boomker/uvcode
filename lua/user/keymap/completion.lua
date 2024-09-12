@@ -42,6 +42,10 @@ mappings["lsp"] = function(buf)
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Line diagnostic"),
+		["n|<leader>lx"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
+			:with_silent()
+			:with_buffer(buf)
+			:with_desc("lsp: Line diagnostic"),
 		--[[
         ["n|gr"] = map_cr("Lspsaga rename"):with_buffer(buf):with_desc("lsp: Rename in file range"),
 		["n|gR"] = map_cr("Lspsaga rename ++project")
