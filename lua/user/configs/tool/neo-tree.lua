@@ -139,6 +139,22 @@ return function()
 			},
 		},
 		commands = {
+			copy_relative_path = function(state)
+				local node = state.tree:get_node()
+				local filepath = node:get_id()
+				local modify = vim.fn.fnamemodify
+				local short_path = modify(filepath, ":.")
+				vim.fn.setreg("+", short_path)
+				vim.notify(("Copied path: `%s`"):format(short_path))
+			end,
+
+			copy_absolute_path = function(state)
+				local node = state.tree:get_node()
+				local filepath = node:get_id()
+				vim.fn.setreg("+", filepath)
+				vim.notify(("Copied path: `%s`"):format(filepath))
+			end,
+
 			copy_selector = function(state)
 				local node = state.tree:get_node()
 				local filepath = node:get_id()
@@ -220,20 +236,21 @@ return function()
 				["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 				-- Read `# Preview Mode` for more information
 				["V"] = "focus_preview",
+				["w"] = false,
+				["ww"] = "open_with_window_picker",
+				["wh"] = "split_with_window_picker",
+				["wv"] = "vsplit_with_window_picker",
+				["wt"] = "open_tab_drop",
 				["<c-s>"] = "open_split",
 				["<c-v>"] = "open_vsplit",
-				["S"] = "split_with_window_picker",
-				-- ["s"] = "vsplit_with_window_picker",
-				-- ["t"] = "open_tab_drop",
-				["t"] = "open_tabnew",
-				["w"] = "open_with_window_picker",
+				["<c-t>"] = "open_tabnew",
 				["h"] = "close_node",
 				["z"] = false,
 				["zh"] = "close_all_nodes",
 				["zl"] = "expand_all_nodes",
 				["zc"] = "close_all_subnodes",
 				-- ['C'] = 'close_all_subnodes',
-				["a"] = {
+				["t"] = {
 					"add",
 					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
 					-- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -241,14 +258,17 @@ return function()
 						show_path = "none", -- "none", "relative", "absolute"
 					},
 				},
-				["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+				["a"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
 				["d"] = "delete",
 				["r"] = "rename",
 				["Y"] = "copy_selector",
-				["y"] = "copy_to_clipboard",
+				["y"] = false,
+				["yy"] = "copy_to_clipboard",
+				["ys"] = "copy_relative_path", -- short path
+				["yf"] = "copy_absolute_path", -- full path
+				["c"] = "copy_to_clipboard",
 				["x"] = "cut_to_clipboard",
 				["p"] = "paste_from_clipboard",
-				["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 				["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 				["q"] = "close_window",
 				["R"] = "refresh",
@@ -312,8 +332,8 @@ return function()
 			window = {
 				mappings = {
 					["<bs>"] = "navigate_up",
-                    ["o"] = "open_and_clear_filter",
-                    ["<cr>"] = "open_and_clear_filter",
+					["o"] = "open_and_clear_filter",
+					["<cr>"] = "open_and_clear_filter",
 					["."] = "set_root",
 					["H"] = "toggle_hidden",
 					["/"] = "fuzzy_finder",

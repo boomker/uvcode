@@ -37,41 +37,27 @@ return function()
 
 	require("modules.utils").load_plugin("telescope", {
 		defaults = {
-			initial_mode = "insert",
-			prompt_prefix = " " .. icons.ui.Telescope .. " ",
-			selection_caret = icons.ui.ChevronRight,
+			winblend = 10,
 			color_devicons = true,
 			results_title = false,
+			initial_mode = "insert",
 			scroll_strategy = "limit",
 			layout_strategy = "flex",
 			path_display = { "smart" },
 			set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-			file_ignore_patterns = {
-				".git/",
-				".venv/",
-				".cache/",
-				"build/",
-				"target/",
-				"vendor/",
-				"__pycache__/",
-				"node_modules/",
-				"%.pdf",
-				"%.mkv",
-				"%.mp4",
-				"%.zip",
-				"%.class",
-			},
+			selection_caret = icons.ui.ChevronRight,
+			prompt_prefix = " " .. icons.ui.Telescope .. " ",
 			mappings = {
 				i = {
+					["<C-a>"] = false,
 					["<C-u>"] = false,
 					["<C-s>"] = flash_pick,
 					["<C-y>"] = copy_to_clipboard,
 					["<esc>"] = actions.close,
 					["<C-h>"] = actions.which_key,
-					["<C-a>"] = actions.toggle_all,
 					["<C-n>"] = actions.cycle_history_next,
 					["<C-p>"] = actions.cycle_history_prev,
-                    ["<C-b>"] = actions.preview_scrolling_up,
+					["<C-b>"] = actions.preview_scrolling_up,
 					["<C-v>"] = actions_layout.toggle_preview,
 					["<C-j>"] = actions.toggle_selection + actions.move_selection_next,
 					["<C-k>"] = actions.toggle_selection + actions.move_selection_previous,
@@ -101,6 +87,21 @@ return function()
 				"--smart-case",
 				"--trim", -- To trim the indentation at the beginning of presented line in the result window
 			},
+			file_ignore_patterns = {
+				".git/",
+				".venv/",
+				".cache/",
+				"build/",
+				"target/",
+				"vendor/",
+				"__pycache__/",
+				"node_modules/",
+				"%.pdf",
+				"%.mkv",
+				"%.mp4",
+				"%.zip",
+				"%.class",
+			},
 			file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 			grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 			qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
@@ -110,6 +111,13 @@ return function()
 		},
 		pickers = {
 			keymaps = { theme = "dropdown" },
+            buffers = {
+                path_display = { "smart" },
+                mappings = {
+                    i = { ["<C-d>"] = actions.delete_buffer + actions.move_to_bottom },
+                    n = { ["d"] = actions.delete_buffer + actions.move_to_bottom },
+                },
+            },
 			find_files = {
 				mappings = { i = { ["<C-y>"] = copy_to_clipboard } },
 				find_command = { "fd", "-H", "--type", "f", "--strip-cwd-prefix" },
@@ -130,7 +138,6 @@ return function()
 				-- "--others",
 				-- show_untracked = true,
 			},
-
 			grep_string = {
 				additional_args = { "--hidden", "--glob=!.git*", "--no-ignore" },
 				mappings = {
@@ -201,7 +208,7 @@ return function()
 				hidden_files = true, -- default: false
 				sync_with_nvim_tree = true, -- default false
 			},
-            --[[
+			--[[
             advanced_git_search = {
 				diff_plugin = "diffview",
 				git_flags = { "-c", "delta.side-by-side=false" },
@@ -216,7 +223,7 @@ return function()
 	require("telescope").load_extension("notify")
 	require("telescope").load_extension("zoxide")
 	require("telescope").load_extension("aerial")
-    require("telescope").load_extension('cmdline')
+	require("telescope").load_extension("cmdline")
 	require("telescope").load_extension("frecency")
 	require("telescope").load_extension("projects")
 	require("telescope").load_extension("persisted")

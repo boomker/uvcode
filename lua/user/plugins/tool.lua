@@ -60,6 +60,7 @@ tool["echasnovski/mini.bufremove"] = {
 	end,
 }
 
+-- Open files and command output from neovim terminals in your current neovim instance
 tool["willothy/flatten.nvim"] = {
 	lazy = false,
 	-- event = "VeryLazy",
@@ -103,6 +104,25 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 
 -- === overwrite plugins config -- ===
 
+tool["folke/which-key.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("user.configs.tool.which-key"),
+}
+
+tool["akinsho/toggleterm.nvim"] = {
+    lazy = true,
+    cmd = {
+        "ToggleTerm",
+        "ToggleTermSetName",
+        "ToggleTermToggleAll",
+        "ToggleTermSendVisualLines",
+        "ToggleTermSendCurrentLine",
+        "ToggleTermSendVisualSelection",
+    },
+    config = require("user.configs.tool.toggleterm"),
+}
+
 tool["nvim-tree/nvim-tree.lua"] = {
 	lazy = true,
 	cmd = {
@@ -115,10 +135,19 @@ tool["nvim-tree/nvim-tree.lua"] = {
 	config = require("user.configs.tool.nvim-tree"),
 }
 
-tool["folke/which-key.nvim"] = {
+tool["nvim-neo-tree/neo-tree.nvim"] = {
 	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("user.configs.tool.which-key"),
+	cmd = {
+		"Neotree",
+	},
+	branch = "v3.x",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+		"MunifTanjim/nui.nvim",
+		-- "3rd/image.nvim",
+	},
+	config = require("user.configs.tool.neo-tree"),
 }
 
 tool["nvim-telescope/telescope.nvim"] = {
@@ -154,22 +183,6 @@ tool["nvim-telescope/telescope.nvim"] = {
 		},
 	},
 }
-
-tool["nvim-neo-tree/neo-tree.nvim"] = {
-	lazy = true,
-	cmd = {
-		"Neotree",
-	},
-	branch = "v3.x",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons",
-		"MunifTanjim/nui.nvim",
-		-- "3rd/image.nvim",
-	},
-	config = require("user.configs.tool.neo-tree"),
-}
-
 --[[
 tool["zeioth/garbage-day.nvim"] = {
     lazy = true,
@@ -193,8 +206,6 @@ tool["amitds1997/remote-nvim.nvim"] = {
 	},
 	config = require("user.configs.tool.remote-nvim"),
 }
-
-
-]]
+--]]
 
 return tool

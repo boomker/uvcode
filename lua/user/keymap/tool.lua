@@ -27,7 +27,7 @@ local plug_map = {
 	-- Plugin toggleterm
 	["t|<ESC><ESC>"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
 	["t|jk"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
-	["nt|<D-C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>")
+	["nti|<D-C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>")
 		:with_noremap()
 		:with_silent()
 		:with_desc("terminal: Toggle horizontal"),

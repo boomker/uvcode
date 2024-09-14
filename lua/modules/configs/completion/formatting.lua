@@ -94,9 +94,12 @@ function M.format_filter(clients)
 			return client.supports_method("textDocument/formatting")
 		end)
 		if status_ok and formatting_supported and (client.name == "null-ls") then
-			return "null-ls"
+			-- return "null-ls"
+			return client.name
 		elseif not server_formatting_block_list[client.name] and status_ok and formatting_supported then
 			return client.name
+        else
+            return false
 		end
 	end, clients)
 end
@@ -147,7 +150,7 @@ function M.format(opts)
 	local timeout_ms = opts.timeout_ms
 	for _, client in pairs(clients) do
 		if block_list[vim.bo.filetype] == true then
-			vim.notify(
+			--[[ vim.notify(
 				string.format(
 					"[LSP][%s] Formatting for [%s] has been disabled. This file is not being processed.",
 					client.name,
@@ -155,7 +158,7 @@ function M.format(opts)
 				),
 				vim.log.levels.WARN,
 				{ title = "LSP Formatter Warning" }
-			)
+			) ]]
 			return
 		end
 

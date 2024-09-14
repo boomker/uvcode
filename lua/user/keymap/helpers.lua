@@ -317,7 +317,7 @@ end
 
 Buffer_close_others = function()
 	local filetypes = { "toggleterm", "neo-tree", "quickfix", "terminal", "OverseerList" }
-	local buftypes = { "toggleterm", "terminal" }
+	-- local buftypes = { "toggleterm", "terminal" }
 
 	local current_buf = vim.fn.bufnr("%")
 	local buffers = vim.fn.getbufinfo({ bufloaded = 1 })
@@ -325,12 +325,12 @@ Buffer_close_others = function()
 	for _, buffer in ipairs(buffers) do
 		local bufnr = buffer.bufnr
 		local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
-		local buftype = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
+		-- local buftype = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
 
 		-- Close the buffer if it is not the current one and not in the specified filetypes
 		if
-			(bufnr ~= current_buf)
-			and ((not vim.tbl_contains(filetypes, filetype)) or (not vim.tbl_contains(buftypes, buftype)))
+			(bufnr ~= current_buf) and (not vim.tbl_contains(filetypes, filetype))
+			-- and (not (vim.tbl_contains(filetypes, filetype) or vim.tbl_contains(buftypes, buftype)))
 		then
 			-- vim.cmd("bdelete " .. bufnr .. "!")
 			require("mini.bufremove").delete(bufnr)

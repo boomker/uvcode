@@ -1,8 +1,51 @@
 local bind = require("keymap.bind")
+local settings = require("user.settings")
 -- local map_cr = bind.map_cr
-local map_cu = bind.map_cu
+-- local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 -- local map_callback = bind.map_callback
+
+-- [[ Neovide font_size scale Keymaps
+if vim.g.neovide then
+    vim.g.gui_font_size = 16
+    vim.g.neovide_scale_factor = 1.0
+
+    local change_scale_factor = function(delta)
+        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+    end
+    vim.keymap.set("n", "<D-C-=>", function()
+        change_scale_factor(1.25)
+    end)
+    vim.keymap.set("n", "<D-C-->", function()
+        change_scale_factor(1/1.25)
+    end)
+
+    -- Put anything you want to happen only in Neovide here
+    RefreshGuiFont = function()
+        vim.opt.guifont = string.format("%s:h%s", settings.gui_config.gui_font_face, vim.g.gui_font_size)
+    end
+
+    ResizeGuiFont = function(delta)
+        vim.g.gui_font_size = vim.g.gui_font_size + delta
+        RefreshGuiFont()
+    end
+
+    local kopts = { noremap = true, silent = true }
+
+    vim.keymap.set({ "n", "i" }, "<D-0>", function()
+        vim.g.gui_font_size = settings.gui_config.font_size
+        RefreshGuiFont()
+    end, kopts)
+
+    vim.keymap.set({ "n", "i" }, "<D-=>", function()
+        ResizeGuiFont(1)
+    end, kopts)
+
+    vim.keymap.set({ "n", "i" }, "<D-->", function()
+        ResizeGuiFont(-1)
+    end, kopts)
+end
+-- Neovide font_size scale Keymaps ]]
 
 local core_map = {
 
@@ -30,7 +73,7 @@ local core_map = {
 	-- replace with magic by default
 	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
 	["c|<C-s>"] = map_cmd([[%s/\v]]):with_noremap(),
-    ["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
+	["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
 
 	-- Substitute current search kw to null
 	["n|<leader>sn"] = map_cmd(":.s//<CR>"):with_noremap():with_silent():with_desc("Substitute current line kw"),
@@ -57,15 +100,16 @@ local core_map = {
 
 	-- Replacing up to next underscore `_`
 	["n|cu"] = map_cmd("ct_"):with_noremap():with_silent(),
-	["n|cU"] = map_cmd("vT_c"):with_noremap():with_silent(),
+	["n|ch"] = map_cmd("cT_"):with_noremap():with_silent(),
 	["n|du"] = map_cmd("dt_"):with_noremap():with_silent(),
-	["n|dU"] = map_cmd("vT_d"):with_noremap():with_silent(),
+	["n|dh"] = map_cmd("dT_"):with_noremap():with_silent(),
 	["n|x"] = map_cmd('"_x'):with_noremap():with_silent(),
 
 	["nvo|H"] = map_cmd("^"),
 	["nvo|L"] = map_cmd("g_"),
-	["n|Q"] = map_cmd("<Nop>"),
-	["n|W"] = map_cmd("i<CR><esc>`["),
+    ["n|Q"] = map_cmd("<Nop>"):with_noremap():with_desc("Noq Q"),
+    ["n|J"] = map_cmd("m'J`'"):with_noremap():with_desc("Join line"),
+	["n|W"] = map_cmd("i<CR><esc>`["):with_noremap():with_desc("Wrap line"),
 
 	-- buffer file save or quit
 	["n|<leader>x"] = map_cmd(":x<CR>"):with_noremap():with_silent():with_desc("Quit buffers"),
@@ -79,44 +123,47 @@ local core_map = {
 	["n|<leader>cc"] = map_cmd(":cclose<CR>"):with_noremap():with_silent():with_desc("close quicklist"),
 	["n|<leader>cq"] = map_cmd(":copen<CR>"):with_noremap():with_silent():with_desc("open quicklist"),
 	["n|<leader>cg"] = map_cmd([[:grep '' % |copen<C-Left><C-Left><C-Left><Right>]])
-		:with_noremap()
-		:with_desc("grep kw into copen"),
+		:with_noremap():with_desc("grep kw into copen"),
 
-	-- more like MacVim
-	["n|<D-s>"] = map_cu("write"):with_noremap(),
+	-- like MacVim
 	["n|<D-f>"] = map_cmd("/"):with_noremap(),
+    ["n|<D-s>"] = map_cmd("<Cmd>w<CR>"):with_noremap(),
 	["n|<D-v>"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
-	["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
-	["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
+    ["t|<D-v>"] = map_cmd([[<C-\><C-n>"+pa]]):with_noremap():with_silent(),
+    ["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
+    ["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
+    ["i|<D-v>"] = map_cmd("<C-R>+"):with_desc("pasted text"),
+    ["i|<D-f>"] = map_cmd("<C-O>/"):with_desc("search word"),
+    ["i|<D-z>"] = map_cmd("<C-O>u"):with_desc("revert last change"),
+    ["i|<D-d>"] = map_cmd("<C-O>dw"):with_desc("delete cursor word"),
+    ["i|<D-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
 
 	-- Insert mode
-	["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap():with_desc("edit: Move cursor to line start"),
-	["i|<C-l>"] = map_cmd("<esc>$a"):with_noremap():with_desc("edit: Move cursor to line end"),
-	["i|<C-x>e"] = map_cmd("<esc><C-w>="):with_noremap(),
-	["i|<C-x>o"] = map_cmd("<esc><C-w>o"):with_noremap(),
-	["i|<C-x>x"] = map_cmd("<esc><C-w>o"):with_noremap(),
-	["i|<C-x>s"] = map_cmd("<esc><C-w>r"):with_noremap(),
-	["i|<C-x>w"] = map_cmd("<esc><C-w>w"):with_noremap(),
-	["i|<C-x>m"] = map_cmd("<esc><C-w>_<C-w>|"):with_noremap(),
-	["i|<C-x>d"] = map_cmd("<esc>ddi"):with_noremap(),
-	["i|<C-x>h"] = map_cmd("<esc>m'*`'"):with_noremap(),
-	["i|<C-x>u"] = map_cmd("<esc>m'gUiw`'a"):with_noremap(),
-	["i|<C-x>l"] = map_cmd("<esc>m'guiw`'a"):with_noremap(),
-	["i|<C-x>j"] = map_cmd("<esc>Ja"):with_noremap(),
-	["i|<C-x>k"] = map_cmd("<esc>lC"):with_noremap(),
-	["i|<C-x>z"] = map_cmd("<esc>zza"):with_noremap(),
-	["i|<C-x>r"] = map_cmd("<esc>:SnipRun<CR>"):with_noremap(),
-	["i|<C-x>b"] = map_cmd("<esc>:BufferLinePick<CR>"):with_noremap(),
-	["i|<C-x>a"] = map_cmd("<esc>:ToggleAlternate<CR>a"):with_noremap(),
-	["i|<C-x>v"] = map_cmd("<esc><Plug>(YankyPutBeforeFilter)`]A"):with_noremap(),
-	["i|<C-x>t"] = map_cmd("<esc>:'ToggleTerm direction=float'<CR>"):with_noremap(),
-	["i|<C-x>f"] = map_cmd("<esc>:Telescope current_buffer_fuzzy_find<CR>"):with_noremap(),
+	["i|<C-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
+	["i|<C-a>"] = map_cmd("<Esc>^i"):with_noremap():with_desc("edit: Move cursor to line start"),
+	["i|<C-l>"] = map_cmd("<Esc>$a"):with_noremap():with_desc("edit: Move cursor to line end"),
+	["i|<C-x>o"] = map_cmd("<Esc><C-w>o"):with_noremap(),
+	["i|<C-x>x"] = map_cmd("<Esc><C-w>o"):with_noremap(),
+	["i|<C-x>s"] = map_cmd("<Esc><C-w>r"):with_noremap(),
+	["i|<C-x>j"] = map_cmd("<Esc><C-w>j"):with_noremap(),
+	["i|<C-x>w"] = map_cmd("<Esc><C-w>w"):with_noremap(),
+	["i|<C-x>e"] = map_cmd("<Esc><C-w>="):with_noremap(),
+	["i|<C-x>m"] = map_cmd("<Esc><C-w>_"):with_noremap(),
+	["i|<C-x>k"] = map_cmd("<Esc>lC"):with_noremap(),
+	["i|<C-x>d"] = map_cmd("<Esc>dda"):with_noremap(),
+	["i|<C-x>z"] = map_cmd("<Esc>zza"):with_noremap(),
+	["i|<C-x>h"] = map_cmd("<Esc>m'*`'a"):with_noremap(),
+	["i|<C-x>u"] = map_cmd("<Esc>m'gUiw`'a"):with_noremap(),
+	["i|<C-x>l"] = map_cmd("<Esc>m'guiw`'a"):with_noremap(),
+	["i|<C-x>r"] = map_cmd("<Esc>:SnipRun<CR>"):with_noremap(),
+	["i|<C-x>t"] = map_cmd("<Esc>:ToggleTerm<CR>"):with_noremap(),
+	["i|<C-x>b"] = map_cmd("<Esc>:BufferLinePick<CR>"):with_noremap(),
+	["i|<C-x>a"] = map_cmd("<Esc>:ToggleAlternate<CR>"):with_noremap(),
+	["i|<C-x>f"] = map_cmd("<Esc>:Telescope current_buffer_fuzzy_find<CR>"):with_noremap(),
 
-	["i|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
-    ["i|<D-f>"] = map_cmd("<C-O>/"):with_noremap(),
-	["i|<D-z>"] = map_cmd("<C-O>u"):with_noremap(),
-	["i|<D-d>"] = map_cmd("<C-O>diw"):with_noremap(),
-	["i|<D-s>"] = map_cmd("<esc>:w<CR>"):with_desc("edit: Save file"),
+	-- window resize
+	["n|<leader>re"] = map_cmd("<C-w>="):with_noremap():with_silent():with_desc("window size reset"),
+	["n|<leader>rm"] = map_cmd("<C-w>_<C-w>|"):with_noremap():with_silent():with_desc("window size max"),
 
 	-- window focus
 	["n|<leader>wh"] = map_cmd("<C-w>h"):with_noremap():with_desc("window: Focus left"),
@@ -129,13 +176,8 @@ local core_map = {
 	-- ["n|<leader>wS"] = map_cmd(":split<CR>"):with_noremap():with_silent(),
 	-- ["n|<leader>wV"] = map_cmd(":vsplit<CR>"):with_noremap():with_silent(),
 
-	-- window resize
-	["n|<leader>re"] = map_cmd("<C-w>="):with_noremap():with_silent():with_desc("window size reset"),
-	["n|<leader>rm"] = map_cmd("<C-w>_<C-w>|"):with_noremap():with_silent():with_desc("window size max"),
-
 	["t|<D-b>"] = map_cmd("<C-Left>"):with_noremap():with_silent(),
 	["t|<D-f>"] = map_cmd("<C-Right>"):with_noremap():with_silent(),
-	["t|<D-v>"] = map_cmd([[<C-\><C-n>pa]]):with_noremap():with_silent(),
 	["t|<D-C-h>"] = map_cmd("<Cmd>wincmd h<CR>"):with_silent():with_noremap():with_desc("window: Focus left"),
 	["t|<D-C-l>"] = map_cmd("<Cmd>wincmd l<CR>"):with_silent():with_noremap():with_desc("window: Focus right"),
 	["t|<D-C-j>"] = map_cmd("<Cmd>wincmd j<CR>"):with_silent():with_noremap():with_desc("window: Focus down"),
@@ -143,7 +185,7 @@ local core_map = {
 	["t|<D-C-w>"] = map_cmd([[<C-\><C-n><C-w>w]]):with_noremap():with_silent(),
 	["t|<D-C-t>"] = map_cmd([[<C-\><C-n><C-w>t]]):with_noremap():with_silent(),
 	["t|<D-C-b>"] = map_cmd([[<C-\><C-n><C-w>b]]):with_noremap():with_silent(),
-	["t|<D-C-m>"] = map_cmd([[<C-\><C-n><C-w>_<C-w>|]]):with_noremap():with_silent(),
+	["t|<D-C-m>"] = map_cmd([[<C-\><C-n><C-w>_]]):with_noremap():with_silent(),
 	["t|<D-C-c>"] = map_cmd([[<C-\><C-n><C-w>t:]]):with_noremap(),
 
 	-- Command mode
@@ -152,7 +194,6 @@ local core_map = {
 	["c|SW!"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"),
 
 	-- Visual mode
-	-- ["v|J"] = map_cmd(":m '>+1<cr>gv=gv"),
-	-- ["v|K"] = map_cmd(":m '<-2<cr>gv=gv"),
 }
+
 bind.nvim_load_mapping(core_map)

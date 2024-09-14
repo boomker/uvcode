@@ -12,7 +12,7 @@ local core_map = {
 	["n|D"] = map_cmd("d$"):with_desc("edit: Delete text to EOL"),
 	["n|n"] = map_cmd("nzzzv"):with_noremap():with_desc("edit: Next search result"),
 	["n|N"] = map_cmd("Nzzzv"):with_noremap():with_desc("edit: Prev search result"),
-	["n|J"] = map_cmd("m'J`'"):with_noremap():with_desc("edit: Join next line"),
+	["n|J"] = map_cmd("mzJ`z"):with_noremap():with_desc("edit: Join next line"),
 	["n|<Esc>"] = map_callback(function()
 			_flash_esc_or_noh()
 		end)

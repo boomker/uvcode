@@ -2,32 +2,53 @@
 local settings = {}
 
 settings["use_copilot"] = false
-settings["format_on_save"] = false
+settings["format_on_save"] = true
+settings["format_timeout"] = 2000
 settings["transparent_background"] = true
 settings["format_modifications_only"] = true
 settings["diagnostics_level"] = "WARN"
 settings["colorscheme"] = "catppuccin-frappe"
 
 settings["gui_config"] = {
-	font_size = 17,
+	font_size = 15,
 	font_name = "JetBrainsMono Nerd Font",
-	gui_font_face = "JetBrainsMono Nerd Font Mono:#e-antialias",
+	gui_font_face = "JetBrainsMono Nerd Font Mono",
 }
 
 settings["neovide_config"] = {
+	-- input_ime = true,
+	theme = "dark",
 	no_idle = true,
 	refresh_rate = 60,
+	gui_font_size = 15,
+	transparency = 0.95,
+    scale_factor = 0.9,
 	cursor_vfx_mode = "railgun",
 	cursor_vfx_opacity = 200.0,
-	cursor_antialiasing = true,
-	cursor_trail_length = 0.05,
-	cursor_animation_length = 0.03,
 	cursor_vfx_particle_speed = 20.0,
 	cursor_vfx_particle_density = 5.0,
-	cursor_vfx_particle_lifetime = 1.2,
+	cursor_vfx_particle_lifetime = 1.0,
+	cursor_antialiasing = true,
+	cursor_trail_size = 0,
+	cursor_trail_length = 0.05,
+	cursor_animation_length = 0.03,
+	cursor_unfocused_outline_width = 0.06,
+	scroll_animation_length = 0,
+    light_radius = 5,
+	floating_blur = true,
+	floating_opacity = 0.15,
+	floating_blur_amount_x = 2.0,
+	floating_blur_amount_y = 2.0,
+	underline_stroke_scale = 1.5,
+	remember_window_size = true,
+	hide_mouse_when_typing = true,
+    detach_on_quit = 'always_quit',
+    input_use_logo = 1, -- logo(cmd) key
+	input_macos_option_key_is_meta = "only_left",
 }
 
 settings["formatter_block_list"] = {
+	lua = true, -- example
 	yaml = true,
 }
 
@@ -39,7 +60,7 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"dockerls",
-    "basedpyright"
+	"basedpyright",
 }
 
 settings["null_ls_deps"] = {
@@ -77,8 +98,8 @@ settings["treesitter_deps"] = {
 
 settings["disabled_plugins"] = {
 	"smoka7/hop.nvim", -- 不支持直接在 Telescope 中使用
-    "folke/paint.nvim",
-    "chrisbra/csv.vim",
+	"folke/paint.nvim",
+	"chrisbra/csv.vim",
 	"romainl/vim-cool", -- makes hlsearch more useful
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"zbirenbaum/neodim", -- dimming the highlights of unused functions, etc.
@@ -86,18 +107,18 @@ settings["disabled_plugins"] = {
 	"tpope/vim-fugitive",
 	"pysan3/fcitx5.nvim",
 	"tzachar/cmp-tabnine",
-    "mrcjkb/rustaceanvim",
-    "Saecki/crates.nvim",
-    "zbirenbaum/copilot.lua",
-    "zbirenbaum/copilot-cmp",
+	"mrcjkb/rustaceanvim",
+	"Saecki/crates.nvim",
+	"zbirenbaum/copilot.lua",
+	"zbirenbaum/copilot-cmp",
 	"ojroques/nvim-bufdel",
 	"lambdalisue/suda.vim", -- read or write files with sudo command
 	"andersevenrud/cmp-tmux",
 	"ibhagwan/smartyank.nvim",
 	"kdheepak/cmp-latex-symbols",
-    "nvim-tree/nvim-tree.lua",
+	"nvim-tree/nvim-tree.lua",
 	"mfussenegger/nvim-treehopper",
-    "iamcco/markdown-preview.nvim",
+	"iamcco/markdown-preview.nvim",
 	"aaronhallaert/advanced-git-search.nvim",
 }
 

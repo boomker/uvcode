@@ -1,10 +1,22 @@
 return function()
 	local flash = require("flash")
-	vim.keymap.set({ "n", "x", "o" }, "<leader>jt", function()
+	vim.keymap.set({ "n", "x", "o" }, "ff", function()
+		flash.jump({
+			search = { forward = true, wrap = false, multi_window = false },
+		})
+	end, { desc = "Flash: forward jump" })
+
+	vim.keymap.set({ "n", "x", "o" }, "fk", function()
+		flash.jump({
+			search = { forward = false, wrap = false, multi_window = false },
+		})
+	end, { desc = "Flash: backward jump" })
+
+	vim.keymap.set({ "n", "x", "o" }, "F", function()
 		flash.treesitter()
 	end, { desc = "Flash: Treesitter" })
 
-	vim.keymap.set({ "n", "x", "o" }, "<leader>jj", function()
+	vim.keymap.set({ "n", "x", "o" }, "fl", function()
 		flash.jump({
 			search = { mode = "search", max_length = 0 },
 			label = { after = { 0, 0 } },
@@ -12,7 +24,7 @@ return function()
 		})
 	end, { desc = "Flash: Jump to a line" })
 
-	vim.keymap.set("n", "<leader>jw", function()
+	vim.keymap.set("n", "fw", function()
 		flash.jump({
 			search = {
 				mode = function(str)
@@ -21,6 +33,18 @@ return function()
 			},
 		})
 	end, { desc = "Flash: Jump to beginning of words only" })
+
+	vim.keymap.set("n", "fd", function()
+		flash.jump({
+			action = function(match, state)
+				vim.api.nvim_win_call(match.win, function()
+					vim.api.nvim_win_set_cursor(match.win, match.pos)
+					vim.diagnostic.open_float()
+				end)
+				state:restore()
+			end,
+		})
+	end, { desc = "Flash: show diagnostic without move cursor" })
 
 	flash.setup({
 		labels = "dsfnmweriouhvcxztybgajkl",
@@ -196,7 +220,7 @@ return function()
 				-- by removing them from the list.
 				-- If you rather use another key, you can map them
 				-- to something else, e.g., { [";"] = "L", [","] = H }
-				keys = { "f", "F", "t", "T", ";", "," },
+				keys = { "t", "T", ";", "," },
 				-- The direction for `prev` and `next` is determined by the motion.
 				-- `left` and `right` are always left and right.
 				char_actions = function(motion)
