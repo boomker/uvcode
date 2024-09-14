@@ -25,12 +25,6 @@ editor["booperlv/nvim-gomove"] = {
 	event = "BufRead",
 }
 
-editor["boomker/alternate-toggler"] = {
-	lazy = true,
-	event = "VeryLazy",
-	config = require("user.configs.editor.alternate-toggler"),
-}
-
 editor["echasnovski/mini.surround"] = {
 	lazy = true,
 	version = false,

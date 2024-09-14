@@ -99,7 +99,12 @@ local plug_map = {
 		:with_desc("edit: search & replace current word (file)"),
 
 	-- Plugin rmagatti/alternate-toggler
-	["n|<Leader>a"] = map_cu("ToggleAlternate"):with_noremap():with_silent():with_desc("Toggle bool"),
+    ["n|<Leader>a"] = map_callback(
+		function ()
+			require("user.plugins.person.alternate-toggler").toggle()
+		end
+	)
+	:with_noremap():with_silent():with_desc("Toggle pair"),
 
 	-- Plugin nvim-multi-cursor
 	["nx|gb"] = map_cmd("<Cmd>MultipleCursorsAddDown<CR>"):with_noremap():with_silent():with_desc("add cursor word"),
