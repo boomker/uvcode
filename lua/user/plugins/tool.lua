@@ -102,37 +102,17 @@ tool["ThePrimeagen/refactoring.nvim"] = {
 	end,
 }
 
--- === overwrite plugins config -- ===
-
-tool["folke/which-key.nvim"] = {
+tool["smjonas/inc-rename.nvim"] = {
 	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("user.configs.tool.which-key"),
-}
-
-tool["akinsho/toggleterm.nvim"] = {
-    lazy = true,
-    cmd = {
-        "ToggleTerm",
-        "ToggleTermSetName",
-        "ToggleTermToggleAll",
-        "ToggleTermSendVisualLines",
-        "ToggleTermSendCurrentLine",
-        "ToggleTermSendVisualSelection",
-    },
-    config = require("user.configs.tool.toggleterm"),
-}
-
-tool["nvim-tree/nvim-tree.lua"] = {
-	lazy = true,
-	cmd = {
-		"NvimTreeToggle",
-		"NvimTreeOpen",
-		"NvimTreeFindFile",
-		"NvimTreeFindFileToggle",
-		"NvimTreeRefresh",
-	},
-	config = require("user.configs.tool.nvim-tree"),
+	event = "LspAttach",
+	config = function()
+		vim.keymap.set("n", "<leader>rN", function()
+			return ":IncRename " .. vim.fn.expand("<cword>")
+		end, { expr = true })
+		require("inc_rename").setup({
+			input_buffer_type = "dressing",
+		})
+	end,
 }
 
 tool["nvim-neo-tree/neo-tree.nvim"] = {
@@ -148,6 +128,39 @@ tool["nvim-neo-tree/neo-tree.nvim"] = {
 		-- "3rd/image.nvim",
 	},
 	config = require("user.configs.tool.neo-tree"),
+}
+
+-- === overwrite plugins config -- ===
+
+tool["folke/which-key.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("user.configs.tool.which-key"),
+}
+
+tool["akinsho/toggleterm.nvim"] = {
+	lazy = true,
+	cmd = {
+		"ToggleTerm",
+		"ToggleTermSetName",
+		"ToggleTermToggleAll",
+		"ToggleTermSendVisualLines",
+		"ToggleTermSendCurrentLine",
+		"ToggleTermSendVisualSelection",
+	},
+	config = require("user.configs.tool.toggleterm"),
+}
+
+tool["nvim-tree/nvim-tree.lua"] = {
+	lazy = true,
+	cmd = {
+		"NvimTreeToggle",
+		"NvimTreeOpen",
+		"NvimTreeFindFile",
+		"NvimTreeFindFileToggle",
+		"NvimTreeRefresh",
+	},
+	config = require("user.configs.tool.nvim-tree"),
 }
 
 tool["nvim-telescope/telescope.nvim"] = {
@@ -183,6 +196,7 @@ tool["nvim-telescope/telescope.nvim"] = {
 		},
 	},
 }
+
 --[[
 tool["zeioth/garbage-day.nvim"] = {
     lazy = true,

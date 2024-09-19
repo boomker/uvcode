@@ -12,7 +12,7 @@ return function()
 		})
 	end, { desc = "Flash: backward jump" })
 
-	vim.keymap.set({ "n", "x", "o" }, "F", function()
+	vim.keymap.set({ "n", "x", "o" }, "fs", function()
 		flash.treesitter()
 	end, { desc = "Flash: Treesitter" })
 
@@ -220,7 +220,7 @@ return function()
 				-- by removing them from the list.
 				-- If you rather use another key, you can map them
 				-- to something else, e.g., { [";"] = "L", [","] = H }
-				keys = { "t", "T", ";", "," },
+				keys = { "F", "t", "T", ";", "," },
 				-- The direction for `prev` and `next` is determined by the motion.
 				-- `left` and `right` are always left and right.
 				char_actions = function(motion)

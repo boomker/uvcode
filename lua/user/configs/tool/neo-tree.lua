@@ -223,14 +223,9 @@ return function()
 				nowait = true,
 			},
 			mappings = {
-				["<space>"] = {
-					"toggle_node",
-					nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-				},
 				["o"] = "open",
 				["l"] = "open",
 				["<cr>"] = "open",
-				-- ["<cr>"] = "open_drop",
 				["<2-LeftMouse>"] = "open",
 				["<esc>"] = "cancel", -- close preview or floating neo-tree window
 				["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
@@ -245,11 +240,13 @@ return function()
 				["<c-v>"] = "open_vsplit",
 				["<c-t>"] = "open_tabnew",
 				["h"] = "close_node",
+				["<space>"] = false,
+				-- ["f"] = false,
 				["z"] = false,
 				["zh"] = "close_all_nodes",
 				["zl"] = "expand_all_nodes",
 				["zc"] = "close_all_subnodes",
-				-- ['C'] = 'close_all_subnodes',
+				["zn"] = { "toggle_node", nowait = false },
 				["t"] = {
 					"add",
 					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -338,9 +335,10 @@ return function()
 					["H"] = "toggle_hidden",
 					["/"] = "fuzzy_finder",
 					["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
-					-- ["D"] = "fuzzy_sorter_directory",
 					["D"] = "fuzzy_finder_directory",
-					["f"] = "filter_on_submit",
+					-- ["D"] = "fuzzy_sorter_directory",
+					-- ["f"] = "filter_on_submit",
+					["f"] = false,
 					["<c-x>"] = "clear_filter",
 					["[g"] = "prev_git_modified",
 					["]g"] = "next_git_modified",

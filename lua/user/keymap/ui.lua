@@ -67,24 +67,16 @@ mappings["gitsigns"] = function(buf)
     local actions = require("gitsigns.actions")
 	return {
 		["n|]g"] = bind.map_callback(function()
-			if vim.wo.diff then
-				return "]g"
-			end
-			vim.schedule(function()
-				actions.next_hunk()
-			end)
+			if vim.wo.diff then return "]g" end
+			vim.schedule(function() actions.next_hunk() end)
 			return "<Ignore>"
 		end)
 			:with_buffer(buf)
 			:with_expr()
 			:with_desc("git: Goto next hunk"),
 		["n|[g"] = bind.map_callback(function()
-			if vim.wo.diff then
-				return "[g"
-			end
-			vim.schedule(function()
-				actions.prev_hunk()
-			end)
+			if vim.wo.diff then return "[g" end
+			vim.schedule(function() actions.prev_hunk() end)
 			return "<Ignore>"
 		end)
 			:with_buffer(buf)

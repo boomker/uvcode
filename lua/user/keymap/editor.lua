@@ -73,7 +73,7 @@ local plug_map = {
 	["n|<leader>sL"] = map_cu("SmartSwapRight"):with_silent():with_noremap():with_desc("window: Move window rightward"),
 
 	-- Plugin: nvim-spectre
-	["n|<leader>sO"] = map_callback(function()
+	["n|<leader>sp"] = map_callback(function()
 			require("spectre").toggle()
 		end)
 		:with_silent()
@@ -101,7 +101,7 @@ local plug_map = {
 	-- Plugin rmagatti/alternate-toggler
     ["n|<Leader>a"] = map_callback(
 		function ()
-			require("user.plugins.person.alternate-toggler").toggle()
+			require("user.plugins.personal.alternate-toggler").toggle()
 		end
 	)
 	:with_noremap():with_silent():with_desc("Toggle pair"),

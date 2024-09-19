@@ -44,7 +44,7 @@ settings["neovide_config"] = {
 	hide_mouse_when_typing = true,
     detach_on_quit = 'always_quit',
     input_use_logo = 1, -- logo(cmd) key
-	input_macos_option_key_is_meta = "only_left",
+	input_macos_option_key_is_meta = "both", -- only_left
 }
 
 settings["formatter_block_list"] = {
@@ -106,9 +106,9 @@ settings["disabled_plugins"] = {
 	"gelguy/wilder.nvim", -- A more adventurous wildmenu(/,?,:)
 	"tpope/vim-fugitive",
 	"pysan3/fcitx5.nvim",
-	"tzachar/cmp-tabnine",
+    "Saecki/crates.nvim",
 	"mrcjkb/rustaceanvim",
-	"Saecki/crates.nvim",
+    "tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
 	"ojroques/nvim-bufdel",
@@ -120,6 +120,7 @@ settings["disabled_plugins"] = {
 	"mfussenegger/nvim-treehopper",
 	"iamcco/markdown-preview.nvim",
 	"aaronhallaert/advanced-git-search.nvim",
+    -- "joechrisellis/lsp-format-modifications.nvim"
 }
 
 settings["dashboard_image"] = {

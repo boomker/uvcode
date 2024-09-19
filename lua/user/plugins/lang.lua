@@ -16,8 +16,20 @@ lang["AckslD/swenv.nvim"] = {
     config = require("user.configs.lang.swenv"),
 	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim" },
 }
---[[
 
+-- === overwrite plugins config -- ===
+
+lang["MeanderingProgrammer/render-markdown.nvim"] = {
+	lazy = true,
+	ft = { "markdown", "Avante" },
+	config = require("lang.render-markdown"),
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"nvim-treesitter/nvim-treesitter",
+	},
+}
+
+--[[
 {
   'linux-cultist/venv-selector.nvim',
   dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },

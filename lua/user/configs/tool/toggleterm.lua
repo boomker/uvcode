@@ -1,4 +1,8 @@
 return function()
+	vim.cmd([[
+      autocmd TermEnter term://*toggleterm#* set signcolumn=no
+      autocmd TermEnter term://*toggleterm#* set winfixbuf
+    ]])
 	require("modules.utils").load_plugin("toggleterm", {
 		-- size can be a number or function which is passed the current terminal
 		size = function(term)

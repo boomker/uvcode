@@ -14,6 +14,7 @@ editor["gbprod/yanky.nvim"] = {
 	dependencies = { "kkharji/sqlite.lua" },
 }
 
+--  "cshuaimin/ssr.nvim"
 editor["gbprod/substitute.nvim"] = {
 	lazy = true,
 	event = "BufRead",
@@ -34,7 +35,7 @@ editor["echasnovski/mini.surround"] = {
 			mappings = {
 				add = "sm", -- Add surrounding `mark` in Normal and Visual modes
 				delete = "sd", -- Delete surrounding
-				replace = "sc", -- Replace/change surrounding
+				replace = "sr", -- Replace/change surrounding
 				find = "sf", -- Find surrounding (to the right)
 				find_left = "sF", -- Find surrounding (to the left)
 				highlight = "sh", -- Highlight surrounding
