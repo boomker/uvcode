@@ -199,8 +199,8 @@ tool["nvim-telescope/telescope.nvim"] = {
 
 --[[
 tool["zeioth/garbage-day.nvim"] = {
-    lazy = true,
-    event = "LspAttach",
+	lazy = true,
+	event = "LspAttach",
 }
 
 tool["numToStr/Navigator.nvim"] = {

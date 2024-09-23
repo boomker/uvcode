@@ -47,7 +47,10 @@ return function()
 	require("ufo").setup({
 		fold_virt_text_handler = handler,
 		open_fold_hl_timeout = 150,
-		-- close_fold_kinds_for_ft = { "imports", "comment" },
+		close_fold_kinds_for_ft = {
+			default = { "imports", "comment" },
+			json = { "array" },
+		},
 		preview = {
 			win_config = {
 				border = { "", "─", "", "", "", "─", "", "" },
@@ -62,9 +65,6 @@ return function()
 		---@diagnostic disable-next-line: unused-local
 		provider_selector = function(bufnr, filetype, buftype)
 			return ftMap[filetype] or { "treesitter", "indent" }
-			-- return ftMap[filetype]
-
-			-- refer to ./doc/example.lua for detail
 		end,
 	})
 	vim.keymap.set("n", "zR", require("ufo").openAllFolds)
