@@ -106,7 +106,7 @@ tool["smjonas/inc-rename.nvim"] = {
 	lazy = true,
 	event = "LspAttach",
 	config = function()
-		vim.keymap.set("n", "<leader>rN", function()
+		vim.keymap.set("n", "<leader>rs", function()
 			return ":IncRename " .. vim.fn.expand("<cword>")
 		end, { expr = true })
 		require("inc_rename").setup({
