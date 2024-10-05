@@ -52,20 +52,19 @@ return {
 		settings = {
 			basedpyright = {
 				analysis = {
-					typeCheckingMode = "basic",
-					autoImportCompletions = true,
 					autoSearchPaths = true,
-					diagnosticMode = "openFilesOnly",
+					autoImportCompletions = true,
 					useLibraryCodeForTypes = true,
-					reportMissingTypeStubs = false,
+					typeCheckingMode = "standard",
+					diagnosticMode = "openFilesOnly",
 					diagnosticSeverityOverrides = {
 						reportUnusedImport = "information",
 						reportUnusedFunction = "information",
 						reportUnusedVariable = "information",
 						reportGeneralTypeIssues = "none",
-						reportOptionalMemberAccess = "none",
 						reportOptionalSubscript = "none",
 						reportPrivateImportUsage = "none",
+						reportOptionalMemberAccess = "none",
 					},
 				},
 			},
