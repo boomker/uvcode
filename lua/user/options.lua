@@ -3,7 +3,7 @@ local options = {
 	expandtab = true,
     winblend = 10,
 	scrolloff = 5,
-	laststatus = 2,
+	-- laststatus = 2,
 	softtabstop = 4,
 	sidescrolloff = 5,
 }

@@ -111,6 +111,7 @@ settings["disabled_plugins"] = {
     "tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
+    "Exafunction/codeium.nvim",
 	"ojroques/nvim-bufdel",
 	"lambdalisue/suda.vim", -- read or write files with sudo command
 	"andersevenrud/cmp-tmux",

@@ -70,11 +70,6 @@ local core_map = {
 		:with_desc("highlight cursor word"),
 	["n|<leader>nl"] = map_cmd([[:nohl<cr>]]):with_noremap():with_silent():with_desc("nohlsearch"),
 
-	-- replace with magic by default
-	["n|<C-s>"] = map_cmd([[:%s/\v]]):with_noremap(),
-	["c|<C-s>"] = map_cmd([[%s/\v]]):with_noremap(),
-	["x|<C-s>"] = map_cmd([[:s/\v]]):with_noremap(),
-
 	-- Substitute current search kw to null
 	["n|<leader>sn"] = map_cmd(":.s//<CR>"):with_noremap():with_silent():with_desc("Substitute current line kw"),
 	["n|<leader>sN"] = map_cmd(":%s///g<CR>"):with_noremap():with_silent():with_desc("Substitute all kw"),
