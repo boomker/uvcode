@@ -120,6 +120,7 @@ settings["disabled_plugins"] = {
 	"nvim-tree/nvim-tree.lua",
 	"mfussenegger/nvim-treehopper",
 	"iamcco/markdown-preview.nvim",
+    "jonarrien/telescope-cmdline.nvim",
 	"aaronhallaert/advanced-git-search.nvim",
     -- "joechrisellis/lsp-format-modifications.nvim"
 }

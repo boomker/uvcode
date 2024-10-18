@@ -106,8 +106,8 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("grep: word in buffer"),
-	["n|<Leader>fc"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
-	["n|:"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
+	-- ["n|<Leader>fc"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
+	-- ["n|:"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
 	["n|<Leader>fM"] = map_callback(_command_panel)
 		:with_silent()
 		:with_noremap()

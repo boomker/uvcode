@@ -117,6 +117,7 @@ return function()
 			ask = "<leader>ia",
 			edit = "<leader>ie",
 			refresh = "<leader>ir",
+            focus = "<leader>if",
 			toggle = {
 				default = "<leader>it",
 				debug = "<leader>id",
