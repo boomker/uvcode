@@ -10,14 +10,14 @@ local plug_map = {
 	-- Plugin neotree
 	["n|<D-b>"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["i|<D-b>"] = map_cmd("<esc>:Neotree reveal=true toggle<CR>"):with_noremap():with_desc("filetree: Toggle"),
-	["n|<D-g>"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+	["n|<D-g>"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: git_status"),
 	["n|<Leader>nt"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["n|<Leader>nf"] = map_cr("Neotree reveal=true float toggle")
 		:with_noremap()
 		:with_silent()
-		:with_desc("filetree: Toggle"),
+		:with_desc("filetree: float"),
 	["n|<Leader>nb"] = map_cr("Neotree buffers"):with_noremap():with_silent():with_desc("filetree: Buffers"),
-	["n|<Leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: Buffers"),
+	["n|<Leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: git_status"),
 
 	-- Plugin SnipRun
 	["n|<Leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by inline"),
@@ -106,8 +106,8 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("grep: word in buffer"),
-	-- ["n|<Leader>fc"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
-	-- ["n|:"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
+	["n|<Leader>fc"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_silent():with_desc("tool: Cmdline"),
+	-- ["n|:"] = map_cmd(":Telescope cmdline<CR>"):with_noremap():with_desc("tool: Cmdline"),
 	["n|<Leader>fM"] = map_callback(_command_panel)
 		:with_silent()
 		:with_noremap()

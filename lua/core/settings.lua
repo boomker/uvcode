@@ -109,7 +109,7 @@ settings["external_browser"] = "chrome-cli open"
 ---@type string[]
 settings["lsp_deps"] = {
 	"bashls",
-	"clangd",
+	-- "clangd",
 	"html",
 	"jsonls",
 	"lua_ls",
@@ -123,7 +123,7 @@ settings["lsp_deps"] = {
 -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins
 ---@type string[]
 settings["null_ls_deps"] = {
-	"clang_format",
+	-- "clang_format",
 	"gofumpt",
 	"goimports",
 	"prettier",

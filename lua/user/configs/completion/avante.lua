@@ -5,12 +5,12 @@ return function()
 		---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
 		provider = "claude", -- Recommend using deepseek
 		auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-        claude = {
-            endpoint = "https://api.anthropic.com",
-            model = "claude-3-5-sonnet-20240620",
-            temperature = 0,
-            max_tokens = 4096,
-        },
+		claude = {
+			endpoint = "https://api.anthropic.com",
+			model = "claude-3-5-sonnet-20240620",
+			temperature = 0,
+			max_tokens = 4096,
+		},
 		vendors = {
 
 			["deepseek"] = {
@@ -117,12 +117,13 @@ return function()
 			ask = "<leader>ia",
 			edit = "<leader>ie",
 			refresh = "<leader>ir",
-            focus = "<leader>if",
+			focus = "<leader>if",
 			toggle = {
 				default = "<leader>it",
 				debug = "<leader>id",
 				hint = "<leader>ih",
 				suggestion = "<leader>is",
+				repomap = "<leader>im",
 			},
 			-- switch_provider(target)
 		},

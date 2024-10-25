@@ -108,7 +108,7 @@ tool["smjonas/inc-rename.nvim"] = {
 	config = function()
 		vim.keymap.set("n", "<leader>rs", function()
 			return ":IncRename " .. vim.fn.expand("<cword>")
-		end, { expr = true })
+		end, { expr = true, desc = "IncRename" })
 		require("inc_rename").setup({
 			input_buffer_type = "dressing",
 		})
