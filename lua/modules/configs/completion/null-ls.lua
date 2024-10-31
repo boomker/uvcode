@@ -37,6 +37,9 @@ return function()
 				"javascriptreact",
 			},
 		}),
+        btns.diagnostics.yamllint.with({
+            args = { '--config-file', '.yamllint.yml', '-' },
+        }),
 	}
 	require("modules.utils").load_plugin("null-ls", {
 		border = "rounded",
