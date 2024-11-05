@@ -7,9 +7,9 @@ local et = bind.escape_termcode
 
 local builtin_map = {
 	-- Builtin: save & quit
-	["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("edit: Save file"),
-	["n|<C-q>"] = map_cr("wq"):with_desc("edit: Save file and quit"),
-	["n|<A-S-q>"] = map_cr("q!"):with_desc("edit: Force quit"),
+	-- ["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("edit: Save file"),
+	-- ["n|<C-q>"] = map_cr("wq"):with_desc("edit: Save file and quit"),
+	-- ["n|<A-S-q>"] = map_cr("q!"):with_desc("edit: Force quit"),
 
 	-- Builtin: insert mode
 	["i|<C-u>"] = map_cmd("<C-G>u<C-U>"):with_noremap():with_desc("edit: Delete previous block"),
@@ -41,22 +41,20 @@ local builtin_map = {
 	["n|n"] = map_cmd("nzzzv"):with_noremap():with_desc("edit: Next search result"),
 	["n|N"] = map_cmd("Nzzzv"):with_noremap():with_desc("edit: Prev search result"),
 	["n|J"] = map_cmd("mzJ`z"):with_noremap():with_desc("edit: Join next line"),
-	["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("edit: Toggle code fold"),
+	-- ["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("edit: Toggle code fold"),
 	["n|<Esc>"] = map_callback(function()
 			_flash_esc_or_noh()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("edit: Clear search highlight"),
-	["n|<leader>o"] = map_cr("setlocal spell! spelllang=en_us"):with_desc("edit: Toggle spell check"),
+	-- ["n|<leader>o"] = map_cr("setlocal spell! spelllang=en_us"):with_desc("edit: Toggle spell check"),
 }
 
 bind.nvim_load_mapping(builtin_map)
 
 local plug_map = {
 	-- Plugin: persisted.nvim
-
-	-- Plugin persisted.nvim
 	["n|<leader>ss"] = map_cu("SessionSave"):with_noremap():with_silent():with_desc("session: Save"),
 	["n|<leader>sl"] = map_cu("SessionLoad"):with_noremap():with_silent():with_desc("session: Load current"),
 	["n|<leader>sd"] = map_cu("SessionDelete"):with_noremap():with_silent():with_desc("session: Delete"),

@@ -172,7 +172,11 @@ settings["treesitter_deps"] = {
 
 -- Set the options for neovim's gui clients like `neovide` and `neovim-qt` here.
 -- NOTE: Currently, only the following options related to the GUI are supported. Other entries will be IGNORED.
----@type { font_name: string, font_size: number }
+---@class gui_config
+---@field font_name string
+---@field font_size number
+
+---@type gui_config
 settings["gui_config"] = {
 	font_name = "JetBrainsMono Nerd Font",
 	font_size = 12,
