@@ -105,7 +105,7 @@ settings["external_browser"] = "chrome-cli open"
 
 -- Set the language servers that will be installed during bootstrap here.
 -- check the below link for all the supported LSPs:
--- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
+-- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
 ---@type string[]
 settings["lsp_deps"] = {
 	"bashls",

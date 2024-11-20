@@ -59,6 +59,7 @@ settings["lsp_deps"] = {
 	"bashls",
 	"jsonls",
 	"lua_ls",
+    "dprint",
 	"dockerls",
 	"basedpyright",
 }
@@ -84,7 +85,6 @@ settings["treesitter_deps"] = {
 	"typescript",
 	"json",
 	"jsonc",
-	"latex",
 	"lua",
 	"make",
 	"python",

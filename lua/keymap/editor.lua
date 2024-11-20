@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 local bind = require("keymap.bind")
 local map_cr = bind.map_cr
 local map_cu = bind.map_cu
@@ -58,9 +59,6 @@ local plug_map = {
 	["n|<leader>ss"] = map_cu("SessionSave"):with_noremap():with_silent():with_desc("session: Save"),
 	["n|<leader>sl"] = map_cu("SessionLoad"):with_noremap():with_silent():with_desc("session: Load current"),
 	["n|<leader>sd"] = map_cu("SessionDelete"):with_noremap():with_silent():with_desc("session: Delete"),
-
-	-- Plugin: nvim-bufdel
-	-- ["n|<A-q>"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
 
 	-- Plugin: comment.nvim
 	["n|gcc"] = map_callback(function()
