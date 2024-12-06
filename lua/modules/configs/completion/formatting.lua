@@ -1,11 +1,11 @@
 local M = {}
 
 local settings = require("core.settings")
+local format_notify = settings.format_notify
+local format_on_save = settings.format_on_save
+local format_timeout = settings.format_timeout
 local block_list = settings.formatter_block_list
 local disabled_workspaces = settings.format_disabled_dirs
-local format_notify = settings.format_notify
-local format_timeout = settings.format_timeout
-local format_on_save = settings.format_on_save
 local format_modifications_only = settings.format_modifications_only
 local server_formatting_block_list = settings.server_formatting_block_list
 

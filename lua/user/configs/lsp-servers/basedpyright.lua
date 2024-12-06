@@ -1,13 +1,13 @@
 local util = require("lspconfig.util")
 
 local root_files = {
-	"pyproject.toml",
+	"Pipfile",
 	"setup.py",
 	"setup.cfg",
+	"pyproject.toml",
 	"requirements.txt",
-	"Pipfile",
 	"pyrightconfig.json",
-	".git",
+	-- ".git",
 }
 
 local function organize_imports()
@@ -55,7 +55,8 @@ return {
 					autoSearchPaths = true,
 					autoImportCompletions = true,
 					useLibraryCodeForTypes = true,
-					typeCheckingMode = "standard",
+                    reportMissingTypeStubs = false,
+					typeCheckingMode = "basic", -- standard
 					diagnosticMode = "openFilesOnly",
 					diagnosticSeverityOverrides = {
 						reportUnusedImport = "information",
@@ -68,6 +69,7 @@ return {
 					},
 				},
 			},
+            python = { venvPath = '.' },
 		},
 	},
 	commands = {
