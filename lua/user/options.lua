@@ -8,6 +8,6 @@ local options = {
 	sidescrolloff = 5,
 }
 
-vim.g.python_host_prog = "~/.pyvenvs/global/.venv/bin/python"
-vim.g.python3_host_prog = "~/.pyvenvs/global/.venv/bin/python3"
+vim.g.python_host_prog = "~/.pyvenvs/neovim/.venv/bin/python"
+vim.g.python3_host_prog = "~/.pyvenvs/neovim/.venv/bin/python3"
 return options

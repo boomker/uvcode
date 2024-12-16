@@ -164,7 +164,7 @@ function M.format(opts)
 
 		if
 			format_modifications_only
-			and require("lsp-format-modifications").format_modifications(client, bufnr).success
+			-- and require("lsp-format-modifications").format_modifications(client, bufnr).success
 		then
 			if format_notify then
 				vim.notify(

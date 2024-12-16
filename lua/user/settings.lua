@@ -100,14 +100,15 @@ settings["disabled_plugins"] = {
 	"smoka7/hop.nvim", -- 不支持直接在 Telescope 中使用
 	"folke/paint.nvim",
 	"chrisbra/csv.vim",
-	"romainl/vim-cool", -- makes hlsearch more useful
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	"zbirenbaum/neodim", -- dimming the highlights of unused functions, etc.
+	"romainl/vim-cool",   -- makes hlsearch more useful
+	"tpope/vim-sleuth",   -- Detect tabstop and shiftwidth automatically
+	"zbirenbaum/neodim",  -- dimming the highlights of unused functions, etc.
 	"gelguy/wilder.nvim", -- A more adventurous wildmenu(/,?,:)
 	"tpope/vim-fugitive",
 	"pysan3/fcitx5.nvim",
     "Saecki/crates.nvim",
 	"mrcjkb/rustaceanvim",
+    "yetone/avante.nvim",
     "tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
@@ -121,7 +122,7 @@ settings["disabled_plugins"] = {
 	"mfussenegger/nvim-treehopper",
 	"iamcco/markdown-preview.nvim",
 	"aaronhallaert/advanced-git-search.nvim",
-    -- "joechrisellis/lsp-format-modifications.nvim"
+    "joechrisellis/lsp-format-modifications.nvim"
 }
 
 settings["dashboard_image"] = {
