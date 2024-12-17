@@ -1,6 +1,6 @@
 local M = {}
 
-local settings = require("core.settings")
+local settings = require("user.settings")
 local block_list = settings.formatter_block_list
 local disabled_workspaces = settings.format_disabled_dirs
 local format_notify = settings.format_notify
@@ -8,6 +8,13 @@ local format_timeout = settings.format_timeout
 local format_on_save = settings.format_on_save
 local format_modifications_only = settings.format_modifications_only
 local server_formatting_block_list = settings.server_formatting_block_list
+
+vim.api.nvim_create_user_command("Format", function()
+	M.format({
+		timeout = format_timeout,
+		filter = M.format_filter,
+	})
+end, {})
 
 vim.api.nvim_create_user_command("FormatToggle", function()
 	M.toggle_format_on_save()

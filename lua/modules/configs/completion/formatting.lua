@@ -20,7 +20,6 @@ vim.api.nvim_create_user_command("Format", function()
 	})
 end, {})
 
-local block_list = settings.formatter_block_list
 vim.api.nvim_create_user_command("FormatterToggleFt", function(opts)
 	if not block_list[opts.args] then
 		vim.notify(

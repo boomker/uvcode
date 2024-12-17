@@ -69,7 +69,7 @@ return function()
 			},
 			-- Search Git objects (branches, commits)
 			git = {
-				initial_tab = 1,
+				initial_tab = 2,
 				tabs = {
 					{
 						name = "Status diff",
@@ -144,12 +144,6 @@ return function()
 						name = "Notify",
 						tele_func = function()
 							extensions.notify.notify()
-						end,
-					},
-					{
-						name = "Undo History",
-						tele_func = function()
-							extensions.undo.undo()
 						end,
 					},
 				},

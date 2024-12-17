@@ -124,7 +124,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("tool: Retrieve dossiers"),
-	["n|<leader>fm"] = map_callback(function()
+	["n|<leader>fx"] = map_callback(function()
 			require("search").open({ collection = "misc" })
 		end)
 		:with_noremap()

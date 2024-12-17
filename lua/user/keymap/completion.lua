@@ -9,7 +9,8 @@ local mappings = {}
 local plug_map = {
 	-- format
 	["n|<Leader>ft"] = map_cmd("<Cmd>FormatToggle<CR>"):with_noremap():with_desc("Formater: Toggle format on save"),
-	["nx|<Leader>fm"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent():with_desc("Formater: buffer"),
+    ["n|<Leader>fm"] = map_cmd("<Cmd>Format<CR>"):with_noremap():with_desc("formatter: Format buffer manually"),
+	-- ["nx|<Leader>fm"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent():with_desc("Formater: buffer"),
 
 	-- mason
 	["n|<Leader>ms"] = map_cr("Mason"):with_silent():with_noremap():with_nowait():with_desc("mason: Show"),

@@ -2,7 +2,7 @@ return function()
 	local null_ls = require("null-ls")
 	local btns = null_ls.builtins
 
-    --[[
+	--[[
 	---Return formatter args required by `extra_args`
 	---@param formatter_name string
 	---@return table|nil
@@ -34,6 +34,7 @@ return function()
 				"scss",
 				"html",
 				"yaml",
+				"toml",
 				"markdown",
 				"typescript",
 				"javascript",
@@ -41,9 +42,9 @@ return function()
 				"javascriptreact",
 			},
 		}),
-        btns.diagnostics.yamllint.with({
-            args = { "--config-file", ".yamllint.yml", "-" },
-        }),
+		btns.diagnostics.yamllint.with({
+			args = { "--config-file", ".yamllint.yml", "-" },
+		}),
 	}
 	require("modules.utils").load_plugin("null-ls", {
 		border = "rounded",
@@ -51,7 +52,7 @@ return function()
 		log_level = "warn",
 		update_in_insert = false,
 		sources = sources,
-		default_timeout = require("core.settings").format_timeout,
+		default_timeout = require("user.settings").format_timeout,
 	})
 
 	require("completion.mason-null-ls").setup()
