@@ -61,7 +61,7 @@ settings["lsp_deps"] = {
 	"lua_ls",
     "dprint",
 	"dockerls",
-	"basedpyright",
+	-- "basedpyright",
 }
 
 settings["null_ls_deps"] = {

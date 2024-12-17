@@ -12,7 +12,6 @@ lang["AckslD/swenv.nvim"] = {
 	lazy = true,
 	ft = "python",
 	event = { "BufRead", "BufNew" },
-	-- config = true,
     config = require("user.configs.lang.swenv"),
 	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim" },
 }

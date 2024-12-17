@@ -46,7 +46,7 @@ settings["formatter_block_list"] = {
 -- Servers in this list will skip setting formatting capabilities if rhs is true.
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-	clangd = true,
+	-- clangd = true,
 	lua_ls = true,
 	ts_ls = true,
 }
@@ -148,8 +148,8 @@ settings["dap_deps"] = {
 ---@type string[]
 settings["treesitter_deps"] = {
 	"bash",
-	"c",
-	"cpp",
+	-- "c",
+	-- "cpp",
 	"css",
 	"go",
 	"gomod",
