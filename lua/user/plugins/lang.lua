@@ -12,10 +12,14 @@ lang["AckslD/swenv.nvim"] = {
 	lazy = true,
 	ft = "python",
 	event = { "BufRead", "BufNew" },
-    config = require("user.configs.lang.swenv"),
+	config = require("user.configs.lang.swenv"),
 	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim" },
 }
 
+lang["bezhermoso/tree-sitter-ghostty"] = {
+	build = "make nvim_install",
+	ft = "ghostty",
+}
 -- === overwrite plugins config -- ===
 
 lang["MeanderingProgrammer/render-markdown.nvim"] = {

@@ -3,6 +3,6 @@ return function()
 		detect_proxy = true,
 		enable_chat = false,
 		enable_index_service = true,
-		enable_local_search = false,
+		enable_local_search = true,
 	})
 end
