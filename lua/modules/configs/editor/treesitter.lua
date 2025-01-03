@@ -1,4 +1,4 @@
-return vim.schedule_wrap(function ()
+return vim.schedule_wrap(function()
 	local use_ssh = require("core.settings").use_ssh
 
 	vim.api.nvim_set_option_value("foldmethod", "expr", {})
@@ -8,7 +8,7 @@ return vim.schedule_wrap(function ()
 		ensure_installed = require("core.settings").treesitter_deps,
 		highlight = {
 			enable = true,
-			disable = function (ft, bufnr)
+			disable = function(ft, bufnr)
 				if
 					vim.tbl_contains({ "gitcommit" }, ft)
 					or (vim.api.nvim_buf_line_count(bufnr) > 7500 and ft ~= "vimdoc")
@@ -89,7 +89,7 @@ return vim.schedule_wrap(function ()
 	require("nvim-treesitter.install").prefer_git = true
 	require("nvim-treesitter.install").command_extra_args = {
 		-- curl = { "--proxy", "127.0.0.1:7890" },
-		curl = { "--proxy", "127.0.0.1:1087" },
+		curl = { "--proxy", "127.0.0.1:1080" },
 	}
 	if use_ssh then
 		local parsers = require("nvim-treesitter.parsers").get_parser_configs()
