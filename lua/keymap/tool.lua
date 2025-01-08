@@ -108,7 +108,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("tool: Find patterns"),
-	["v|<leader>fs"] = map_cu("Telescope grep_string")
+	["v|<leader>fk"] = map_cu("Telescope grep_string")
 		:with_noremap()
 		:with_silent()
 		:with_desc("tool: Find word under cursor"),

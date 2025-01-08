@@ -16,10 +16,11 @@ lang["AckslD/swenv.nvim"] = {
 	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim" },
 }
 
-lang["bezhermoso/tree-sitter-ghostty"] = {
+--[[ lang["bezhermoso/tree-sitter-ghostty"] = {
 	build = "make nvim_install",
 	ft = "ghostty",
-}
+} ]]
+
 -- === overwrite plugins config -- ===
 
 lang["MeanderingProgrammer/render-markdown.nvim"] = {

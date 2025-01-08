@@ -9,7 +9,7 @@ local mappings = {}
 local plug_map = {
 	-- format
 	["n|<Leader>ft"] = map_cmd("<Cmd>FormatToggle<CR>"):with_noremap():with_desc("Formater: Toggle format on save"),
-    ["n|<Leader>fm"] = map_cmd("<Cmd>Format<CR>"):with_noremap():with_desc("formatter: Format buffer manually"),
+	["n|<Leader>fm"] = map_cmd("<Cmd>Format<CR>"):with_noremap():with_desc("formatter: Format buffer manually"),
 	-- ["nx|<Leader>fm"] = map_cr("lua vim.lsp.buf.format()"):with_noremap():with_silent():with_desc("Formater: buffer"),
 
 	-- mason
@@ -40,10 +40,6 @@ mappings["lsp"] = function(buf)
 			:with_buffer(buf)
 			:with_desc("lsp: Cursor diagnostic"),
 		["n|<leader>ll"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
-			:with_silent()
-			:with_buffer(buf)
-			:with_desc("lsp: Line diagnostic"),
-		["n|<leader>lx"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Line diagnostic"),

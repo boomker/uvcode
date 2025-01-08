@@ -21,19 +21,22 @@ settings["neovide_config"] = {
 	no_idle = true,
 	refresh_rate = 60,
 	gui_font_size = 15,
-	transparency = 0.95,
+	transparency = 0.9,
 	scale_factor = 0.9,
 	cursor_vfx_mode = "railgun",
 	cursor_vfx_opacity = 200.0,
 	cursor_vfx_particle_speed = 20.0,
 	cursor_vfx_particle_density = 5.0,
-	cursor_vfx_particle_lifetime = 1.0,
+	cursor_vfx_particle_lifetime = 1.2,
 	cursor_antialiasing = true,
-	cursor_trail_size = 0,
+	cursor_trail_size = 0.3,
 	cursor_trail_length = 0.05,
 	cursor_animation_length = 0.03,
+	cursor_animate_in_insert_mode = true,
 	cursor_unfocused_outline_width = 0.06,
-	scroll_animation_length = 0,
+	scroll_animation_length = 0.3,
+	scroll_animation_far_lines = 1,
+	position_animation_length = 0.15,
 	light_radius = 5,
 	floating_blur = true,
 	floating_opacity = 0.15,
@@ -56,27 +59,27 @@ settings["formatter_block_list"] = {
 
 settings["server_formatting_block_list"] = {
 	clangd = true,
-	-- lua_ls = true,
+	lua_ls = true,
 	ts_ls = true,
 }
 
 settings["lsp_deps"] = {
+	"ruff",
 	"taplo",
-	"pylsp",
 	"volar",
 	"gopls",
 	"bashls",
 	"jsonls",
 	"lua_ls",
-	"dprint",
 	"dockerls",
+	-- "dprint",
+	-- "pylsp",
 	-- "basedpyright",
 }
 
 settings["null_ls_deps"] = {
-	"ruff",
-	-- "black",
 	"shfmt",
+	-- "black",
 	"stylua",
 	"prettier",
 	"yamllint",
@@ -106,7 +109,7 @@ settings["treesitter_deps"] = {
 }
 
 settings["disabled_plugins"] = {
-	"smoka7/hop.nvim", -- 不支持直接在 Telescope 中使用
+	"smoka7/hop.nvim", -- not support Telescope
 	"folke/paint.nvim",
 	"chrisbra/csv.vim",
 	"romainl/vim-cool", -- makes hlsearch more useful
@@ -121,7 +124,7 @@ settings["disabled_plugins"] = {
 	"tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
-	"Exafunction/codeium.nvim",
+	-- "Exafunction/codeium.nvim",
 	"ojroques/nvim-bufdel",
 	"lambdalisue/suda.vim", -- read or write files with sudo command
 	"andersevenrud/cmp-tmux",

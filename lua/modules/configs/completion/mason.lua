@@ -36,9 +36,7 @@ M.setup = function()
 	mason_registry:on(
 		"package:install:success",
 		vim.schedule_wrap(function(pkg)
-			if pkg.name ~= "python-lsp-server" then
-				return
-			end
+			if pkg.name ~= "python-lsp-server" then return end
 
 			local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
 			local python = is_windows and venv .. "/Scripts/python.exe" or venv .. "/bin/python"
