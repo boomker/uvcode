@@ -53,7 +53,7 @@ return function()
 		shade_filetypes = {},
 		shading_factor = "1", -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
 		direction = "horizontal",
-		float_opts = { border = "rounded", winblend = 10 },
+		float_opts = { border = "rounded", winblend = 5 },
 		shell = vim.o.shell, -- change the default shell
 	})
 end

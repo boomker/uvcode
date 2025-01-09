@@ -23,10 +23,9 @@ return function()
 			filetypes = { "c", "cpp", "objc", "objcpp", "cs", "cuda", "proto" },
 			extra_args = formatter_args("clang_format"),
 		}),
-        ]]
 		btns.formatting.prettier.with({
 			filetypes = {
-				"sh",
+				-- "sh",
 				"js",
 				"ts",
 				"vue",
@@ -42,6 +41,7 @@ return function()
 				"javascriptreact",
 			},
 		}),
+        ]]
 		btns.diagnostics.yamllint.with({
 			args = { "--config-file", ".yamllint.yml", "-" },
 		}),

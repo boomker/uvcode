@@ -73,7 +73,7 @@ return function()
 
 	require("modules.utils").load_plugin("telescope", {
 		defaults = {
-			winblend = 20,
+			winblend = 0,
 			results_title = false,
 			color_devicons = true,
 			initial_mode = "insert",
@@ -90,7 +90,7 @@ return function()
 					["<C-s>"] = flash_pick,
 					["<C-y>"] = copy_path_to_clipboard,
 					["<C-O>"] = multi_selection_open,
-                    ["<C-t>"] = multi_selection_open_tab,
+					["<C-t>"] = multi_selection_open_tab,
 					["<C-x>"] = multi_selection_open_split,
 					["<C-v>"] = multi_selection_open_vsplit,
 					["<esc>"] = actions.close,
@@ -222,7 +222,7 @@ return function()
 				mappings = { -- extend mappings
 					i = {
 						-- ["<C-e>"] = lga_actions.quote_prompt({ postfix = " -w -t" }),
-						["<C-i>"] = lga_actions.quote_prompt({
+						["<A-i>"] = lga_actions.quote_prompt({
 							postfix = " --iglob *.",
 						}),
 					},

@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function ()
+M.setup = function()
 	local diagnostics_virtual_text = require("core.settings").diagnostics_virtual_text
 	local diagnostics_level = require("core.settings").diagnostics_level
 
@@ -50,6 +50,8 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 			end
 			return
 		end
+
+		if lsp_name == "pylsp" then return end
 
 		local ok, custom_handler = pcall(require, "user.configs.lsp-servers." .. lsp_name)
 		local predefined_ok, predefined = pcall(require, "completion.servers." .. lsp_name)

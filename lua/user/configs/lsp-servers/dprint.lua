@@ -1,32 +1,21 @@
-local util = require 'lspconfig.util'
+local util = require("lspconfig.util")
 
 return {
-  default_config = {
-    cmd = { 'dprint', 'lsp' },
-    filetypes = {
-      'javascript',
-      'javascriptreact',
-      'typescript',
-      'typescriptreact',
-      'json',
-      'jsonc',
-      'markdown',
-      'yml',
-      'yaml',
-      'toml',
-      'rust',
-      'roslyn',
-      'graphql',
-    },
-    root_dir = util.root_pattern('dprint.json', '.dprint.json', 'dprint.jsonc', '.dprint.jsonc'),
-    single_file_support = true,
-    settings = {},
-  },
-  docs = {
-    description = [[
-https://github.com/dprint/dprint
-
-Pluggable and configurable code formatting platform written in Rust.
-  ]],
-  },
+	cmd = { "dprint", "lsp" },
+	filetypes = {
+		"yml",
+		"yaml",
+		"toml",
+		"json",
+		"jsonc",
+		"graphql",
+        "markdown",
+		"javascript",
+		"typescript",
+        "javascriptreact",
+		"typescriptreact",
+	},
+	root_dir = util.root_pattern("dprint.json", ".dprint.json", "dprint.jsonc", ".dprint.jsonc"),
+	single_file_support = true,
+	settings = {},
 }

@@ -95,9 +95,9 @@ return function()
 			-- jump position
 			pos = "start", ---@type "start" | "end" | "range"
 			-- add pattern to search history
-			history = false,
+			history = true,
 			-- add pattern to search register
-			register = false,
+			register = true,
 			-- clear highlight after jump
 			nohlsearch = false,
 			-- automatically jump when there is only one match

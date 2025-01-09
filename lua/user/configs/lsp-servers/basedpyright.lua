@@ -25,70 +25,43 @@ local function organize_imports()
 	end
 end
 
-local function set_python_path(path)
-	local clients = util.get_lsp_clients({
-		bufnr = vim.api.nvim_get_current_buf(),
-		name = "basedpyright",
-	})
-	for _, client in ipairs(clients) do
-		if client.settings then
-			client.settings.python = vim.tbl_deep_extend("force", client.settings.python or {}, { pythonPath = path })
-		else
-			client.config.settings =
-				vim.tbl_deep_extend("force", client.config.settings, { python = { pythonPath = path } })
-		end
-		client.notify("workspace/didChangeConfiguration", { settings = nil })
-	end
+local function get_python_venvPath()
+	return require("swenv.api").get_current_venv()["path"]
 end
 
 return {
-	default_config = {
-		cmd = { "basedpyright-langserver", "--stdio" },
-		filetypes = { "python" },
-		root_dir = function(fname)
-			return util.root_pattern(unpack(root_files))(fname)
-		end,
-		single_file_support = true,
-		settings = {
-			basedpyright = {
-				analysis = {
-					autoSearchPaths = true,
-					autoImportCompletions = true,
-					useLibraryCodeForTypes = true,
-                    reportMissingTypeStubs = false,
-					typeCheckingMode = "basic", -- standard
-					diagnosticMode = "openFilesOnly",
-					diagnosticSeverityOverrides = {
-						reportUnusedImport = "information",
-						reportUnusedFunction = "information",
-						reportUnusedVariable = "information",
-						reportGeneralTypeIssues = "none",
-						reportOptionalSubscript = "none",
-						reportPrivateImportUsage = "none",
-						reportOptionalMemberAccess = "none",
-					},
+	cmd = { "basedpyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_dir = function(fname)
+		return util.root_pattern(unpack(root_files))(fname)
+	end,
+	single_file_support = true,
+	settings = {
+		basedpyright = {
+			analysis = {
+				autoSearchPaths = true,
+				autoImportCompletions = true,
+				useLibraryCodeForTypes = true,
+				reportMissingTypeStubs = false,
+				typeCheckingMode = "basic", -- standard
+				diagnosticMode = "openFilesOnly",
+				diagnosticSeverityOverrides = {
+					reportUnusedImport = "information",
+					reportUnusedFunction = "information",
+					reportUnusedVariable = "information",
+					reportGeneralTypeIssues = "none",
+					reportOptionalSubscript = "none",
+					reportPrivateImportUsage = "none",
+					reportOptionalMemberAccess = "none",
 				},
 			},
-            python = { venvPath = '.' },
 		},
+		python = { venvPath = get_python_venvPath() },
 	},
 	commands = {
 		PyrightOrganizeImports = {
 			organize_imports,
 			description = "Organize Imports",
 		},
-		PyrightSetPythonPath = {
-			set_python_path,
-			description = "Reconfigure basedpyright with the provided python path",
-			nargs = 1,
-			complete = "file",
-		},
-	},
-	docs = {
-		description = [[
-https://detachhead.github.io/basedpyright
-
-`basedpyright`, a static type checker and language server for python
-]],
 	},
 }

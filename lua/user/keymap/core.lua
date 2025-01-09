@@ -7,43 +7,43 @@ local map_cmd = bind.map_cmd
 
 -- [[ Neovide font_size scale Keymaps
 if vim.g.neovide then
-    vim.g.gui_font_size = 16
-    vim.g.neovide_scale_factor = 1.0
+	vim.g.gui_font_size = 16
+	vim.g.neovide_scale_factor = 1.0
 
-    local change_scale_factor = function(delta)
-        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
-    end
-    vim.keymap.set("n", "<D-C-=>", function()
-        change_scale_factor(1.25)
-    end)
-    vim.keymap.set("n", "<D-C-->", function()
-        change_scale_factor(1/1.25)
-    end)
+	local change_scale_factor = function(delta)
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+	end
+	vim.keymap.set("n", "<D-C-=>", function()
+		change_scale_factor(1.25)
+	end)
+	vim.keymap.set("n", "<D-C-->", function()
+		change_scale_factor(1 / 1.25)
+	end)
 
-    -- Put anything you want to happen only in Neovide here
-    RefreshGuiFont = function()
-        vim.opt.guifont = string.format("%s:h%s", settings.gui_config.gui_font_face, vim.g.gui_font_size)
-    end
+	-- Put anything you want to happen only in Neovide here
+	RefreshGuiFont = function()
+		vim.opt.guifont = string.format("%s:h%s", settings.gui_config.gui_font_face, vim.g.gui_font_size)
+	end
 
-    ResizeGuiFont = function(delta)
-        vim.g.gui_font_size = vim.g.gui_font_size + delta
-        RefreshGuiFont()
-    end
+	ResizeGuiFont = function(delta)
+		vim.g.gui_font_size = vim.g.gui_font_size + delta
+		RefreshGuiFont()
+	end
 
-    local kopts = { noremap = true, silent = true }
+	local kopts = { noremap = true, silent = true }
 
-    vim.keymap.set({ "n", "i" }, "<D-0>", function()
-        vim.g.gui_font_size = settings.gui_config.font_size
-        RefreshGuiFont()
-    end, kopts)
+	vim.keymap.set({ "n", "i" }, "<D-0>", function()
+		vim.g.gui_font_size = settings.gui_config.font_size
+		RefreshGuiFont()
+	end, kopts)
 
-    vim.keymap.set({ "n", "i" }, "<D-=>", function()
-        ResizeGuiFont(1)
-    end, kopts)
+	vim.keymap.set({ "n", "i" }, "<D-=>", function()
+		ResizeGuiFont(1)
+	end, kopts)
 
-    vim.keymap.set({ "n", "i" }, "<D-->", function()
-        ResizeGuiFont(-1)
-    end, kopts)
+	vim.keymap.set({ "n", "i" }, "<D-->", function()
+		ResizeGuiFont(-1)
+	end, kopts)
 end
 -- Neovide font_size scale Keymaps ]]
 
@@ -102,8 +102,8 @@ local core_map = {
 
 	["nvo|H"] = map_cmd("^"),
 	["nvo|L"] = map_cmd("g_"),
-    ["n|Q"] = map_cmd("<Nop>"):with_noremap():with_desc("Noq Q"),
-    ["n|J"] = map_cmd("m'J`'"):with_noremap():with_desc("Join line"),
+	["n|Q"] = map_cmd("<Nop>"):with_noremap():with_desc("Noq Q"),
+	["n|J"] = map_cmd("m'J`'"):with_noremap():with_desc("Join line"),
 	["n|W"] = map_cmd("i<CR><esc>`["):with_noremap():with_desc("Wrap line"),
 
 	-- buffer file save or quit
@@ -118,23 +118,24 @@ local core_map = {
 	["n|<leader>cc"] = map_cmd(":cclose<CR>"):with_noremap():with_silent():with_desc("close quicklist"),
 	["n|<leader>cq"] = map_cmd(":copen<CR>"):with_noremap():with_silent():with_desc("open quicklist"),
 	["n|<leader>cg"] = map_cmd([[:grep '' % |copen<C-Left><C-Left><C-Left><Right>]])
-		:with_noremap():with_desc("grep kw into copen"),
+		:with_noremap()
+		:with_desc("grep kw into copen"),
 
 	-- like MacVim
 	["n|<D-f>"] = map_cmd("/"):with_noremap(),
-    ["n|<D-s>"] = map_cmd("<Cmd>w<CR>"):with_noremap(),
+	["n|<D-s>"] = map_cmd("<Cmd>w<CR>"):with_noremap(),
 	["n|<D-v>"] = map_cmd([[<Plug>(YankyPutAfterFilter)]]):with_noremap():with_silent(),
-    ["t|<D-v>"] = map_cmd([[<C-\><C-n>"+pa]]):with_noremap():with_silent(),
-    ["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
-    ["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
-    ["i|<D-v>"] = map_cmd("<C-R>+"):with_desc("pasted text"),
-    ["i|<D-f>"] = map_cmd("<C-O>/"):with_desc("search word"),
-    ["i|<D-z>"] = map_cmd("<C-O>u"):with_desc("revert last change"),
-    ["i|<D-d>"] = map_cmd("<C-O>dw"):with_desc("delete cursor word"),
-    ["i|<D-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
+	["t|<D-v>"] = map_cmd([[<C-\><C-n>"+pa]]):with_noremap():with_silent(),
+	["v|<D-v>"] = map_cmd("<C-R>+"):with_noremap():with_silent(),
+	["c|<D-v>"] = map_cmd("<C-R>+"):with_noremap(),
+	["i|<D-v>"] = map_cmd("<C-R>+"):with_desc("pasted text"),
+	["i|<D-f>"] = map_cmd("<C-O>/"):with_desc("search word"),
+	["i|<D-z>"] = map_cmd("<C-O>u"):with_desc("revert last change"),
+	["i|<D-d>"] = map_cmd("<C-O>dw"):with_desc("delete cursor word"),
+	["i|<D-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
 
 	-- Insert mode
-	["i|<C-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
+	-- ["i|<C-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
 	["i|<C-a>"] = map_cmd("<Esc>^i"):with_noremap():with_desc("edit: Move cursor to line start"),
 	["i|<C-l>"] = map_cmd("<Esc>$a"):with_noremap():with_desc("edit: Move cursor to line end"),
 	["i|<C-x>o"] = map_cmd("<Esc><C-w>o"):with_noremap(),

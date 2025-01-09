@@ -25,6 +25,18 @@ completion["yetone/avante.nvim"] = {
 	config = require("user.configs.completion.avante"),
 }
 
+completion["saghen/blink.cmp"] = {
+	dependencies = "rafamadriz/friendly-snippets",
+
+	-- use a release tag to download pre-built binaries
+	version = "*",
+	-- AND/OR build from source
+	-- build = 'cargo build --release',
+	-- If you use nix, you can build from source using latest nightly rust with:
+	-- build = 'nix run .#build-plugin',
+	opts_extend = { "sources.default" },
+	config = require("user.configs.completion.blink-cmp"),
+}
 -- === overwrite plugins config -- ===
 
 completion["nvimtools/none-ls.nvim"] = {

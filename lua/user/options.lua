@@ -1,7 +1,7 @@
 local options = {
 	autochdir = true,
 	expandtab = true,
-	winblend = 10,
+	winblend = 5,
 	scrolloff = 5,
 	softtabstop = 4,
 	sidescrolloff = 5,

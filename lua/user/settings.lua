@@ -21,8 +21,8 @@ settings["neovide_config"] = {
 	no_idle = true,
 	refresh_rate = 60,
 	gui_font_size = 15,
-	transparency = 0.9,
 	scale_factor = 0.9,
+	transparency = 0.9,
 	cursor_vfx_mode = "railgun",
 	cursor_vfx_opacity = 200.0,
 	cursor_vfx_particle_speed = 20.0,
@@ -39,9 +39,6 @@ settings["neovide_config"] = {
 	position_animation_length = 0.15,
 	light_radius = 5,
 	floating_blur = true,
-	floating_opacity = 0.15,
-	floating_blur_amount_x = 2.0,
-	floating_blur_amount_y = 2.0,
 	underline_stroke_scale = 1.5,
 	remember_window_size = true,
 	hide_mouse_when_typing = true,
@@ -65,6 +62,7 @@ settings["server_formatting_block_list"] = {
 
 settings["lsp_deps"] = {
 	"ruff",
+	"dprint",
 	"taplo",
 	"volar",
 	"gopls",
@@ -72,9 +70,8 @@ settings["lsp_deps"] = {
 	"jsonls",
 	"lua_ls",
 	"dockerls",
-	-- "dprint",
 	-- "pylsp",
-	-- "basedpyright",
+	"basedpyright",
 }
 
 settings["null_ls_deps"] = {

@@ -15,9 +15,9 @@ local plug_map = {
 	["n|<Leader>fy"] = map_callback(Telescope_yaml_symbols):with_noremap():with_silent():with_desc("yaml_symbols"),
 
 	-- Plugin swenv, ft: python
-	["n|<Leader>sV"] = map_cr("lua require('swenv.api').pick_venv()")
+	["n|<Leader>se"] = map_cr("lua require('swenv.api').auto_venv()")
 		:with_noremap()
 		:with_silent()
-		:with_desc("swenv: auto venv"),
+		:with_desc("swenv: auto select venv"),
 }
 bind.nvim_load_mapping(plug_map)
