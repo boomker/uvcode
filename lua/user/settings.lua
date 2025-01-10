@@ -76,7 +76,7 @@ settings["lsp_deps"] = {
 
 settings["null_ls_deps"] = {
 	"shfmt",
-	-- "black",
+	"black",
 	"stylua",
 	"prettier",
 	"yamllint",
@@ -118,6 +118,7 @@ settings["disabled_plugins"] = {
 	"Saecki/crates.nvim",
 	"mrcjkb/rustaceanvim",
 	"yetone/avante.nvim",
+	"saghen/blink.cmp",
 	"tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",

@@ -12,10 +12,6 @@ return function()
 					cmp.show({ providers = { "snippets" } })
 				end,
 			},
-			cmdline = {
-				preset = "enter",
-				["<C-j>"] = { "select_next", "fallback" },
-			},
 		},
 
 		appearance = {
