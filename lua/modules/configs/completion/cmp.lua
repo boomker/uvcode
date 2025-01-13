@@ -175,14 +175,13 @@ return function()
 		},
 		-- You should specify your *installed* sources.
 		sources = {
-			{ name = "nvim_lsp", max_item_count = 350 },
-			{ name = "nvim_lua" },
-			{ name = "luasnip" },
+			{ name = "nvim_lsp", max_item_count = 150 },
 			{ name = "path" },
-			{ name = "treesitter" },
 			{ name = "spell" },
-			-- { name = "tmux" },
-			-- { name = "orgmode" },
+			{ name = "codeium" },
+			{ name = "luasnip" },
+			{ name = "nvim_lua" },
+			{ name = "treesitter" },
 			{
 				name = "buffer",
 				option = {
@@ -191,10 +190,11 @@ return function()
 					end,
 				},
 			},
-			-- { name = "latex_symbols" },
+			-- { name = "tmux" },
+			-- { name = "orgmode" },
 			-- { name = "copilot" },
-			{ name = "codeium" },
 			-- { name = "cmp_tabnine" },
+			-- { name = "latex_symbols" },
 		},
 		experimental = {
 			ghost_text = {

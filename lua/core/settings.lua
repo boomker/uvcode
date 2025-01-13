@@ -108,7 +108,7 @@ settings["external_browser"] = "chrome-cli open"
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
 ---@type string[]
 settings["lsp_deps"] = {
-	"bashls",
+	-- "bashls",
 	-- "clangd",
 	"html",
 	"jsonls",

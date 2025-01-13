@@ -66,11 +66,11 @@ settings["lsp_deps"] = {
 	"taplo",
 	"volar",
 	"gopls",
-	"bashls",
 	"jsonls",
 	"lua_ls",
 	"dockerls",
 	-- "pylsp",
+	-- "bashls",
 	"basedpyright",
 }
 
@@ -117,8 +117,9 @@ settings["disabled_plugins"] = {
 	"pysan3/fcitx5.nvim",
 	"Saecki/crates.nvim",
 	"mrcjkb/rustaceanvim",
-	"yetone/avante.nvim",
+	-- "hrsh7th/nvim-cmp",
 	"saghen/blink.cmp",
+	"yetone/avante.nvim",
 	"tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
