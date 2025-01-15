@@ -7,6 +7,13 @@ local vim_path = require("core.global").vim_path
 require("keymap.helpers")
 
 local plug_map = {
+	-- Plugin: edgy
+	["n|<C-n>"] = map_callback(function()
+			require("edgy").toggle("left")
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("filetree: Toggle"),
 
 	--[[
     ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
@@ -14,7 +21,6 @@ local plug_map = {
     ["n|<leader>gG"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
 
 	-- Plugin: nvim-tree
-	["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 	["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
 	["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
 
