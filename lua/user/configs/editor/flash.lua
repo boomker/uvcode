@@ -97,7 +97,7 @@ return function()
 			-- add pattern to search history
 			history = true,
 			-- add pattern to search register
-			register = true,
+			register = false,
 			-- clear highlight after jump
 			nohlsearch = false,
 			-- automatically jump when there is only one match

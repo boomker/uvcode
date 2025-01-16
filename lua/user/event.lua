@@ -11,6 +11,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
+vim.api.nvim_create_user_command("ClearRegisters", function()
+	for i = string.byte("a"), string.byte("z") do
+		vim.fn.setreg(string.char(i), "")
+	end
+end, {})
+
 local definitions = {
 	bufs = {
 		{ "BufEnter", "*", "silent! lcd %:p:h" },
