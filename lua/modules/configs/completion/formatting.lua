@@ -8,10 +8,7 @@ local block_list = settings.formatter_block_list
 local disabled_workspaces = settings.format_disabled_dirs
 local format_modifications_only = settings.format_modifications_only
 local server_formatting_block_list = settings.server_formatting_block_list
-
-vim.api.nvim_create_user_command("FormatToggle", function()
-	M.toggle_format_on_save()
-end, {})
+local format_timeout = settings.format_timeout
 
 vim.api.nvim_create_user_command("Format", function()
 	M.format({
@@ -20,6 +17,11 @@ vim.api.nvim_create_user_command("Format", function()
 	})
 end, {})
 
+vim.api.nvim_create_user_command("FormatToggle", function()
+	M.toggle_format_on_save()
+end, {})
+
+local block_list = settings.formatter_block_list
 vim.api.nvim_create_user_command("FormatterToggleFt", function(opts)
 	if not block_list[opts.args] then
 		vim.notify(
