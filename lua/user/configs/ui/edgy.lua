@@ -18,7 +18,32 @@ return function()
 		},
 		exit_when_last = true,
 		close_when_all_hidden = true,
-		keys = {},
+		keys = {
+			["q"] = false,
+			["Q"] = false,
+			["<c-q>"] = false,
+			["za"] = function(win)
+				win:toggle()
+			end,
+			["<A-i>"] = function(win)
+				win:next({ focus = true })
+			end,
+			["<A-o>"] = function(win)
+				win:prev({ focus = true })
+			end,
+			["<A-Down>"] = function(win)
+				win:resize("height", -2)
+			end,
+			["<A-Up>"] = function(win)
+				win:resize("height", 2)
+			end,
+			["<A-Left>"] = function(win)
+				win:resize("width", -2)
+			end,
+			["<A-Right>"] = function(win)
+				win:resize("width", 2)
+			end,
+		},
 		bottom = {
 			{ ft = "qf", size = { height = 0.3 } },
 			{
@@ -37,16 +62,26 @@ return function()
 			},
 		},
 		left = {
-			{
-				ft = "NvimTree",
+			--[[ {
+				ft = "neo-tree",
 				pinned = true,
 				collapsed = false,
-				open = "NvimTreeOpen",
-				size = {
-					height = 0.5,
-					width = 40,
-				},
+				size = { height = 0.6, width = 35 },
+				open = "Neotree position=left filesystem",
+				filter = function(buf)
+					return vim.b[buf].neo_tree_source == "filesystem"
+				end,
 			},
+			{
+				ft = "neo-tree",
+				pinned = true,
+				collapsed = true,
+				size = { height = 0.4, width = 35 },
+				open = "Neotree float toggle",
+				filter = function(buf)
+					return vim.b[buf].neo_tree_source == "git_status"
+                end,
+			}, ]]
 		},
 		right = {
 			{
@@ -66,5 +101,5 @@ return function()
 				filter = trouble_filter("right"),
 			},
 		},
-	}, false, nil, false)
+	}, false, nil, true)
 end

@@ -78,17 +78,22 @@ local mappings = {
 	},
 }
 
-bind.nvim_load_mapping(mappings.builtins)
-bind.nvim_load_mapping(mappings.plugins)
+local user_ui, user_mappings = pcall(require, "user.keymap.ui")
+if user_ui and type(user_mappings.plugins) == "table" then
+	require("modules.utils.keymap").replace(user_mappings.plugins)
+else
+	bind.nvim_load_mapping(mappings.builtins)
+	bind.nvim_load_mapping(mappings.plugins)
+end
 
 --- The following code enables this file to be exported ---
 ---  for use with gitsigns lazy-loaded keymap bindings  ---
 
 local M = {}
 
+---@param buf integer
 function M.gitsigns(buf)
 	local actions = require("gitsigns.actions")
-	--[[
 	local map = {
 		["n|]g"] = bind.map_callback(function()
 			if vim.wo.diff then
@@ -159,74 +164,12 @@ function M.gitsigns(buf)
 			actions.text_object()
 		end):with_buffer(buf),
 	}
-    --]]
-	local map = {
-		["n|]g"] = bind.map_callback(function()
-			if vim.wo.diff then
-				return "]g"
-			end
-			vim.schedule(function()
-				actions.next_hunk()
-			end)
-			return "<Ignore>"
-		end)
-			:with_buffer(buf)
-			:with_expr()
-			:with_desc("git: Goto next hunk"),
-		["n|[g"] = bind.map_callback(function()
-			if vim.wo.diff then
-				return "[g"
-			end
-			vim.schedule(function()
-				actions.prev_hunk()
-			end)
-			return "<Ignore>"
-		end)
-			:with_buffer(buf)
-			:with_expr()
-			:with_desc("git: Goto prev hunk"),
-		["n|<leader>hs"] = bind.map_callback(function()
-			actions.stage_hunk()
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Stage hunk"),
-		["v|<leader>hs"] = bind.map_callback(function()
-			actions.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Stage hunk"),
-		["n|<leader>hx"] = bind.map_callback(function()
-			actions.undo_stage_hunk()
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Undo stage hunk"),
-		["n|<leader>hr"] = bind.map_callback(function()
-			actions.reset_hunk()
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Reset hunk"),
-		["v|<leader>hr"] = bind.map_callback(function()
-			actions.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Reset hunk"),
-		["n|<leader>hR"] = bind.map_callback(function()
-			actions.reset_buffer()
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Reset buffer"),
-		["n|<leader>hv"] = bind.map_callback(function()
-			actions.preview_hunk()
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Preview hunk"),
-		["n|<leader>hb"] = bind.map_callback(function()
-			actions.blame_line({ full = true })
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Blame line"),
-	}
-	bind.nvim_load_mapping(map)
+
+	if user_ui and type(user_mappings.gitsigns) == "function" then
+		require("modules.utils.keymap").replace(user_mappings.gitsigns(buf))
+	else
+		bind.nvim_load_mapping(map)
+	end
 end
 
 return M

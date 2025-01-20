@@ -1,9 +1,9 @@
 local bind = require("keymap.bind")
 local settings = require("user.settings")
+local map_cmd = bind.map_cmd
+local map_callback = bind.map_callback
 -- local map_cr = bind.map_cr
 -- local map_cu = bind.map_cu
-local map_cmd = bind.map_cmd
--- local map_callback = bind.map_callback
 
 -- [[ Neovide font_size scale Keymaps
 if vim.g.neovide then
@@ -103,8 +103,19 @@ local core_map = {
 	["nvo|H"] = map_cmd("^"),
 	["nvo|L"] = map_cmd("g_"),
 	["n|Q"] = map_cmd("<Nop>"):with_noremap():with_desc("Noq Q"),
+	["n|Y"] = map_cmd("y$"):with_desc("edit: Yank text to EOL"),
+	["n|D"] = map_cmd("d$"):with_desc("edit: Delete text to EOL"),
 	["n|J"] = map_cmd("m'J`'"):with_noremap():with_desc("Join line"),
 	["n|W"] = map_cmd("i<CR><esc>`["):with_noremap():with_desc("Wrap line"),
+	["n|n"] = map_cmd("nzzzv"):with_noremap():with_desc("edit: Next search result"),
+	["n|N"] = map_cmd("Nzzzv"):with_noremap():with_desc("edit: Prev search result"),
+	-- ["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("edit: Toggle code fold"),
+	["n|<Esc>"] = map_callback(function()
+			_flash_esc_or_noh()
+		end)
+		:with_noremap()
+		:with_silent()
+		:with_desc("edit: Clear search highlight"),
 
 	-- buffer file save or quit
 	["n|<leader>x"] = map_cmd(":x<CR>"):with_noremap():with_silent():with_desc("Quit buffers"),
@@ -157,21 +168,6 @@ local core_map = {
 	["i|<C-x>a"] = map_cmd("<Esc>:ToggleAlternate<CR>"):with_noremap(),
 	["i|<C-x>f"] = map_cmd("<Esc>:Telescope current_buffer_fuzzy_find<CR>"):with_noremap(),
 
-	-- window resize
-	["n|<leader>re"] = map_cmd("<C-w>="):with_noremap():with_silent():with_desc("window size reset"),
-	["n|<leader>rm"] = map_cmd("<C-w>_<C-w>|"):with_noremap():with_silent():with_desc("window size max"),
-
-	-- window focus
-	["n|<leader>wh"] = map_cmd("<C-w>h"):with_noremap():with_desc("window: Focus left"),
-	["n|<leader>wl"] = map_cmd("<C-w>l"):with_noremap():with_desc("window: Focus right"),
-	["n|<leader>wj"] = map_cmd("<C-w>j"):with_noremap():with_desc("window: Focus down"),
-	["n|<leader>wk"] = map_cmd("<C-w>k"):with_noremap():with_desc("window: Focus up"),
-	["n|<leader>ww"] = map_cmd("<C-w>w"):with_noremap():with_desc("window: Focus least"),
-	["n|<leader>wv"] = map_cmd("<C-w>v<C-^>"):with_noremap():with_silent():with_desc("window horizon"),
-	["n|<leader>ws"] = map_cmd("<C-w>s<C-^>"):with_noremap():with_silent():with_desc("window split"),
-	-- ["n|<leader>wS"] = map_cmd(":split<CR>"):with_noremap():with_silent(),
-	-- ["n|<leader>wV"] = map_cmd(":vsplit<CR>"):with_noremap():with_silent(),
-
 	["t|<D-b>"] = map_cmd("<C-Left>"):with_noremap():with_silent(),
 	["t|<D-f>"] = map_cmd("<C-Right>"):with_noremap():with_silent(),
 	["t|<D-C-h>"] = map_cmd("<Cmd>wincmd h<CR>"):with_silent():with_noremap():with_desc("window: Focus left"),
@@ -187,9 +183,20 @@ local core_map = {
 	-- Command mode
 	["c|<D-b>"] = map_cmd("<C-Left>"):with_noremap(),
 	["c|<D-f>"] = map_cmd("<C-Right>"):with_noremap(),
+	["c|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("edit: Left"),
+	["c|<C-f>"] = map_cmd("<Right>"):with_noremap():with_desc("edit: Right"),
+	["c|<C-a>"] = map_cmd("<Home>"):with_noremap():with_desc("edit: Home"),
+	["c|<C-e>"] = map_cmd("<End>"):with_noremap():with_desc("edit: End"),
+	["c|<C-d>"] = map_cmd("<Del>"):with_noremap():with_desc("edit: Delete"),
+	["c|<C-h>"] = map_cmd("<BS>"):with_noremap():with_desc("edit: Backspace"),
+	["c|<C-t>"] = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]])
+		:with_noremap()
+		:with_desc("edit: Complete path of current file"),
 	["c|SW!"] = map_cmd("execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"),
 
 	-- Visual mode
+	["v|<"] = map_cmd("<gv"):with_desc("edit: Decrease indent"),
+	["v|>"] = map_cmd(">gv"):with_desc("edit: Increase indent"),
 }
 
 bind.nvim_load_mapping(core_map)

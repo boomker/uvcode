@@ -42,8 +42,6 @@ function M.lsp(buf)
 		["n|gs"] = map_callback(function()
 			vim.lsp.buf.signature_help()
 		end):with_desc("lsp: Signature help"),
-		-- ["n|gr"] = map_cr("Lspsaga rename"):with_silent():with_buffer(buf):with_desc("lsp: Rename in file range"),
-        --]]
 		["n|gR"] = map_cr("Lspsaga rename ++project")
 			:with_silent()
 			:with_buffer(buf)

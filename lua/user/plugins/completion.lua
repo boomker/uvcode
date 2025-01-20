@@ -46,17 +46,17 @@ completion["nvimtools/none-ls.nvim"] = {
 	dependencies = { "nvim-lua/plenary.nvim", "jay-babu/mason-null-ls.nvim" },
 }
 
-completion["stevearc/aerial.nvim"] = {
-	lazy = true,
-	event = "LspAttach",
-	config = require("user.configs.completion.aerial"),
-}
-
 --[[
 completion["iurimateus/luasnip-latex-snippets.nvim"] = {
     lazy = true,
     ft = { "tex", "bib", "markdown" },
     config = require("configs.completion.luasnip-latex-snippets"),
+}
+
+completion["stevearc/aerial.nvim"] = {
+	lazy = true,
+	event = "LspAttach",
+	config = require("user.configs.completion.aerial"),
 }
 
 ]]

@@ -12,24 +12,11 @@ return function()
 				return vim.o.columns * 0.40
 			end
 		end,
-		on_open = function(term)
+		on_open = function()
 			-- Prevent infinite calls from freezing neovim.
 			-- Only set these options specific to this terminal buffer.
 			vim.api.nvim_set_option_value("foldmethod", "manual", { scope = "local" })
 			vim.api.nvim_set_option_value("foldexpr", "0", { scope = "local" })
-
-			-- Prevent horizontal terminal from obscuring `nvim-tree`.
-			local tree_api_s, tree_api = pcall(require, "nvim-tree.api")
-			local tree_s, tree_view = pcall(require, "nvim-tree.view")
-
-			-- local neotree_s, neotree_view = pcall(require, "neo-tree.ui.renderer")
-
-			if tree_api_s and tree_s and tree_view.is_visible() and term.direction == "horizontal" then
-				local width = vim.fn.winwidth(tree_view.get_winnr())
-				tree_api.tree.toggle()
-				tree_view.View.width = width
-				tree_api.tree.toggle(false, true)
-			end
 		end,
 		highlights = {
 			Normal = {

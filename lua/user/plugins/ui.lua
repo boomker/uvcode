@@ -8,16 +8,21 @@ ui["goolord/alpha-nvim"] = {
 	config = require("user.configs.ui.alpha"),
 }
 
-ui["lukas-reineke/indent-blankline.nvim"] = {
-	lazy = true,
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("user.configs.ui.indent-blankline"),
+ui["folke/edgy.nvim"] = {
+	event = "VeryLazy",
+	config = require("user.configs.ui.edgy"),
 }
 
 ui["rcarriga/nvim-notify"] = {
 	lazy = true,
 	event = "VeryLazy",
 	config = require("user.configs.ui.notify"),
+}
+
+ui["lukas-reineke/indent-blankline.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("user.configs.ui.indent-blankline"),
 }
 
 --[[
