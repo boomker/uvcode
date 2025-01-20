@@ -197,19 +197,17 @@ local plug_map = {
 	["n|<Leader>so"] = map_cu("ScratchOpen"):with_noremap():with_silent():with_desc("Scratch Open"),
 	["n|<Leader>sg"] = map_cu("ScratchOpenFzf"):with_noremap():with_silent():with_desc("Scratch Open via grep string"),
 
-	-- Plugin nvim-gomove(move/copy text)
-	["i|<M-j>"] = map_cmd("<esc><Plug>GoNSMDown"):with_noremap():with_silent(),
-	["i|<M-k>"] = map_cmd("<esc><Plug>GoNSMUp"):with_noremap():with_silent(),
-	-- normal mode move text
-	["n|<M-j>"] = map_cmd([[<Plug>GoNSMDown]]):with_noremap():with_silent(),
-	["n|<M-k>"] = map_cmd([[<Plug>GoNSMUp]]):with_noremap():with_silent(),
-	["n|<M-S-h>"] = map_cmd([[<Plug>GoNSMLeft]]):with_noremap():with_silent(),
-	["n|<M-S-l>"] = map_cmd([[<Plug>GoNSMRight]]):with_noremap():with_silent(),
-	-- x mode move text
-	["x|<M-j>"] = map_cmd([[<Plug>GoVSMDown]]):with_noremap():with_silent(),
-	["x|<M-k>"] = map_cmd([[<Plug>GoVSMUp]]):with_noremap():with_silent(),
-	["x|<M-S-h>"] = map_cmd([[<Plug>GoVSMLeft]]):with_noremap():with_silent(),
-	["x|<M-S-l>"] = map_cmd([[<Plug>GoVSMRight]]):with_noremap():with_silent(),
+	-- Plugin fedepujol/move.nvim (move text)
+	-- Normal-mode commands
+	["n|<A-j>"] = map_cmd(":MoveLine(1)<CR>"):with_noremap():with_silent():with_desc("Line: move down"),
+	["n|<A-k>"] = map_cmd(":MoveLine(-1)<CR>"):with_noremap():with_silent():with_desc("Line: move up"),
+	["n|<A-S-h>"] = map_cmd(":MoveWord(1)<CR>"):with_noremap():with_silent():with_desc("Word: move left"),
+	["n|<A-S-l>"] = map_cmd(":MoveWord(-1)<CR>"):with_noremap():with_silent():with_desc("Word: move right"),
+	-- Visual-mode commands
+	["v|<A-j>"] = map_cmd(":MoveBlock(1)<CR>"):with_noremap():with_silent():with_desc("Block: move down"),
+	["v|<A-k>"] = map_cmd(":MoveBlock(-1)<CR>"):with_noremap():with_silent():with_desc("Block: move up"),
+	["v|<A-S-h>"] = map_cmd(":MoveHBlock(-1)<CR>"):with_noremap():with_silent():with_desc("Block: move left"),
+	["v|<A-S-l>"] = map_cmd(":MoveHBlock(1)<CR>"):with_noremap():with_silent():with_desc("Block: move right"),
 
 	-- Plugin refactoring
 	["v|<Leader>re"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]])

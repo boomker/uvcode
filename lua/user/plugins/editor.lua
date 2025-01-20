@@ -21,9 +21,12 @@ editor["gbprod/substitute.nvim"] = {
 	config = require("user.configs.editor.substitute"),
 }
 
-editor["booperlv/nvim-gomove"] = {
+editor["fedepujol/move.nvim"] = {
 	lazy = true,
 	event = "BufRead",
+	config = function()
+		require("move").setup()
+	end,
 }
 
 editor["echasnovski/mini.surround"] = {
