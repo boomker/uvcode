@@ -68,6 +68,7 @@ settings["lsp_deps"] = {
 	"gopls",
 	"jsonls",
 	"lua_ls",
+	"yamlls",
 	"dockerls",
 	-- "pylsp",
 	-- "bashls",

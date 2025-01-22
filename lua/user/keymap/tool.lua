@@ -33,6 +33,15 @@ local mappings = {
 			:with_silent()
 			:with_desc("filetree: Buffers"),
 		["n|<Leader>ng"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: git_status"),
+		["n|<Leader>jg"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: git_status"),
+		["n|<Leader>jb"] = map_cr("Neotree buffers float toggle")
+			:with_noremap()
+			:with_silent()
+			:with_desc("filetree: Buffers"),
+		["n|<Leader>jf"] = map_cr("Neotree reveal=true float toggle")
+			:with_noremap()
+			:with_silent()
+			:with_desc("filetree: float"),
 
 		-- Plugin SnipRun
 		["n|<Leader>rr"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by inline"),
@@ -43,6 +52,10 @@ local mappings = {
 		["t|<ESC><ESC>"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
 		["t|jk"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(), -- switch to normal mode in terminal.
 		["nti|<D-C-\\>"] = map_cmd("<Cmd>ToggleTerm<CR>")
+			:with_noremap()
+			:with_silent()
+			:with_desc("terminal: Toggle horizontal"),
+		["n|<Leader>jt"] = map_cmd("<Cmd>ToggleTerm<CR>")
 			:with_noremap()
 			:with_silent()
 			:with_desc("terminal: Toggle horizontal"),
@@ -172,12 +185,6 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("tool: Retrieve dossiers"),
-		["n|<Leader>fm"] = map_callback(function()
-				require("search").open({ collection = "misc" })
-			end)
-			:with_noremap()
-			:with_silent()
-			:with_desc("tool: Miscellaneous"),
 
 		-- Plugin dap
 		["n|<Leader>dc"] = map_callback(function()

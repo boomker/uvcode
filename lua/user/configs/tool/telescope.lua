@@ -55,7 +55,8 @@ return function()
 	local flash_pick = function(prompt_bufnr)
 		require("flash").jump({
 			pattern = "^",
-			label = { after = { 0, 0 } },
+			labels = "zytabqpguvwxcijklmnorsdefh",
+			label = { after = { 0, 0 }, distance = true },
 			search = {
 				mode = "search",
 				exclude = {
@@ -203,12 +204,29 @@ return function()
 				override_file_sorter = true,
 				case_mode = "smart_case",
 			},
+			undo = {
+				side_by_side = true,
+				mappings = {
+					i = {
+						["<cr>"] = require("telescope-undo.actions").yank_additions,
+						["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+						["<C-cr>"] = require("telescope-undo.actions").restore,
+					},
+				},
+			},
 			frecency = {
 				use_sqlite = false,
-				-- show_scores = true,
 				db_safe_mode = false,
+				-- show_scores = true,
 				show_unindexed = true,
 				ignore_patterns = { "*.git/*", "*/tmp/*" },
+			},
+			projects = {
+				base_dirs = { { path = "~/gitrepos/", max_depth = 2 } },
+				theme = "dropdown",
+				order_by = "asc",
+				hidden_files = true, -- default: false
+				sync_with_nvim_tree = true, -- default false
 			},
 			live_grep_args = {
 				auto_quoting = true, -- enable/disable auto-quoting
@@ -221,30 +239,13 @@ return function()
 					},
 				},
 			},
-			undo = {
-				side_by_side = true,
-				mappings = {
-					i = {
-						["<cr>"] = require("telescope-undo.actions").yank_additions,
-						["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
-						["<C-cr>"] = require("telescope-undo.actions").restore,
-					},
-				},
-			},
 			--[[
             advanced_git_search = {
-				diff_plugin = "diffview",
-				git_flags = { "-c", "delta.side-by-side=false" },
-				-- git_diff_flags = { "-c", "delta.side-by-side=false" },
-				entry_default_author_or_date = "author", -- one of "author" or "date"
-			}, ]]
-			projects = {
-				base_dirs = { { path = "~/gitrepos/", max_depth = 2 } },
-				theme = "dropdown",
-				order_by = "asc",
-				hidden_files = true, -- default: false
-				sync_with_nvim_tree = true, -- default false
-			},
+                diff_plugin = "diffview",
+                git_flags = { "-c", "delta.side-by-side=false" },
+                -- git_diff_flags = { "-c", "delta.side-by-side=false" },
+                entry_default_author_or_date = "author", -- one of "author" or "date"
+            }, ]]
 		},
 	})
 

@@ -1,6 +1,12 @@
 local ui = {}
 
 -- === overwrite plugins config -- ===
+ui["Jint-lzxy/nvim"] = {
+	lazy = false,
+	branch = "refactor/syntax-highlighting",
+	name = "catppuccin",
+	config = require("user.configs.ui.catppuccin"),
+}
 
 ui["goolord/alpha-nvim"] = {
 	lazy = true,

@@ -73,7 +73,7 @@ return function()
 			{ "<leader>h", group = icons.git.Git .. "Git Hunk" },
 			{ "<leader>i", group = icons.cmp.copilot_alt .. "Ai" },
 			{ "<leader>s", group = icons.cmp.tmux .. "Session | Spectre" },
-			{ "<leader>j", group = icons.misc.Ghost .. " Jump | Focus" },
+			{ "<leader>j", group = icons.misc.Ghost .. " Jump & Focus" },
 			{ "<leader>c", group = icons.misc.LspAvailable .. " Lsp | Quicklist" },
 			{ "<leader>l", group = icons.misc.LspAvailable .. " Lsp | LiveServer" },
 		},

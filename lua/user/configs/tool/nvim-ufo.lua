@@ -1,7 +1,7 @@
 return function()
 	local handler = function(virtText, lnum, endLnum, width, truncate)
 		local newVirtText = {}
-		local suffix = ("  %d "):format(endLnum - lnum)
+		local suffix = (" ◀︎  %d "):format(endLnum - lnum)
 		local sufWidth = vim.fn.strdisplaywidth(suffix)
 		local targetWidth = width - sufWidth
 		local curWidth = 0
@@ -33,9 +33,9 @@ return function()
 	vim.o.foldenable = true
 	vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 	local ftMap = {
+		git = "",
 		vim = "indent",
 		python = { "indent" },
-		git = "",
 	}
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -71,7 +71,7 @@ return function()
 	vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 	vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
 	vim.keymap.set("n", "zm", require("ufo").closeFoldsWith)
-	vim.keymap.set("n", "<Leader>jk", function()
+	vim.keymap.set("n", "<Leader>u", function()
 		local winid = require("ufo").peekFoldedLinesUnderCursor()
 		if not winid then
 			vim.lsp.buf.hover()
