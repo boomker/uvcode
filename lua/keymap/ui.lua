@@ -129,11 +129,6 @@ function M.gitsigns(buf)
 		end)
 			:with_buffer(buf)
 			:with_desc("git: Stage hunk"),
-		["n|<leader>gu"] = bind.map_callback(function()
-			actions.undo_stage_hunk()
-		end)
-			:with_buffer(buf)
-			:with_desc("git: Undo stage hunk"),
 		["n|<leader>gr"] = bind.map_callback(function()
 			actions.reset_hunk()
 		end)
@@ -160,9 +155,7 @@ function M.gitsigns(buf)
 			:with_buffer(buf)
 			:with_desc("git: Blame line"),
 		-- Text objects
-		["ox|ih"] = bind.map_callback(function()
-			actions.text_object()
-		end):with_buffer(buf),
+		["ox|ih"] = bind.map_cu("Gitsigns select_hunk"):with_silent():with_buffer(buf),
 	}
 
 	if user_ui and type(user_mappings.gitsigns) == "function" then
