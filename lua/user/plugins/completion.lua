@@ -1,16 +1,5 @@
 local completion = {}
 
-completion["Exafunction/codeium.nvim"] = {
-	lazy = true,
-	event = { "InsertEnter" },
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"MunifTanjim/nui.nvim",
-		"hrsh7th/nvim-cmp",
-	},
-	config = require("user.configs.completion.codeium"),
-}
-
 completion["yetone/avante.nvim"] = {
 	event = "VeryLazy",
 	lazy = false,
@@ -25,19 +14,55 @@ completion["yetone/avante.nvim"] = {
 	config = require("user.configs.completion.avante"),
 }
 
-completion["saghen/blink.cmp"] = {
-	dependencies = "rafamadriz/friendly-snippets",
+completion["saghen/blink.compat"] = {
+	version = "*",
+	-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+	lazy = true,
+	-- make sure to set opts so that lazy.nvim calls blink.compat's setup
+	opts = {},
+}
 
+completion["saghen/blink.cmp"] = {
 	-- use a release tag to download pre-built binaries
 	version = "*",
-	-- AND/OR build from source
 	-- build = 'cargo build --release',
-	-- If you use nix, you can build from source using latest nightly rust with:
-	-- build = 'nix run .#build-plugin',
 	opts_extend = { "sources.default" },
 	config = require("user.configs.completion.blink-cmp"),
+	dependencies = {
+		{
+			"L3MON4D3/LuaSnip",
+			build = "make install_jsregexp",
+			config = require("completion.luasnip"),
+			dependencies = { "rafamadriz/friendly-snippets" },
+		},
+		{
+			"Exafunction/codeium.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+			},
+			config = require("user.configs.completion.codeium"),
+		},
+	},
 }
--- === overwrite plugins config -- ===
+
+-- === overwrite plugins config === --
+
+completion["neovim/nvim-lspconfig"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("completion.lsp"),
+	dependencies = {
+		{ "saghen/blink.cmp" },
+		{ "folke/neoconf.nvim" },
+		{ "williamboman/mason.nvim" },
+		{ "williamboman/mason-lspconfig.nvim" },
+		{
+			"Jint-lzxy/lsp_signature.nvim",
+			config = require("completion.lsp-signature"),
+		},
+	},
+}
 
 completion["nvimtools/none-ls.nvim"] = {
 	lazy = true,
@@ -45,20 +70,5 @@ completion["nvimtools/none-ls.nvim"] = {
 	config = require("user.configs.completion.null-ls"),
 	dependencies = { "nvim-lua/plenary.nvim", "jay-babu/mason-null-ls.nvim" },
 }
-
---[[
-completion["iurimateus/luasnip-latex-snippets.nvim"] = {
-    lazy = true,
-    ft = { "tex", "bib", "markdown" },
-    config = require("configs.completion.luasnip-latex-snippets"),
-}
-
-completion["stevearc/aerial.nvim"] = {
-	lazy = true,
-	event = "LspAttach",
-	config = require("user.configs.completion.aerial"),
-}
-
-]]
 
 return completion
