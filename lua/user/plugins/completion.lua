@@ -26,6 +26,7 @@ completion["saghen/blink.cmp"] = {
 	-- use a release tag to download pre-built binaries
 	version = "*",
 	-- build = 'cargo build --release',
+	event = "InsertEnter",
 	opts_extend = { "sources.default" },
 	config = require("user.configs.completion.blink-cmp"),
 	dependencies = {

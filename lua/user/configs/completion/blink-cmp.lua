@@ -14,20 +14,24 @@ return function()
 			ghost_text = { enabled = true },
 			accept = { auto_brackets = { enabled = true } },
 			trigger = { show_on_insert_on_trigger_character = true },
-			documentation = { auto_show = true, auto_show_delay_ms = 500 },
+			documentation = { auto_show = true, auto_show_delay_ms = 300 },
 			list = { selection = { preselect = false, auto_insert = true } },
 			menu = {
 				border = "single",
+				draw = {
+					treesitter = { "lsp" },
+				},
 			},
 		},
 		appearance = {
-			-- use_nvim_cmp_as_default = true,
+			use_nvim_cmp_as_default = false,
 			-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			nerd_font_variant = "mono",
 		},
 		snippets = { preset = "luasnip" },
 		sources = {
 			default = { "codeium", "lsp", "snippets", "buffer", "path" },
+			cmdline = {},
 			providers = {
 				codeium = {
 					name = "codeium",
