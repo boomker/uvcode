@@ -1,5 +1,21 @@
 {
     "Lua.diagnostics.globals": [
         "vim"
+    ],
+    "cSpell.words": [
+        "bufnr",
+        "buftype",
+        "gitsigns",
+        "keymap",
+        "keymapping",
+        "lspconfig",
+        "neoconf",
+        "noremap",
+        "nvim",
+        "toggleterm",
+        "unstaging",
+        "venv",
+        "winbar",
+        "wincmd"
     ]
 }

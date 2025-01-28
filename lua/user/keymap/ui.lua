@@ -114,10 +114,10 @@ local mappings = {
 bind.nvim_load_mapping(mappings.builtins)
 bind.nvim_load_mapping(mappings.plugins)
 
-mappings["gitsigns"] = function(buf)
+mappings["gitsigns"] = function(bufnr)
 	local actions = require("gitsigns.actions")
 	return {
-		["n|]g"] = bind.map_callback(function()
+		["n|]g"] = map_callback(function()
 			if vim.wo.diff then
 				return "]g"
 			end
@@ -126,10 +126,11 @@ mappings["gitsigns"] = function(buf)
 			end)
 			return "<Ignore>"
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_expr()
 			:with_desc("git: Goto next hunk"),
-		["n|[g"] = bind.map_callback(function()
+		["n|[g"] = map_callback(function()
 			if vim.wo.diff then
 				return "[g"
 			end
@@ -138,51 +139,64 @@ mappings["gitsigns"] = function(buf)
 			end)
 			return "<Ignore>"
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_expr()
 			:with_desc("git: Goto prev hunk"),
-		["n|<leader>hs"] = bind.map_callback(function()
+		["n|<leader>hs"] = map_callback(function()
 			actions.stage_hunk()
 		end)
-			:with_buffer(buf)
-			:with_desc("git: Stage hunk"),
-		["v|<leader>hs"] = bind.map_callback(function()
+			:with_buffer(bufnr)
+			:with_noremap()
+			:with_desc("git: Toggle staging/unstaging of hunk"),
+		["v|<leader>hs"] = map_callback(function()
 			actions.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end)
-			:with_buffer(buf)
-			:with_desc("git: Stage hunk"),
-		["n|<leader>hx"] = bind.map_callback(function()
+			:with_buffer(bufnr)
+			:with_noremap()
+			:with_desc("git: Toggle staging/unstaging of selected hunk"),
+		["n|<leader>hx"] = map_callback(function()
 			actions.undo_stage_hunk()
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
 			:with_desc("git: Undo stage hunk"),
-		["n|<leader>hr"] = bind.map_callback(function()
+		["n|<leader>hr"] = map_callback(function()
 			actions.reset_hunk()
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_desc("git: Reset hunk"),
-		["v|<leader>hr"] = bind.map_callback(function()
+		["v|<leader>hr"] = map_callback(function()
 			actions.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_desc("git: Reset hunk"),
-		["n|<leader>hR"] = bind.map_callback(function()
+		["n|<leader>hR"] = map_callback(function()
 			actions.reset_buffer()
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_desc("git: Reset buffer"),
-		["n|<leader>hv"] = bind.map_callback(function()
+		["n|<leader>hv"] = map_callback(function()
 			actions.preview_hunk()
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_desc("git: Preview hunk"),
-		["n|<leader>hb"] = bind.map_callback(function()
+		["n|<leader>hb"] = map_callback(function()
 			actions.blame_line({ full = true })
 		end)
-			:with_buffer(buf)
+			:with_buffer(bufnr)
+			:with_noremap()
 			:with_desc("git: Blame line"),
+		["ox|ih"] = map_callback(function()
+			actions.select_hunk()
+		end)
+		:with_buffer(bufnr)
+		:with_noremap(),
 	}
-	-- bind.nvim_load_mapping(map)
+
 end
 
 return mappings

@@ -52,7 +52,7 @@ completion["saghen/blink.cmp"] = {
 completion["neovim/nvim-lspconfig"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
-	config = require("completion.lsp"),
+	config = require("user.configs.lsp"),
 	dependencies = {
 		{ "saghen/blink.cmp" },
 		{ "folke/neoconf.nvim" },
