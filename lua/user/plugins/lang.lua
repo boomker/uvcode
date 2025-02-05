@@ -2,10 +2,10 @@ local lang = {}
 
 lang["barrett-ruth/live-server.nvim"] = {
 	lazy = true,
+	config = true,
 	ft = { "html", "markdown" },
 	build = "pnpm add -g live-server",
 	cmd = { "LiveServerStart", "LiveServerStop" },
-	config = true,
 }
 
 lang["AckslD/swenv.nvim"] = {
@@ -16,10 +16,10 @@ lang["AckslD/swenv.nvim"] = {
 	dependencies = { "nvim-lua/plenary.nvim", "ahmedkhalf/project.nvim" },
 }
 
---[[ lang["bezhermoso/tree-sitter-ghostty"] = {
+lang["bezhermoso/tree-sitter-ghostty"] = {
 	build = "make nvim_install",
 	ft = "ghostty",
-} ]]
+}
 
 -- === overwrite plugins config -- ===
 
