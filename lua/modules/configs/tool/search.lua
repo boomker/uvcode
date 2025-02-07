@@ -66,54 +66,36 @@ return function()
 							builtin.grep_string(opts)
 						end,
 					},
-					{
-						name = "Word in buffers",
-						tele_func = function(opts)
-							opts = {
-								grep_open_files = true,
-							}
-							builtin.grep_string(opts)
-						end,
-					},
 				},
 			},
 			-- Search Git objects (branches, commits)
 			git = {
-				initial_tab = 2,
+				initial_tab = 1,
 				tabs = {
 					{
-						name = "Status diff",
+						name = "Branches",
 						tele_func = function()
-							-- builtin.git_branches()
-							Telescope_git_status()
+							builtin.git_branches()
 						end,
 					},
 					{
 						name = "Commits",
 						tele_func = function()
-							-- builtin.git_commits()
-							Telescope_git_commits()
+							builtin.git_commits()
 						end,
 					},
 					{
-                        name = "File history",
+						name = "Commit content",
 						tele_func = function()
-							Telescope_git_bcommits()
-						end,
-					},
-                    --[[
-					{
-						tele_func = function()
-							extensions.advanced_git_search.search_log_content_file()
+							extensions.advanced_git_search.search_log_content()
 						end,
 					},
 					{
-						name = "Diff file",
+						name = "Diff current file with commit",
 						tele_func = function()
 							extensions.advanced_git_search.diff_commit_file()
 						end,
 					},
-                    --]]
 				},
 			},
 			-- Retrieve dossiers
@@ -154,24 +136,6 @@ return function()
 						name = "Notify",
 						tele_func = function()
 							extensions.notify.notify()
-						end,
-					},
-				},
-			},
-			-- History
-			history = {
-				initial_tab = 1,
-				tabs = {
-					{
-						name = "Yank History",
-						tele_func = function()
-							extensions.yank_history.yank_history()
-						end,
-					},
-					{
-						name = "Command History",
-						tele_func = function()
-							builtin.command_history()
 						end,
 					},
 					{

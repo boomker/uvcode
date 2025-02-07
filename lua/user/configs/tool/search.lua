@@ -82,17 +82,15 @@ return function()
 				initial_tab = 1,
 				tabs = {
 					{
-						name = "Status diff",
+						name = "Commits",
 						tele_func = function()
-							-- builtin.git_branches()
-							Telescope_git_status()
+							Telescope_git_commits()
 						end,
 					},
 					{
-						name = "Commits",
+						name = "Status diff",
 						tele_func = function()
-							-- builtin.git_commits()
-							Telescope_git_commits()
+							Telescope_git_status()
 						end,
 					},
 					{
