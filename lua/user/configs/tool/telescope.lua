@@ -233,9 +233,7 @@ return function()
 				mappings = { -- extend mappings
 					i = {
 						-- ["<C-e>"] = lga_actions.quote_prompt({ postfix = " -w -t" }),
-						["<A-i>"] = lga_actions.quote_prompt({
-							postfix = " --iglob *.",
-						}),
+						["<M-i>"] = lga_actions.quote_prompt({ postfix = " --iglob *." }),
 					},
 				},
 			},
