@@ -31,7 +31,6 @@ return function()
 		snippets = { preset = "luasnip" },
 		sources = {
 			default = { "codeium", "lsp", "snippets", "buffer", "path" },
-			cmdline = {},
 			providers = {
 				codeium = {
 					name = "codeium",
