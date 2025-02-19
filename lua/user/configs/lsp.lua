@@ -8,8 +8,8 @@ return function()
 		capabilities = require("blink.cmp").get_lsp_capabilities(),
 	}
 	-- Setup lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
-	if vim.fn.executable("ruff-lsp") == 1 then
-		local ok, _opts = pcall(require, "user.configs.lsp-servers.ruff_lsp")
+	if vim.fn.executable("ruff") == 1 then
+		local ok, _opts = pcall(require, "user.configs.lsp-servers.ruff")
 		local final_opts = ok and vim.tbl_deep_extend("keep", _opts, opts)
 		nvim_lsp.ruff.setup(final_opts)
 	end
