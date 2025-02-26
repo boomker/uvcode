@@ -15,15 +15,13 @@ completion["yetone/avante.nvim"] = {
 }
 
 completion["saghen/blink.compat"] = {
-	version = "*",
-	-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
 	lazy = true,
-	-- make sure to set opts so that lazy.nvim calls blink.compat's setup
+	version = "*",
 	opts = {},
 }
 
 completion["saghen/blink.cmp"] = {
-	-- use a release tag to download pre-built binaries
+	lazy = true,
 	version = "*",
 	-- build = 'cargo build --release',
 	event = "InsertEnter",
@@ -32,6 +30,7 @@ completion["saghen/blink.cmp"] = {
 	dependencies = {
 		{
 			"L3MON4D3/LuaSnip",
+			version = "v2.*",
 			build = "make install_jsregexp",
 			config = require("completion.luasnip"),
 			dependencies = { "rafamadriz/friendly-snippets" },
