@@ -76,31 +76,31 @@ local mappings = {
 			:with_noremap()
 			:with_desc("window: Resize +3 horizontally"),
 
-		-- Plugin: nvim-spectre
+		-- Plugin: grug-far
 		["n|<leader>sp"] = map_callback(function()
-				require("spectre").toggle()
+				require("grug-far").open()
 			end)
 			:with_silent()
 			:with_noremap()
-			:with_desc("edit: Toggle search & replace panel"),
+			:with_desc("editn: Toggle search & replace panel"),
 		["n|<leader>sw"] = map_callback(function()
-				require("spectre").open_visual({ select_word = true })
+				require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
 			end)
 			:with_silent()
 			:with_noremap()
-			:with_desc("edit: search&replace current word (project)"),
-		["v|<leader>sV"] = map_callback(function()
-				require("spectre").open_visual()
+			:with_desc("editn: search&replace current word (project)"),
+		["v|<leader>sW"] = map_callback(function()
+				require("grug-far").with_visual_selection()
 			end)
 			:with_silent()
 			:with_noremap()
 			:with_desc("edit: search & replace current word (project)"),
 		["n|<leader>sf"] = map_callback(function()
-				require("spectre").open_file_search({ select_word = true })
+				require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
 			end)
 			:with_silent()
 			:with_noremap()
-			:with_desc("edit: search & replace current word (file)"),
+			:with_desc("editn: search & replace current word (file)"),
 
 		-- Plugin rmagatti/alternate-toggler
 		["n|<Leader>a"] = map_callback(function()
