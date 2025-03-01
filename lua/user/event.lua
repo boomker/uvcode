@@ -11,6 +11,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
+vim.api.nvim_create_augroup("Exit", { clear = true })
+vim.api.nvim_create_autocmd("ExitPre", {
+	group = "Exit",
+	command = "set guicursor=a:ver90",
+	desc = "Set cursor back to beam when leaving Neovim.",
+})
+
 vim.api.nvim_create_user_command("ClearRegisters", function()
 	for i = string.byte("a"), string.byte("z") do
 		vim.fn.setreg(string.char(i), "")
