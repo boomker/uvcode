@@ -3,6 +3,7 @@ return function()
 		keymap = {
 			preset = "super-tab", --default, enter
 		},
+		--[[
 		cmdline = {
 			enabled = true,
 			sources = function()
@@ -34,12 +35,13 @@ return function()
 				},
 			},
 		},
+        --]]
 		completion = {
 			keyword = { range = "full" },
 			ghost_text = { enabled = true },
 			accept = { auto_brackets = { enabled = true } },
 			trigger = { show_on_insert_on_trigger_character = true },
-			list = { selection = { preselect = false, auto_insert = false } },
+			list = { selection = { preselect = true, auto_insert = true } },
 			menu = {
 				auto_show = true,
 				border = "rounded",
@@ -67,8 +69,9 @@ return function()
 			nerd_font_variant = "mono",
 		},
 		sources = {
-			default = { "codeium", "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer" },
 			providers = {
+				--[[
 				codeium = {
 					name = "codeium",
 					module = "blink.compat.source",
@@ -77,6 +80,7 @@ return function()
 					max_items = 3,
 					score_offset = 5,
 				},
+                --]]
 				path = {
 					fallbacks = { "snippets", "buffer" },
 					opts = {

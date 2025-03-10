@@ -35,14 +35,14 @@ completion["saghen/blink.cmp"] = {
 			config = require("completion.luasnip"),
 			dependencies = { "rafamadriz/friendly-snippets" },
 		},
-		{
+		--[[ {
 			"Exafunction/codeium.nvim",
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 				"MunifTanjim/nui.nvim",
 			},
 			config = require("user.configs.completion.codeium"),
-		},
+		}, ]]
 	},
 }
 

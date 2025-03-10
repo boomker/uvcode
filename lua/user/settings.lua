@@ -127,6 +127,7 @@ settings["disabled_plugins"] = {
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
 	"andersevenrud/cmp-tmux",
+	"Exafunction/codeium.nvim",
 	"kdheepak/cmp-latex-symbols",
 	"ojroques/nvim-bufdel",
 	"lambdalisue/suda.vim",
