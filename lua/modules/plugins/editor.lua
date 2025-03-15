@@ -62,10 +62,16 @@ editor["echasnovski/mini.align"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("editor.align"),
 }
-editor["tzachar/local-highlight.nvim"] = {
+editor["echasnovski/mini.cursorword"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
-	config = require("editor.local-highlight"),
+	config = require("editor.cursorword"),
+}
+editor["smoka7/hop.nvim"] = {
+	lazy = true,
+	version = "*",
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("editor.hop"),
 }
 editor["brenoprata10/nvim-highlight-colors"] = {
 	lazy = true,
@@ -103,9 +109,12 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 	event = "BufReadPre",
 	config = require("editor.treesitter"),
 	dependencies = {
-		{ "andymass/vim-matchup" },
 		{ "mfussenegger/nvim-treehopper" },
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		{
+			"andymass/vim-matchup",
+			init = require("editor.matchup"),
+		},
 		{
 			"windwp/nvim-ts-autotag",
 			config = require("editor.autotag"),
