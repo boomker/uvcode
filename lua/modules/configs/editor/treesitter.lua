@@ -88,7 +88,7 @@ return vim.schedule_wrap(function()
 	}, false, require("nvim-treesitter.configs").setup)
 	require("nvim-treesitter.install").prefer_git = true
 	require("nvim-treesitter.install").command_extra_args = {
-		curl = { "--proxy", "127.0.0.1:1080" },
+		curl = { "--proxy", "127.0.0.1:1087" },
 		-- curl = { "--proxy", "127.0.0.1:7890" },
 	}
 	if use_ssh then
