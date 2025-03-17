@@ -184,12 +184,12 @@ Telescope_git_status = function(opts)
 end
 
 -- ╭───────────────────────────────────────────────────────────────╮
--- │ From Ecovim Custom toggle file history function via <leader>dF│
+-- │ From Ecovim Custom toggle file history function via <leader>dh│
 -- ╰───────────────────────────────────────────────────────────────╯
-Toggle_files_diff = function()
+Toggle_files_history = function()
 	local view = require("diffview.lib").get_current_view()
 	if not view then
-		require("diffview").file_history()
+		require("diffview").file_history({ 1, 9999 }, vim.fn.expand("%:p"))
 		return
 	end
 

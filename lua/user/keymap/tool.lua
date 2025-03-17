@@ -270,36 +270,36 @@ local mappings = {
 		["v|<A-S-l>"] = map_cmd(":MoveHBlock(1)<CR>"):with_noremap():with_silent():with_desc("Block: move right"),
 
 		-- Plugin refactoring
-		["v|<Leader>re"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: [E]xtract function"),
-		["v|<Leader>rf"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: Extract function to [F]ile"),
-		["v|<Leader>rv"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: Extract [V]ariable"),
-		["v|<Leader>ri"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: [I]nline variable"),
-		-- Extract block doesn't need visual mode
-		["n|<Leader>rb"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Extract Block')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: Extract [B]lock"),
-		["n|<Leader>rB"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: Extract [B]lock to [F]ile"),
-		-- Inline variable can also pick up the identifier currently under the cursor without visual mode
-		["n|<Leader>ri"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]])
-			:with_noremap()
-			:with_silent()
-			:with_desc("[R]efactor: [I]nline variable"),
+		-- ["v|<Leader>re"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: [E]xtract function"),
+		-- ["v|<Leader>rf"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: Extract function to [F]ile"),
+		-- ["v|<Leader>rv"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: Extract [V]ariable"),
+		-- ["v|<Leader>ri"] = map_cmd([[<Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: [I]nline variable"),
+		-- -- Extract block doesn't need visual mode
+		-- ["n|<Leader>rb"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Extract Block')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: Extract [B]lock"),
+		-- ["n|<Leader>rB"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: Extract [B]lock to [F]ile"),
+		-- -- Inline variable can also pick up the identifier currently under the cursor without visual mode
+		-- ["n|<Leader>ri"] = map_cmd([[<Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]])
+		-- 	:with_noremap()
+		-- 	:with_silent()
+		-- 	:with_desc("[R]efactor: [I]nline variable"),
 	},
 }
 

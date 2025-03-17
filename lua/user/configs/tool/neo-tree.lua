@@ -11,7 +11,6 @@ return function()
 			"git_status",
 			"document_symbols",
 		},
-		--[[ ]]
 		source_selector = {
 			winbar = true, -- toggle to show selector on winbar
 			statusline = false, -- toggle to show selector on statusline
@@ -57,6 +56,7 @@ return function()
 		enable_git_status = true,
 		enable_diagnostics = true,
 		close_if_last_window = true,
+		use_default_mappings = false,
 		default_source = "filesystem",
 		popup_border_style = "rounded",
 		-- when opening files, do not use windows containing these filetypes or buftypes
@@ -215,6 +215,36 @@ return function()
 			git_files_status = function()
 				require("diffview").open()
 			end,
+
+			diff_files = function(state)
+				local node = state.tree:get_node()
+				local log = require("neo-tree.log")
+				state.clipboard = state.clipboard or {}
+				if Diff_Node and Diff_Node ~= tostring(node.id) then
+					local current_Diff = node.id
+					---@diagnostic disable-next-line: undefined-global
+					require("neo-tree.utils").open_file(state, Diff_Node, open)
+					vim.cmd("vert diffs " .. current_Diff)
+					log.info("Diffing " .. Diff_Name .. " against " .. node.name)
+					Diff_Node = nil
+					current_Diff = nil
+					state.clipboard = {}
+					require("neo-tree.ui.renderer").redraw(state)
+				else
+					local existing = state.clipboard[node.id]
+					if existing and existing.action == "diff" then
+						state.clipboard[node.id] = nil
+						Diff_Node = nil
+						require("neo-tree.ui.renderer").redraw(state)
+					else
+						state.clipboard[node.id] = { action = "diff", node = node }
+						Diff_Name = state.clipboard[node.id].node.name
+						Diff_Node = tostring(state.clipboard[node.id].node.id)
+						log.info("Diff source file " .. Diff_Name)
+						require("neo-tree.ui.renderer").redraw(state)
+					end
+				end
+			end,
 		},
 		nesting_rules = {},
 		window = {
@@ -225,7 +255,8 @@ return function()
 				nowait = true,
 			},
 			mappings = {
-				["o"] = "open",
+				["o"] = false,
+				["<space>"] = false,
 				["l"] = "open",
 				["<cr>"] = "open",
 				["<2-LeftMouse>"] = "open",
@@ -242,8 +273,6 @@ return function()
 				["<c-v>"] = "open_vsplit",
 				["<c-t>"] = "open_tabnew",
 				["h"] = "close_node",
-				["<space>"] = false,
-				-- ["f"] = false,
 				["z"] = false,
 				["zh"] = "close_all_nodes",
 				["zl"] = "expand_all_nodes",
@@ -275,6 +304,7 @@ return function()
 				["<"] = "prev_source",
 				[">"] = "next_source",
 				["i"] = "show_file_details",
+				["gd"] = "diff_files",
 			},
 		},
 		filesystem = {
@@ -331,16 +361,15 @@ return function()
 			window = {
 				mappings = {
 					["<bs>"] = "navigate_up",
-					["o"] = "open_and_clear_filter",
 					["<cr>"] = "open_and_clear_filter",
 					["."] = "set_root",
 					["H"] = "toggle_hidden",
 					["/"] = "fuzzy_finder",
 					["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
 					["D"] = "fuzzy_finder_directory",
-					-- ["D"] = "fuzzy_sorter_directory",
-					-- ["f"] = "filter_on_submit",
+					["F"] = "filter_on_submit",
 					["f"] = false,
+					["o"] = false,
 					["<c-x>"] = "clear_filter",
 					["[g"] = "prev_git_modified",
 					["]g"] = "next_git_modified",
@@ -358,6 +387,7 @@ return function()
 					["<C-n>"] = "move_cursor_down",
 					["<up>"] = "move_cursor_up",
 					["<C-p>"] = "move_cursor_up",
+					["<esc>"] = "close",
 				},
 			},
 
@@ -399,6 +429,7 @@ return function()
 					["gc"] = "git_commit",
 					["gp"] = "git_push",
 					["gg"] = "git_commit_and_push",
+					["o"] = false,
 					["s"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "s" } },
 					["sc"] = { "order_by_created", nowait = false },
 					["sd"] = { "order_by_diagnostics", nowait = false },

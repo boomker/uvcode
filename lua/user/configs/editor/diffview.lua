@@ -90,7 +90,7 @@ return function()
 		},
 		hooks = {}, -- See ':h diffview-config-hooks'
 		keymaps = {
-			disable_defaults = false, -- Disable the default keymaps
+			disable_defaults = true, -- Disable the default keymaps
 			view = {
 				-- The `view` bindings are active in the diff buffers, only when the current
 				-- tabpage is a Diffview.
@@ -126,16 +126,16 @@ return function()
 				},
 				{
 					"n",
-					"<leader>e",
+					"<leader>je",
 					actions.focus_files,
 					{ desc = "diffview: Bring focus to the file panel" },
 				},
-				-- {
-				-- 	"n",
-				-- 	"<leader>b",
-				-- 	actions.toggle_files,
-				-- 	{ desc = "diffview: Toggle the file panel." },
-				-- },
+				{
+					"n",
+					"<leader>bb",
+					actions.toggle_files,
+					{ desc = "diffview: Toggle the file panel." },
+				},
 				{
 					"n",
 					"g<C-x>",
@@ -414,11 +414,11 @@ return function()
 				},
 				{
 					"n",
-					"<leader>e",
+					"<leader>je",
 					actions.focus_files,
 					{ desc = "diffview: Bring focus to the file panel" },
 				},
-				-- { "n", "<leader>b", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
+				{ "n", "<leader>bb", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
 				{ "n", "g<C-x>", actions.cycle_layout, { desc = "diffview: Cycle available layouts" } },
 				{
 					"n",
@@ -552,11 +552,11 @@ return function()
 				},
 				{
 					"n",
-					"<leader>e",
+					"<leader>je",
 					actions.focus_files,
 					{ desc = "diffview: Bring focus to the file panel" },
 				},
-				-- { "n", "<leader>b", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
+				{ "n", "<leader>bb", actions.toggle_files, { desc = "diffview: Toggle the file panel" } },
 				{ "n", "g<C-x>", actions.cycle_layout, { desc = "diffview: Cycle available layouts" } },
 				{ "n", "g?", actions.help("file_history_panel"), { desc = "diffview: Open the help panel" } },
 			},

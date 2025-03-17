@@ -40,13 +40,8 @@ local mappings = {
 			:with_desc("edit: Toggle comment for block with selection"),
 
 		-- Plugin Diffview
-		["n|<Leader>dt"] = map_cr("DiffviewToggleFiles")
-			:with_noremap()
-			:with_silent()
-			:with_desc("git: DiffviewToggleFiles"),
-		-- { "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "git: File history" },
 		["n|<Leader>df"] = map_callback(Toggle_diffview):with_silent():with_noremap():with_desc("git: Toggle diffview"),
-		["n|<Leader>dF"] = map_callback(Toggle_files_diff)
+		["n|<Leader>dh"] = map_callback(Toggle_files_history)
 			:with_silent()
 			:with_noremap()
 			:with_desc("git: Toggle files history"),

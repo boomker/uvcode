@@ -11,8 +11,8 @@ settings["colorscheme"] = "catppuccin-frappe"
 
 settings["gui_config"] = {
 	font_size = 15,
-	font_name = "JetBrainsMono Nerd Font",
-	gui_font_face = "JetBrainsMono Nerd Font Mono",
+	font_name = "JetBrains Maple Mono",
+	gui_font_face = "JetBrains Maple Mono",
 }
 
 settings["neovide_config"] = {
@@ -134,6 +134,7 @@ settings["disabled_plugins"] = {
 	"ibhagwan/smartyank.nvim",
 	"nvim-tree/nvim-tree.lua",
 	"mfussenegger/nvim-treehopper",
+	"ThePrimeagen/refactoring.nvim",
 	"iamcco/markdown-preview.nvim",
 	"aaronhallaert/advanced-git-search.nvim",
 	"joechrisellis/lsp-format-modifications.nvim",

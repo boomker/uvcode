@@ -81,7 +81,7 @@ mappings["lsp"] = function(buf)
 			:with_buffer(buf)
 			:with_desc("lsp: Show outgoing calls"),
 		["n|<leader>td"] = map_callback(function()
-				_toggle_diagnostic()
+				_toggle_virtualtext()
 			end)
 			:with_noremap()
 			:with_silent()

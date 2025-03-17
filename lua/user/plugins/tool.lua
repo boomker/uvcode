@@ -44,9 +44,9 @@ tool["echasnovski/mini.bracketed"] = {
 	version = false,
 	config = function()
 		require("mini.bracketed").setup({
+			file = { suffix = "v", options = {} },
 			comment = { suffix = "a", options = {} },
 			oldfile = { suffix = "r", options = {} },
-			file = { suffix = "v", options = {} },
 		})
 	end,
 }
@@ -151,18 +151,6 @@ tool["akinsho/toggleterm.nvim"] = {
 	config = require("user.configs.tool.toggleterm"),
 }
 
-tool["nvim-tree/nvim-tree.lua"] = {
-	lazy = true,
-	cmd = {
-		"NvimTreeToggle",
-		"NvimTreeOpen",
-		"NvimTreeFindFile",
-		"NvimTreeFindFileToggle",
-		"NvimTreeRefresh",
-	},
-	config = require("user.configs.tool.nvim-tree"),
-}
-
 tool["nvim-telescope/telescope.nvim"] = {
 	lazy = true,
 	cmd = "Telescope",
@@ -220,6 +208,19 @@ tool["amitds1997/remote-nvim.nvim"] = {
 	},
 	config = require("user.configs.tool.remote-nvim"),
 }
+
+tool["nvim-tree/nvim-tree.lua"] = {
+    lazy = true,
+    cmd = {
+        "NvimTreeToggle",
+        "NvimTreeOpen",
+        "NvimTreeFindFile",
+        "NvimTreeFindFileToggle",
+        "NvimTreeRefresh",
+    },
+    config = require("user.configs.tool.nvim-tree"),
+}
+
 --]]
 
 return tool
