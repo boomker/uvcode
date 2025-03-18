@@ -9,12 +9,12 @@ local vim_path = require("core.global").vim_path
 local mappings = {
 	plugins = {
 		-- Plugin: edgy
-		-- ["n|<D-S-t>"] = map_callback(function()
-		-- 		require("edgy").toggle("left")
-		-- 	end)
-		-- 	:with_noremap()
-		-- 	:with_silent()
-		-- 	:with_desc("filetree: Toggle"),
+		--[[ ["n|<D-S-t>"] = map_callback(function()
+				require("edgy").toggle("left")
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("filetree: Toggle"), ]]
 
 		-- Plugin neotree
 		["n|<D-b>"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
