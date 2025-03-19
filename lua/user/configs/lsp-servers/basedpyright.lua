@@ -26,7 +26,7 @@ local function organize_imports()
 end
 
 local function get_python_venvPath()
-	return require("swenv.api").get_current_venv()["path"]
+	require("venv-selector").get_active_path()
 end
 
 return {
