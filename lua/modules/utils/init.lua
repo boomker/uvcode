@@ -358,11 +358,7 @@ function M.load_plugin(plugin_name, opts, vim_plugin, setup_callback, overwrite)
 			if ok then
 				-- Extend base config if the returned user config is a table
 				if type(user_config) == "table" then
-					if overwrite == true then
-						opts = vim.tbl_deep_extend("force", opts, user_config)
-					else
-						opts = tbl_recursive_merge(opts, user_config)
-					end
+					opts = tbl_recursive_merge(opts, user_config)
 					setup_callback(opts)
 					-- Replace base config if the returned user config is a function
 				elseif type(user_config) == "function" then

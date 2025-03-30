@@ -16,10 +16,9 @@ lang["bezhermoso/tree-sitter-ghostty"] = {
 lang["linux-cultist/venv-selector.nvim"] = {
 	opts = {
 		name = ".venv",
-		auto_refresh = false,
+		auto_refresh = true,
 	},
 	branch = "regexp",
-	event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
 	keys = {
 		{ "<leader>se", "<cmd>VenvSelect<cr>" },
 		-- { "<leader>vc", "<cmd>VenvSelectCached<cr>" },

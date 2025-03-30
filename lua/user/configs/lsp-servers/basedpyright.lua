@@ -26,7 +26,9 @@ local function organize_imports()
 end
 
 local function get_python_venvPath()
-	require("venv-selector").get_active_path()
+	-- local ws = require("venv-selector").workspace_paths()
+	-- return ws and ws[1] .. "/.venv/bin/python"
+	return vim.fn.expandcmd("%:p:h") .. "/.venv/bin/python"
 end
 
 return {
@@ -56,7 +58,7 @@ return {
 				},
 			},
 		},
-		python = { venvPath = get_python_venvPath() },
+		python = { pythonPath = get_python_venvPath() },
 	},
 	commands = {
 		PyrightOrganizeImports = {
