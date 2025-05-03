@@ -27,40 +27,39 @@ bind.nvim_load_mapping(mappings.mason)
 ---@param buf integer
 mappings["lsp"] = function(buf)
 	return {
+		-- LSP-related keymaps, ONLY effective in buffers with LSP(s) attached
+		["n|<leader>li"] = map_cr("LspInfo"):with_silent():with_buffer(buf):with_desc("lsp: Info"),
+		["n|<leader>lr"] = map_cr("LspRestart"):with_silent():with_buffer(buf):with_nowait():with_desc("lsp: Restart"),
+		["n|<leader>ll"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
+			:with_silent()
+			:with_buffer(buf)
+			:with_desc("lsp: Line diagnostic"),
 		["n|[e"] = map_cr("Lspsaga diagnostic_jump_prev"):with_buffer(buf):with_desc("lsp: Prev diagnostic"),
 		["n|]e"] = map_cr("Lspsaga diagnostic_jump_next"):with_buffer(buf):with_desc("lsp: Next diagnostic"),
 
-		["n|go"] = map_callback(function()
-				require("edgy").toggle("right")
-			end)
+		["n|go"] = map_cr("Trouble symbols toggle win.position=right")
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Toggle outline"),
 		["n|gh"] = map_callback(function()
 			vim.lsp.buf.signature_help()
 		end):with_desc("lsp: Signature help"),
-		--[[
-		["n|gh"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
-        ["n|<Leader>rn"] = map_cr("Lspsaga rename"):with_buffer(buf):with_desc("lsp: Rename in file range"),
-        ["n|gr"] = map_cr("Lspsaga rename"):with_buffer(buf):with_desc("lsp: Rename in file range"),
-        ["n|gR"] = map_cr("Lspsaga rename ++project")
-            :with_buffer(buf)
-            :with_desc("lsp: Rename in project range"),
-        --]]
 		["n|gR"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
 		["n|<Leader>ru"] = map_cr("Glance references"):with_silent():with_buffer(buf):with_desc("lsp: Show reference"),
-		["n|<Leader>rn"] = map_cr("lua vim.lsp.buf.rename()"):with_buffer(buf):with_desc("lsp: Rename in file range"),
+		-- ["n|<Leader>rn"] = map_cr("lua vim.lsp.buf.rename()"):with_buffer(buf):with_desc("lsp: Rename in file range"),
+		["n|<Leader>rn"] = map_cr("Lspsaga rename")
+			:with_silent()
+			:with_nowait()
+			:with_buffer(buf)
+			:with_desc("lsp: Rename in file range"),
 		["n|<Leader>rp"] = map_cr("Lspsaga rename ++project")
+			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Rename in project range"),
 		["nv|<Leader>ca"] = map_cr("Lspsaga code_action"):with_buffer(buf):with_desc("lsp: Code action for cursor"),
 		["n|<Leader>cd"] = map_cr("Lspsaga show_cursor_diagnostics")
 			:with_buffer(buf)
 			:with_desc("lsp: Cursor diagnostic"),
-		["n|<leader>ll"] = map_cr("Lspsaga show_line_diagnostics ++unfocus")
-			:with_silent()
-			:with_buffer(buf)
-			:with_desc("lsp: Line diagnostic"),
 		["n|K"] = map_cr("Lspsaga hover_doc"):with_silent():with_buffer(buf):with_desc("lsp: Show doc"),
 		["nv|ga"] = map_cr("Lspsaga code_action")
 			:with_silent()
@@ -80,7 +79,7 @@ mappings["lsp"] = function(buf)
 			:with_silent()
 			:with_buffer(buf)
 			:with_desc("lsp: Show outgoing calls"),
-		["n|<leader>td"] = map_callback(function()
+		["n|<leader>tb"] = map_callback(function()
 				_toggle_virtualtext()
 			end)
 			:with_noremap()

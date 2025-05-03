@@ -14,11 +14,6 @@ ui["goolord/alpha-nvim"] = {
 	config = require("user.configs.ui.alpha"),
 }
 
-ui["folke/edgy.nvim"] = {
-	event = "VeryLazy",
-	config = require("user.configs.ui.edgy"),
-}
-
 ui["rcarriga/nvim-notify"] = {
 	lazy = true,
 	event = "VeryLazy",
@@ -32,12 +27,6 @@ ui["lukas-reineke/indent-blankline.nvim"] = {
 }
 
 --[[
-ui["Jint-lzxy/nvim"] = {
-	lazy = false,
-	branch = "refactor/syntax-highlighting",
-	name = "catppuccin",
-	config = require("user.configs.ui.catppuccin"),
-}
 ui["akinsho/bufferline.nvim"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },

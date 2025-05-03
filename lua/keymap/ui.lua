@@ -172,7 +172,7 @@ function M.gitsigns(bufnr)
 	}
 
 	if user_ui and type(user_mappings.gitsigns) == "function" then
-		require("modules.utils.keymap").replace(user_mappings.gitsigns(buf))
+		require("modules.utils.keymap").replace(user_mappings.gitsigns(bufnr))
 	else
 		bind.nvim_load_mapping(map)
 	end

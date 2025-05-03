@@ -48,6 +48,14 @@ local mappings = {
 		["n|<D-l>"] = map_cr("BufferLineMoveNext"):with_noremap():with_silent():with_desc("Buffer: Move to next"),
 		["n|<D-u>"] = map_cr("BufferLineMovePrev"):with_noremap():with_silent():with_desc("Buffer: Move to prev"),
 
+		["n|<M-t>"] = map_cu(":enew"):with_noremap():with_silent():with_desc("Buffer: New"),
+		["n|<M-1>"] = map_cr("BufferLineGoToBuffer 1"):with_noremap():with_silent():with_desc("buffer: Goto first"),
+		["n|<M-9>"] = map_cr("BufferLineGoToBuffer last"):with_noremap():with_silent():with_desc("buffer: Goto last"),
+		["n|<M-n>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("Buffer: Switch to next"),
+		["n|<M-p>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("Buffer: Switch to prev"),
+		["n|<M-l>"] = map_cr("BufferLineMoveNext"):with_noremap():with_silent():with_desc("Buffer: Move to next"),
+		["n|<M-u>"] = map_cr("BufferLineMovePrev"):with_noremap():with_silent():with_desc("Buffer: Move to prev"),
+
 		-- window resize
 		["n|<leader>re"] = map_cmd("<C-w>="):with_noremap():with_silent():with_desc("window size reset"),
 		["n|<leader>rm"] = map_cmd("<C-w>_<C-w>|"):with_noremap():with_silent():with_desc("window size max"),
@@ -118,85 +126,84 @@ mappings["gitsigns"] = function(bufnr)
 	local actions = require("gitsigns.actions")
 	return {
 		["n|]g"] = map_callback(function()
-			if vim.wo.diff then
-				return "]g"
-			end
-			vim.schedule(function()
-				actions.next_hunk()
+				if vim.wo.diff then
+					return "]g"
+				end
+				vim.schedule(function()
+					actions.next_hunk()
+				end)
+				return "<Ignore>"
 			end)
-			return "<Ignore>"
-		end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_expr()
 			:with_desc("git: Goto next hunk"),
 		["n|[g"] = map_callback(function()
-			if vim.wo.diff then
-				return "[g"
-			end
-			vim.schedule(function()
-				actions.prev_hunk()
+				if vim.wo.diff then
+					return "[g"
+				end
+				vim.schedule(function()
+					actions.prev_hunk()
+				end)
+				return "<Ignore>"
 			end)
-			return "<Ignore>"
-		end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_expr()
 			:with_desc("git: Goto prev hunk"),
 		["n|<leader>hs"] = map_callback(function()
-			actions.stage_hunk()
-		end)
+				actions.stage_hunk()
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Toggle staging/unstaging of hunk"),
 		["v|<leader>hs"] = map_callback(function()
-			actions.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
+				actions.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Toggle staging/unstaging of selected hunk"),
 		["n|<leader>hx"] = map_callback(function()
-			actions.undo_stage_hunk()
-		end)
+				actions.undo_stage_hunk()
+			end)
 			:with_buffer(bufnr)
 			:with_desc("git: Undo stage hunk"),
 		["n|<leader>hr"] = map_callback(function()
-			actions.reset_hunk()
-		end)
+				actions.reset_hunk()
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Reset hunk"),
 		["v|<leader>hr"] = map_callback(function()
-			actions.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
+				actions.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Reset hunk"),
 		["n|<leader>hR"] = map_callback(function()
-			actions.reset_buffer()
-		end)
+				actions.reset_buffer()
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Reset buffer"),
 		["n|<leader>hv"] = map_callback(function()
-			actions.preview_hunk()
-		end)
+				actions.preview_hunk()
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Preview hunk"),
 		["n|<leader>hb"] = map_callback(function()
-			actions.blame_line({ full = true })
-		end)
+				actions.blame_line({ full = true })
+			end)
 			:with_buffer(bufnr)
 			:with_noremap()
 			:with_desc("git: Blame line"),
 		["ox|ih"] = map_callback(function()
-			actions.select_hunk()
-		end)
-		:with_buffer(bufnr)
-		:with_noremap(),
+				actions.select_hunk()
+			end)
+			:with_buffer(bufnr)
+			:with_noremap(),
 	}
-
 end
 
 return mappings

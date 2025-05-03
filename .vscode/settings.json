@@ -12,6 +12,7 @@
         "neoconf",
         "noremap",
         "nvim",
+        "sniprun",
         "toggleterm",
         "unstaging",
         "venv",

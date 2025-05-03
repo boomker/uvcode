@@ -8,18 +8,13 @@ local vim_path = require("core.global").vim_path
 
 local mappings = {
 	plugins = {
-		-- Plugin: edgy
-		--[[ ["n|<D-S-t>"] = map_callback(function()
-				require("edgy").toggle("left")
-			end)
-			:with_noremap()
-			:with_silent()
-			:with_desc("filetree: Toggle"), ]]
 
 		-- Plugin neotree
 		["n|<D-b>"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
+		["n|<A-b>"] = map_cr("Neotree reveal=true toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
 		["i|<D-b>"] = map_cmd("<esc>:Neotree reveal=true toggle<CR>"):with_noremap():with_desc("filetree: Toggle"),
 		["n|<D-g>"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: git_status"),
+		["n|<A-g>"] = map_cr("Neotree git_status"):with_noremap():with_silent():with_desc("filetree: git_status"),
 		["n|<Leader>nt"] = map_cr("Neotree reveal=true toggle")
 			:with_noremap()
 			:with_silent()
@@ -118,12 +113,10 @@ local mappings = {
 			:with_desc("lsp: Show document diagnostics"),
 
 		-- Plugin Telescope
-		["i|<D-o>"] = map_cmd("<esc>:Telescope frecency<CR>"):with_noremap():with_silent():with_desc("find freq file"),
 		["i|<D-p>"] = map_cmd("<esc>:Telescope find_files<CR>"):with_noremap():with_desc("find file"),
-		["i|<D-M-b>"] = map_cmd("<esc>:Telescope buffers<CR>"):with_noremap():with_desc("find buffer"),
-		["n|<D-o>"] = map_cu("Telescope frecency"):with_noremap():with_silent():with_desc("find freq file"),
+		["i|<A-p>"] = map_cmd("<esc>:Telescope find_files<CR>"):with_noremap():with_desc("find file"),
 		["n|<D-p>"] = map_cu("Telescope find_files"):with_noremap():with_desc("find file"),
-		["n|<D-M-b>"] = map_cu("Telescope buffers"):with_noremap():with_desc("find buffer"),
+		["n|<A-p>"] = map_cu("Telescope find_files"):with_noremap():with_desc("find file"),
 		["n|<Leader>fa"] = map_cu("Telescope"):with_noremap():with_silent():with_desc("telescope all commands"),
 		["n|<Leader>fC"] = map_callback(function()
 				_telescope_collections(require("telescope.themes").get_dropdown())
