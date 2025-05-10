@@ -9,6 +9,7 @@
         "keymap",
         "keymapping",
         "lspconfig",
+        "lspsaga",
         "neoconf",
         "noremap",
         "nvim",
