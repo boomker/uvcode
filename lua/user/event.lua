@@ -22,6 +22,9 @@ vim.api.nvim_create_user_command("ClearRegisters", function()
 	for i = string.byte("a"), string.byte("z") do
 		vim.fn.setreg(string.char(i), "")
 	end
+	for i = string.byte("0"), string.byte("9") do
+		vim.fn.setreg(string.char(i), "")
+	end
 end, {})
 
 local definitions = {

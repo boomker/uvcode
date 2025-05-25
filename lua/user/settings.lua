@@ -66,7 +66,6 @@ settings["lsp_deps"] = {
 	"ruff",
 	"dprint",
 	"taplo",
-	"volar",
 	"gopls",
 	"jsonls",
 	"lua_ls",
@@ -160,5 +159,7 @@ settings["dashboard_image"] = {
 	[[    UU:::::::::UU            v:::v             CCC::::::::::::Coo:::::::::::oo  d:::::::::ddd::::d ee:::::::::::::e   ]],
 	[[      UUUUUUUUU               vvv                 CCCCCCCCCCCCC  ooooooooooo     ddddddddd   ddddd   eeeeeeeeeeeeee   ]],
 }
+
+settings["search_backend"] = "fzf" -- "telescope"
 
 return settings

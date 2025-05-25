@@ -2,7 +2,6 @@ return function()
 	local null_ls = require("null-ls")
 	local btns = null_ls.builtins
 
-	--[[
 	---Return formatter args required by `extra_args`
 	---@param formatter_name string
 	---@return table|nil
@@ -13,7 +12,6 @@ return function()
 		end
 		return args
 	end
-    --]]
 
 	-- Please set additional flags for the supported servers here
 	-- Don't specify any config here if you are using the default one.
@@ -55,7 +53,7 @@ return function()
 		default_timeout = require("user.settings").format_timeout,
 	})
 
-	require("completion.mason-null-ls").setup()
+	-- require("completion.mason-null-ls").setup()
 
 	-- Setup usercmd to register/deregister available source(s)
 	local function _gen_completion()

@@ -114,7 +114,7 @@ return function ()
 		dashboard.section.footer,
 	}
 
-	require("modules.utils").load_plugin("alpha", dashboard.opts)
+	-- require("modules.utils").load_plugin("alpha", dashboard.opts)
 
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "LazyVimStarted",
