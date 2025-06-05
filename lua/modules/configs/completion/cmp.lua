@@ -34,7 +34,6 @@ return function()
 			and {
 				require("copilot_cmp.comparators").prioritize,
 				require("copilot_cmp.comparators").score,
-				-- require("cmp_tabnine.compare"),
 				compare.offset, -- Items closer to cursor will have lower priority
 				compare.exact,
 				-- compare.scopes,
@@ -49,7 +48,6 @@ return function()
 				compare.order,
 			}
 		or {
-			-- require("cmp_tabnine.compare"),
 			compare.offset, -- Items closer to cursor will have lower priority
 			compare.exact,
 			-- compare.scopes,
@@ -91,7 +89,6 @@ return function()
 					string.format(" %s  %s", lspkind_icons[vim_item.kind] or icons.cmp.undefined, vim_item.kind or "")
 
 				vim_item.menu = setmetatable({
-					cmp_tabnine = "[TN]",
 					copilot = "[CPLT]",
 					buffer = "[BUF]",
 					orgmode = "[ORG]",
@@ -190,11 +187,8 @@ return function()
 					end,
 				},
 			},
-			-- { name = "tmux" },
-			-- { name = "orgmode" },
-			-- { name = "copilot" },
-			-- { name = "cmp_tabnine" },
-			-- { name = "latex_symbols" },
+			{ name = "latex_symbols" },
+			{ name = "copilot" },
 		},
 		experimental = {
 			ghost_text = {

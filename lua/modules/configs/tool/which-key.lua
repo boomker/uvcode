@@ -4,6 +4,7 @@ return function()
 		misc = require("modules.utils.icons").get("misc"),
 		git = require("modules.utils.icons").get("git", true),
 		cmp = require("modules.utils.icons").get("cmp", true),
+		aichat = require("modules.utils.icons").get("aichat", true),
 	}
 
 	require("modules.utils").load_plugin("which-key", {
