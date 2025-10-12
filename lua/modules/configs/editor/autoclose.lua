@@ -4,12 +4,13 @@ return function()
 			["("] = { escape = false, close = true, pair = "()" },
 			["["] = { escape = false, close = true, pair = "[]" },
 			["{"] = { escape = false, close = true, pair = "{}" },
-			-- ["<"] = { escape = true, close = true, pair = "<>", enabled_filetypes = { "rust" } },
-            ["<"] = { escape = true, close = true, pair = "<>" },
+
+			["<"] = { escape = true, close = true, pair = "<>", enabled_filetypes = { "rust" } },
 			[">"] = { escape = true, close = false, pair = "<>" },
 			[")"] = { escape = true, close = false, pair = "()" },
 			["]"] = { escape = true, close = false, pair = "[]" },
 			["}"] = { escape = true, close = false, pair = "{}" },
+
 			['"'] = { escape = true, close = true, pair = '""' },
 			["`"] = { escape = true, close = true, pair = "``" },
 			["'"] = { escape = true, close = true, pair = "''", disabled_filetypes = { "rust" } },
@@ -18,7 +19,6 @@ return function()
 			disable_when_touch = false,
 			disabled_filetypes = {
 				"alpha",
-				"bigfile",
 				"checkhealth",
 				"dap-repl",
 				"diff",

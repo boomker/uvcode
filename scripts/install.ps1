@@ -21,7 +21,7 @@ $installer_pkg_matrix = @{ "NodeJS" = "npm"; "Python" = "pip"; "Ruby" = "gem" }
 $env:XDG_CONFIG_HOME ??= $env:LOCALAPPDATA
 $env:CCPACK_MGR ??= 'unknown'
 $env:CCLONE_ATTR ??= 'undef'
-$env:CCLONE_BRANCH ??= '0.11'
+$env:CCLONE_BRANCH ??= 'main'
 $env:CCLONE_BRANCH_LEGACY ??= '0.10'
 $env:CCDEST_DIR ??= "$env:XDG_CONFIG_HOME\nvim"
 $env:CCBACKUP_DIR = "$env:CCDEST_DIR" + "_backup-" + (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmss")
@@ -122,7 +122,7 @@ function check_clone_pref {
 	if ($USR_CHOICE -eq 0) {
 		$env:CCLONE_ATTR = '--depth=1'
 	} else {
-		$env:CCLONE_ATTR = ''
+		$env:CCLONE_ATTR = '--progress'
 	}
 }
 
@@ -377,6 +377,7 @@ You must install Git before installing this Nvim config. See:
 	}
 
 	safe_execute -WithCmd { Set-Location -Path "$env:CCDEST_DIR" }
+	safe_execute -WithCmd { Copy-Item -Path "$env:CCDEST_DIR\lua\user_template\" -Destination "$env:CCDEST_DIR\lua\user" -Recurse -Force }
 
 	if (-not $USE_SSH) {
 		info -Msg "Changing default fetching method to HTTPS..."

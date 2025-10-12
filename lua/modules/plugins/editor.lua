@@ -22,6 +22,7 @@ editor["m4xshen/autoclose.nvim"] = {
 editor["pteroctopus/faster.nvim"] = {
 	lazy = false,
 	cond = require("core.settings").load_big_files_faster,
+	config = require("editor.faster"),
 }
 editor["ojroques/nvim-bufdel"] = {
 	lazy = true,
@@ -34,13 +35,6 @@ editor["ojroques/nvim-bufdel"] = {
 -- Considering its steep learning curve as well as backward compatibility issues...
 --  > We have no plan to remove the above plugins for the time being.
 -- But as usual, you can always tweak the plugin to your liking.
-
-editor["smoka7/hop.nvim"] = {
-	lazy = true,
-	version = "*",
-	event = { "CursorHold", "CursorHoldI" },
-	config = require("editor.hop"),
-}
 editor["folke/flash.nvim"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },

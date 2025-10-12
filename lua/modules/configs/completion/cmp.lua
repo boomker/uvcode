@@ -29,38 +29,23 @@ return function()
 		return (diff < 0)
 	end
 
-	local use_copilot = require("core.settings").use_copilot
-	local comparators = use_copilot == true
-			and {
-				require("copilot_cmp.comparators").prioritize,
-				require("copilot_cmp.comparators").score,
-				compare.offset, -- Items closer to cursor will have lower priority
-				compare.exact,
-				-- compare.scopes,
-				compare.lsp_scores,
-				compare.sort_text,
-				compare.score,
-				compare.recently_used,
-				-- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
-				require("cmp-under-comparator").under,
-				compare.kind,
-				compare.length,
-				compare.order,
-			}
-		or {
-			compare.offset, -- Items closer to cursor will have lower priority
-			compare.exact,
-			-- compare.scopes,
-			compare.lsp_scores,
-			compare.sort_text,
-			compare.score,
-			compare.recently_used,
-			-- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
-			require("cmp-under-comparator").under,
-			compare.kind,
-			compare.length,
-			compare.order,
-		}
+	local comparators = vim.list_extend(require("core.settings").use_copilot and {
+		require("copilot_cmp.comparators").prioritize,
+		require("copilot_cmp.comparators").score,
+	} or {}, {
+		compare.offset, -- Items closer to cursor will have lower priority
+		compare.exact,
+		-- compare.scopes,
+		compare.lsp_scores,
+		compare.sort_text,
+		compare.score,
+		compare.recently_used,
+		-- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
+		require("cmp-under-comparator").under,
+		compare.kind,
+		compare.length,
+		compare.order,
+	})
 
 	local cmp = require("cmp")
 	require("modules.utils").load_plugin("cmp", {
@@ -88,15 +73,14 @@ return function()
 				vim_item.kind =
 					string.format(" %s  %s", lspkind_icons[vim_item.kind] or icons.cmp.undefined, vim_item.kind or "")
 
+				-- set up labels for completion entries
 				vim_item.menu = setmetatable({
 					copilot = "[CPLT]",
 					buffer = "[BUF]",
 					orgmode = "[ORG]",
 					nvim_lsp = "[LSP]",
-					nvim_lua = "[LUA]",
 					path = "[PATH]",
 					tmux = "[TMUX]",
-					treesitter = "[TS]",
 					latex_symbols = "[LTEX]",
 					luasnip = "[SNIP]",
 					spell = "[SPELL]",
@@ -106,6 +90,7 @@ return function()
 					end,
 				})[entry.source.name]
 
+				-- cut down long results
 				local label = vim_item.abbr
 				local truncated_label = vim.fn.strcharpart(label, 0, 80)
 				if truncated_label ~= label then
@@ -120,7 +105,6 @@ return function()
 				return vim_item
 			end,
 		},
-
 		matching = {
 			disallow_partial_fuzzy_matching = false,
 		},
@@ -172,13 +156,12 @@ return function()
 		},
 		-- You should specify your *installed* sources.
 		sources = {
-			{ name = "nvim_lsp", max_item_count = 150 },
+			{ name = "nvim_lsp", max_item_count = 350 },
+			{ name = "luasnip" },
 			{ name = "path" },
 			{ name = "spell" },
-			{ name = "codeium" },
-			{ name = "luasnip" },
-			{ name = "nvim_lua" },
-			{ name = "treesitter" },
+			-- { name = "tmux" },
+			-- { name = "orgmode" },
 			{
 				name = "buffer",
 				option = {

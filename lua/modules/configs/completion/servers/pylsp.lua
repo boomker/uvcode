@@ -7,7 +7,7 @@ return {
 			plugins = {
 				-- Lint
 				ruff = {
-					enabled = false,
+					enabled = true,
 					select = {
 						-- enable pycodestyle
 						"E",
@@ -36,7 +36,7 @@ return {
 				rope = { enabled = true },
 
 				-- Formatting
-				black = { enabled = false },
+				black = { enabled = true },
 				pyls_isort = { enabled = false },
 				autopep8 = { enabled = false },
 				yapf = { enabled = false },

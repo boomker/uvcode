@@ -1,11 +1,9 @@
 local M = {}
 
 local settings = require("core.settings")
-local format_notify = settings.format_notify
-local format_on_save = settings.format_on_save
-local format_timeout = settings.format_timeout
-local block_list = settings.formatter_block_list
 local disabled_workspaces = settings.format_disabled_dirs
+local format_on_save = settings.format_on_save
+local format_notify = settings.format_notify
 local format_modifications_only = settings.format_modifications_only
 local server_formatting_block_list = settings.server_formatting_block_list
 local format_timeout = settings.format_timeout
@@ -23,7 +21,7 @@ end, {})
 
 local block_list = settings.formatter_block_list
 vim.api.nvim_create_user_command("FormatterToggleFt", function(opts)
-	if not block_list[opts.args] then
+	if block_list[opts.args] == nil then
 		vim.notify(
 			string.format("[LSP] Formatter for [%s] has been recorded in list and disabled.", opts.args),
 			vim.log.levels.WARN,
@@ -102,13 +100,10 @@ function M.format_filter(clients)
 		local status_ok, formatting_supported = pcall(function()
 			return client.supports_method("textDocument/formatting")
 		end)
-		if status_ok and formatting_supported and (client.name == "null-ls") then
-			-- return "null-ls"
-			return client.name
+		if status_ok and formatting_supported and client.name == "null-ls" then
+			return "null-ls"
 		elseif not server_formatting_block_list[client.name] and status_ok and formatting_supported then
 			return client.name
-        else
-            return false
 		end
 	end, clients)
 end
@@ -159,7 +154,7 @@ function M.format(opts)
 	local timeout_ms = opts.timeout_ms
 	for _, client in pairs(clients) do
 		if block_list[vim.bo.filetype] == true then
-			--[[ vim.notify(
+			vim.notify(
 				string.format(
 					"[LSP][%s] Formatting for [%s] has been disabled. This file is not being processed.",
 					client.name,
@@ -167,13 +162,13 @@ function M.format(opts)
 				),
 				vim.log.levels.WARN,
 				{ title = "LSP Formatter Warning" }
-			) ]]
+			)
 			return
 		end
 
 		if
 			format_modifications_only
-			-- and require("lsp-format-modifications").format_modifications(client, bufnr).success
+			and require("lsp-format-modifications").format_modifications(client, bufnr).success
 		then
 			if format_notify then
 				vim.notify(

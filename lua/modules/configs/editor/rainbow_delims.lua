@@ -40,12 +40,12 @@ return function()
 		},
 		highlight = {
 			"RainbowDelimiterRed",
-			"RainbowDelimiterViolet",
 			"RainbowDelimiterOrange",
 			"RainbowDelimiterYellow",
 			"RainbowDelimiterGreen",
-			"RainbowDelimiterCyan",
 			"RainbowDelimiterBlue",
+			"RainbowDelimiterCyan",
+			"RainbowDelimiterViolet",
 		},
 	}
 

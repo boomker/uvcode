@@ -1,13 +1,13 @@
 return function()
-	local transparent_background = require("core.settings").transparent_background
 	local clear = {}
+	local transparent_background = require("core.settings").transparent_background
 
 	require("modules.utils").load_plugin("catppuccin", {
-		background = { light = "latte", dark = "frappe" }, -- latte, frappe, macchiato, mocha
+		background = { light = "latte", dark = "mocha" }, -- latte, frappe, macchiato, mocha
 		dim_inactive = {
 			enabled = false,
 			-- Dim inactive splits/windows/buffers.
-			-- NOT recommended if you use old palette (a.k.a., frappe).
+			-- NOT recommended if you use old palette (a.k.a., mocha).
 			shade = "dark",
 			percentage = 0.15,
 		},
@@ -22,7 +22,7 @@ return function()
 			operators = { "bold" },
 			conditionals = { "bold" },
 			loops = { "bold" },
-			booleans = { "italic" },
+			booleans = { "bold", "italic" },
 			numbers = {},
 			types = {},
 			strings = {},
@@ -46,7 +46,7 @@ return function()
 			lsp_trouble = true,
 			markdown = true,
 			mason = true,
-			mini = { enabled = true, indentscope_color = "" },
+			mini = { enabled = true },
 			native_lsp = {
 				enabled = true,
 				virtual_text = {
@@ -148,18 +148,6 @@ return function()
 						bg = transparent_background and cp.none or cp.base,
 						style = { "bold", "underline" },
 					},
-
-					-- flash
-					FlashMatch = { bg = cp.none, fg = "#89b4fa", bold = true, italic = true },
-					FlashCurrent = {
-						bg = cp.none,
-						fg = "#04a5e5",
-						bold = true,
-						italic = true,
-						underline = true,
-					},
-					FlashLabel = { bg = cp.none, fg = "#ff007c", bold = true },
-					FlashBackdrop = { bg = cp.none, fg = "#6c7086" },
 
 					-- For treesitter
 					["@keyword.return"] = { fg = cp.pink, style = clear },

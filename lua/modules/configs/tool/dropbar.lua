@@ -58,7 +58,6 @@ return function()
 		icons = {
 			enable = true,
 			kinds = {
-				-- file_icon = true,
 				symbols = {
 					-- Type
 					Array = icons.type.Array,

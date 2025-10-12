@@ -31,12 +31,6 @@ ui["nvim-lualine/lualine.nvim"] = {
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.lualine"),
 }
-ui["zbirenbaum/neodim"] = {
-	lazy = true,
-	event = "LspAttach",
-	branch = "v2",
-	config = require("ui.neodim"),
-}
 ui["karb94/neoscroll.nvim"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
@@ -57,21 +51,21 @@ ui["mrjones2014/smart-splits.nvim"] = {
 	event = { "CursorHoldI", "CursorHold" },
 	config = require("ui.splits"),
 }
+ui["folke/edgy.nvim"] = {
+	lazy = true,
+	event = { "CursorHold", "CursorHoldI" },
+	config = require("ui.edgy"),
+}
 ui["folke/todo-comments.nvim"] = {
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("ui.todo"),
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = "nvim-lua/plenary.nvim",
 }
 ui["dstein64/nvim-scrollview"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.scrollview"),
-}
-ui["folke/edgy.nvim"] = {
-	lazy = true,
-	event = { "VeryLazy" },
-	config = require("ui.edgy"),
 }
 
 return ui

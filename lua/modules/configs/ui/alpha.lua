@@ -1,8 +1,8 @@
-return function ()
+return function()
 	local dashboard = require("alpha.themes.dashboard")
 	require("modules.utils").gen_alpha_hl()
 
-    dashboard.section.header.val = require("core.settings").dashboard_image
+	dashboard.section.header.val = require("core.settings").dashboard_image
 	dashboard.section.header.opts.hl = "AlphaHeader"
 
 	local function button(sc, txt, leader_txt, keybind, keybind_opts)
@@ -18,7 +18,9 @@ return function ()
 			hl_shortcut = "AlphaShortcut",
 		}
 
-		if not keybind then keybind = sc_after end
+		if nil == keybind then
+			keybind = sc_after
+		end
 		keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
 		opts.keymap = { "n", sc_after, keybind, keybind_opts }
 
@@ -45,38 +47,48 @@ return function ()
 	}
 
 	dashboard.section.buttons.val = {
-		button("space f f",icons.documents.FileFind .. "Find files", leader, nil, {
-			noremap = true,
-			silent = true,
-			nowait = true,
-			callback = function ()
-				require("telescope").extensions.frecency.frecency({})
-			end,
-		}),
-		button("space f g",icons.git.Git .. "Git objects", leader, nil, {
-			noremap = true,
-			silent = true,
-			nowait = true,
-			callback = function ()
-				require("telescope.builtin").git_files()
-			end,
-		}),
-		button("space f d",icons.ui.FolderWithHeart .. "Find sessions", leader, nil, {
-			noremap = true,
-			silent = true,
-			nowait = true,
-			callback = function ()
-				require("telescope").extensions.persisted.persisted({})
-			end,
-		}),
-		button("space f k",icons.documents.Word .. "Find patterns", leader, nil, {
-			noremap = true,
-			silent = true,
-			nowait = true,
-			callback = function ()
-				require("telescope.builtin").live_grep()
-			end,
-		}),
+		button(
+			"space f c",
+			icons.misc.Neovim .. "Telescope collections",
+			leader,
+			nil,
+			{ noremap = true, silent = true, nowait = true }
+		),
+		button(
+			"space f f",
+			icons.documents.FileFind .. "Find files",
+			leader,
+			nil,
+			{ noremap = true, silent = true, nowait = true }
+		),
+		button(
+			"space f d",
+			icons.ui.FolderWithHeart .. "Retrieve dossiers",
+			leader,
+			nil,
+			{ noremap = true, silent = true, nowait = true }
+		),
+		button(
+			"space f p",
+			icons.documents.Word .. "Find patterns",
+			leader,
+			nil,
+			{ noremap = true, silent = true, nowait = true }
+		),
+		button(
+			"space f g",
+			icons.git.Git .. "Locate Git objects",
+			leader,
+			nil,
+			{ noremap = true, silent = true, nowait = true }
+		),
+		button(
+			"space f m",
+			icons.misc.Ghost .. "Miscellaneous artifacts",
+			leader,
+			nil,
+			{ noremap = true, silent = true, nowait = true }
+		),
 	}
 	dashboard.section.buttons.opts.hl = "AlphaButtons"
 
@@ -118,7 +130,7 @@ return function ()
 
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "LazyVimStarted",
-		callback = function ()
+		callback = function()
 			dashboard.section.footer.val = footer()
 			pcall(vim.cmd.AlphaRedraw)
 		end,

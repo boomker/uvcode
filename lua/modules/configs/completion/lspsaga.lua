@@ -56,7 +56,10 @@ return function()
 			only_in_cursor = false,
 			show_server_name = true,
 			extend_gitsigns = false,
-			keys = { quit = "q", exec = "<CR>" },
+			keys = {
+				quit = "q",
+				exec = "<CR>",
+			},
 		},
 		-- Diagnostics: https://nvimdev.github.io/lspsaga/diagnostic/
 		diagnostic = {
@@ -66,7 +69,7 @@ return function()
 			max_height = 0.6,
 			text_hl_follow = true,
 			border_follow = true,
-			extend_relatedInformation = false,
+			extend_relatedInformation = true,
 			show_layout = "float",
 			show_normal_height = 10,
 			max_show_width = 0.9,
@@ -107,7 +110,11 @@ return function()
 			auto_save = false,
 			project_max_width = 0.5,
 			project_max_height = 0.5,
-			keys = { quit = "<C-c>", exec = "<CR>", select = "x" },
+			keys = {
+				quit = "<C-c>",
+				exec = "<CR>",
+				select = "x",
+			},
 		},
 		-- Beacon: https://nvimdev.github.io/lspsaga/misc/#beacon
 		beacon = {
@@ -145,10 +152,7 @@ return function()
 				Package = { icons.kind.Package, "LspKindPackage" },
 				Property = { icons.kind.Property, "LspKindProperty" },
 				Struct = { icons.kind.Struct, "LspKindStruct" },
-				TypeParameter = {
-					icons.kind.TypeParameter,
-					"LspKindTypeParameter",
-				},
+				TypeParameter = { icons.kind.TypeParameter, "LspKindTypeParameter" },
 				Variable = { icons.kind.Variable, "LspKindVariable" },
 				-- Type
 				Array = { icons.type.Array, "LspKindArray" },

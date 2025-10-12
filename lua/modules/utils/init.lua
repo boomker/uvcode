@@ -98,11 +98,7 @@ end
 ---@param c string @The color in hexadecimal.
 local function hex_to_rgb(c)
 	c = string.lower(c)
-	return {
-		tonumber(c:sub(2, 3), 16),
-		tonumber(c:sub(4, 5), 16),
-		tonumber(c:sub(6, 7), 16),
-	}
+	return { tonumber(c:sub(2, 3), 16), tonumber(c:sub(4, 5), 16), tonumber(c:sub(6, 7), 16) }
 end
 
 -- NOTE: If the active colorscheme isn't `catppuccin`, this function won't overwrite existing definitions
@@ -197,7 +193,7 @@ end
 ---@return palette
 function M.get_palette(overwrite)
 	if not overwrite then
-		return vim.deepcopy(init_palette())
+		return vim.deepcopy(init_palette(), true)
 	else
 		return vim.tbl_extend("force", init_palette(), overwrite)
 	end
@@ -267,6 +263,19 @@ function M.gen_cursorword_hl()
 	set_global_hl("MiniCursorwordCurrent", nil)
 end
 
+---Setup and enable a language server in one call.
+---@param server string @Name of the language server
+---@param config? vim.lsp.Config @Optional config to apply
+function M.register_server(server, config)
+	vim.validate("server", server, "string", false)
+	vim.validate("config", config, "table", true)
+
+	if config then
+		vim.lsp.config(server, config)
+	end
+	vim.lsp.enable(server)
+end
+
 ---Convert number (0/1) to boolean
 ---@param value number @The value to check
 ---@return boolean|nil @Returns nil if failed
@@ -279,7 +288,7 @@ function M.tobool(value)
 		vim.notify(
 			"Attempting to convert data of type '" .. type(value) .. "' [other than 0 or 1] to boolean",
 			vim.log.levels.ERROR,
-			{ title = "[utils] Runtime error" }
+			{ title = "[utils] Runtime Error" }
 		)
 		return nil
 	end
@@ -356,7 +365,7 @@ function M.load_plugin(plugin_name, opts, vim_plugin, setup_callback)
 				if type(user_config) == "table" then
 					opts = tbl_recursive_merge(opts, user_config)
 					setup_callback(opts)
-					-- Replace base config if the returned user config is a function
+				-- Replace base config if the returned user config is a function
 				elseif type(user_config) == "function" then
 					local user_opts = user_config(opts)
 					if type(user_opts) == "table" then
