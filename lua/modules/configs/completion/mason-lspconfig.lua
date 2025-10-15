@@ -1,13 +1,12 @@
 local M = {}
 
-M.setup = function()
+M.setup = function ()
 	local is_windows = require("core.global").is_windows
 
 	local lsp_deps = require("core.settings").lsp_deps
 	local mason_registry = require("mason-registry")
 	local mason_lspconfig = require("mason-lspconfig")
 
-	require("lspconfig.ui.windows").default_options.border = "rounded"
 	require("modules.utils").load_plugin("mason-lspconfig", {
 		ensure_installed = lsp_deps,
 		-- Skip auto enable because we are loading language servers lazily
@@ -21,18 +20,20 @@ M.setup = function()
 		update_in_insert = false,
 	})
 
-    local opts = {
-        capabilities = require("blink.cmp").get_lsp_capabilities()
-    }
-    ---A handler to setup all servers defined under `completion/servers/*.lua`
-    ---@param lsp_name string
-    local function mason_lsp_handler(lsp_name)
-        -- rust_analyzer is configured using mrcjkb/rustaceanvim
-        -- warn users if they have set it up manually
-        if lsp_name == "rust_analyzer" then
-            local config_exist = pcall(require, "completion.servers." .. lsp_name)
-            if config_exist then
-                vim.notify([[
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	local opts = {
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false)),
+	}
+	---A handler to setup all servers defined under `completion/servers/*.lua`
+	---@param lsp_name string
+	local function mason_lsp_handler(lsp_name)
+		-- rust_analyzer is configured using mrcjkb/rustaceanvim
+		-- warn users if they have set it up manually
+		if lsp_name == "rust_analyzer" then
+			local config_exist = pcall(require, "completion.servers." .. lsp_name)
+			if config_exist then
+				vim.notify(
+					[[
 `rust_analyzer` is configured independently via `mrcjkb/rustaceanvim`. To get rid of this warning,
 please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` directory and configure
 `rust_analyzer` using the appropriate init options provided by `rustaceanvim` instead.]],
@@ -119,7 +120,7 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 	-- then configure the installed package's LSP using setup_lsp_for_package.
 	mason_registry:on(
 		"package:install:success",
-		vim.schedule_wrap(function(pkg)
+		vim.schedule_wrap(function (pkg)
 			if pkg.name == "python-lsp-server" then
 				local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
 				local python = is_windows and venv .. "/Scripts/python.exe" or venv .. "/bin/python"
@@ -141,7 +142,7 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 						},
 						cwd = venv,
 						env = { VIRTUAL_ENV = venv },
-						on_exit = function()
+						on_exit = function ()
 							if vim.fn.executable(black) == 1 and vim.fn.executable(ruff) == 1 then
 								vim.notify(
 									"Finished installing pylsp plugins",
@@ -156,14 +157,14 @@ please REMOVE your LSP configuration (rust_analyzer.lua) from the `servers` dire
 								)
 							end
 						end,
-						on_start = function()
+						on_start = function ()
 							vim.notify(
 								"Now installing pylsp plugins...",
 								vim.log.levels.INFO,
 								{ title = "[lsp] Install Status", timeout = 6000 }
 							)
 						end,
-						on_stderr = function(_, msg_stream)
+						on_stderr = function (_, msg_stream)
 							if msg_stream then
 								vim.notify(msg_stream, vim.log.levels.ERROR, { title = "[lsp] Install Failure" })
 							end

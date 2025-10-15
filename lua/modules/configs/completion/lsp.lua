@@ -3,8 +3,9 @@ return function()
 	require("completion.mason").setup()
 	require("completion.mason-lspconfig").setup()
 
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	local opts = {
-		capabilities = require("blink.cmp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false)),
 	}
 	-- Configure LSPs that are not supported by `mason.nvim` but are available in `nvim-lspconfig`.
 	-- First call |vim.lsp.config()|, then |vim.lsp.enable()| (or use `register_server`, see below)
