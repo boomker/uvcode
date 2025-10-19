@@ -136,5 +136,11 @@ local mappings = {
 	},
 }
 
-bind.nvim_load_mapping(mappings.builtins)
-bind.nvim_load_mapping(mappings.plugins)
+local ok, user_mappings = pcall(require, "user.keymap.editor")
+if ok  then
+	require("modules.utils.keymap").replace(user_mappings.builtins)
+	require("modules.utils.keymap").replace(user_mappings.plugins)
+else
+	bind.nvim_load_mapping(mappings.builtins)
+	bind.nvim_load_mapping(mappings.plugins)
+end

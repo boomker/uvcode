@@ -95,11 +95,12 @@ function M.lsp(buf)
 			:with_silent()
 			:with_desc("lsp: Toggle inlay hints"),
 	}
-	bind.nvim_load_mapping(map)
 
 	local ok, user_mappings = pcall(require, "user.keymap.completion")
 	if ok and type(user_mappings.lsp) == "function" then
 		require("modules.utils.keymap").replace(user_mappings.lsp(buf))
+	else
+		bind.nvim_load_mapping(map)
 	end
 end
 

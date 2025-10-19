@@ -66,7 +66,7 @@ return function()
 		file = {
 			{ "Files", file_searcher("files", builtins.find_files, false) },
 			{
-				"Frecency",
+				"Frequency",
 				function()
 					extensions.frecency.frecency()
 				end,

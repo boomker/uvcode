@@ -79,8 +79,14 @@ local mappings = {
 	},
 }
 
-bind.nvim_load_mapping(mappings.builtins)
-bind.nvim_load_mapping(mappings.plugins)
+local ok, user_mappings = pcall(require, "user.keymap.ui")
+if ok then
+	require("modules.utils.keymap").replace(user_mappings.builtins)
+	require("modules.utils.keymap").replace(user_mappings.plugins)
+else
+	bind.nvim_load_mapping(mappings.builtins)
+	bind.nvim_load_mapping(mappings.plugins)
+end
 
 --- The following code enables this file to be exported ---
 ---  for use with gitsigns lazy-loaded keymap bindings  ---
@@ -165,7 +171,12 @@ function M.gitsigns(bufnr)
 			:with_buffer(bufnr)
 			:with_noremap(),
 	}
-	bind.nvim_load_mapping(map)
+
+	if ok and type(user_mappings.gitsigns) == "function" then
+		require("modules.utils.keymap").replace(user_mappings.gitsigns(bufnr))
+	else
+		bind.nvim_load_mapping(map)
+	end
 end
 
 return M

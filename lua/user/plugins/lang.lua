@@ -20,7 +20,7 @@ lang["linux-cultist/venv-selector.nvim"] = {
 	},
 	branch = "regexp",
 	keys = {
-		{ "<leader>se", "<cmd>VenvSelect<cr>" },
+		{ "<leader>se", "<cmd>VenvSelect<cr>", desc = "Select venv" },
 		-- { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
 	},
 	dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },

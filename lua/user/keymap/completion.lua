@@ -90,7 +90,7 @@ mappings["lsp"] = function(buf)
 			end)
 			:with_noremap()
 			:with_silent()
-			:with_desc("edit: Toggle inlay hints dispaly of current buffer"),
+			:with_desc("edit: Toggle inlay hints display of current buffer"),
 	}
 end
 

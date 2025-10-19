@@ -13,4 +13,9 @@ local mappings = {
 	},
 }
 
-bind.nvim_load_mapping(mappings.plugins)
+local ok, user_mappings = pcall(require, "user.keymap.lang")
+if ok then
+	require("modules.utils.keymap").replace(user_mappings.plugins)
+else
+	bind.nvim_load_mapping(mappings.plugins)
+end

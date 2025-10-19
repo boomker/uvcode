@@ -119,8 +119,8 @@ local mappings = {
 	},
 }
 
-bind.nvim_load_mapping(mappings.builtins)
-bind.nvim_load_mapping(mappings.plugins)
+-- bind.nvim_load_mapping(mappings.builtins)
+-- bind.nvim_load_mapping(mappings.plugins)
 
 mappings["gitsigns"] = function(bufnr)
 	local actions = require("gitsigns.actions")

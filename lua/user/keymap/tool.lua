@@ -4,7 +4,6 @@ local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
 local map_callback = bind.map_callback
-local vim_path = require("core.global").vim_path
 
 local mappings = {
 	plugins = {
@@ -75,11 +74,11 @@ local mappings = {
 			:with_silent()
 			:with_desc("send selected code to term"),
 		["n|<Leader>tp"] = map_callback(function()
-				Toggle_ipython()
+				Toggle_iPython()
 			end)
 			:with_noremap()
 			:with_silent()
-			:with_desc("python: Toggle ipython"),
+			:with_desc("python: Toggle iPython"),
 		["n|<Leader>tg"] = map_callback(function()
 				-- Toggle_lazygit()
 				_toggle_lazygit()
@@ -139,9 +138,9 @@ local mappings = {
 			:with_silent()
 			:with_noremap()
 			:with_desc("tool: Toggle keymapping panel"),
-		["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent():with_desc("notify"),
-		["n|<Leader>fj"] = map_cu("Telescope jumplist"):with_noremap():with_silent():with_desc("jumplist"),
+		["n|<Leader>fn"] = map_cu("Telescope notify"):with_noremap():with_silent():with_desc("tool: notify"),
 		["n|<Leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
+		["n|<Leader>fj"] = map_cu("Telescope jumplist"):with_noremap():with_silent():with_desc("jumplist"),
 		["n|<Leader>fr"] = map_cu("Telescope registers"):with_noremap():with_silent():with_desc("registers"),
 		["n|<Leader>fz"] = map_cu("Telescope help_tags"):with_noremap():with_silent():with_desc("help_tags"),
 		-- NOTE: do diagnostic for all buffers
@@ -176,13 +175,6 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("tool: Find files"),
-		["v|<Leader>fs"] = map_callback(function()
-				local opts = vim.fn.getcwd() == vim_path and { additional_args = { "--no-ignore" } } or {}
-				require("telescope-live-grep-args.shortcuts").grep_visual_selection(opts)
-			end)
-			:with_noremap()
-			:with_silent()
-			:with_desc("tool: Find word under cursor"),
 		["n|<Leader>fg"] = map_callback(function()
 				require("search").open({ collection = "git" })
 			end)
@@ -313,4 +305,5 @@ local mappings = {
 	},
 }
 
-bind.nvim_load_mapping(mappings.plugins)
+-- bind.nvim_load_mapping(mappings.plugins)
+return mappings

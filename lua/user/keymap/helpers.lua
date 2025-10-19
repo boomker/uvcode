@@ -1,16 +1,16 @@
 local utils = require("user.utils")
 
-local _ipython = nil
-function Toggle_ipython()
-	if not _ipython then
+local _iPython = nil
+function Toggle_iPython()
+	if not _iPython then
 		local Terminal = require("toggleterm.terminal").Terminal
-		_ipython = Terminal:new({
+		_iPython = Terminal:new({
 			cmd = "~/.venv/bin/ipython3",
 			hidden = true,
 			direction = "horizontal",
 		})
 	end
-	_ipython:toggle()
+	_iPython:toggle()
 end
 
 function Telescope_find_file(searchScope)
