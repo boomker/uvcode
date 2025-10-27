@@ -103,6 +103,6 @@ editor["smoka7/hop.nvim"] = {
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("user.configs.editor.hop"),
 }
-]]
+--]]
 
 return editor

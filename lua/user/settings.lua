@@ -6,6 +6,7 @@ settings["format_timeout"] = 3000
 settings["format_on_save"] = true
 -- settings["format_modifications_only"] = true
 settings["transparent_background"] = true
+settings["search_backend"] = "fzf" -- "telescope"
 settings["diagnostics_level"] = "WARN"
 settings["colorscheme"] = "catppuccin-frappe"
 
@@ -127,6 +128,7 @@ settings["disabled_plugins"] = {
 	"tzachar/cmp-tabnine",
 	"zbirenbaum/copilot.lua",
 	"zbirenbaum/copilot-cmp",
+	"olimorris/codecompanion.nvim",
 	"andersevenrud/cmp-tmux",
 	"Exafunction/codeium.nvim",
 	"kdheepak/cmp-latex-symbols",
@@ -159,7 +161,5 @@ settings["dashboard_image"] = {
 	[[    UU:::::::::UU            v:::v             CCC::::::::::::Coo:::::::::::oo  d:::::::::ddd::::d ee:::::::::::::e   ]],
 	[[      UUUUUUUUU               vvv                 CCCCCCCCCCCCC  ooooooooooo     ddddddddd   ddddd   eeeeeeeeeeeeee   ]],
 }
-
-settings["search_backend"] = "fzf" -- "telescope"
 
 return settings

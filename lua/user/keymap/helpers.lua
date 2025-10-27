@@ -1,5 +1,16 @@
 local utils = require("user.utils")
 
+function Flash_esc_or_noh()
+	local flash_active, state = pcall(function()
+		return require("flash.plugins.char").state
+	end)
+	if flash_active and state then
+		state:hide()
+	else
+		pcall(vim.cmd.noh)
+	end
+end
+
 local _iPython = nil
 function Toggle_iPython()
 	if not _iPython then

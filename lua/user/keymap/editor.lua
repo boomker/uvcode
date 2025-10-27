@@ -46,31 +46,6 @@ local mappings = {
 			:with_noremap()
 			:with_desc("git: Toggle files history"),
 
-		-- Plugin: smart-splits.nvim
-		["n|<C-k>"] = map_cu("SmartCursorMoveUp"):with_silent():with_noremap():with_desc("window: Focus up"),
-		["n|<C-j>"] = map_cu("SmartCursorMoveDown"):with_silent():with_noremap():with_desc("window: Focus down"),
-		["n|<C-h>"] = map_cu("SmartCursorMoveLeft"):with_silent():with_noremap():with_desc("window: Focus left"),
-		["n|<C-l>"] = map_cu("SmartCursorMoveRight"):with_silent():with_noremap():with_desc("window: Focus right"),
-		-- [[ToggleTerm
-		["t|<D-Up>"] = map_cmd("<Esc><Cmd>SmartResizeUp<CR>"):with_silent(),
-		["t|<D-Down>"] = map_cmd("<Esc><Cmd>SmartResizeDown<CR>"):with_silent(),
-		["t|<D-Left>"] = map_cmd("<Esc><Cmd>SmartResizeLeft<CR>"):with_silent(),
-		["t|<D-Right>"] = map_cmd("<Esc><Cmd>SmartResizeRight<CR>"):with_silent(),
-		-- ToggleTerm]]
-		["n|<D-Up>"] = map_cu("SmartResizeUp"):with_silent():with_noremap():with_desc("window: Resize +3 vertically"),
-		["n|<D-Down>"] = map_cu("SmartResizeDown")
-			:with_silent()
-			:with_noremap()
-			:with_desc("window: Resize -3 vertically"),
-		["n|<D-Left>"] = map_cu("SmartResizeLeft")
-			:with_silent()
-			:with_noremap()
-			:with_desc("window: Resize -3 horizontally"),
-		["n|<D-Right>"] = map_cu("SmartResizeRight")
-			:with_silent()
-			:with_noremap()
-			:with_desc("window: Resize +3 horizontally"),
-
 		-- Plugin: grug-far
 		["n|<leader>sp"] = map_callback(function()
 				require("grug-far").open()
@@ -106,8 +81,5 @@ local mappings = {
 			:with_desc("Toggle pair"),
 	},
 }
-
--- bind.nvim_load_mapping(mappings.builtins)
--- bind.nvim_load_mapping(mappings.plugins)
 
 return mappings

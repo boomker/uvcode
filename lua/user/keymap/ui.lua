@@ -65,6 +65,7 @@ local mappings = {
 		["n|<leader>wj"] = map_cmd("<C-w>j"):with_noremap():with_desc("window: Focus down"),
 		["n|<leader>wk"] = map_cmd("<C-w>k"):with_noremap():with_desc("window: Focus up"),
 		["n|<leader>ww"] = map_cmd("<C-w>w"):with_noremap():with_desc("window: Focus least"),
+
 		-- Plugin: smart-splits.nvim
 		["n|<leader>wv"] = map_cmd("<C-w>v<C-^>"):with_noremap():with_silent():with_desc("window horizon"),
 		["n|<leader>ws"] = map_cmd("<C-w>s<C-^>"):with_noremap():with_silent():with_desc("window split"),
@@ -118,9 +119,6 @@ local mappings = {
 		["n|<Leader>bl"] = map_cu("BookmarksListAll"):with_noremap():with_silent():with_desc("Search All Bookmarks"),
 	},
 }
-
--- bind.nvim_load_mapping(mappings.builtins)
--- bind.nvim_load_mapping(mappings.plugins)
 
 mappings["gitsigns"] = function(bufnr)
 	local actions = require("gitsigns.actions")

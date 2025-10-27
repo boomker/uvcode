@@ -71,8 +71,8 @@ local core_map = {
 	["n|<leader>nl"] = map_cmd([[:nohl<cr>]]):with_noremap():with_silent():with_desc("nohlsearch"),
 
 	-- Substitute current search kw to null
-	["n|<leader>sn"] = map_cmd(":.s//<CR>"):with_noremap():with_silent():with_desc("Substitute current line kw"),
 	["n|<leader>sN"] = map_cmd(":%s///g<CR>"):with_noremap():with_silent():with_desc("Substitute all kw"),
+
 	["n|<leader>sb"] = map_cmd(":source %:p<CR>"):with_noremap():with_silent():with_desc("source buffer config"),
 	-- like `gv`, select the last pasted region, useful
 	["n|<leader>sv"] = map_cmd('"`[" . strpart(getregtype(), 0, 1) . "`]"')
@@ -80,7 +80,6 @@ local core_map = {
 		:with_expr()
 		:with_desc("select last pasted region"),
 
-	["nx|y"] = map_cmd([[<Plug>(YankyYank)]]):with_noremap():with_silent(),
 	["nx|p"] = map_cmd([[<Plug>(YankyPutAfter)]]):with_noremap():with_silent(),
 	["nx|P"] = map_cmd([[<Plug>(YankyPutBefore)]]):with_noremap():with_silent(),
 	["nx|gp"] = map_cmd([[<Plug>(YankyGPutAfter)]]):with_noremap():with_silent():with_desc("yanky put after"),
@@ -111,7 +110,7 @@ local core_map = {
 	["n|N"] = map_cmd("Nzzzv"):with_noremap():with_desc("edit: Prev search result"),
 	-- ["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("edit: Toggle code fold"),
 	["n|<Esc>"] = map_callback(function()
-			_flash_esc_or_noh()
+			Flash_esc_or_noh()
 		end)
 		:with_noremap()
 		:with_silent()

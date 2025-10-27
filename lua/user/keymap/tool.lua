@@ -80,20 +80,13 @@ local mappings = {
 			:with_silent()
 			:with_desc("python: Toggle iPython"),
 		["n|<Leader>tg"] = map_callback(function()
-				-- Toggle_lazygit()
-				_toggle_lazygit()
-			end)
-			:with_noremap()
-			:with_silent()
-			:with_desc("git: Toggle lazygit"),
-		["t|<D-g>"] = map_callback(function()
-				-- Toggle_lazygit()
 				_toggle_lazygit()
 			end)
 			:with_noremap()
 			:with_silent()
 			:with_desc("git: Toggle lazygit"),
 
+		-- Plugin: trouble
 		["n|gt"] = map_cr("Trouble diagnostics toggle")
 			:with_noremap()
 			:with_silent()
@@ -143,17 +136,16 @@ local mappings = {
 		["n|<Leader>fj"] = map_cu("Telescope jumplist"):with_noremap():with_silent():with_desc("jumplist"),
 		["n|<Leader>fr"] = map_cu("Telescope registers"):with_noremap():with_silent():with_desc("registers"),
 		["n|<Leader>fz"] = map_cu("Telescope help_tags"):with_noremap():with_silent():with_desc("help_tags"),
-		-- NOTE: do diagnostic for all buffers
-		["n|<Leader>fp"] = map_cu("Telescope diagnostics")
+		["n|<leader>fu"] = map_cr("Telescope resume")
 			:with_noremap()
 			:with_silent()
-			:with_desc("diagnostics in project"),
+			:with_desc("tool: Resume last search"),
 		["n|<Leader>fs"] = map_cu("Telescope lsp_document_symbols")
 			:with_noremap()
 			:with_silent()
 			:with_desc("symbols in document"),
 		-- search neovim config file and edit it
-		["n|<Leader>fu"] = map_callback(Telescope_find_neovim_config)
+		["n|<Leader>fv"] = map_callback(Telescope_find_neovim_config)
 			:with_noremap()
 			:with_silent()
 			:with_desc("search Neovim config"),

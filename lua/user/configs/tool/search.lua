@@ -1,4 +1,4 @@
-return function ()
+return function()
 	local vim_path = require("core.global").vim_path
 	local builtins = require("telescope.builtin")
 	local extensions = require("telescope").extensions
@@ -9,7 +9,7 @@ return function ()
 		file = {
 			{
 				"Files",
-				function (opts)
+				function(opts)
 					opts = opts or {}
 					if vim.fn.getcwd() == vim_path then
 						builtins.find_files(vim.tbl_deep_extend("force", opts, { no_ignore = true }))
@@ -22,19 +22,19 @@ return function ()
 			},
 			{
 				"Frequency",
-				function ()
+				function()
 					extensions.frecency.frecency()
 				end,
 			},
 			{
 				"Oldfiles",
-				function ()
+				function()
 					builtins.oldfiles()
 				end,
 			},
 			{
 				"Buffers",
-				function ()
+				function()
 					builtins.buffers()
 				end,
 			},
@@ -43,7 +43,7 @@ return function ()
 		pattern = {
 			{
 				"Word in project",
-				function ()
+				function()
 					local opts = {}
 					if vim.fn.getcwd() == vim_path then
 						opts["additional_args"] = { "--no-ignore" }
@@ -53,7 +53,7 @@ return function ()
 			},
 			{
 				"Word under cursor",
-				function (opts)
+				function(opts)
 					opts = opts or {}
 					if vim.fn.getcwd() == vim_path then
 						opts["additional_args"] = { "--no-ignore" }
@@ -63,7 +63,7 @@ return function ()
 			},
 			{
 				"Word in buffers",
-				function (opts)
+				function(opts)
 					opts = {
 						grep_open_files = true,
 					}
@@ -75,19 +75,19 @@ return function ()
 		git = {
 			{
 				"Commits",
-				function ()
+				function()
 					Telescope_git_commits()
 				end,
 			},
 			{
 				"Status diff",
-				function ()
+				function()
 					Telescope_git_status()
 				end,
 			},
 			{
 				"File history",
-				function ()
+				function()
 					Telescope_git_bcommits()
 				end,
 			},
@@ -97,19 +97,19 @@ return function ()
 		dossier = {
 			{
 				"Sessions",
-				function ()
+				function()
 					extensions.persisted.persisted()
 				end,
 			},
 			{
 				"Projects",
-				function ()
+				function()
 					extensions.projects.projects({})
 				end,
 			},
 			{
 				"Zoxide",
-				function ()
+				function()
 					extensions.zoxide.list()
 				end,
 			},
@@ -118,20 +118,14 @@ return function ()
 		misc = {
 			{
 				"Colorschemes",
-				function ()
+				function()
 					builtins.colorscheme({ enable_preview = true })
 				end,
 			},
 			{
 				"Notify",
-				function ()
+				function()
 					extensions.notify.notify()
-				end,
-			},
-			{
-				"Undo History",
-				function ()
-					extensions.undo.undo()
 				end,
 			},
 		},
@@ -139,19 +133,19 @@ return function ()
 		history = {
 			{
 				"Yank History",
-				function ()
+				function()
 					extensions.yank_history.yank_history()
 				end,
 			},
 			{
 				"Command History",
-				function ()
+				function()
 					builtins.command_history()
 				end,
 			},
 			{
 				"Undo History",
-				function ()
+				function()
 					extensions.undo.undo()
 				end,
 			},

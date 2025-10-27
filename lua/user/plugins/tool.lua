@@ -1,4 +1,5 @@
 local tool = {}
+local settings = require("user.settings")
 
 tool["stevearc/dressing.nvim"] = {
 	lazy = true,
@@ -183,6 +184,15 @@ tool["nvim-telescope/telescope.nvim"] = {
 			},
 		},
 	},
+}
+
+-- Needs `fzf` installed and in $PATH
+tool["ibhagwan/fzf-lua"] = {
+	lazy = true,
+	cond = (settings.search_backend == "fzf"),
+	cmd = "FzfLua",
+	config = require("tool.fzf-lua"),
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 }
 
 --[[
