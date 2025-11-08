@@ -132,7 +132,7 @@ settings["null_ls_deps"] = {
 	"goimports",
 	"prettier",
 	"shfmt",
-	"stylua",
+	-- "stylua",
 	"vint",
 }
 

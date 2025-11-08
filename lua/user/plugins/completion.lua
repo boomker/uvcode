@@ -35,6 +35,7 @@ completion["saghen/blink.cmp"] = {
 			config = require("completion.luasnip"),
 			dependencies = { "rafamadriz/friendly-snippets" },
 		},
+        "xzbdmw/colorful-menu.nvim",
 		--[[ {
 			"Exafunction/codeium.nvim",
 			dependencies = {

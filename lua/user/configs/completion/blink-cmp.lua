@@ -3,42 +3,8 @@ return function()
 		keymap = {
 			preset = "super-tab", --default, enter
 		},
-		--[[
-		cmdline = {
-			enabled = true,
-			sources = function()
-				local type = vim.fn.getcmdtype()
-				if type == "/" or type == "?" then
-					return { "buffer" }
-				end
-				if type == ":" or type == "@" then
-					return { "cmdline", "path" }
-				end
-				return {}
-			end,
-			keymap = {
-				preset = "enter",
-				["<Tab>"] = { "select_next", "fallback" },
-				["<S-Tab>"] = { "select_prev", "fallback" },
-				["<CR>"] = { "accept", "fallback" },
-				["<C-c>"] = { "cancel", "hide", "fallback" },
-			},
-			completion = {
-				menu = {
-					draw = {
-						columns = {
-							{ "label", "label_description", gap = 1 },
-							{ "kind_icon", "kind", gap = 1 },
-							{ "source_name" },
-						},
-					},
-				},
-			},
-		},
-        --]]
 		completion = {
 			keyword = { range = "full" },
-			ghost_text = { enabled = true },
 			accept = { auto_brackets = { enabled = true } },
 			trigger = { show_on_insert_on_trigger_character = true },
 			list = { selection = { preselect = true, auto_insert = true } },
@@ -52,6 +18,16 @@ return function()
 						{ "kind_icon", "kind", gap = 1 },
 						{ "source_name" },
 					},
+                    components = {
+                        label = {
+                            text = function(ctx)
+                                return require("colorful-menu").blink_components_text(ctx)
+                            end,
+                            highlight = function(ctx)
+                                return require("colorful-menu").blink_components_highlight(ctx)
+                            end,
+                        },
+                    },
 				},
 			},
 			documentation = {
@@ -62,7 +38,15 @@ return function()
 					border = "single",
 				},
 			},
+            ghost_text = {
+                enabled = true,
+                show_with_selection = true,
+                show_with_menu = true,
+            },
 		},
+        term = {
+            enabled = false,
+        },
 		appearance = {
 			use_nvim_cmp_as_default = false,
 			-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -110,5 +94,38 @@ return function()
 			},
 		},
 		snippets = { preset = "luasnip" },
+        --[[
+        cmdline = {
+            enabled = true,
+            sources = function()
+                local type = vim.fn.getcmdtype()
+                if type == "/" or type == "?" then
+                    return { "buffer" }
+                end
+                if type == ":" or type == "@" then
+                    return { "cmdline", "path" }
+                end
+                return {}
+            end,
+            keymap = {
+                preset = "enter",
+                ["<Tab>"] = { "select_next", "fallback" },
+                ["<S-Tab>"] = { "select_prev", "fallback" },
+                ["<CR>"] = { "accept", "fallback" },
+                ["<C-c>"] = { "cancel", "hide", "fallback" },
+            },
+            completion = {
+                menu = {
+                    draw = {
+                        columns = {
+                            { "label", "label_description", gap = 1 },
+                            { "kind_icon", "kind", gap = 1 },
+                            { "source_name" },
+                        },
+                    },
+                },
+            },
+        },
+        --]]
 	})
 end

@@ -80,7 +80,7 @@ settings["lsp_deps"] = {
 settings["null_ls_deps"] = {
 	"shfmt",
 	"black",
-	"stylua",
+	-- "stylua",
 	"prettier",
 	"yamllint",
 	"goimports",
