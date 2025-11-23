@@ -176,7 +176,9 @@ settings["treesitter_deps"] = {
 -- NOTE: Only the following GUI options are supported; others will be ignored.
 ---@type { font_name: string, font_size: number }
 settings["gui_config"] = {
-	font_name = "JetBrainsMono Nerd Font",
+    font_name = "Maple Mono NF CN",
+    gui_font_face = "Maple Mono NF CN",
+    -- font_name = "JetBrainsMono Nerd Font",
 	font_size = 12,
 }
 
