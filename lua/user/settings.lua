@@ -59,7 +59,7 @@ settings["formatter_block_list"] = {
 
 settings["server_formatting_block_list"] = {
 	clangd = true,
-	lua_ls = true,
+	-- lua_ls = true,
 	ts_ls = true,
 }
 
@@ -131,6 +131,7 @@ settings["disabled_plugins"] = {
 	"olimorris/codecompanion.nvim",
 	"andersevenrud/cmp-tmux",
 	"Exafunction/codeium.nvim",
+    "kevinhwang91/nvim-hlslens",
 	"kdheepak/cmp-latex-symbols",
 	"ojroques/nvim-bufdel",
 	"lambdalisue/suda.vim",

@@ -16,7 +16,7 @@ return {
 				preloadFileSize = 10000,
 			},
 			hint = { enable = true, setType = true },
-			format = { enable = false },
+			format = { enable = true },
 			telemetry = { enable = false },
 			-- Do not override treesitter lua highlighting with lua_ls's highlighting
 			semantic = { enable = false },
