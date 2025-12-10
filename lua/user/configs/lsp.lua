@@ -1,21 +1,20 @@
-return function()
-	local nvim_lsp = require("lspconfig")
-	require("completion.neoconf").setup()
-	require("completion.mason").setup()
-	require("completion.mason-lspconfig").setup()
+return function ()
+    local nvim_lsp = require("lspconfig")
+    require("completion.neoconf").setup()
+    require("completion.mason").setup()
+    require("completion.mason-lspconfig").setup()
 
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	local opts = {
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false)),
-	}
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local opts = {
+        capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false)),
+    }
 
-	-- Setup lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
-	if vim.fn.executable("ruff") == 1 then
-		local ok, _opts = pcall(require, "user.configs.lsp-servers.ruff")
-		local final_opts = ok and vim.tbl_deep_extend("keep", _opts, opts)
-		-- nvim_lsp.ruff.setup(final_opts)
-		require("modules.utils").register_server("ruff", final_opts)
-	end
-
-	-- pcall(vim.cmd.LspStart) -- Start LSPs
+    -- Setup lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
+    if vim.fn.executable("ruff") == 1 then
+        local ok, _opts = pcall(require, "user.configs.lsp-servers.ruff")
+        if ok then
+            local final_opts = vim.tbl_deep_extend("keep", _opts, opts)
+            require("modules.utils").register_server("ruff", final_opts)
+        end
+    end
 end
