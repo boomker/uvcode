@@ -144,8 +144,8 @@ settings["null_ls_deps"] = {
 ---@type string[]
 settings["dap_deps"] = {
     "codelldb", -- C-Family
-    "delve", -- Go
-    "python", -- Python (debugpy)
+    "delve",    -- Go
+    "python",   -- Python (debugpy)
 }
 
 -- Treesitter parsers to install during bootstrap.
@@ -179,8 +179,8 @@ settings["treesitter_deps"] = {
 -- NOTE: Only the following GUI options are supported; others will be ignored.
 ---@type { font_name: string, font_size: number }
 settings["gui_config"] = {
-    font_name = "Maple Mono NF CN",
-    gui_font_face = "Maple Mono NF CN",
+    font_name = "JetBrains Maple Mono",
+    gui_font_face = "JetBrains Maple Mono",
     -- font_name = "JetBrainsMono Nerd Font",
     font_size = 12,
 }
