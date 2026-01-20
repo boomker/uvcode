@@ -1,9 +1,15 @@
 return function()
 	require("modules.utils").load_plugin("project", {
 		manual_mode = false,
-		use_lsp = true,
 		patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
-		ignore_lsp = { "null-ls", "copilot" },
+		lsp = {
+			enabled = true, ---@type boolean
+			-- ignore = {}, ---@type string[]
+			ignore = { "null-ls", "copilot" },
+			use_pattern_matching = false, ---@type boolean
+			-- WARNING: USE AT YOUR OWN DISCRETION!!!!
+			no_fallback = false, ---@type boolean
+		},
 		exclude_dirs = {},
 		show_hidden = false,
 		silent_chdir = true,

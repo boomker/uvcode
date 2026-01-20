@@ -31,17 +31,17 @@ settings["format_modifications_only"] = false
 -- Filetypes in this list will skip LSP formatting if the value is true.
 ---@type table<string, boolean>
 settings["formatter_block_list"] = {
-    -- Example
-    lua = false,
+	-- Example
+	lua = false,
 }
 
 -- Servers in this list will skip formatting capabilities if the value is true.
 ---@type table<string, boolean>
 settings["server_formatting_block_list"] = {
-    clangd = true,
-    lua_ls = true,
-    ruff = false, -- set to false to enable ruff formatting, see discussion #1485
-    ts_ls = true,
+	clangd = true,
+	lua_ls = true,
+	ruff = false, -- set to false to enable ruff formatting, see discussion #1485
+	ts_ls = true,
 }
 
 -- Directories where formatting on save is disabled.
@@ -49,8 +49,8 @@ settings["server_formatting_block_list"] = {
 -- NOTE: Directories are automatically normalized using |vim.fs.normalize()|.
 ---@type string[]
 settings["format_disabled_dirs"] = {
-    -- Example
-    "~/format_disabled_dir",
+	-- Example
+	"~/format_disabled_dir",
 }
 
 -- Set to false to disable virtual lines for diagnostics.
@@ -115,74 +115,70 @@ settings["lsp_inlayhints"] = false
 -- Full list: https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
 ---@type string[]
 settings["lsp_deps"] = {
-    "bashls",
-    "clangd",
-    "gopls",
-    "html",
-    "jsonls",
-    "lua_ls",
-    "yamlls",
-    "ruff",
-    "zuban",
+	"bashls",
+	"clangd",
+	"gopls",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"ruff",
+	"zuban",
 }
 
 -- General-purpose sources for none-ls to install during bootstrap.
 -- Supported sources: https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins
 ---@type string[]
 settings["null_ls_deps"] = {
-    "clang_format",
-    "gofumpt",
-    "goimports",
-    "prettier",
-    "shfmt",
-    -- "stylua",
-    "vint",
+	"clang_format",
+	"gofumpt",
+	"goimports",
+	"prettier",
+	"shfmt",
+	"stylua",
+	"vint",
 }
 
 -- Debug Adapter Protocol (DAP) clients to install and configure during bootstrap.
 -- Supported DAPs: https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
 ---@type string[]
 settings["dap_deps"] = {
-    "codelldb", -- C-Family
-    "delve",    -- Go
-    "python",   -- Python (debugpy)
+	"codelldb", -- C-Family
+	"delve", -- Go
+	"python", -- Python (debugpy)
 }
 
 -- Treesitter parsers to install during bootstrap.
 -- Full list: https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 ---@type string[]
 settings["treesitter_deps"] = {
-    "bash",
-    "c",
-    "cpp",
-    "css",
-    "go",
-    "gomod",
-    "html",
-    "javascript",
-    "json",
-    "jsonc",
-    "latex",
-    "lua",
-    "make",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "rust",
-    "typescript",
-    "vimdoc",
-    "vue",
-    "yaml",
+	"bash",
+	"c",
+	"cpp",
+	"css",
+	"go",
+	"gomod",
+	"html",
+	"javascript",
+	"json",
+	"latex",
+	"lua",
+	"make",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"rust",
+	"typescript",
+	"vimdoc",
+	"vue",
+	"yaml",
 }
 
 -- GUI settings for clients like `neovide` or `neovim-qt`.
 -- NOTE: Only the following GUI options are supported; others will be ignored.
 ---@type { font_name: string, font_size: number }
 settings["gui_config"] = {
-    font_name = "JetBrains Maple Mono",
-    gui_font_face = "JetBrains Maple Mono",
-    -- font_name = "JetBrainsMono Nerd Font",
-    font_size = 12,
+	font_name = "JetBrainsMono Nerd Font",
+	font_size = 12,
 }
 
 -- Specific settings for `neovide`.
@@ -190,19 +186,19 @@ settings["gui_config"] = {
 -- Supported entries: https://neovide.dev/configuration.html
 ---@type table<string, boolean|number|string>
 settings["neovide_config"] = {
-    no_idle = false,
-    input_ime = true,
-    fullscreen = true,
-    padding_left = 8,
-    confirm_quit = true,
-    cursor_vfx_mode = "torpedo",
-    cursor_trail_size = 0.05,
-    cursor_antialiasing = true,
-    hide_mouse_when_typing = true,
-    input_macos_alt_is_meta = false,
-    cursor_animation_length = 0.03,
-    cursor_vfx_particle_speed = 20.0,
-    cursor_vfx_particle_density = 5.0,
+	no_idle = false,
+	input_ime = true,
+	fullscreen = true,
+	padding_left = 8,
+	confirm_quit = true,
+	cursor_vfx_mode = "torpedo",
+	cursor_trail_size = 0.05,
+	cursor_antialiasing = true,
+	hide_mouse_when_typing = true,
+	input_macos_alt_is_meta = false,
+	cursor_animation_length = 0.03,
+	cursor_vfx_particle_speed = 20.0,
+	cursor_vfx_particle_density = 5.0,
 }
 
 -- Set the dashboard startup image here.
@@ -210,25 +206,25 @@ settings["neovide_config"] = {
 -- More info: https://github.com/ayamir/nvimdots/wiki/Issues#change-dashboard-startup-image
 ---@type string[]
 settings["dashboard_image"] = {
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⣾⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣟⠻⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⡿⢫⣷⣿⣿⣿⣿⣿⣿⣿⣾⣯⣿⡿⢧⡚⢷⣌⣽⣿⣿⣿⣿⣿⣶⡌⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⠇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣇⣘⠿⢹⣿⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣻⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⡇⠀⣬⠏⣿⡇⢻⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⠀⠈⠁⠀⣿⡇⠘⡟⣿⣿⣿⣿⣿⣿⣿⣿⡏⠿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⡏⠀⠀⠐⠀⢻⣇⠀⠀⠹⣿⣿⣿⣿⣿⣿⣩⡶⠼⠟⠻⠞⣿⡈⠻⣟⢻⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⢿⠀⡆⠀⠘⢿⢻⡿⣿⣧⣷⢣⣶⡃⢀⣾⡆⡋⣧⠙⢿⣿⣿⣟⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⡥⠂⡐⠀⠁⠑⣾⣿⣿⣾⣿⣿⣿⡿⣷⣷⣿⣧⣾⣿⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⡿⣿⣍⡴⠆⠀⠀⠀⠀⠀⠀⠀⠀⣼⣄⣀⣷⡄⣙⢿⣿⣿⣿⣿⣯⣶⣿⣿⢟⣾⣿⣿⢡⣿⣿⣿⣿⣿]],
-    [[⣿⡏⣾⣿⣿⣿⣷⣦⠀⠀⠀⢀⡀⠀⠀⠠⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⣡⣾⣿⣿⢏⣾⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⣿⣿⣿⣿⣿⡴⠀⠀⠀⠀⠀⠠⠀⠰⣿⣿⣿⣷⣿⠿⠿⣿⣿⣭⡶⣫⠔⢻⢿⢇⣾⣿⣿⣿⣿⣿⣿]],
-    [[⣿⣿⣿⡿⢫⣽⠟⣋⠀⠀⠀⠀⣶⣦⠀⠀⠀⠈⠻⣿⣿⣿⣾⣿⣿⣿⣿⡿⣣⣿⣿⢸⣾⣿⣿⣿⣿⣿⣿⣿]],
-    [[⡿⠛⣹⣶⣶⣶⣾⣿⣷⣦⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠉⠛⠻⢿⣿⡿⠫⠾⠿⠋⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⡆⣠⢀⣴⣏⡀⠀⠀⠀⠉⠀⠀⢀⣠⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    [[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⣾⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣟⠻⣿⣿⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⡿⢫⣷⣿⣿⣿⣿⣿⣿⣿⣾⣯⣿⡿⢧⡚⢷⣌⣽⣿⣿⣿⣿⣿⣶⡌⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⠇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣇⣘⠿⢹⣿⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣻⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⡇⠀⣬⠏⣿⡇⢻⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⠀⠈⠁⠀⣿⡇⠘⡟⣿⣿⣿⣿⣿⣿⣿⣿⡏⠿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⡏⠀⠀⠐⠀⢻⣇⠀⠀⠹⣿⣿⣿⣿⣿⣿⣩⡶⠼⠟⠻⠞⣿⡈⠻⣟⢻⣿⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⢿⠀⡆⠀⠘⢿⢻⡿⣿⣧⣷⢣⣶⡃⢀⣾⡆⡋⣧⠙⢿⣿⣿⣟⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⡥⠂⡐⠀⠁⠑⣾⣿⣿⣾⣿⣿⣿⡿⣷⣷⣿⣧⣾⣿⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⡿⣿⣍⡴⠆⠀⠀⠀⠀⠀⠀⠀⠀⣼⣄⣀⣷⡄⣙⢿⣿⣿⣿⣿⣯⣶⣿⣿⢟⣾⣿⣿⢡⣿⣿⣿⣿⣿]],
+	[[⣿⡏⣾⣿⣿⣿⣷⣦⠀⠀⠀⢀⡀⠀⠀⠠⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⣡⣾⣿⣿⢏⣾⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⣿⣿⣿⣿⣿⡴⠀⠀⠀⠀⠀⠠⠀⠰⣿⣿⣿⣷⣿⠿⠿⣿⣿⣭⡶⣫⠔⢻⢿⢇⣾⣿⣿⣿⣿⣿⣿]],
+	[[⣿⣿⣿⡿⢫⣽⠟⣋⠀⠀⠀⠀⣶⣦⠀⠀⠀⠈⠻⣿⣿⣿⣾⣿⣿⣿⣿⡿⣣⣿⣿⢸⣾⣿⣿⣿⣿⣿⣿⣿]],
+	[[⡿⠛⣹⣶⣶⣶⣾⣿⣷⣦⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠉⠛⠻⢿⣿⡿⠫⠾⠿⠋⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+	[[⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⡆⣠⢀⣴⣏⡀⠀⠀⠀⠉⠀⠀⢀⣠⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+	[[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+	[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
 }
 
 -- Set it to false if you don't use AI chat functionality.
@@ -252,19 +248,19 @@ settings["chat_api_key"] = "CODE_COMPANION_KEY"
 -- All available models can be found here: https://openrouter.ai/models.
 --- @type string[]
 settings["chat_models"] = {
-    -- free models
-    "moonshotai/kimi-k2:free", -- default
-    "qwen/qwen3-coder:free",
-    "deepseek/deepseek-chat-v3-0324:free",
-    "deepseek/deepseek-r1:free",
-    "google/gemma-3-27b-it:free",
-    -- paid models
-    "openai/codex-mini",
-    "openai/gpt-4.1-mini",
-    "google/gemini-2.5-flash-lite",
-    "google/gemini-2.5-flash",
-    "anthropic/claude-3.7-sonnet",
-    "anthropic/claude-sonnet-4",
+	-- free models
+	"moonshotai/kimi-k2:free", -- default
+	"qwen/qwen3-coder:free",
+	"deepseek/deepseek-chat-v3-0324:free",
+	"deepseek/deepseek-r1:free",
+	"google/gemma-3-27b-it:free",
+	-- paid models
+	"openai/codex-mini",
+	"openai/gpt-4.1-mini",
+	"google/gemini-2.5-flash-lite",
+	"google/gemini-2.5-flash",
+	"anthropic/claude-3.7-sonnet",
+	"anthropic/claude-sonnet-4",
 }
 
 return require("modules.utils").extend_config(settings, "user.settings")
