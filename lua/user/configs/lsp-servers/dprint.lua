@@ -3,16 +3,15 @@ local util = require("lspconfig.util")
 return {
 	cmd = { "dprint", "lsp" },
 	filetypes = {
-		"yml",
 		"yaml",
 		"toml",
 		"json",
 		"jsonc",
 		"graphql",
-        "markdown",
+		"markdown",
 		"javascript",
 		"typescript",
-        "javascriptreact",
+		"javascriptreact",
 		"typescriptreact",
 	},
 	root_dir = util.root_pattern("dprint.json", ".dprint.json", "dprint.jsonc", ".dprint.jsonc"),
