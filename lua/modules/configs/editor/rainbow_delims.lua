@@ -1,4 +1,5 @@
 return function()
+	local is_tmux_tui = vim.env.TMUX and not vim.g.neovide
 	---@param threshold number @Use global strategy if nr of lines exceeds this value
 	local function init_strategy(threshold)
 		return function()
@@ -26,12 +27,12 @@ return function()
 
 	vim.g.rainbow_delimiters = {
 		strategy = {
-			[""] = init_strategy(500),
+			[""] = is_tmux_tui and vim.NIL or init_strategy(500),
 			c = init_strategy(300),
 			cpp = init_strategy(300),
-			lua = init_strategy(500),
+			lua = is_tmux_tui and vim.NIL or init_strategy(500),
 			vimdoc = init_strategy(300),
-			vim = init_strategy(300),
+			vim = is_tmux_tui and vim.NIL or init_strategy(300),
 		},
 		query = {
 			[""] = "rainbow-delimiters",

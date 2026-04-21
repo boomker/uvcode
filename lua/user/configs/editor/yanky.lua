@@ -33,4 +33,15 @@ return function()
         enabled = true,
         },
     })
+
+    if vim.env.TMUX and not vim.g.neovide then
+        -- `yanky` reads the default register on VimEnter to seed its history.
+        -- In tmux TUI sessions that ends up touching the system clipboard and
+        -- can fail before the editor is usable. Skip the startup seed there;
+        -- subsequent yanks still populate history through TextYankPost.
+        vim.api.nvim_clear_autocmds({
+            group = "Yanky",
+            event = "VimEnter",
+        })
+    end
 end

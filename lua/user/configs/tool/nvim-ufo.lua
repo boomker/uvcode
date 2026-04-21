@@ -1,4 +1,5 @@
 return function()
+	local is_tmux_tui = vim.env.TMUX and not vim.g.neovide
 	local handler = function(virtText, lnum, endLnum, width, truncate)
 		local newVirtText = {}
 		local suffix = (" ◀︎  %d "):format(endLnum - lnum)
@@ -34,6 +35,7 @@ return function()
 	vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 	local ftMap = {
 		git = "",
+		lua = "indent",
 		vim = "indent",
 		python = { "indent" },
 	}
@@ -64,6 +66,9 @@ return function()
 		},
 		---@diagnostic disable-next-line: unused-local
 		provider_selector = function(bufnr, filetype, buftype)
+			if is_tmux_tui then
+				return { "indent" }
+			end
 			return ftMap[filetype] or { "treesitter", "indent" }
 		end,
 	})

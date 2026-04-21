@@ -13,6 +13,29 @@ return function()
 		return args
 	end
 
+	---@param params table
+	---@return string[]
+	local function yamllint_args(params)
+		local buf_dir = vim.fs.dirname(params.bufname)
+		local config = vim.fs.find({
+			".yamllint",
+			".yamllint.yml",
+			".yamllint.yaml",
+			"yamllint.yml",
+			"yamllint.yaml",
+		}, {
+			path = buf_dir,
+			upward = true,
+		})[1]
+
+		local args = { "--format", "parsable" }
+		if config then
+			vim.list_extend(args, { "--config-file", config })
+		end
+		table.insert(args, "-")
+		return args
+	end
+
 	-- Please set additional flags for the supported servers here
 	-- Don't specify any config here if you are using the default one.
 	local sources = {
@@ -41,7 +64,7 @@ return function()
 		}),
         ]]
 		btns.diagnostics.yamllint.with({
-			args = { "--config-file", ".yamllint.yml", "-" },
+			args = yamllint_args,
 		}),
 	}
 	require("modules.utils").load_plugin("null-ls", {

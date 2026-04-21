@@ -99,7 +99,6 @@ settings["treesitter_deps"] = {
     "gomod",
     "html",
     "json",
-    "jsonc",
     "python",
     "vimdoc",
     "gitignore",

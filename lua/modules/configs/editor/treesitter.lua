@@ -3,6 +3,7 @@ return vim.schedule_wrap(function ()
 
 	require("modules.utils").load_plugin("nvim-treesitter", {})
 
+	vim.treesitter.language.register("json", "jsonc")
+
     require("nvim-treesitter").install(require("user.settings").treesitter_deps)
 end)
-

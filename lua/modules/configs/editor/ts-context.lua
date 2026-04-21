@@ -1,6 +1,8 @@
 return function()
+	local is_tmux_tui = vim.env.TMUX and not vim.g.neovide
+
 	require("modules.utils").load_plugin("treesitter-context", {
-		enable = true,
+		enable = not is_tmux_tui,
 		line_numbers = true,
 		max_lines = 3,
 		min_window_height = 0,
