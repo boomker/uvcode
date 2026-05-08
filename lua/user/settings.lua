@@ -46,7 +46,7 @@ settings["neovide_config"] = {
     remember_window_size = true,
     hide_mouse_when_typing = true,
     detach_on_quit = "always_quit",
-    input_use_logo = 1,                   -- logo(cmd) key
+    input_use_logo = 1,                      -- logo(cmd) key
     input_macos_option_key_is_meta = "both", -- only_left
 }
 
@@ -114,9 +114,9 @@ settings["disabled_plugins"] = {
     "smoka7/hop.nvim", -- not support Telescope
     "folke/paint.nvim",
     "chrisbra/csv.vim",
-    "romainl/vim-cool", -- makes hlsearch more useful
-    "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-    "zbirenbaum/neodim", -- dimming the highlights of unused functions, etc.
+    "romainl/vim-cool",   -- makes hlsearch more useful
+    "tpope/vim-sleuth",   -- Detect tabstop and shiftwidth automatically
+    "zbirenbaum/neodim",  -- dimming the highlights of unused functions, etc.
     "gelguy/wilder.nvim", -- A more adventurous wildmenu(/,?,:)
     "tpope/vim-fugitive",
     "pysan3/fcitx5.nvim",
@@ -139,6 +139,7 @@ settings["disabled_plugins"] = {
     "mfussenegger/nvim-treehopper",
     "ThePrimeagen/refactoring.nvim",
     "iamcco/markdown-preview.nvim",
+    "barrett-ruth/live-server.nvim",
     "aaronhallaert/advanced-git-search.nvim",
     "joechrisellis/lsp-format-modifications.nvim",
 }
